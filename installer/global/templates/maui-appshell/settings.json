@@ -1,0 +1,206 @@
+{
+  "naming_conventions": {
+    "domain_operations": {
+      "pattern": "{Verb}{Entity}",
+      "examples": [
+        "GetProducts",
+        "CreateOrder",
+        "UpdateCustomer",
+        "DeleteProduct"
+      ],
+      "prohibited_suffixes": [
+        "UseCase",
+        "Engine",
+        "Handler",
+        "Processor"
+      ],
+      "description": "Verb-based naming that clearly expresses business intent"
+    },
+    "repositories": {
+      "interface": "I{Entity}Repository",
+      "implementation": "{Entity}Repository",
+      "examples": [
+        "IProductRepository / ProductRepository",
+        "IOrderRepository / OrderRepository"
+      ],
+      "description": "Interface-based contracts for database access"
+    },
+    "services": {
+      "interface": "I{Purpose}Service",
+      "implementation": "{Purpose}Service",
+      "examples": [
+        "IAuthenticationService / AuthenticationService",
+        "IPaymentService / PaymentService",
+        "INotificationService / NotificationService"
+      ],
+      "description": "Interface-based contracts for external system integrations"
+    },
+    "presentation": {
+      "page": "{Feature}Page",
+      "viewmodel": "{Feature}ViewModel",
+      "examples": [
+        "ProductListPage / ProductListViewModel",
+        "OrderDetailsPage / OrderDetailsViewModel"
+      ],
+      "description": "MVVM pattern with clear feature-based naming"
+    }
+  },
+  "layer_configuration": {
+    "domain": {
+      "namespace_pattern": "{ProjectName}.Domain.{Feature}",
+      "return_type": "ErrorOr<TValue>",
+      "dependencies": [
+        "ErrorOr",
+        "Repository interfaces",
+        "Service interfaces"
+      ],
+      "prohibited_dependencies": [
+        "MAUI UI libraries",
+        "Concrete repository implementations",
+        "Concrete service implementations"
+      ]
+    },
+    "repository": {
+      "namespace_pattern": "{ProjectName}.Data.Repositories",
+      "interface_namespace": "{ProjectName}.Domain.Repositories",
+      "dependencies": [
+        "Entity Framework Core (or data library)",
+        "Domain models"
+      ],
+      "prohibited_dependencies": [
+        "MAUI UI libraries",
+        "ViewModels",
+        "Services"
+      ]
+    },
+    "service": {
+      "namespace_pattern": "{ProjectName}.Infrastructure.Services",
+      "interface_namespace": "{ProjectName}.Domain.Services",
+      "dependencies": [
+        "HTTP client libraries",
+        "External SDKs",
+        "Domain models"
+      ],
+      "prohibited_dependencies": [
+        "MAUI UI libraries",
+        "ViewModels",
+        "Repositories"
+      ]
+    },
+    "presentation": {
+      "namespace_pattern": "{ProjectName}.Presentation.{Feature}",
+      "dependencies": [
+        "MAUI UI libraries",
+        "CommunityToolkit.Mvvm",
+        "Domain operations",
+        "Navigation service"
+      ],
+      "prohibited_dependencies": [
+        "Concrete repository implementations",
+        "Concrete service implementations",
+        "Direct database access"
+      ]
+    }
+  },
+  "error_handling_configuration": {
+    "library": "ErrorOr",
+    "version": "2.0+",
+    "patterns": {
+      "success": "ErrorOr<TValue>.From(value)",
+      "failure": "Error.{Type}(code, description)",
+      "validation": "Error.Validation(code, description)",
+      "not_found": "Error.NotFound(code, description)",
+      "conflict": "Error.Conflict(code, description)",
+      "unexpected": "Error.Unexpected(code, description)"
+    },
+    "consumption": {
+      "match": "result.Match(value => ..., errors => ...)",
+      "switch": "result.Switch(value => ..., errors => ...)",
+      "is_error": "if (result.IsError) { ... }",
+      "value": "result.Value (when IsError is false)"
+    }
+  },
+  "navigation_configuration": {
+    "pattern": "AppShell",
+    "routing": {
+      "registration": "Routing.RegisterRoute(route, typeof(PageType))",
+      "navigation": "await Shell.Current.GoToAsync(route)",
+      "parameters": "await Shell.Current.GoToAsync($\"{route}?id={value}\")"
+    },
+    "flyout": {
+      "enabled": true,
+      "configuration": "AppShell.xaml FlyoutItem/Tab/ShellContent"
+    }
+  },
+  "dependency_injection_configuration": {
+    "registration_location": "MauiProgram.cs",
+    "patterns": {
+      "transient": "services.AddTransient<TInterface, TImplementation>()",
+      "scoped": "services.AddScoped<TInterface, TImplementation>()",
+      "singleton": "services.AddSingleton<TInterface, TImplementation>()"
+    },
+    "layer_recommendations": {
+      "domain_operations": "AddTransient (stateless, short-lived)",
+      "repositories": "AddScoped (per-page lifecycle)",
+      "services": "AddSingleton (shared state, long-lived)",
+      "viewmodels": "AddTransient (per-page instance)",
+      "navigation": "AddSingleton (app-wide navigation)"
+    }
+  },
+  "testing_configuration": {
+    "framework": "xUnit",
+    "mocking": "NSubstitute",
+    "strategy": "Outside-In TDD",
+    "test_organization": {
+      "domain_tests": "Tests/Domain/{Feature}Tests.cs",
+      "repository_tests": "Tests/Repositories/{Entity}RepositoryTests.cs",
+      "service_tests": "Tests/Services/{Purpose}ServiceTests.cs",
+      "viewmodel_tests": "Tests/ViewModels/{Feature}ViewModelTests.cs"
+    },
+    "naming": {
+      "pattern": "{MethodName}_{Scenario}_{ExpectedResult}",
+      "examples": [
+        "GetProducts_WhenRepositorySucceeds_ReturnsProducts",
+        "CreateOrder_WhenValidationFails_ReturnsValidationError",
+        "UpdateCustomer_WhenNotFound_ReturnsNotFoundError"
+      ]
+    }
+  },
+  "code_quality": {
+    "solid_principles": {
+      "single_responsibility": "Each class has one reason to change",
+      "open_closed": "Open for extension, closed for modification",
+      "liskov_substitution": "Subtypes must be substitutable for base types",
+      "interface_segregation": "Many specific interfaces over one general interface",
+      "dependency_inversion": "Depend on abstractions, not concretions"
+    },
+    "dry_principle": "Don't Repeat Yourself - extract common patterns",
+    "yagni_principle": "You Aren't Gonna Need It - implement only what's required"
+  },
+  "template_placeholders": {
+    "project": [
+      "{{ProjectName}}",
+      "{{RootNamespace}}"
+    ],
+    "feature": [
+      "{{FeatureName}}",
+      "{{Entity}}",
+      "{{Verb}}"
+    ],
+    "operation": [
+      "{{OperationName}}",
+      "{{ReturnType}}",
+      "{{Parameters}}"
+    ],
+    "repository": [
+      "{{RepositoryName}}",
+      "{{EntityType}}",
+      "{{Methods}}"
+    ],
+    "service": [
+      "{{ServiceName}}",
+      "{{Purpose}}",
+      "{{Methods}}"
+    ]
+  }
+}

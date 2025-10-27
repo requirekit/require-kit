@@ -1,0 +1,94 @@
+{
+  "template": {
+    "name": "maui-navigationpage",
+    "version": "1.0.0",
+    "description": ".NET MAUI template using NavigationPage for traditional page-based navigation",
+    "author": "Agentecflow",
+    "created": "2025-10-13",
+    "last_updated": "2025-10-13"
+  },
+  "stack": {
+    "framework": ".NET MAUI",
+    "framework_version": "8.0",
+    "language": "C#",
+    "architecture": "MVVM + UseCases",
+    "navigation_pattern": "NavigationPage",
+    "error_handling": "ErrorOr pattern"
+  },
+  "agents": [
+    "architectural-reviewer.md",
+    "bdd-generator.md",
+    "code-reviewer.md",
+    "maui-ui-specialist.md",
+    "maui-usecase-specialist.md",
+    "maui-viewmodel-specialist.md",
+    "requirements-analyst.md",
+    "test-orchestrator.md"
+  ],
+  "templates": {
+    "Domain": {
+      "description": "Domain models and error types",
+      "files": [
+        "Entity.cs",
+        "BaseError.cs"
+      ]
+    },
+    "Repository": {
+      "description": "Data access with ErrorOr pattern",
+      "files": [
+        "IRepository.cs",
+        "Repository.cs",
+        "RepositoryTests.cs"
+      ]
+    },
+    "Service": {
+      "description": "Business logic services with ErrorOr",
+      "files": [
+        "IService.cs",
+        "Service.cs",
+        "ServiceTests.cs",
+        "ApiService.cs",
+        "CacheService.cs"
+      ]
+    },
+    "ViewModel": {
+      "description": "MVVM ViewModels with navigation support",
+      "files": [
+        "ViewModelBase.cs",
+        "ViewModel.cs",
+        "ViewModelTests.cs"
+      ]
+    },
+    "Page": {
+      "description": "XAML pages with MVVM binding",
+      "files": [
+        "SampleViewModel.cs"
+      ]
+    },
+    "Navigation": {
+      "description": "NavigationPage-based navigation service",
+      "files": [
+        "INavigationService.cs",
+        "NavigationService.cs",
+        "MauiProgram.Navigation.cs"
+      ]
+    }
+  },
+  "use_cases": [
+    {
+      "name": "Simple Navigation App",
+      "description": "Apps with basic page-to-page navigation without complex hierarchies",
+      "examples": ["Settings app", "Form-based apps", "Linear workflows"]
+    },
+    {
+      "name": "Modal-Heavy Workflows",
+      "description": "Apps that primarily use modal navigation patterns",
+      "examples": ["Wizards", "Multi-step forms", "Task completion flows"]
+    },
+    {
+      "name": "Legacy App Migration",
+      "description": "Migrating from Xamarin.Forms NavigationPage apps to MAUI",
+      "examples": ["Direct Xamarin.Forms ports", "Existing NavigationPage codebases"]
+    }
+  ]
+}

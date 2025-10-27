@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Agentic Flow Project Initialization Command
+# Smart initialization that adapts to existing project structures
+
+# Use AGENTIC_FLOW_HOME if set, otherwise fall back to CLAUDE_HOME or default
+AGENTIC_HOME="${AGENTIC_FLOW_HOME:-${CLAUDE_HOME:-$HOME/.agentic-flow}}"
+
+# Export CLAUDE_HOME for the init script to use
+export CLAUDE_HOME="$AGENTIC_HOME"
+
+# Find the init script
+if [ -f "$AGENTIC_HOME/scripts/init-claude-project.sh" ]; then
+    INIT_SCRIPT="$AGENTIC_HOME/scripts/init-claude-project.sh"
+elif [ -f "$(dirname "${BASH_SOURCE[0]}")/../scripts/init-claude-project.sh" ]; then
+    INIT_SCRIPT="$(dirname "${BASH_SOURCE[0]}")/../scripts/init-claude-project.sh"
+else
+    echo "Error: Initialization script not found"
+    echo "Please ensure Agentic Flow is properly installed."
+    echo "Run the installer from the ai-engineer/installer directory:"
+    echo "  ./scripts/install.sh"
+    exit 1
+fi
+
+# Pass all arguments to the init script
+exec "$INIT_SCRIPT" "$@"

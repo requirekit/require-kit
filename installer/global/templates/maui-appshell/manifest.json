@@ -1,0 +1,149 @@
+{
+  "name": "maui-appshell",
+  "version": "1.0.0",
+  "description": ".NET MAUI template with AppShell navigation, Domain pattern (verb-based operations), Repository/Service split, and ErrorOr functional error handling",
+  "template_type": "technology-stack",
+  "technology": "dotnet-maui",
+  "architecture": {
+    "patterns": [
+      "Repository Pattern (interface-based, database access)",
+      "Service Pattern (interface-based, external systems)",
+      "Domain Pattern (verb-based operations: GetProducts, CreateOrder - NO UseCase/Engine suffix)",
+      "ErrorOr Pattern (functional error handling)",
+      "MVVM Pattern",
+      "Dependency Injection Pattern"
+    ],
+    "layers": [
+      {
+        "name": "Domain",
+        "description": "Verb-based domain operations with ErrorOr results",
+        "patterns": ["Domain Pattern", "ErrorOr Pattern"],
+        "naming": "{Verb}{Entity} (e.g., GetProducts, CreateOrder)"
+      },
+      {
+        "name": "Repository",
+        "description": "Database access abstraction with interface-based contracts",
+        "patterns": ["Repository Pattern", "Dependency Injection"],
+        "naming": "I{Entity}Repository / {Entity}Repository"
+      },
+      {
+        "name": "Service",
+        "description": "External system integrations with interface-based contracts",
+        "patterns": ["Service Pattern", "Dependency Injection"],
+        "naming": "I{Purpose}Service / {Purpose}Service"
+      },
+      {
+        "name": "Presentation",
+        "description": "MVVM pages, viewmodels, and navigation",
+        "patterns": ["MVVM Pattern", "Dependency Injection"],
+        "naming": "{Feature}Page / {Feature}ViewModel"
+      }
+    ],
+    "error_handling": {
+      "library": "ErrorOr",
+      "version": "2.0+",
+      "pattern": "ErrorOr<TValue>",
+      "description": "Functional error handling - operations return ErrorOr<T> instead of throwing exceptions"
+    },
+    "navigation": {
+      "pattern": "AppShell",
+      "description": "Shell-based navigation with routing and flyout menu",
+      "routing": "Routing.RegisterRoute(route, typeof(PageType))"
+    },
+    "dependency_injection": {
+      "container": "Microsoft.Extensions.DependencyInjection",
+      "registration_pattern": "MauiProgram.cs services.AddTransient/AddSingleton"
+    }
+  },
+  "templates": {
+    "domain": [
+      "domain/query-operation.cs.template",
+      "domain/command-operation.cs.template"
+    ],
+    "repository": [
+      "repository/repository-interface.cs.template",
+      "repository/repository-implementation.cs.template"
+    ],
+    "service": [
+      "service/service-interface.cs.template",
+      "service/service-implementation.cs.template"
+    ],
+    "presentation": [
+      "presentation/page.xaml.template",
+      "presentation/page.xaml.cs.template",
+      "presentation/viewmodel.cs.template",
+      "presentation/navigation-service.cs.template"
+    ],
+    "testing": [
+      "testing/domain-test.cs.template",
+      "testing/repository-test.cs.template",
+      "testing/service-test.cs.template",
+      "testing/viewmodel-test.cs.template"
+    ]
+  },
+  "agents": [
+    "maui-appshell-domain-specialist.md",
+    "maui-appshell-repository-specialist.md",
+    "maui-appshell-service-specialist.md"
+  ],
+  "testing": {
+    "framework": "xUnit",
+    "mocking": "NSubstitute",
+    "assertions": "FluentAssertions",
+    "strategy": "Outside-In TDD (acceptance tests first, unit tests as needed)",
+    "layers": {
+      "domain": "Unit tests with mocked Repository/Service dependencies",
+      "repository": "Integration tests with in-memory database",
+      "service": "Integration tests with mocked HttpClient",
+      "viewmodel": "Unit tests with mocked Domain operations"
+    },
+    "coverage_target": {
+      "line": 80,
+      "branch": 75
+    }
+  },
+  "quality_gates": {
+    "required": [
+      "All tests passing",
+      "ErrorOr used for all fallible operations",
+      "Interfaces for all repositories and services",
+      "Verb-based domain operation naming",
+      "AppShell routing configured",
+      "Dependency injection configured"
+    ],
+    "recommended": [
+      "80%+ line coverage",
+      "75%+ branch coverage",
+      "No code duplication",
+      "SOLID principles followed"
+    ]
+  },
+  "prerequisites": {
+    "sdk": ".NET 8.0+",
+    "workload": "dotnet workload install maui",
+    "packages": [
+      "ErrorOr (2.0+)",
+      "CommunityToolkit.Mvvm",
+      "Microsoft.Extensions.DependencyInjection",
+      "xUnit (testing)",
+      "NSubstitute (testing)"
+    ]
+  },
+  "created": "2025-10-12",
+  "last_updated": "2025-10-13",
+  "author": "Agentecflow System",
+  "changelog": [
+    {
+      "version": "1.1.0",
+      "date": "2025-10-13",
+      "changes": [
+        "Added viewmodel-test.cs.template for complete test coverage",
+        "Fixed command-operation.cs.template syntax error (line 54)",
+        "Removed ArgumentNullException from repository (trust DI)",
+        "Enhanced repository with GetWhereAsync, ExistsAsync, GetCountAsync, GetPagedAsync",
+        "Improved architectural compliance (SOLID, DRY, YAGNI)",
+        "Quality score increased from 74/100 to 88/100"
+      ]
+    }
+  ]
+}

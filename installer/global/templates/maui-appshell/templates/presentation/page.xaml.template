@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:{{ProjectName}}.Presentation.{{FeatureName}}"
+             x:Class="{{ProjectName}}.Presentation.{{FeatureName}}.{{PageName}}"
+             x:DataType="vm:{{ViewModelName}}"
+             Title="{{PageTitle}}">
+
+    <Grid RowDefinitions="Auto,*" Padding="16">
+
+        <!-- Busy Indicator -->
+        <ActivityIndicator Grid.Row="0"
+                          IsRunning="{Binding IsBusy}"
+                          IsVisible="{Binding IsBusy}"
+                          Color="{StaticResource Primary}"
+                          Margin="0,0,0,16" />
+
+        <!-- Error Message -->
+        <Label Grid.Row="0"
+               Text="{Binding ErrorMessage}"
+               IsVisible="{Binding ErrorMessage, Converter={StaticResource IsNotNullOrEmptyConverter}}"
+               TextColor="{StaticResource Error}"
+               Margin="0,0,0,16" />
+
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="16">
+
+                {{ContentPlaceholder}}
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+
+</ContentPage>

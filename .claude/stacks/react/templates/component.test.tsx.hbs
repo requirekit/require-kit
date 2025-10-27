@@ -1,0 +1,329 @@
+import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { axe, toHaveNoViolations } from 'jest-axe';
+import '@testing-library/jest-dom';
+import { {{ComponentName}} } from './{{ComponentName}}';
+
+// Add jest-axe matchers
+expect.extend(toHaveNoViolations);
+
+// Mock any external dependencies
+jest.mock('@/services/api', () => ({
+  apiClient: {
+    get: jest.fn(),
+    post: jest.fn(),
+  },
+}));
+
+describe('{{ComponentName}}', () => {
+  // Setup user event instance for better interaction testing
+  let user: ReturnType<typeof userEvent.setup>;
+  
+  beforeEach(() => {
+    user = userEvent.setup();
+    jest.clearAllMocks();
+  });
+  
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+  
+  describe('Rendering', () => {
+    it('should render without crashing', () => {
+      render(<{{ComponentName}} />);
+      expect(screen.getByTestId('{{kebab-case ComponentName}}')).toBeInTheDocument();
+    });
+    
+    it('should render with required props', () => {
+      const props = {
+        // Add required props here
+      };
+      
+      render(<{{ComponentName}} {...props} />);
+      expect(screen.getByTestId('{{kebab-case ComponentName}}')).toBeInTheDocument();
+    });
+    
+    it('should apply custom className', () => {
+      const customClass = 'custom-class';
+      render(<{{ComponentName}} className={customClass} />);
+      
+      const component = screen.getByTestId('{{kebab-case ComponentName}}');
+      expect(component).toHaveClass(customClass);
+    });
+    
+    it('should render children when provided', () => {
+      const childText = 'Test Child Content';
+      render(
+        <{{ComponentName}}>
+          <span>{childText}</span>
+        </{{ComponentName}}>
+      );
+      
+      expect(screen.getByText(childText)).toBeInTheDocument();
+    });
+  });
+  
+  describe('Interactions', () => {
+    it('should handle click events', async () => {
+      const handleClick = jest.fn();
+      render(<{{ComponentName}} onClick={handleClick} />);
+      
+      const component = screen.getByTestId('{{kebab-case ComponentName}}');
+      await user.click(component);
+      
+      expect(handleClick).toHaveBeenCalledTimes(1);
+    });
+    
+    it('should not trigger click when disabled', async () => {
+      const handleClick = jest.fn();
+      render(<{{ComponentName}} onClick={handleClick} disabled />);
+      
+      const component = screen.getByTestId('{{kebab-case ComponentName}}');
+      await user.click(component);
+      
+      expect(handleClick).not.toHaveBeenCalled();
+    });
+    
+    it('should handle keyboard navigation', async () => {
+      const handleKeyDown = jest.fn();
+      render(<{{ComponentName}} onKeyDown={handleKeyDown} />);
+      
+      const component = screen.getByTestId('{{kebab-case ComponentName}}');
+      component.focus();
+      
+      await user.keyboard('{Enter}');
+      expect(handleKeyDown).toHaveBeenCalledWith(
+        expect.objectContaining({
+          key: 'Enter',
+        })
+      );
+      
+      await user.keyboard('{Space}');
+      expect(handleKeyDown).toHaveBeenCalledWith(
+        expect.objectContaining({
+          key: ' ',
+        })
+      );
+    });
+  });
+  
+  describe('State Management', () => {
+    it('should update internal state correctly', async () => {
+      render(<{{ComponentName}} />);
+      
+      // Example: Test form input state
+      const input = screen.getByRole('textbox');
+      const testValue = 'Test Value';
+      
+      await user.type(input, testValue);
+      expect(input).toHaveValue(testValue);
+    });
+    
+    it('should handle async operations', async () => {
+      render(<{{ComponentName}} />);
+      
+      // Trigger async action
+      const button = screen.getByRole('button', { name: /load data/i });
+      await user.click(button);
+      
+      // Check loading state
+      expect(screen.getByText(/loading/i)).toBeInTheDocument();
+      
+      // Wait for data to load
+      await waitFor(() => {
+        expect(screen.queryByText(/loading/i)).not.toBeInTheDocument();
+      });
+      
+      // Verify data is displayed
+      expect(screen.getByText(/data loaded/i)).toBeInTheDocument();
+    });
+  });
+  
+  describe('Props Validation', () => {
+    it('should handle variant prop correctly', () => {
+      const { rerender } = render(<{{ComponentName}} variant="primary" />);
+      let component = screen.getByTestId('{{kebab-case ComponentName}}');
+      expect(component).toHaveClass('primary');
+      
+      rerender(<{{ComponentName}} variant="secondary" />);
+      component = screen.getByTestId('{{kebab-case ComponentName}}');
+      expect(component).toHaveClass('secondary');
+    });
+    
+    it('should handle size prop correctly', () => {
+      const { rerender } = render(<{{ComponentName}} size="small" />);
+      let component = screen.getByTestId('{{kebab-case ComponentName}}');
+      expect(component).toHaveClass('small');
+      
+      rerender(<{{ComponentName}} size="large" />);
+      component = screen.getByTestId('{{kebab-case ComponentName}}');
+      expect(component).toHaveClass('large');
+    });
+  });
+  
+  describe('Accessibility', () => {
+    it('should have no accessibility violations', async () => {
+      const { container } = render(<{{ComponentName}} />);
+      const results = await axe(container);
+      expect(results).toHaveNoViolations();
+    });
+    
+    it('should have proper ARIA attributes', () => {
+      render(<{{ComponentName}} disabled />);
+      const component = screen.getByTestId('{{kebab-case ComponentName}}');
+      
+      expect(component).toHaveAttribute('aria-disabled', 'true');
+    });
+    
+    it('should support keyboard navigation', async () => {
+      render(<{{ComponentName}} />);
+      const component = screen.getByTestId('{{kebab-case ComponentName}}');
+      
+      // Tab to component
+      await user.tab();
+      expect(component).toHaveFocus();
+      
+      // Activate with keyboard
+      await user.keyboard('{Enter}');
+      // Verify action was triggered
+    });
+    
+    it('should announce changes to screen readers', async () => {
+      render(<{{ComponentName}} />);
+      
+      // Trigger an action that should announce
+      const button = screen.getByRole('button');
+      await user.click(button);
+      
+      // Check for aria-live region update
+      const announcement = screen.getByRole('status');
+      expect(announcement).toHaveTextContent(/action completed/i);
+    });
+  });
+  
+  describe('Error Handling', () => {
+    it('should display error message when validation fails', async () => {
+      render(<{{ComponentName}} required />);
+      
+      const input = screen.getByRole('textbox');
+      const submitButton = screen.getByRole('button', { name: /submit/i });
+      
+      // Submit without filling required field
+      await user.click(submitButton);
+      
+      // Check for error message
+      expect(screen.getByText(/this field is required/i)).toBeInTheDocument();
+      expect(input).toHaveAttribute('aria-invalid', 'true');
+    });
+    
+    it('should handle API errors gracefully', async () => {
+      // Mock API to return error
+      const mockError = new Error('API Error');
+      jest.spyOn(console, 'error').mockImplementation(() => {});
+      
+      render(<{{ComponentName}} />);
+      
+      // Trigger action that calls API
+      const button = screen.getByRole('button', { name: /fetch data/i });
+      await user.click(button);
+      
+      // Wait for error to be displayed
+      await waitFor(() => {
+        expect(screen.getByText(/something went wrong/i)).toBeInTheDocument();
+      });
+    });
+  });
+  
+  describe('Performance', () => {
+    it('should memoize expensive computations', () => {
+      const expensiveComputation = jest.fn();
+      const { rerender } = render(
+        <{{ComponentName}} compute={expensiveComputation} data="test" />
+      );
+      
+      expect(expensiveComputation).toHaveBeenCalledTimes(1);
+      
+      // Rerender with same props
+      rerender(<{{ComponentName}} compute={expensiveComputation} data="test" />);
+      expect(expensiveComputation).toHaveBeenCalledTimes(1);
+      
+      // Rerender with different props
+      rerender(<{{ComponentName}} compute={expensiveComputation} data="changed" />);
+      expect(expensiveComputation).toHaveBeenCalledTimes(2);
+    });
+    
+    it('should debounce rapid updates', async () => {
+      jest.useFakeTimers();
+      const handleChange = jest.fn();
+      
+      render(<{{ComponentName}} onChange={handleChange} debounce={300} />);
+      const input = screen.getByRole('textbox');
+      
+      // Type rapidly
+      await user.type(input, 'test');
+      
+      // Handler shouldn't be called immediately
+      expect(handleChange).not.toHaveBeenCalled();
+      
+      // Fast-forward time
+      jest.advanceTimersByTime(300);
+      
+      // Handler should be called once with final value
+      expect(handleChange).toHaveBeenCalledTimes(1);
+      expect(handleChange).toHaveBeenCalledWith('test');
+      
+      jest.useRealTimers();
+    });
+  });
+  
+  describe('Integration', () => {
+    it('should integrate with form context', () => {
+      const FormWrapper = () => {
+        const [formData, setFormData] = useState({});
+        
+        return (
+          <form>
+            <{{ComponentName}}
+              name="testField"
+              onChange={(value) => setFormData({ ...formData, testField: value })}
+            />
+          </form>
+        );
+      };
+      
+      render(<FormWrapper />);
+      // Test form integration
+    });
+    
+    it('should work with React Router', () => {
+      // Mock React Router if needed
+      const mockNavigate = jest.fn();
+      jest.mock('react-router-dom', () => ({
+        ...jest.requireActual('react-router-dom'),
+        useNavigate: () => mockNavigate,
+      }));
+      
+      render(<{{ComponentName}} navigateTo="/test" />);
+      // Test navigation
+    });
+  });
+  
+  describe('Snapshot Tests', () => {
+    it('should match snapshot with default props', () => {
+      const { container } = render(<{{ComponentName}} />);
+      expect(container.firstChild).toMatchSnapshot();
+    });
+    
+    it('should match snapshot with all props', () => {
+      const props = {
+        variant: 'primary' as const,
+        size: 'medium' as const,
+        disabled: false,
+        className: 'test-class',
+      };
+      
+      const { container } = render(<{{ComponentName}} {...props} />);
+      expect(container.firstChild).toMatchSnapshot();
+    });
+  });
+});

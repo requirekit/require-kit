@@ -1,0 +1,35 @@
+{
+  "name": "react",
+  "description": "React/TypeScript project template",
+  "version": "1.0.0",
+  "extends": ["default"],
+  "claude": {
+    "contextFiles": [
+      "package.json",
+      "tsconfig.json",
+      "src/App.tsx"
+    ]
+  },
+  "testing": {
+    "framework": "vitest",
+    "e2e": "playwright",
+    "coverage": {
+      "threshold": 85,
+      "exclude": ["*.test.tsx", "*.stories.tsx"]
+    }
+  },
+  "dependencies": {
+    "required": ["react", "typescript"],
+    "recommended": ["@testing-library/react", "vitest", "playwright"]
+  },
+  "scripts": {
+    "test": "vitest",
+    "test:e2e": "playwright test",
+    "test:coverage": "vitest --coverage"
+  },
+  "qualityGates": {
+    "testCoverage": 85,
+    "componentCoverage": 90,
+    "accessibility": "WCAG 2.1 AA"
+  }
+}

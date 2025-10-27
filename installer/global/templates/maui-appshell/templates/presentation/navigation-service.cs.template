@@ -1,0 +1,853 @@
+using ErrorOr;
+using {{ProjectName}}.Services.Interfaces;
+using {{ProjectName}}.ViewModels;
+
+namespace {{ProjectName}}.Infrastructure.Navigation;
+
+/// <summary>
+/// Interface for handling navigation between pages with ErrorOr pattern
+/// Supports navigation with parameters and results using generic type constraints
+/// </summary>
+public interface INavigator
+{
+    TViewModel GetViewModelFromContainer<TViewModel>();
+    Task<ErrorOr<Success>> Navigate<TViewModel>() where TViewModel : ViewModelBase, IViewModel;
+    Task<ErrorOr<Success>> Navigate<TViewModel, TParameter>(TParameter param) where TViewModel : ViewModelBase, IViewModel<TParameter>;
+    Task<ErrorOr<TResult>> Navigate<TViewModel, TResult>() where TViewModel : ViewModelBase, IViewModelResult<TResult> where TResult : class;
+    Task<ErrorOr<TResult>> Navigate<TViewModel, TParameter, TResult>(TParameter param) where TViewModel : ViewModelBase, IViewModel<TParameter, TResult> where TParameter : notnull where TResult : class;
+    Task<ErrorOr<Success>> NavigateAndMakeRoot<TViewModel>() where TViewModel : ViewModelBase, IViewModel;
+    Task<ErrorOr<Success>> NavigateAndMakeRoot<TViewModel, TParameter>(TParameter param) where TViewModel : ViewModelBase, IViewModel<TParameter> where TParameter : notnull;
+    Task<ErrorOr<Success>> NavigateAndRemoveCurrent<TViewModel>() where TViewModel : ViewModelBase, IViewModel;
+    Task<ErrorOr<Success>> NavigateAndRemoveCurrent<TViewModel, TParameter>(TParameter param) where TViewModel : ViewModelBase, IViewModel<TParameter> where TParameter : notnull;
+    Task<ErrorOr<Success>> NavigateAndRemoveUntil<TViewModel, TParameter, TRemoveViewModelsUntil>(TParameter param) where TViewModel : ViewModelBase, IViewModel<TParameter> where TParameter : notnull where TRemoveViewModelsUntil : ViewModelBase;
+    Task<ErrorOr<Success>> NavigateWithViewModelInstance<TViewModel>(TViewModel vm) where TViewModel : ViewModelBase, IViewModel;
+    Task<ErrorOr<bool>> PopOrNavigate<TViewModel>() where TViewModel : ViewModelBase, IViewModel;
+    Task<ErrorOr<Success>> PopOrNavigateAndMakeRoot<TViewModel>() where TViewModel : ViewModelBase, IViewModel;
+    Task<ErrorOr<Success>> PopTo<TViewModel>(bool animate = false) where TViewModel : ViewModelBase;
+    Task<ErrorOr<Success>> PopToRoot(bool animate = false);
+    Task<ErrorOr<Success>> Close(IViewModel viewModel);
+    Task<ErrorOr<Success>> Close<TResult>(IViewModelResult<TResult> viewModel, TResult result) where TResult : class;
+    void Remove<TViewModel>();
+    void RemovePrevious();
+    void RemoveUntil<TViewModel>();
+    void RemoveUntilAny(params Type[] viewModelTypes);
+    void SetResult<TResult>(IViewModelResult<TResult> viewModel, TResult result);
+}
+
+/// <summary>
+/// Navigation service implementation using MAUI Shell with ErrorOr pattern
+/// All navigation operations return ErrorOr for proper error handling
+/// </summary>
+public class Navigator : INavigator
+{
+    private readonly IServiceProvider _serviceProvider;
+    private readonly ILogService _logService;
+
+    public Navigator(
+        IServiceProvider serviceProvider,
+        ILogService logService)
+    {
+        _serviceProvider = serviceProvider;
+        _logService = logService;
+    }
+
+    public TViewModel GetViewModelFromContainer<TViewModel>()
+    {
+        try
+        {
+            return _serviceProvider.GetRequiredService<TViewModel>();
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "GetViewModelFromContainer" },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+            throw;
+        }
+    }
+
+    public async Task<ErrorOr<Success>> Navigate<TViewModel>() where TViewModel : ViewModelBase, IViewModel
+    {
+        try
+        {
+            var route = GetRouteForViewModel<TViewModel>();
+            _logService.TrackEvent("NavigationStarted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            if (Shell.Current == null)
+            {
+                return Error.Failure(
+                    code: "Navigation.ShellNotInitialized",
+                    description: "Shell.Current is not initialized");
+            }
+
+            await Shell.Current.GoToAsync(route);
+
+            _logService.TrackEvent("NavigationCompleted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Result.Success;
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "Navigate" },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: $"Navigation to {typeof(TViewModel).Name} failed");
+        }
+    }
+
+    public async Task<ErrorOr<Success>> Navigate<TViewModel, TParameter>(TParameter param)
+        where TViewModel : ViewModelBase, IViewModel<TParameter>
+    {
+        try
+        {
+            var route = GetRouteForViewModel<TViewModel>();
+
+            var navigationParams = new Dictionary<string, object>
+            {
+                { "params", param! }
+            };
+
+            _logService.TrackEvent("NavigationWithParamsStarted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name },
+                { "ParameterType", typeof(TParameter).Name }
+            });
+
+            if (Shell.Current == null)
+            {
+                return Error.Failure(
+                    code: "Navigation.ShellNotInitialized",
+                    description: "Shell.Current is not initialized");
+            }
+
+            await Shell.Current.GoToAsync(route, navigationParams);
+
+            _logService.TrackEvent("NavigationWithParamsCompleted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Result.Success;
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "NavigateWithParams" },
+                { "ViewModelType", typeof(TViewModel).Name },
+                { "ParameterType", typeof(TParameter).Name }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: $"Navigation to {typeof(TViewModel).Name} with parameters failed");
+        }
+    }
+
+    public async Task<ErrorOr<TResult>> Navigate<TViewModel, TResult>()
+        where TViewModel : ViewModelBase, IViewModelResult<TResult>
+        where TResult : class
+    {
+        try
+        {
+            var route = GetRouteForViewModel<TViewModel>();
+            _logService.TrackEvent("NavigationForResultStarted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name },
+                { "ResultType", typeof(TResult).Name }
+            });
+
+            if (Shell.Current == null)
+            {
+                return Error.Failure(
+                    code: "Navigation.ShellNotInitialized",
+                    description: "Shell.Current is not initialized");
+            }
+
+            await Shell.Current.GoToAsync(route);
+
+            // TODO: Implement result retrieval mechanism
+            return Error.Failure(
+                code: "Navigation.ResultNotImplemented",
+                description: "Result navigation implementation needed");
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "NavigateForResult" },
+                { "ViewModelType", typeof(TViewModel).Name },
+                { "ResultType", typeof(TResult).Name }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: $"Result navigation to {typeof(TViewModel).Name} failed");
+        }
+    }
+
+    public async Task<ErrorOr<TResult>> Navigate<TViewModel, TParameter, TResult>(TParameter param)
+        where TViewModel : ViewModelBase, IViewModel<TParameter, TResult>
+        where TParameter : notnull
+        where TResult : class
+    {
+        try
+        {
+            var route = GetRouteForViewModel<TViewModel>();
+
+            var navigationParams = new Dictionary<string, object>
+            {
+                { "params", param }
+            };
+
+            _logService.TrackEvent("NavigationWithParamsForResultStarted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name },
+                { "ParameterType", typeof(TParameter).Name },
+                { "ResultType", typeof(TResult).Name }
+            });
+
+            if (Shell.Current == null)
+            {
+                return Error.Failure(
+                    code: "Navigation.ShellNotInitialized",
+                    description: "Shell.Current is not initialized");
+            }
+
+            await Shell.Current.GoToAsync(route, navigationParams);
+
+            // TODO: Implement result retrieval mechanism
+            return Error.Failure(
+                code: "Navigation.ResultNotImplemented",
+                description: "Result navigation with parameters implementation needed");
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "NavigateWithParamsForResult" },
+                { "ViewModelType", typeof(TViewModel).Name },
+                { "ParameterType", typeof(TParameter).Name },
+                { "ResultType", typeof(TResult).Name }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: $"Result navigation with parameters to {typeof(TViewModel).Name} failed");
+        }
+    }
+
+    public async Task<ErrorOr<Success>> NavigateAndMakeRoot<TViewModel>() where TViewModel : ViewModelBase, IViewModel
+    {
+        try
+        {
+            var route = GetRouteForViewModel<TViewModel>();
+            _logService.TrackEvent("NavigateAndMakeRootStarted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            if (Shell.Current == null)
+            {
+                return Error.Failure(
+                    code: "Navigation.ShellNotInitialized",
+                    description: "Shell.Current is not initialized");
+            }
+
+            await Shell.Current.GoToAsync($"//{route}");
+
+            _logService.TrackEvent("NavigateAndMakeRootCompleted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Result.Success;
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "NavigateAndMakeRoot" },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: $"Navigate and make root to {typeof(TViewModel).Name} failed");
+        }
+    }
+
+    public async Task<ErrorOr<Success>> NavigateAndMakeRoot<TViewModel, TParameter>(TParameter param)
+        where TViewModel : ViewModelBase, IViewModel<TParameter>
+        where TParameter : notnull
+    {
+        try
+        {
+            var route = GetRouteForViewModel<TViewModel>();
+
+            var navigationParams = new Dictionary<string, object>
+            {
+                { "params", param }
+            };
+
+            _logService.TrackEvent("NavigateAndMakeRootWithParamsStarted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name },
+                { "ParameterType", typeof(TParameter).Name }
+            });
+
+            if (Shell.Current == null)
+            {
+                return Error.Failure(
+                    code: "Navigation.ShellNotInitialized",
+                    description: "Shell.Current is not initialized");
+            }
+
+            await Shell.Current.GoToAsync($"//{route}", navigationParams);
+
+            _logService.TrackEvent("NavigateAndMakeRootWithParamsCompleted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Result.Success;
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "NavigateAndMakeRootWithParams" },
+                { "ViewModelType", typeof(TViewModel).Name },
+                { "ParameterType", typeof(TParameter).Name }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: $"Navigate and make root with parameters to {typeof(TViewModel).Name} failed");
+        }
+    }
+
+    public async Task<ErrorOr<Success>> NavigateAndRemoveCurrent<TViewModel>() where TViewModel : ViewModelBase, IViewModel
+    {
+        try
+        {
+            var route = GetRouteForViewModel<TViewModel>();
+            _logService.TrackEvent("NavigateAndRemoveCurrentStarted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            if (Shell.Current == null)
+            {
+                return Error.Failure(
+                    code: "Navigation.ShellNotInitialized",
+                    description: "Shell.Current is not initialized");
+            }
+
+            await Shell.Current.GoToAsync($"../{route}");
+
+            _logService.TrackEvent("NavigateAndRemoveCurrentCompleted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Result.Success;
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "NavigateAndRemoveCurrent" },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: $"Navigate and remove current to {typeof(TViewModel).Name} failed");
+        }
+    }
+
+    public async Task<ErrorOr<Success>> NavigateAndRemoveCurrent<TViewModel, TParameter>(TParameter param)
+        where TViewModel : ViewModelBase, IViewModel<TParameter>
+        where TParameter : notnull
+    {
+        try
+        {
+            var route = GetRouteForViewModel<TViewModel>();
+
+            var navigationParams = new Dictionary<string, object>
+            {
+                { "params", param }
+            };
+
+            _logService.TrackEvent("NavigateAndRemoveCurrentWithParamsStarted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name },
+                { "ParameterType", typeof(TParameter).Name }
+            });
+
+            if (Shell.Current == null)
+            {
+                return Error.Failure(
+                    code: "Navigation.ShellNotInitialized",
+                    description: "Shell.Current is not initialized");
+            }
+
+            await Shell.Current.GoToAsync($"../{route}", navigationParams);
+
+            _logService.TrackEvent("NavigateAndRemoveCurrentWithParamsCompleted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Result.Success;
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "NavigateAndRemoveCurrentWithParams" },
+                { "ViewModelType", typeof(TViewModel).Name },
+                { "ParameterType", typeof(TParameter).Name }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: $"Navigate and remove current with parameters to {typeof(TViewModel).Name} failed");
+        }
+    }
+
+    public async Task<ErrorOr<Success>> NavigateAndRemoveUntil<TViewModel, TParameter, TRemoveViewModelsUntil>(TParameter param)
+        where TViewModel : ViewModelBase, IViewModel<TParameter>
+        where TParameter : notnull
+        where TRemoveViewModelsUntil : ViewModelBase
+    {
+        try
+        {
+            var route = GetRouteForViewModel<TViewModel>();
+
+            var navigationParams = new Dictionary<string, object>
+            {
+                { "params", param }
+            };
+
+            _logService.TrackEvent("NavigateAndRemoveUntilStarted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name },
+                { "RemoveUntilType", typeof(TRemoveViewModelsUntil).Name }
+            });
+
+            if (Shell.Current == null)
+            {
+                return Error.Failure(
+                    code: "Navigation.ShellNotInitialized",
+                    description: "Shell.Current is not initialized");
+            }
+
+            await Shell.Current.GoToAsync(route, navigationParams);
+
+            _logService.TrackEvent("NavigateAndRemoveUntilCompleted", new Dictionary<string, object>
+            {
+                { "Route", route },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Result.Success;
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "NavigateAndRemoveUntil" },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: $"Navigate and remove until to {typeof(TViewModel).Name} failed");
+        }
+    }
+
+    public async Task<ErrorOr<Success>> NavigateWithViewModelInstance<TViewModel>(TViewModel vm) where TViewModel : ViewModelBase, IViewModel
+    {
+        try
+        {
+            _logService.TrackEvent("NavigateWithViewModelInstanceStarted", new Dictionary<string, object>
+            {
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            // TODO: Implement passing specific ViewModel instances
+            return Error.Failure(
+                code: "Navigation.NotImplemented",
+                description: "NavigateWithViewModelInstance implementation needed");
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "NavigateWithViewModelInstance" },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: $"Navigate with ViewModel instance failed");
+        }
+    }
+
+    public async Task<ErrorOr<bool>> PopOrNavigate<TViewModel>() where TViewModel : ViewModelBase, IViewModel
+    {
+        try
+        {
+            _logService.TrackEvent("PopOrNavigateStarted", new Dictionary<string, object>
+            {
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            // For now, just navigate (TODO: implement stack checking)
+            var result = await Navigate<TViewModel>();
+            if (result.IsError)
+            {
+                return result.Errors;
+            }
+
+            return true; // true indicates new page was created
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "PopOrNavigate" },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: $"Pop or navigate to {typeof(TViewModel).Name} failed");
+        }
+    }
+
+    public async Task<ErrorOr<Success>> PopOrNavigateAndMakeRoot<TViewModel>() where TViewModel : ViewModelBase, IViewModel
+    {
+        try
+        {
+            _logService.TrackEvent("PopOrNavigateAndMakeRootStarted", new Dictionary<string, object>
+            {
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return await NavigateAndMakeRoot<TViewModel>();
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "PopOrNavigateAndMakeRoot" },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: $"Pop or navigate and make root to {typeof(TViewModel).Name} failed");
+        }
+    }
+
+    public async Task<ErrorOr<Success>> PopTo<TViewModel>(bool animate = false) where TViewModel : ViewModelBase
+    {
+        try
+        {
+            _logService.TrackEvent("PopToStarted", new Dictionary<string, object>
+            {
+                { "ViewModelType", typeof(TViewModel).Name },
+                { "Animated", animate }
+            });
+
+            if (Shell.Current == null)
+            {
+                return Error.Failure(
+                    code: "Navigation.ShellNotInitialized",
+                    description: "Shell.Current is not initialized");
+            }
+
+            await Shell.Current.GoToAsync("..", animate);
+
+            _logService.TrackEvent("PopToCompleted", new Dictionary<string, object>
+            {
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Result.Success;
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "PopTo" },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: $"Pop to {typeof(TViewModel).Name} failed");
+        }
+    }
+
+    public async Task<ErrorOr<Success>> PopToRoot(bool animate = false)
+    {
+        try
+        {
+            _logService.TrackEvent("PopToRootStarted", new Dictionary<string, object>
+            {
+                { "Animated", animate }
+            });
+
+            if (Shell.Current == null)
+            {
+                return Error.Failure(
+                    code: "Navigation.ShellNotInitialized",
+                    description: "Shell.Current is not initialized");
+            }
+
+            await Shell.Current.GoToAsync("//", animate);
+
+            _logService.TrackEvent("PopToRootCompleted");
+
+            return Result.Success;
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "PopToRoot" }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: "Pop to root failed");
+        }
+    }
+
+    public async Task<ErrorOr<Success>> Close(IViewModel viewModel)
+    {
+        try
+        {
+            _logService.TrackEvent("CloseStarted", new Dictionary<string, object>
+            {
+                { "ViewModelType", viewModel.GetType().Name }
+            });
+
+            if (Shell.Current == null)
+            {
+                return Error.Failure(
+                    code: "Navigation.ShellNotInitialized",
+                    description: "Shell.Current is not initialized");
+            }
+
+            await Shell.Current.GoToAsync("..");
+
+            _logService.TrackEvent("CloseCompleted", new Dictionary<string, object>
+            {
+                { "ViewModelType", viewModel.GetType().Name }
+            });
+
+            return Result.Success;
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "Close" },
+                { "ViewModelType", viewModel.GetType().Name }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: $"Close {viewModel.GetType().Name} failed");
+        }
+    }
+
+    public async Task<ErrorOr<Success>> Close<TResult>(IViewModelResult<TResult> viewModel, TResult result) where TResult : class
+    {
+        try
+        {
+            _logService.TrackEvent("CloseWithResultStarted", new Dictionary<string, object>
+            {
+                { "ViewModelType", viewModel.GetType().Name },
+                { "ResultType", typeof(TResult).Name }
+            });
+
+            SetResult(viewModel, result);
+
+            if (Shell.Current == null)
+            {
+                return Error.Failure(
+                    code: "Navigation.ShellNotInitialized",
+                    description: "Shell.Current is not initialized");
+            }
+
+            await Shell.Current.GoToAsync("..");
+
+            _logService.TrackEvent("CloseWithResultCompleted", new Dictionary<string, object>
+            {
+                { "ViewModelType", viewModel.GetType().Name }
+            });
+
+            return Result.Success;
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "CloseWithResult" },
+                { "ViewModelType", viewModel.GetType().Name }
+            });
+
+            return Error.Failure(
+                code: "Navigation.Failed",
+                description: $"Close with result {viewModel.GetType().Name} failed");
+        }
+    }
+
+    public void Remove<TViewModel>()
+    {
+        try
+        {
+            _logService.TrackEvent("RemoveStarted", new Dictionary<string, object>
+            {
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            // TODO: Implement custom stack management
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "Remove" },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+        }
+    }
+
+    public void RemovePrevious()
+    {
+        try
+        {
+            _logService.TrackEvent("RemovePreviousStarted");
+
+            if (Shell.Current?.Navigation?.NavigationStack?.Count > 1)
+            {
+                var previousPage = Shell.Current.Navigation.NavigationStack[^2];
+                Shell.Current.Navigation.RemovePage(previousPage);
+            }
+
+            _logService.TrackEvent("RemovePreviousCompleted");
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "RemovePrevious" }
+            });
+        }
+    }
+
+    public void RemoveUntil<TViewModel>()
+    {
+        try
+        {
+            _logService.TrackEvent("RemoveUntilStarted", new Dictionary<string, object>
+            {
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+
+            // TODO: Implement custom stack management
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "RemoveUntil" },
+                { "ViewModelType", typeof(TViewModel).Name }
+            });
+        }
+    }
+
+    public void RemoveUntilAny(params Type[] viewModelTypes)
+    {
+        try
+        {
+            _logService.TrackEvent("RemoveUntilAnyStarted", new Dictionary<string, object>
+            {
+                { "ViewModelTypes", string.Join(", ", viewModelTypes.Select(t => t.Name)) }
+            });
+
+            // TODO: Implement custom stack management
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "RemoveUntilAny" }
+            });
+        }
+    }
+
+    public void SetResult<TResult>(IViewModelResult<TResult> viewModel, TResult result)
+    {
+        try
+        {
+            _logService.TrackEvent("SetResultCalled", new Dictionary<string, object>
+            {
+                { "ViewModelType", viewModel.GetType().Name },
+                { "ResultType", typeof(TResult).Name }
+            });
+
+            // TODO: Implement result storage mechanism
+        }
+        catch (Exception ex)
+        {
+            _logService.TrackError(ex, new Dictionary<string, object>
+            {
+                { "Operation", "SetResult" },
+                { "ViewModelType", viewModel.GetType().Name }
+            });
+        }
+    }
+
+    private string GetRouteForViewModel<TViewModel>() where TViewModel : ViewModelBase
+    {
+        var viewModelName = typeof(TViewModel).Name;
+        var pageName = viewModelName.Replace("ViewModel", "Page");
+        return pageName;
+    }
+}

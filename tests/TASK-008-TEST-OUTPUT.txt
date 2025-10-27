@@ -1,0 +1,161 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.4, pytest-8.4.2, pluggy-1.6.0 -- /Users/richardwoollcott/Projects/appmilla_github/ai-engineer/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/richardwoollcott/Projects/appmilla_github/ai-engineer
+configfile: pytest.ini
+plugins: mock-3.15.1, cov-7.0.0
+collecting ... collected 54 items
+
+tests/test_task_008_comprehensive.py::TestNoBreakdownStrategy::test_no_breakdown_returns_empty_list PASSED [  1%]
+tests/test_task_008_comprehensive.py::TestNoBreakdownStrategy::test_no_breakdown_with_complex_task PASSED [  3%]
+tests/test_task_008_comprehensive.py::TestLogicalBreakdownStrategy::test_logical_breakdown_generates_subtasks PASSED [  5%]
+tests/test_task_008_comprehensive.py::TestLogicalBreakdownStrategy::test_logical_breakdown_identifies_components PASSED [  7%]
+tests/test_task_008_comprehensive.py::TestLogicalBreakdownStrategy::test_logical_breakdown_includes_tests PASSED [  9%]
+tests/test_task_008_comprehensive.py::TestLogicalBreakdownStrategy::test_logical_breakdown_empty_files_list PASSED [ 11%]
+tests/test_task_008_comprehensive.py::TestFileBasedBreakdownStrategy::test_file_based_breakdown_groups_files PASSED [ 12%]
+tests/test_task_008_comprehensive.py::TestFileBasedBreakdownStrategy::test_file_based_breakdown_maintains_module_grouping PASSED [ 14%]
+tests/test_task_008_comprehensive.py::TestFileBasedBreakdownStrategy::test_file_based_breakdown_assigns_ids PASSED [ 16%]
+tests/test_task_008_comprehensive.py::TestPhaseBasedBreakdownStrategy::test_phase_based_breakdown_creates_phases PASSED [ 18%]
+tests/test_task_008_comprehensive.py::TestPhaseBasedBreakdownStrategy::test_phase_based_breakdown_sequential_dependencies PASSED [ 20%]
+tests/test_task_008_comprehensive.py::TestPhaseBasedBreakdownStrategy::test_phase_based_breakdown_distributes_files PASSED [ 22%]
+tests/test_task_008_comprehensive.py::TestStrategySelection::test_get_strategy_low_complexity PASSED [ 24%]
+tests/test_task_008_comprehensive.py::TestStrategySelection::test_get_strategy_medium_complexity PASSED [ 25%]
+tests/test_task_008_comprehensive.py::TestStrategySelection::test_get_strategy_high_complexity PASSED [ 27%]
+tests/test_task_008_comprehensive.py::TestStrategySelection::test_get_strategy_critical_complexity PASSED [ 29%]
+tests/test_task_008_comprehensive.py::TestDuplicateDetector::test_find_duplicates_no_matches PASSED [ 31%]
+tests/test_task_008_comprehensive.py::TestDuplicateDetector::test_find_duplicates_exact_match PASSED [ 33%]
+tests/test_task_008_comprehensive.py::TestDuplicateDetector::test_find_duplicates_fuzzy_match PASSED [ 35%]
+tests/test_task_008_comprehensive.py::TestDuplicateDetector::test_calculate_similarity_exact PASSED [ 37%]
+tests/test_task_008_comprehensive.py::TestDuplicateDetector::test_calculate_similarity_partial FAILED [ 38%]
+tests/test_task_008_comprehensive.py::TestDuplicateDetector::test_calculate_similarity_no_match PASSED [ 40%]
+tests/test_task_008_comprehensive.py::TestDuplicateDetector::test_check_exact_duplicate_exists PASSED [ 42%]
+tests/test_task_008_comprehensive.py::TestDuplicateDetector::test_check_exact_duplicate_not_exists PASSED [ 44%]
+tests/test_task_008_comprehensive.py::TestDuplicateDetector::test_get_duplicate_summary_empty PASSED [ 46%]
+tests/test_task_008_comprehensive.py::TestTerminalFormatter::test_formatter_initialization PASSED [ 48%]
+tests/test_task_008_comprehensive.py::TestTerminalFormatter::test_format_complexity_score PASSED [ 50%]
+tests/test_task_008_comprehensive.py::TestTerminalFormatter::test_format_complexity_score_no_color PASSED [ 51%]
+tests/test_task_008_comprehensive.py::TestTerminalFormatter::test_format_complexity_score_no_emoji FAILED [ 53%]
+tests/test_task_008_comprehensive.py::TestTerminalFormatter::test_get_complexity_visualization_low PASSED [ 55%]
+tests/test_task_008_comprehensive.py::TestTerminalFormatter::test_get_complexity_visualization_medium PASSED [ 57%]
+tests/test_task_008_comprehensive.py::TestTerminalFormatter::test_get_complexity_visualization_high PASSED [ 59%]
+tests/test_task_008_comprehensive.py::TestTerminalFormatter::test_get_complexity_visualization_critical PASSED [ 61%]
+tests/test_task_008_comprehensive.py::TestTaskFileGenerator::test_generate_filename PASSED [ 62%]
+tests/test_task_008_comprehensive.py::TestTaskFileGenerator::test_generate_task_files_creates_files PASSED [ 64%]
+tests/test_task_008_comprehensive.py::TestTaskFileGenerator::test_generate_task_files_content_format PASSED [ 66%]
+tests/test_task_008_comprehensive.py::TestTaskFileGenerator::test_generate_next_task_id PASSED [ 68%]
+tests/test_task_008_comprehensive.py::TestTaskFileGenerator::test_generate_summary_file PASSED [ 70%]
+tests/test_task_008_comprehensive.py::TestTaskBreakdownOrchestrator::test_orchestrator_initialization PASSED [ 72%]
+tests/test_task_008_comprehensive.py::TestTaskBreakdownOrchestrator::test_breakdown_task_simple PASSED [ 74%]
+tests/test_task_008_comprehensive.py::TestTaskBreakdownOrchestrator::test_breakdown_task_medium PASSED [ 75%]
+tests/test_task_008_comprehensive.py::TestTaskBreakdownOrchestrator::test_validate_task_data_valid PASSED [ 77%]
+tests/test_task_008_comprehensive.py::TestTaskBreakdownOrchestrator::test_validate_task_data_missing_fields PASSED [ 79%]
+tests/test_task_008_comprehensive.py::TestTaskBreakdownOrchestrator::test_create_evaluation_context PASSED [ 81%]
+tests/test_task_008_comprehensive.py::TestTaskBreakdownOrchestrator::test_select_strategy_score_based PASSED [ 83%]
+tests/test_task_008_comprehensive.py::TestTaskBreakdownOrchestrator::test_calculate_statistics PASSED [ 85%]
+tests/test_task_008_comprehensive.py::TestIntegration::test_full_breakdown_workflow PASSED [ 87%]
+tests/test_task_008_comprehensive.py::TestIntegration::test_breakdown_feature_tasks_api PASSED [ 88%]
+tests/test_task_008_comprehensive.py::TestEdgeCases::test_empty_feature_no_tasks PASSED [ 90%]
+tests/test_task_008_comprehensive.py::TestEdgeCases::test_all_tasks_below_threshold PASSED [ 92%]
+tests/test_task_008_comprehensive.py::TestEdgeCases::test_duplicate_detection_100_percent_similarity PASSED [ 94%]
+tests/test_task_008_comprehensive.py::TestEdgeCases::test_invalid_task_data_handling PASSED [ 96%]
+tests/test_task_008_comprehensive.py::TestEdgeCases::test_task_file_generator_auto_id_generation PASSED [ 98%]
+tests/test_task_008_comprehensive.py::TestPerformance::test_large_file_list_performance PASSED [100%]/Users/richardwoollcott/Projects/appmilla_github/ai-engineer/.venv/lib/python3.12/site-packages/coverage/report_core.py:107: CoverageWarning: Couldn't parse Python file '/Users/richardwoollcott/Projects/appmilla_github/ai-engineer/installer/global/commands/lib/test_complexity_comprehensive.py' (couldnt-parse); see https://coverage.readthedocs.io/en/7.10.7/messages.html#warning-couldnt-parse
+  coverage._warn(msg, slug="couldnt-parse")
+
+
+=================================== FAILURES ===================================
+___________ TestDuplicateDetector.test_calculate_similarity_partial ____________
+tests/test_task_008_comprehensive.py:420: in test_calculate_similarity_partial
+    assert 0.5 < similarity < 1.0
+E   assert 0.5 < 0.5
+_________ TestTerminalFormatter.test_format_complexity_score_no_emoji __________
+tests/test_task_008_comprehensive.py:497: in test_format_complexity_score_no_emoji
+    assert "🟡" not in output
+E   AssertionError: assert '🟡' not in '\x1b[1m\x1b[96mComplexity Evaluation\x1b[0m\n=====================\n\n\x1b[93m🟡 Complexity Score: 5/10 - Medium\x1b[0m\n\n\x1b[1mFactor Breakdown\x1b[0m\n\x1b[91m  • File Complexity: 2/3\x1b[0m - Moderate files\n\x1b[91m  • Pattern Complexity: 2/3\x1b[0m - Multiple patterns\n\x1b[93m  • Dependency Complexity: 1/3\x1b[0m - Few deps\n\n\x1b[1mReview Recommendation\x1b[0m\nMode: QUICK_OPTIONAL'
+E     
+E     '🟡' is contained here:
+E       [1m[96mComplexity Evaluation[0m
+E       =====================
+E       
+E       [93m🟡 Complexity Score: 5/10 - Medium[0m
+E     ?      +
+E       
+E       [1mFactor Breakdown[0m
+E       [91m  • File Complexity: 2/3[0m - Moderate files
+E       [91m  • Pattern Complexity: 2/3[0m - Multiple patterns
+E       [93m  • Dependency Complexity: 1/3[0m - Few deps
+E       
+E       [1mReview Recommendation[0m
+E       Mode: QUICK_OPTIONAL
+================================ tests coverage ================================
+_______________ coverage: platform darwin, python 3.12.4-final-0 _______________
+
+Name                                                          Stmts   Miss Branch BrPart  Cover   Missing
+---------------------------------------------------------------------------------------------------------
+installer/global/commands/lib/__init__.py                        16     16      0      0     0%   8-104
+installer/global/commands/lib/agent_utils.py                     96     96     22      0     0%   13-383
+installer/global/commands/lib/breakdown_strategies.py           116      2     44      2    98%   176, 426
+installer/global/commands/lib/change_tracker.py                 132    132     44      0     0%   20-442
+installer/global/commands/lib/complexity_calculator.py           90     64     20      0    24%   93-135, 149-165, 181-203, 221-248, 264-271, 294-310, 331-335
+installer/global/commands/lib/complexity_factors.py              96     68     26      0    23%   60-77, 110-135, 192-238, 256-257
+installer/global/commands/lib/complexity_models.py              106     21      6      0    76%   51-53, 83, 87-90, 134, 139, 144-149, 154-159, 184, 189, 212, 217, 223
+installer/global/commands/lib/duplicate_detector.py             115     16     32      6    84%   56, 111-112, 122, 184-185, 247, 254, 296, 330-339
+installer/global/commands/lib/error_messages.py                  29     29      6      0     0%   8-186
+installer/global/commands/lib/feature_generator.py              139     20     40      9    83%   156-157, 233, 240, 285, 289, 351-357, 362->360, 364-369, 408->411, 429
+installer/global/commands/lib/flag_validator.py                  33     33     10      0     0%   8-202
+installer/global/commands/lib/modification_applier.py           115    115     62      0     0%   18-339
+installer/global/commands/lib/modification_persistence.py        77     77     10      0     0%   19-267
+installer/global/commands/lib/modification_session.py            99     99     12      0     0%   21-298
+installer/global/commands/lib/pager_display.py                  167    167     46      0     0%   22-511
+installer/global/commands/lib/phase_execution.py                105    105     16      0     0%   15-437
+installer/global/commands/lib/plan_persistence.py                40     40      6      0     0%   15-180
+installer/global/commands/lib/qa_manager.py                     286    286     80      0     0%   29-964
+installer/global/commands/lib/review_modes.py                   609    609    178      0     0%   27-1514
+installer/global/commands/lib/review_router.py                   69     69     16      0     0%   12-380
+installer/global/commands/lib/split_models.py                    40     40      6      0     0%   8-98
+installer/global/commands/lib/task_breakdown.py                 119      8     28      3    93%   35-44, 90, 321, 343, 347
+installer/global/commands/lib/task_split_advisor.py             111    111     46      0     0%   8-409
+installer/global/commands/lib/test_complexity.py                141    141      2      0     0%   14-320
+installer/global/commands/lib/test_full_review.py               418    418      8      0     0%   17-911
+installer/global/commands/lib/test_quick_review.py              302    302     14      0     0%   15-590
+installer/global/commands/lib/test_task_008_integration.py      155    155      6      0     0%   14-382
+installer/global/commands/lib/upfront_complexity_adapter.py     111    111     38      0     0%   15-349
+installer/global/commands/lib/upfront_complexity_cli.py         135    135     32      0     0%   13-356
+installer/global/commands/lib/user_interaction.py               105    105     22      0     0%   29-392
+installer/global/commands/lib/version_manager.py                106    106     20      0     0%   20-445
+installer/global/commands/lib/visualization.py                  183     82     50      2    52%   140, 154-213, 224-250, 298-299, 326-336, 385-396
+installer/global/lib/__init__.py                                  0      0      0      0   100%
+installer/global/lib/config/__init__.py                           4      4      0      0     0%   2-6
+installer/global/lib/config/config_schema.py                     58     58      8      0     0%   2-117
+installer/global/lib/config/defaults.py                           2      2      0      0     0%   2-5
+installer/global/lib/config/plan_review_config.py               120    120     50      0     0%   2-297
+installer/global/lib/metrics/__init__.py                          3      3      0      0     0%   2-5
+installer/global/lib/metrics/metrics_storage.py                  80     80     24      0     0%   2-164
+installer/global/lib/metrics/plan_review_dashboard.py           133    133     52      0     0%   2-264
+installer/global/lib/metrics/plan_review_metrics.py              33     33      8      0     0%   2-197
+installer/global/lib/utils/__init__.py                            4      4      0      0     0%   2-6
+installer/global/lib/utils/file_operations.py                    51     51      2      0     0%   2-117
+installer/global/lib/utils/json_serializer.py                    36     36      2      0     0%   2-97
+installer/global/lib/utils/path_resolver.py                      28     28      6      0     0%   2-81
+---------------------------------------------------------------------------------------------------------
+TOTAL                                                          5013   4330   1100     22    13%
+Coverage JSON written to file tests/coverage.json
+=========================== short test summary info ============================
+FAILED tests/test_task_008_comprehensive.py::TestDuplicateDetector::test_calculate_similarity_partial - assert 0.5 < 0.5
+FAILED tests/test_task_008_comprehensive.py::TestTerminalFormatter::test_format_complexity_score_no_emoji - AssertionError: assert '🟡' not in '\x1b[1m\x1b[96mComplexity Evaluation\x1b[0m\n=====================\n\n\x1b[93m🟡 Complexity Score: 5/10 - Medium\x1b[0m\n\n\x1b[1mFactor Breakdown\x1b[0m\n\x1b[91m  • File Complexity: 2/3\x1b[0m - Moderate files\n\x1b[91m  • Pattern Complexity: 2/3\x1b[0m - Multiple patterns\n\x1b[93m  • Dependency Complexity: 1/3\x1b[0m - Few deps\n\n\x1b[1mReview Recommendation\x1b[0m\nMode: QUICK_OPTIONAL'
+  
+  '🟡' is contained here:
+    [1m[96mComplexity Evaluation[0m
+    =====================
+    
+    [93m🟡 Complexity Score: 5/10 - Medium[0m
+  ?      +
+    
+    [1mFactor Breakdown[0m
+    [91m  • File Complexity: 2/3[0m - Moderate files
+    [91m  • Pattern Complexity: 2/3[0m - Multiple patterns
+    [93m  • Dependency Complexity: 1/3[0m - Few deps
+    
+    [1mReview Recommendation[0m
+    Mode: QUICK_OPTIONAL
+========================= 2 failed, 52 passed in 0.85s =========================

@@ -1,0 +1,214 @@
+/**
+ * {{HookName}} - Custom React Hook
+ * 
+ * @description {{Description}}
+ */
+
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
+
+{{#if hasTypes}}
+// Type definitions
+export interface {{HookName}}Options {
+  /**
+   * Optional configuration
+   */
+  initialValue?: any;
+  /**
+   * Callback handlers
+   */
+  onSuccess?: (data: any) => void;
+  onError?: (error: Error) => void;
+  /**
+   * Performance options
+   */
+  debounceMs?: number;
+  cacheTime?: number;
+}
+
+export interface {{HookName}}Result {
+  // State
+  data: any;
+  loading: boolean;
+  error: Error | null;
+  
+  // Actions
+  execute: (...args: any[]) => Promise<void>;
+  reset: () => void;
+  cancel: () => void;
+}
+{{/if}}
+
+/**
+ * {{HookName}} hook implementation
+ * 
+ * @example
+ * ```tsx
+ * const { data, loading, error, execute } = {{hookName}}({
+ *   onSuccess: (data) => console.log('Success:', data),
+ *   onError: (error) => console.error('Error:', error),
+ * });
+ * ```
+ */
+export function {{hookName}}(
+  {{#if hasOptions}}options: {{HookName}}Options = {}{{else}}{{/if}}
+): {{HookName}}Result {
+  // State management
+  const [data, setData] = useState<any>({{#if hasOptions}}options.initialValue || {{/if}}null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+  
+  // Refs for cleanup and cancellation
+  const abortControllerRef = useRef<AbortController | null>(null);
+  const isMountedRef = useRef(true);
+  {{#if hasCache}}
+  const cacheRef = useRef<Map<string, { data: any; timestamp: number }>>(new Map());
+  {{/if}}
+  
+  // Effect for cleanup on unmount
+  useEffect(() => {
+    isMountedRef.current = true;
+    
+    return () => {
+      isMountedRef.current = false;
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
+  }, []);
+  
+  // Cancel any pending operations
+  const cancel = useCallback(() => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+    setLoading(false);
+  }, []);
+  
+  // Reset state to initial values
+  const reset = useCallback(() => {
+    cancel();
+    setData({{#if hasOptions}}options.initialValue || {{/if}}null);
+    setError(null);
+    setLoading(false);
+    {{#if hasCache}}
+    cacheRef.current.clear();
+    {{/if}}
+  }, [cancel{{#if hasOptions}}, options.initialValue{{/if}}]);
+  
+  // Main execution function
+  const execute = useCallback(async (...args: any[]) => {
+    // Cancel any existing request
+    cancel();
+    
+    // Create new abort controller
+    abortControllerRef.current = new AbortController();
+    
+    setLoading(true);
+    setError(null);
+    
+    try {
+      {{#if hasCache}}
+      // Check cache first
+      const cacheKey = JSON.stringify(args);
+      const cached = cacheRef.current.get(cacheKey);
+      
+      if (cached && options.cacheTime) {
+        const age = Date.now() - cached.timestamp;
+        if (age < options.cacheTime) {
+          setData(cached.data);
+          setLoading(false);
+          options.onSuccess?.(cached.data);
+          return;
+        }
+      }
+      {{/if}}
+      
+      // Perform async operation here
+      // This is where you'd implement your specific logic
+      const result = await performAsyncOperation(args, {
+        signal: abortControllerRef.current.signal,
+      });
+      
+      // Only update state if component is still mounted
+      if (isMountedRef.current) {
+        setData(result);
+        {{#if hasCache}}
+        // Update cache
+        if (options.cacheTime) {
+          cacheRef.current.set(cacheKey, {
+            data: result,
+            timestamp: Date.now(),
+          });
+        }
+        {{/if}}
+        {{#if hasOptions}}
+        options.onSuccess?.(result);
+        {{/if}}
+      }
+    } catch (err) {
+      // Handle errors
+      if (isMountedRef.current && err instanceof Error) {
+        // Ignore abort errors
+        if (err.name !== 'AbortError') {
+          setError(err);
+          {{#if hasOptions}}
+          options.onError?.(err);
+          {{/if}}
+        }
+      }
+    } finally {
+      if (isMountedRef.current) {
+        setLoading(false);
+      }
+    }
+  }, [cancel{{#if hasOptions}}, options{{/if}}]);
+  
+  {{#if hasDebounce}}
+  // Debounced version of execute
+  const debouncedExecute = useMemo(() => {
+    let timeoutId: NodeJS.Timeout;
+    
+    return (...args: any[]) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        execute(...args);
+      }, options.debounceMs || 300);
+    };
+  }, [execute, options.debounceMs]);
+  {{/if}}
+  
+  // Memoize return value to prevent unnecessary re-renders
+  return useMemo(() => ({
+    // State
+    data,
+    loading,
+    error,
+    
+    // Actions
+    execute: {{#if hasDebounce}}options.debounceMs ? debouncedExecute : {{/if}}execute,
+    reset,
+    cancel,
+  }), [data, loading, error, execute, reset, cancel{{#if hasDebounce}}, debouncedExecute, options.debounceMs{{/if}}]);
+}
+
+// Helper function - replace with actual implementation
+async function performAsyncOperation(
+  args: any[],
+  options: { signal: AbortSignal }
+): Promise<any> {
+  // Implementation goes here
+  // Example: API call, data processing, etc.
+  
+  // Check for abort
+  if (options.signal.aborted) {
+    throw new Error('Operation cancelled');
+  }
+  
+  // Simulate async operation
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ data: 'Result', args });
+    }, 1000);
+  });
+}

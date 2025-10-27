@@ -1,0 +1,172 @@
+{
+  "task_id": "TASK-011B",
+  "created_at": "2025-10-13T00:00:00Z",
+  "plan_version": "v1",
+  "scope": "validation_and_enhancement",
+  "files_to_create": [
+    {
+      "path": "installer/global/templates/maui-appshell/templates/testing/viewmodel-test.cs.template",
+      "purpose": "ViewModel unit test template with NSubstitute mocking",
+      "estimated_loc": 120,
+      "estimated_duration_minutes": 90
+    }
+  ],
+  "files_to_modify": [
+    {
+      "path": "installer/global/templates/maui-appshell/templates/domain/command-operation.cs.template",
+      "purpose": "Fix Result.Success syntax error to ErrorOr.Success",
+      "lines_affected": "54",
+      "estimated_duration_minutes": 5
+    },
+    {
+      "path": "installer/global/templates/maui-appshell/templates/presentation/navigation-service.cs.template",
+      "purpose": "Convert to ErrorOr pattern for consistency",
+      "lines_affected": "6-55",
+      "estimated_duration_minutes": 30
+    },
+    {
+      "path": "installer/global/templates/maui-appshell/templates/presentation/viewmodel.cs.template",
+      "purpose": "Inject INavigationService instead of Shell.Current usage",
+      "lines_affected": "54",
+      "estimated_duration_minutes": 15
+    },
+    {
+      "path": "installer/global/templates/maui-appshell/templates/service/service-implementation.cs.template",
+      "purpose": "Add retry logic with exponential backoff (3 attempts)",
+      "lines_affected": "19-58",
+      "estimated_duration_minutes": 60
+    },
+    {
+      "path": "installer/global/templates/maui-appshell/templates/domain/command-operation.cs.template",
+      "purpose": "Remove ArgumentNullException (trust DI)",
+      "lines_affected": "15",
+      "estimated_duration_minutes": 10
+    },
+    {
+      "path": "installer/global/templates/maui-appshell/templates/domain/query-operation.cs.template",
+      "purpose": "Remove ArgumentNullException (trust DI)",
+      "lines_affected": "15",
+      "estimated_duration_minutes": 10
+    },
+    {
+      "path": "installer/global/templates/maui-appshell/templates/repository/repository-implementation.cs.template",
+      "purpose": "Remove ArgumentNullException (trust DI)",
+      "lines_affected": "16",
+      "estimated_duration_minutes": 10
+    }
+  ],
+  "external_dependencies": [
+    {
+      "name": "ErrorOr",
+      "version": ">=2.0.0",
+      "purpose": "Functional error handling"
+    },
+    {
+      "name": "CommunityToolkit.Mvvm",
+      "version": ">=8.2.0",
+      "purpose": "MVVM patterns and commands"
+    }
+  ],
+  "estimated_total_duration_minutes": 230,
+  "estimated_total_loc": 350,
+  "implementation_phases": [
+    {
+      "phase": "1_blocking_fixes",
+      "duration_minutes": 95,
+      "tasks": [
+        "Create viewmodel-test.cs.template",
+        "Fix Result.Success syntax error"
+      ],
+      "priority": "MUST_DO"
+    },
+    {
+      "phase": "2_critical_fixes",
+      "duration_minutes": 105,
+      "tasks": [
+        "Convert NavigationService to ErrorOr",
+        "Inject INavigationService in ViewModel",
+        "Add retry logic to Service template"
+      ],
+      "priority": "STRONGLY_RECOMMENDED"
+    },
+    {
+      "phase": "3_optional_fixes",
+      "duration_minutes": 30,
+      "tasks": [
+        "Remove ArgumentNullException checks (7 templates)",
+        "Document XAML StaticResource requirements"
+      ],
+      "priority": "OPTIONAL"
+    }
+  ],
+  "test_strategy": {
+    "approach": "Outside-In TDD",
+    "frameworks": ["xUnit", "NSubstitute", "FluentAssertions"],
+    "coverage_target": 80,
+    "test_types": [
+      "Unit tests for Domain operations",
+      "Unit tests for ViewModels",
+      "Integration tests for Repository (in-memory DB)",
+      "Integration tests for Service (mock HttpClient)"
+    ]
+  },
+  "risks": [
+    {
+      "risk": "Template complexity - developers may not understand patterns",
+      "severity": "medium",
+      "mitigation": "Comprehensive XML documentation and examples"
+    },
+    {
+      "risk": "Platform-specific issues across iOS/Android/Windows/macOS",
+      "severity": "low",
+      "mitigation": "Use cross-platform MAUI APIs only"
+    },
+    {
+      "risk": "Incomplete error handling with ErrorOr pattern",
+      "severity": "low",
+      "mitigation": "Architectural review ensures consistency"
+    }
+  ],
+  "architectural_patterns": [
+    {
+      "pattern": "Repository Pattern",
+      "confidence": 95,
+      "status": "implemented",
+      "source": "Design Patterns MCP"
+    },
+    {
+      "pattern": "Retry with Backoff",
+      "confidence": 90,
+      "status": "missing_must_add",
+      "source": "Design Patterns MCP"
+    },
+    {
+      "pattern": "Circuit Breaker",
+      "confidence": 85,
+      "status": "yagni_defer",
+      "source": "Design Patterns MCP"
+    },
+    {
+      "pattern": "MVVM",
+      "confidence": 100,
+      "status": "implemented",
+      "source": "CommunityToolkit.Mvvm"
+    },
+    {
+      "pattern": "ErrorOr Functional Error Handling",
+      "confidence": 100,
+      "status": "implemented",
+      "source": "Task requirements"
+    }
+  ],
+  "acceptance_criteria_summary": {
+    "total": 18,
+    "by_phase": {
+      "phase_1_domain_data": 6,
+      "phase_2_presentation": 4,
+      "phase_3_app_structure": 3,
+      "phase_4_tests": 2,
+      "phase_5_quality": 3
+    }
+  }
+}

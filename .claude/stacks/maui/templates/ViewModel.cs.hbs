@@ -1,0 +1,153 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using LanguageExt;
+using System.Collections.ObjectModel;
+using {{AppName}}.Core.Models;
+using {{AppName}}.UseCases.Interfaces;
+using {{AppName}}.ViewModels.Base;
+
+namespace {{AppName}}.ViewModels;
+
+public partial class {{Feature}}ViewModel : ViewModelBase<{{Feature}}NavigationParams>
+{
+    private readonly I{{UseCase}}UseCase _{{camelCase UseCase}}UseCase;
+    
+    public {{Feature}}ViewModel(I{{UseCase}}UseCase {{camelCase UseCase}}UseCase)
+    {
+        _{{camelCase UseCase}}UseCase = {{camelCase UseCase}}UseCase;
+    }
+    
+    [ObservableProperty]
+    private {{Model}}? _{{camelCase Model}};
+    
+    [ObservableProperty]
+    private ObservableCollection<{{Model}}> _{{camelCase Model}}s = new();
+    
+    [ObservableProperty]
+    private bool _isLoading;
+    
+    [ObservableProperty]
+    private bool _isRefreshing;
+    
+    [ObservableProperty]
+    private string? _searchQuery;
+    
+    public override async Task InitializeAsync()
+    {
+        await base.InitializeAsync();
+        await Load{{Model}}();
+    }
+    
+    [RelayCommand]
+    private async Task Load{{Model}}()
+    {
+        using (var _ = new LoadingScope(this))
+        {
+            var result = await _{{camelCase UseCase}}UseCase.ExecuteAsync(NavigationParams?.Id);
+            
+            result.Match(
+                Right: data => 
+                {
+                    {{Model}} = data;
+                    ClearError();
+                },
+                Left: error => HandleError(error)
+            );
+        }
+    }
+    
+    [RelayCommand]
+    private async Task Refresh()
+    {
+        IsRefreshing = true;
+        
+        try
+        {
+            await Load{{Model}}();
+        }
+        finally
+        {
+            IsRefreshing = false;
+        }
+    }
+    
+    [RelayCommand]
+    private async Task Search()
+    {
+        if (string.IsNullOrWhiteSpace(SearchQuery))
+        {
+            await Load{{Model}}();
+            return;
+        }
+        
+        using (var _ = new LoadingScope(this))
+        {
+            // Implement search logic through use case
+            var result = await _{{camelCase UseCase}}UseCase.ExecuteAsync(SearchQuery);
+            
+            result.Match(
+                Right: data => 
+                {
+                    if (data is IEnumerable<{{Model}}> items)
+                    {
+                        {{Model}}s = new ObservableCollection<{{Model}}>(items);
+                    }
+                    ClearError();
+                },
+                Left: error => HandleError(error)
+            );
+        }
+    }
+    
+    [RelayCommand]
+    private async Task Navigate{{Action}}()
+    {
+        await NavigationService.NavigateToAsync<{{Action}}ViewModel, {{Action}}NavigationParams>(
+            new {{Action}}NavigationParams 
+            { 
+                {{Model}}Id = {{Model}}?.Id 
+            });
+    }
+    
+    [RelayCommand]
+    private async Task Delete()
+    {
+        if ({{Model}} == null) return;
+        
+        var confirmed = await DialogService.ShowConfirmationAsync(
+            "Delete {{Model}}",
+            "Are you sure you want to delete this item?");
+        
+        if (!confirmed) return;
+        
+        using (var _ = new LoadingScope(this))
+        {
+            // Implement delete through use case
+            var result = await _{{camelCase UseCase}}UseCase.ExecuteAsync(
+                new Delete{{Model}}Request { Id = {{Model}}.Id });
+            
+            result.Match(
+                Right: _ => 
+                {
+                    ShowSuccessMessage("{{Model}} deleted successfully");
+                    NavigationService.GoBackAsync();
+                },
+                Left: error => HandleError(error)
+            );
+        }
+    }
+    
+    partial void OnSearchQueryChanged(string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            _ = Load{{Model}}();
+        }
+    }
+}
+
+public class {{Feature}}NavigationParams
+{
+    public string? Id { get; set; }
+    public string? {{Model}}Id { get; set; }
+}

@@ -1,0 +1,259 @@
+{
+  "task_id": "TASK-011C",
+  "version": "v1",
+  "created_at": "2025-10-13T00:00:00Z",
+  "stack": "default",
+  "estimated_duration": "4-6 hours",
+  "estimated_loc": 2060,
+  "new_code_loc": 550,
+  "copied_code_loc": 1510,
+
+  "files_to_create": [
+    {
+      "path": "installer/global/templates/maui-navigationpage/templates/Navigation/INavigationService.cs",
+      "type": "interface",
+      "loc": 40,
+      "purpose": "Navigation service interface with type-safe methods"
+    },
+    {
+      "path": "installer/global/templates/maui-navigationpage/templates/Navigation/NavigationService.cs",
+      "type": "implementation",
+      "loc": 150,
+      "purpose": "NavigationService implementation with page resolution and DI"
+    },
+    {
+      "path": "installer/global/templates/maui-navigationpage/templates/Navigation/MauiProgram.Navigation.cs",
+      "type": "configuration",
+      "loc": 60,
+      "purpose": "DI registration extension methods for navigation"
+    },
+    {
+      "path": "installer/global/templates/maui-navigationpage/config/manifest.json",
+      "type": "config",
+      "loc": 80,
+      "purpose": "Template metadata and configuration"
+    },
+    {
+      "path": "installer/global/templates/maui-navigationpage/config/settings.json",
+      "type": "config",
+      "loc": 120,
+      "purpose": "Navigation and pattern configuration"
+    },
+    {
+      "path": "installer/global/templates/maui-navigationpage/config/.gitignore",
+      "type": "config",
+      "loc": 15,
+      "purpose": "Template-specific git ignores"
+    },
+    {
+      "path": "installer/global/templates/maui-navigationpage/docs/CLAUDE.md",
+      "type": "documentation",
+      "loc": 300,
+      "purpose": "Agent instructions and template guidance"
+    },
+    {
+      "path": "installer/global/templates/maui-navigationpage/docs/README.md",
+      "type": "documentation",
+      "loc": 400,
+      "purpose": "Developer quick start and API reference"
+    },
+    {
+      "path": "installer/global/templates/maui-navigationpage/docs/MIGRATION.md",
+      "type": "documentation",
+      "loc": 200,
+      "purpose": "AppShell to NavigationPage migration guide"
+    },
+    {
+      "path": "installer/global/templates/maui-navigationpage/tests/validate-template.sh",
+      "type": "test",
+      "loc": 100,
+      "purpose": "Bash validation script for acceptance criteria"
+    }
+  ],
+
+  "files_to_copy": [
+    {
+      "source": "installer/global/templates/maui/agents/maui-api-specialist.md",
+      "destination": "installer/global/templates/maui-navigationpage/agents/maui-api-specialist.md",
+      "loc": 400
+    },
+    {
+      "source": "installer/global/templates/maui/agents/maui-domain-specialist.md",
+      "destination": "installer/global/templates/maui-navigationpage/agents/maui-domain-specialist.md",
+      "loc": 450
+    },
+    {
+      "source": "installer/global/templates/maui/agents/maui-testing-specialist.md",
+      "destination": "installer/global/templates/maui-navigationpage/agents/maui-testing-specialist.md",
+      "loc": 500
+    },
+    {
+      "source": "installer/global/templates/maui/templates/Domain/",
+      "destination": "installer/global/templates/maui-navigationpage/templates/Domain/",
+      "loc": 60
+    },
+    {
+      "source": "installer/global/templates/maui/templates/Repository/",
+      "destination": "installer/global/templates/maui-navigationpage/templates/Repository/",
+      "loc": 105
+    },
+    {
+      "source": "installer/global/templates/maui/templates/Service/",
+      "destination": "installer/global/templates/maui-navigationpage/templates/Service/",
+      "loc": 130
+    },
+    {
+      "source": "installer/global/templates/maui/templates/ViewModel/",
+      "destination": "installer/global/templates/maui-navigationpage/templates/ViewModel/",
+      "loc": 180
+    },
+    {
+      "source": "installer/global/templates/maui/templates/Page/",
+      "destination": "installer/global/templates/maui-navigationpage/templates/Page/",
+      "loc": 110
+    }
+  ],
+
+  "external_dependencies": [
+    {
+      "name": ".NET SDK",
+      "version": ">=8.0",
+      "purpose": "MAUI development and compilation testing"
+    },
+    {
+      "name": "jq",
+      "version": "latest",
+      "purpose": "JSON validation in validation script"
+    },
+    {
+      "name": "bash",
+      "version": ">=4.0",
+      "purpose": "Validation script execution"
+    }
+  ],
+
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Directory Setup and Agent Linking",
+      "duration": "30 minutes",
+      "tasks": [
+        "Create directory structure (7 directories)",
+        "Copy agent files from maui-appshell",
+        "Add source attribution headers",
+        "Create .gitignore"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Navigation Components",
+      "duration": "2 hours",
+      "tasks": [
+        "Create INavigationService.cs interface",
+        "Implement NavigationService.cs",
+        "Create MauiProgram.Navigation.cs",
+        "Add XML documentation"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Configuration Files",
+      "duration": "1 hour",
+      "tasks": [
+        "Create manifest.json",
+        "Create settings.json",
+        "Validate JSON syntax"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Template Reuse",
+      "duration": "1 hour",
+      "tasks": [
+        "Copy Domain templates",
+        "Copy Repository templates",
+        "Copy Service templates",
+        "Copy ViewModel templates",
+        "Copy Page templates",
+        "Verify ViewModelBase<TParams> support"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Documentation",
+      "duration": "3 hours",
+      "tasks": [
+        "Write CLAUDE.md",
+        "Write README.md",
+        "Write MIGRATION.md",
+        "Add code examples"
+      ]
+    },
+    {
+      "phase": 6,
+      "name": "Validation Script",
+      "duration": "1.5 hours",
+      "tasks": [
+        "Create validate-template.sh",
+        "Implement file existence checks",
+        "Implement JSON validation",
+        "Implement compilation test",
+        "Implement documentation checks",
+        "Test all scenarios"
+      ]
+    }
+  ],
+
+  "test_summary": {
+    "framework": "bash",
+    "test_types": [
+      "File existence verification",
+      "JSON content validation",
+      "Template compilation test",
+      "Documentation completeness checks"
+    ],
+    "coverage_target": "100% acceptance criteria",
+    "test_file": "tests/validate-template.sh"
+  },
+
+  "risks": [
+    {
+      "risk": "Cross-platform file copy issues",
+      "severity": "medium",
+      "mitigation": "Test on Windows, macOS, Linux; provide error handling"
+    },
+    {
+      "risk": "ViewModelBase<TParams> missing in maui-appshell",
+      "severity": "medium",
+      "mitigation": "Verify existence in Phase 4; add if missing"
+    },
+    {
+      "risk": "Template compilation failure",
+      "severity": "low",
+      "mitigation": "Phase 6 compilation test catches issues early"
+    },
+    {
+      "risk": "Documentation drift between templates",
+      "severity": "low",
+      "mitigation": "Source attribution headers; maintenance checklist"
+    }
+  ],
+
+  "architectural_decisions": [
+    {
+      "decision": "Copy strategy (no symlinks)",
+      "rationale": "Cross-platform compatibility - Windows symlink support inconsistent",
+      "alternative": "Symlinks with fallback to copy"
+    },
+    {
+      "decision": "Exception-based error handling",
+      "rationale": "Matches MAUI Shell behavior; simplifies calling code",
+      "alternative": "ErrorOr pattern (would be more consistent with Domain layer)"
+    },
+    {
+      "decision": "Convention-based page resolution",
+      "rationale": "Standard MAUI pattern; works for 90% of use cases",
+      "alternative": "Explicit registration (more flexible but more verbose)"
+    }
+  ]
+}

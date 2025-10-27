@@ -1,0 +1,142 @@
+using LanguageExt;
+using static LanguageExt.Prelude;
+using {{ServiceName}}.API.Domain;
+
+namespace {{ServiceName}}.API.Services;
+
+public interface I{{Feature}}Service
+{
+    Task<Either<BaseError, {{Feature}}>> Get{{Feature}}Async(Guid id, CancellationToken ct);
+    Task<Either<BaseError, IEnumerable<{{Feature}}>>> GetAll{{Feature}}sAsync(CancellationToken ct);
+    Task<Either<BaseError, {{Feature}}>> Create{{Feature}}Async(Create{{Feature}}Dto dto, CancellationToken ct);
+    Task<Either<BaseError, {{Feature}}>> Update{{Feature}}Async(Guid id, Update{{Feature}}Dto dto, CancellationToken ct);
+    Task<Either<BaseError, Unit>> Delete{{Feature}}Async(Guid id, CancellationToken ct);
+}
+
+public class {{Feature}}Service : I{{Feature}}Service
+{
+    private readonly I{{Feature}}Repository _repository;
+    private readonly ILogger<{{Feature}}Service> _logger;
+    
+    public {{Feature}}Service(I{{Feature}}Repository repository, ILogger<{{Feature}}Service> logger)
+    {
+        _repository = repository;
+        _logger = logger;
+    }
+    
+    public async Task<Either<BaseError, {{Feature}}>> Get{{Feature}}Async(Guid id, CancellationToken ct)
+    {
+        return await TryAsync(async () =>
+        {
+            var entity = await _repository.GetByIdAsync(id, ct);
+            
+            if (entity == null)
+            {
+                return Left<BaseError, {{Feature}}>(
+                    new NotFoundError($"{{Feature}} with ID {id} not found"));
+            }
+            
+            return Right<BaseError, {{Feature}}>(entity);
+        })
+        .IfFail(ex =>
+        {
+            _logger.LogError(ex, "Error retrieving {{Feature}} with ID {Id}", id);
+            return Left<BaseError, {{Feature}}>(
+                new ServiceError($"Failed to retrieve {{Feature}}: {ex.Message}"));
+        });
+    }
+    
+    public async Task<Either<BaseError, IEnumerable<{{Feature}}>>> GetAll{{Feature}}sAsync(CancellationToken ct)
+    {
+        return await TryAsync(async () =>
+        {
+            var entities = await _repository.GetAllAsync(ct);
+            return Right<BaseError, IEnumerable<{{Feature}}>>(entities);
+        })
+        .IfFail(ex =>
+        {
+            _logger.LogError(ex, "Error retrieving all {{Feature}}s");
+            return Left<BaseError, IEnumerable<{{Feature}}>>(
+                new ServiceError($"Failed to retrieve {{Feature}}s: {ex.Message}"));
+        });
+    }
+    
+    public async Task<Either<BaseError, {{Feature}}>> Create{{Feature}}Async(Create{{Feature}}Dto dto, CancellationToken ct)
+    {
+        return await TryAsync(async () =>
+        {
+            // Add business logic validation here
+            
+            var entity = new {{Feature}}
+            {
+                Id = Guid.NewGuid(),
+                Name = dto.Name,
+                // Map other properties
+                CreatedAt = DateTime.UtcNow
+            };
+            
+            await _repository.AddAsync(entity, ct);
+            
+            return Right<BaseError, {{Feature}}>(entity);
+        })
+        .IfFail(ex =>
+        {
+            _logger.LogError(ex, "Error creating {{Feature}}");
+            return Left<BaseError, {{Feature}}>(
+                new ServiceError($"Failed to create {{Feature}}: {ex.Message}"));
+        });
+    }
+    
+    public async Task<Either<BaseError, {{Feature}}>> Update{{Feature}}Async(Guid id, Update{{Feature}}Dto dto, CancellationToken ct)
+    {
+        return await TryAsync(async () =>
+        {
+            var entity = await _repository.GetByIdAsync(id, ct);
+            
+            if (entity == null)
+            {
+                return Left<BaseError, {{Feature}}>(
+                    new NotFoundError($"{{Feature}} with ID {id} not found"));
+            }
+            
+            // Update properties
+            entity.Name = dto.Name;
+            // Map other properties
+            entity.UpdatedAt = DateTime.UtcNow;
+            
+            await _repository.UpdateAsync(entity, ct);
+            
+            return Right<BaseError, {{Feature}}>(entity);
+        })
+        .IfFail(ex =>
+        {
+            _logger.LogError(ex, "Error updating {{Feature}} with ID {Id}", id);
+            return Left<BaseError, {{Feature}}>(
+                new ServiceError($"Failed to update {{Feature}}: {ex.Message}"));
+        });
+    }
+    
+    public async Task<Either<BaseError, Unit>> Delete{{Feature}}Async(Guid id, CancellationToken ct)
+    {
+        return await TryAsync(async () =>
+        {
+            var entity = await _repository.GetByIdAsync(id, ct);
+            
+            if (entity == null)
+            {
+                return Left<BaseError, Unit>(
+                    new NotFoundError($"{{Feature}} with ID {id} not found"));
+            }
+            
+            await _repository.DeleteAsync(entity, ct);
+            
+            return Right<BaseError, Unit>(Unit.Default);
+        })
+        .IfFail(ex =>
+        {
+            _logger.LogError(ex, "Error deleting {{Feature}} with ID {Id}", id);
+            return Left<BaseError, Unit>(
+                new ServiceError($"Failed to delete {{Feature}}: {ex.Message}"));
+        });
+    }
+}

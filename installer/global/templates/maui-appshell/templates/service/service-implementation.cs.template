@@ -1,0 +1,318 @@
+using ErrorOr;
+using {{ProjectName}}.Services.Interfaces;
+using System.Net;
+using System.Net.Http.Json;
+
+namespace {{ProjectName}}.Infrastructure.Services;
+
+/// <summary>
+/// Service implementation for {{Purpose}} external integration.
+/// Handles communication with external systems (API, SDK, etc.) with retry logic.
+/// </summary>
+public class {{ServiceName}} : I{{ServiceName}}
+{
+    private readonly HttpClient _httpClient;
+    private readonly ILogService _logService;
+    private const int MaxRetryAttempts = 3;
+    private static readonly TimeSpan[] RetryDelays = { TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(2), TimeSpan.FromSeconds(4) };
+
+    public {{ServiceName}}(
+        HttpClient httpClient,
+        ILogService logService)
+    {
+        _httpClient = httpClient;
+        _logService = logService;
+    }
+
+    public async Task<ErrorOr<{{ReturnType}}>> {{MethodName}}Async({{Parameters}})
+    {
+        _logService.TrackEvent("{{ServiceName}}{{MethodName}}Started", new Dictionary<string, object>
+        {
+            { "Endpoint", "{{Endpoint}}" }
+        });
+
+        int attempt = 0;
+
+        while (attempt < MaxRetryAttempts)
+        {
+            attempt++;
+
+            try
+            {
+                _logService.TrackEvent("{{ServiceName}}{{MethodName}}Attempt", new Dictionary<string, object>
+                {
+                    { "Attempt", attempt },
+                    { "Endpoint", "{{Endpoint}}" }
+                });
+
+                // Make HTTP request
+                var response = await _httpClient.GetAsync("{{Endpoint}}");
+
+                // Check response status
+                if (!response.IsSuccessStatusCode)
+                {
+                    var shouldRetry = ShouldRetry(response.StatusCode, attempt);
+
+                    if (shouldRetry)
+                    {
+                        _logService.TrackEvent("{{ServiceName}}{{MethodName}}RetryableError", new Dictionary<string, object>
+                        {
+                            { "Attempt", attempt },
+                            { "StatusCode", (int)response.StatusCode },
+                            { "Endpoint", "{{Endpoint}}" }
+                        });
+
+                        if (attempt < MaxRetryAttempts)
+                        {
+                            await Task.Delay(RetryDelays[attempt - 1]);
+                            continue;
+                        }
+                    }
+
+                    _logService.TrackEvent("{{ServiceName}}{{MethodName}}Failed", new Dictionary<string, object>
+                    {
+                        { "StatusCode", (int)response.StatusCode },
+                        { "ReasonPhrase", response.ReasonPhrase ?? "Unknown" },
+                        { "Endpoint", "{{Endpoint}}" }
+                    });
+
+                    return Error.Unexpected(
+                        "{{ServiceName}}.{{MethodName}}.Failed",
+                        $"HTTP {response.StatusCode}: {response.ReasonPhrase}");
+                }
+
+                // Deserialize response
+                var result = await response.Content.ReadFromJsonAsync<{{ReturnType}}>();
+
+                if (result is null)
+                {
+                    _logService.TrackEvent("{{ServiceName}}{{MethodName}}NoData", new Dictionary<string, object>
+                    {
+                        { "Endpoint", "{{Endpoint}}" }
+                    });
+
+                    return Error.NotFound(
+                        "{{ServiceName}}.{{MethodName}}.NoData",
+                        "Response contained no data");
+                }
+
+                _logService.TrackEvent("{{ServiceName}}{{MethodName}}Completed", new Dictionary<string, object>
+                {
+                    { "Attempt", attempt },
+                    { "Endpoint", "{{Endpoint}}" }
+                });
+
+                return result;
+            }
+            catch (HttpRequestException ex)
+            {
+                _logService.TrackError(ex, new Dictionary<string, object>
+                {
+                    { "Operation", "{{MethodName}}" },
+                    { "Attempt", attempt },
+                    { "Service", nameof({{ServiceName}}) },
+                    { "Endpoint", "{{Endpoint}}" }
+                });
+
+                // Always retry network errors
+                if (attempt < MaxRetryAttempts)
+                {
+                    await Task.Delay(RetryDelays[attempt - 1]);
+                    continue;
+                }
+
+                return Error.Unexpected(
+                    "{{ServiceName}}.{{MethodName}}.NetworkError",
+                    $"Network error after {attempt} attempts: {ex.Message}");
+            }
+            catch (TaskCanceledException ex)
+            {
+                _logService.TrackError(ex, new Dictionary<string, object>
+                {
+                    { "Operation", "{{MethodName}}" },
+                    { "Attempt", attempt },
+                    { "Service", nameof({{ServiceName}}) },
+                    { "Endpoint", "{{Endpoint}}" }
+                });
+
+                // Retry timeout errors
+                if (attempt < MaxRetryAttempts)
+                {
+                    await Task.Delay(RetryDelays[attempt - 1]);
+                    continue;
+                }
+
+                return Error.Unexpected(
+                    "{{ServiceName}}.{{MethodName}}.Timeout",
+                    $"Request timed out after {attempt} attempts");
+            }
+            catch (Exception ex)
+            {
+                _logService.TrackError(ex, new Dictionary<string, object>
+                {
+                    { "Operation", "{{MethodName}}" },
+                    { "Attempt", attempt },
+                    { "Service", nameof({{ServiceName}}) },
+                    { "Endpoint", "{{Endpoint}}" }
+                });
+
+                return Error.Unexpected(
+                    "{{ServiceName}}.{{MethodName}}.Exception",
+                    $"Unexpected error: {ex.Message}");
+            }
+        }
+
+        // Should never reach here, but return error just in case
+        return Error.Unexpected(
+            "{{ServiceName}}.{{MethodName}}.MaxRetriesExceeded",
+            $"Failed after {MaxRetryAttempts} attempts");
+    }
+
+    /// <summary>
+    /// Determines if a request should be retried based on the HTTP status code
+    /// </summary>
+    private bool ShouldRetry(HttpStatusCode statusCode, int attempt)
+    {
+        // Don't retry if we've hit max attempts
+        if (attempt >= MaxRetryAttempts)
+        {
+            return false;
+        }
+
+        // Don't retry 4xx client errors (except 429 Rate Limit)
+        if ((int)statusCode >= 400 && (int)statusCode < 500)
+        {
+            return statusCode == HttpStatusCode.TooManyRequests; // 429
+        }
+
+        // Always retry 5xx server errors
+        if ((int)statusCode >= 500)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Example POST method with retry logic
+    /// </summary>
+    public async Task<ErrorOr<{{ReturnType}}>> Post{{MethodName}}Async({{RequestType}} request)
+    {
+        _logService.TrackEvent("{{ServiceName}}Post{{MethodName}}Started", new Dictionary<string, object>
+        {
+            { "Endpoint", "{{Endpoint}}" }
+        });
+
+        int attempt = 0;
+
+        while (attempt < MaxRetryAttempts)
+        {
+            attempt++;
+
+            try
+            {
+                _logService.TrackEvent("{{ServiceName}}Post{{MethodName}}Attempt", new Dictionary<string, object>
+                {
+                    { "Attempt", attempt },
+                    { "Endpoint", "{{Endpoint}}" }
+                });
+
+                // Make HTTP POST request
+                var response = await _httpClient.PostAsJsonAsync("{{Endpoint}}", request);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var shouldRetry = ShouldRetry(response.StatusCode, attempt);
+
+                    if (shouldRetry && attempt < MaxRetryAttempts)
+                    {
+                        await Task.Delay(RetryDelays[attempt - 1]);
+                        continue;
+                    }
+
+                    _logService.TrackEvent("{{ServiceName}}Post{{MethodName}}Failed", new Dictionary<string, object>
+                    {
+                        { "StatusCode", (int)response.StatusCode },
+                        { "ReasonPhrase", response.ReasonPhrase ?? "Unknown" }
+                    });
+
+                    return Error.Unexpected(
+                        "{{ServiceName}}.Post{{MethodName}}.Failed",
+                        $"HTTP {response.StatusCode}: {response.ReasonPhrase}");
+                }
+
+                var result = await response.Content.ReadFromJsonAsync<{{ReturnType}}>();
+
+                if (result is null)
+                {
+                    return Error.NotFound(
+                        "{{ServiceName}}.Post{{MethodName}}.NoData",
+                        "Response contained no data");
+                }
+
+                _logService.TrackEvent("{{ServiceName}}Post{{MethodName}}Completed", new Dictionary<string, object>
+                {
+                    { "Attempt", attempt }
+                });
+
+                return result;
+            }
+            catch (HttpRequestException ex)
+            {
+                _logService.TrackError(ex, new Dictionary<string, object>
+                {
+                    { "Operation", "Post{{MethodName}}" },
+                    { "Attempt", attempt },
+                    { "Service", nameof({{ServiceName}}) }
+                });
+
+                if (attempt < MaxRetryAttempts)
+                {
+                    await Task.Delay(RetryDelays[attempt - 1]);
+                    continue;
+                }
+
+                return Error.Unexpected(
+                    "{{ServiceName}}.Post{{MethodName}}.NetworkError",
+                    $"Network error after {attempt} attempts: {ex.Message}");
+            }
+            catch (TaskCanceledException ex)
+            {
+                _logService.TrackError(ex, new Dictionary<string, object>
+                {
+                    { "Operation", "Post{{MethodName}}" },
+                    { "Attempt", attempt },
+                    { "Service", nameof({{ServiceName}}) }
+                });
+
+                if (attempt < MaxRetryAttempts)
+                {
+                    await Task.Delay(RetryDelays[attempt - 1]);
+                    continue;
+                }
+
+                return Error.Unexpected(
+                    "{{ServiceName}}.Post{{MethodName}}.Timeout",
+                    $"Request timed out after {attempt} attempts");
+            }
+            catch (Exception ex)
+            {
+                _logService.TrackError(ex, new Dictionary<string, object>
+                {
+                    { "Operation", "Post{{MethodName}}" },
+                    { "Attempt", attempt },
+                    { "Service", nameof({{ServiceName}}) }
+                });
+
+                return Error.Unexpected(
+                    "{{ServiceName}}.Post{{MethodName}}.Exception",
+                    $"Unexpected error: {ex.Message}");
+            }
+        }
+
+        return Error.Unexpected(
+            "{{ServiceName}}.Post{{MethodName}}.MaxRetriesExceeded",
+            $"Failed after {MaxRetryAttempts} attempts");
+    }
+}

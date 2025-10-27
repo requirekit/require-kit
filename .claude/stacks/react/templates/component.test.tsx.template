@@ -1,0 +1,63 @@
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
+import { {{ComponentName}} } from './{{ComponentName}}';
+
+describe('{{ComponentName}}', () => {
+  it('renders without crashing', () => {
+    render(<{{ComponentName}} />);
+    expect(screen.getByTestId('{{component-name}}')).toBeInTheDocument();
+  });
+
+  it('displays the correct initial content', () => {
+    render(<{{ComponentName}} />);
+    // Add specific content assertions
+    expect(screen.getByText('Expected Text')).toBeInTheDocument();
+  });
+
+  it('handles user interactions correctly', () => {
+    const handleClick = vi.fn();
+    render(<{{ComponentName}} onClick={handleClick} />);
+    
+    const button = screen.getByRole('button');
+    fireEvent.click(button);
+    
+    expect(handleClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('updates state appropriately', () => {
+    render(<{{ComponentName}} />);
+    
+    const input = screen.getByRole('textbox');
+    fireEvent.change(input, { target: { value: 'New Value' } });
+    
+    expect(input).toHaveValue('New Value');
+  });
+
+  it('handles edge cases gracefully', () => {
+    // Test with empty data
+    render(<{{ComponentName}} data={[]} />);
+    expect(screen.getByText('No data available')).toBeInTheDocument();
+    
+    // Test with null props
+    render(<{{ComponentName}} data={null} />);
+    expect(screen.getByTestId('{{component-name}}')).toBeInTheDocument();
+  });
+
+  it('meets accessibility standards', () => {
+    const { container } = render(<{{ComponentName}} />);
+    
+    // Check for proper ARIA attributes
+    expect(screen.getByRole('button')).toHaveAttribute('aria-label');
+    
+    // Check for keyboard navigation
+    const button = screen.getByRole('button');
+    button.focus();
+    expect(document.activeElement).toBe(button);
+  });
+
+  it('matches snapshot', () => {
+    const { container } = render(<{{ComponentName}} />);
+    expect(container.firstChild).toMatchSnapshot();
+  });
+});

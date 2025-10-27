@@ -1,0 +1,67 @@
+using ErrorOr;
+using FluentAssertions;
+using NSubstitute;
+using Xunit;
+
+namespace {{ProjectName}}.Tests.Domain.{{FeatureName}};
+
+/// <summary>
+/// Tests for {{OperationName}} domain operation.
+/// </summary>
+public class {{OperationName}}Tests
+{
+    private readonly I{{Entity}}Repository _repository;
+    private readonly {{OperationName}} _sut;
+
+    public {{OperationName}}Tests()
+    {
+        _repository = Substitute.For<I{{Entity}}Repository>();
+        _sut = new {{OperationName}}(_repository);
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_WhenRepositorySucceeds_ReturnsSuccess()
+    {
+        // Arrange
+        var expected = new {{ReturnType}} { {{PropertyInitializers}} };
+        _repository.{{RepositoryMethod}}Async({{RepositoryParameters}})
+            .Returns(expected);
+
+        // Act
+        var result = await _sut.ExecuteAsync({{OperationParameters}});
+
+        // Assert
+        result.IsError.Should().BeFalse();
+        result.Value.Should().BeEquivalentTo(expected);
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_WhenRepositoryFails_ReturnsError()
+    {
+        // Arrange
+        var error = Error.Unexpected("{{Entity}}.Test.Error", "Test error");
+        _repository.{{RepositoryMethod}}Async({{RepositoryParameters}})
+            .Returns(error);
+
+        // Act
+        var result = await _sut.ExecuteAsync({{OperationParameters}});
+
+        // Assert
+        result.IsError.Should().BeTrue();
+        result.FirstError.Should().Be(error);
+    }
+
+    [Fact]
+    public async Task ExecuteAsync_WhenValidationFails_ReturnsValidationError()
+    {
+        // Arrange
+        var invalidRequest = new {{RequestType}} { {{InvalidPropertyValues}} };
+
+        // Act
+        var result = await _sut.ExecuteAsync(invalidRequest);
+
+        // Assert
+        result.IsError.Should().BeTrue();
+        result.FirstError.Type.Should().Be(ErrorType.Validation);
+    }
+}

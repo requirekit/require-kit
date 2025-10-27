@@ -1,0 +1,144 @@
+{
+  "task_id": "TASK-015",
+  "title": "Add icon code conversion utility to Zeplin-to-MAUI workflow",
+  "complexity_score": 4,
+  "architecture_review_score": 88,
+  "architecture": {
+    "summary": "Icon conversion utility module with orchestrator integration",
+    "patterns": [
+      "Adapter pattern",
+      "Strategy pattern",
+      "Result pattern"
+    ],
+    "key_components": [
+      "icon-converter.ts utility module",
+      "Orchestrator Phase 1 integration",
+      "Comprehensive test suite"
+    ]
+  },
+  "files": {
+    "to_create": [
+      {
+        "path": "installer/global/utils/icon-converter.ts",
+        "type": "implementation",
+        "estimated_loc": 250,
+        "purpose": "Icon code conversion utility with Result pattern"
+      },
+      {
+        "path": "installer/global/tests/utils/icon-converter.test.ts",
+        "type": "test",
+        "estimated_loc": 350,
+        "purpose": "Comprehensive test suite with 25+ test cases"
+      },
+      {
+        "path": "docs/troubleshooting/zeplin-maui-icon-issues.md",
+        "type": "documentation",
+        "estimated_loc": 50,
+        "purpose": "Troubleshooting guide for icon conversion issues"
+      },
+      {
+        "path": "docs/patterns/icon-code-conversion-pattern.md",
+        "type": "documentation",
+        "estimated_loc": 75,
+        "purpose": "Pattern documentation for icon code conversion"
+      }
+    ],
+    "to_modify": [
+      {
+        "path": "installer/global/agents/zeplin-maui-orchestrator.md",
+        "type": "agent",
+        "purpose": "Integrate icon conversion in Phase 1",
+        "sections_affected": ["Phase 1: Design Extraction"]
+      },
+      {
+        "path": "installer/global/commands/zeplin-to-maui.md",
+        "type": "documentation",
+        "purpose": "Update command documentation with icon handling",
+        "sections_affected": ["Features", "Quality Gates"]
+      },
+      {
+        "path": "installer/global/commands/mcp-zeplin.md",
+        "type": "documentation",
+        "purpose": "Reference icon conversion utility",
+        "sections_affected": ["Usage Examples"]
+      }
+    ],
+    "total_files": 7,
+    "total_estimated_loc": 725
+  },
+  "dependencies": {
+    "external": [],
+    "internal": [
+      "Built-in TypeScript parseInt()",
+      "Built-in String.fromCodePoint()"
+    ],
+    "new_packages": []
+  },
+  "implementation_phases": [
+    {
+      "phase": 1,
+      "name": "Foundation",
+      "duration_hours": "1-2",
+      "tasks": [
+        "Create icon-converter.ts with core conversion logic",
+        "Implement Result pattern for error handling",
+        "Add comprehensive test suite"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Integration",
+      "duration_hours": "1-2",
+      "tasks": [
+        "Update zeplin-maui-orchestrator.md",
+        "Integrate conversion in Phase 1",
+        "Add error handling paths"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "Documentation",
+      "duration_hours": "0.5-1",
+      "tasks": [
+        "Create troubleshooting guide",
+        "Document conversion pattern",
+        "Update command documentation"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "Testing",
+      "duration_hours": "1-2",
+      "tasks": [
+        "E2E validation",
+        "Performance verification (<10ms)",
+        "Edge case testing"
+      ]
+    }
+  ],
+  "estimated_duration_hours": "4-6",
+  "test_strategy": {
+    "approach": "Table-driven tests",
+    "coverage_target": 100,
+    "performance_target": "<10ms per icon",
+    "test_count": "25+"
+  },
+  "risks": [
+    {
+      "description": "Orchestrator integration complexity",
+      "severity": "medium",
+      "mitigation": "Non-blocking errors, dependency injection"
+    },
+    {
+      "description": "Edge case icon codes",
+      "severity": "low",
+      "mitigation": "Comprehensive test suite with Unicode edge cases"
+    }
+  ],
+  "risk_mitigations": [
+    "Non-blocking error handling",
+    "Dependency injection for testability",
+    "Centralized parsing logic",
+    "Comprehensive test coverage"
+  ]
+}

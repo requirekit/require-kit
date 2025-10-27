@@ -1,0 +1,3 @@
+# Ignore metrics data files
+*.jsonl
+*.json

@@ -1,0 +1,15 @@
+# Template-specific ignores
+
+# User-specific configuration overrides
+settings.local.json
+*.user.json
+
+# IDE
+.vs/
+.vscode/
+.idea/
+
+# Build artifacts
+*.cache
+*.log
+temp/

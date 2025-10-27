@@ -1,0 +1,501 @@
+"""
+LangGraph workflow implementation for {{workflowName}}
+
+This template demonstrates the multi-stage workflow pattern learned from production AI agent development.
+"""
+
+from typing import TypedDict, Annotated, Sequence, Dict, Any, Optional, List
+from operator import add
+from langgraph.graph import StateGraph, END
+from langgraph.checkpoint import MemorySaver
+import structlog
+from datetime import datetime
+
+from src.utils.error_handling import with_error_handling
+from src.utils.monitoring import monitor_performance
+
+# Initialize structured logger
+logger = structlog.get_logger(__name__)
+
+
+class {{pascalCase workflowName}}State(TypedDict):
+    """
+    State definition for {{workflowName}} workflow.
+    
+    Attributes:
+        messages: Accumulated messages throughout the workflow
+        current_step: Current step in the workflow
+        context: Additional context passed between steps
+        errors: List of errors encountered
+        results: Results from each step
+        metadata: Workflow metadata (timing, metrics, etc.)
+    """
+    messages: Annotated[Sequence[str], add]
+    current_step: str
+    context: Dict[str, Any]
+    errors: List[Dict[str, Any]]
+    results: Dict[str, Any]
+    metadata: Dict[str, Any]
+
+
+# ==================== WORKFLOW NODES ====================
+
+@with_error_handling(raise_on_error=False)
+async def analyze_input(state: {{pascalCase workflowName}}State) -> {{pascalCase workflowName}}State:
+    """
+    Analyze the input and prepare for processing.
+    
+    This is typically the first step in the workflow.
+    """
+    logger.info("analyzing_input", step="analyze", context=state.get("context"))
+    
+    try:
+        # Extract and validate input
+        input_data = state.get("context", {}).get("input")
+        if not input_data:
+            raise ValueError("No input data provided")
+        
+        # Perform analysis
+        analysis_results = {
+            "input_type": type(input_data).__name__,
+            "complexity": _assess_complexity(input_data),
+            "requirements": _extract_requirements(input_data),
+            "timestamp": datetime.utcnow().isoformat()
+        }
+        
+        # Update state
+        state["results"]["analysis"] = analysis_results
+        state["current_step"] = "analyze"
+        state["messages"].append(f"Input analyzed: {analysis_results['complexity']} complexity")
+        
+        logger.info("input_analyzed", results=analysis_results)
+        
+    except Exception as e:
+        logger.error("analysis_failed", error=str(e))
+        state["errors"].append({
+            "step": "analyze",
+            "error": str(e),
+            "timestamp": datetime.utcnow().isoformat()
+        })
+    
+    return state
+
+
+@with_error_handling(raise_on_error=False)
+async def process_data(state: {{pascalCase workflowName}}State) -> {{pascalCase workflowName}}State:
+    """
+    Main processing logic for the workflow.
+    """
+    logger.info("processing_data", step="process", context=state.get("context"))
+    
+    try:
+        # Get analysis results
+        analysis = state["results"].get("analysis", {})
+        
+        # Perform processing based on complexity
+        if analysis.get("complexity") == "high":
+            result = await _process_complex(state["context"])
+        else:
+            result = await _process_simple(state["context"])
+        
+        # Update state
+        state["results"]["processing"] = result
+        state["current_step"] = "process"
+        state["messages"].append(f"Data processed successfully")
+        
+        logger.info("data_processed", result_size=len(str(result)))
+        
+    except Exception as e:
+        logger.error("processing_failed", error=str(e))
+        state["errors"].append({
+            "step": "process",
+            "error": str(e),
+            "timestamp": datetime.utcnow().isoformat()
+        })
+    
+    return state
+
+
+@with_error_handling(raise_on_error=False)
+async def validate_results(state: {{pascalCase workflowName}}State) -> {{pascalCase workflowName}}State:
+    """
+    Validate the processing results.
+    """
+    logger.info("validating_results", step="validate")
+    
+    try:
+        # Get processing results
+        processing_results = state["results"].get("processing", {})
+        
+        # Perform validation
+        validation_results = {
+            "is_valid": True,
+            "checks_passed": [],
+            "checks_failed": [],
+            "confidence": 0.0
+        }
+        
+        # Run validation checks
+        for check_name, check_func in _get_validation_checks().items():
+            try:
+                if check_func(processing_results):
+                    validation_results["checks_passed"].append(check_name)
+                else:
+                    validation_results["checks_failed"].append(check_name)
+                    validation_results["is_valid"] = False
+            except Exception as e:
+                logger.warning(f"Validation check {check_name} failed", error=str(e))
+                validation_results["checks_failed"].append(check_name)
+        
+        # Calculate confidence
+        total_checks = len(validation_results["checks_passed"]) + len(validation_results["checks_failed"])
+        if total_checks > 0:
+            validation_results["confidence"] = len(validation_results["checks_passed"]) / total_checks
+        
+        # Update state
+        state["results"]["validation"] = validation_results
+        state["current_step"] = "validate"
+        state["messages"].append(f"Validation {'passed' if validation_results['is_valid'] else 'failed'}")
+        
+        logger.info("validation_complete", validation_results=validation_results)
+        
+    except Exception as e:
+        logger.error("validation_failed", error=str(e))
+        state["errors"].append({
+            "step": "validate",
+            "error": str(e),
+            "timestamp": datetime.utcnow().isoformat()
+        })
+    
+    return state
+
+
+@with_error_handling(raise_on_error=False)
+async def generate_response(state: {{pascalCase workflowName}}State) -> {{pascalCase workflowName}}State:
+    """
+    Generate the final response based on all previous steps.
+    """
+    logger.info("generating_response", step="respond")
+    
+    try:
+        # Compile results from all steps
+        final_response = {
+            "success": len(state["errors"]) == 0,
+            "data": state["results"].get("processing", {}),
+            "validation": state["results"].get("validation", {}),
+            "messages": state["messages"],
+            "metadata": {
+                "workflow": "{{workflowName}}",
+                "total_steps": 4,
+                "errors_count": len(state["errors"]),
+                "timestamp": datetime.utcnow().isoformat()
+            }
+        }
+        
+        # Add errors if any
+        if state["errors"]:
+            final_response["errors"] = state["errors"]
+        
+        # Update state
+        state["results"]["response"] = final_response
+        state["current_step"] = "complete"
+        state["messages"].append("Response generated successfully")
+        
+        logger.info("response_generated", success=final_response["success"])
+        
+    except Exception as e:
+        logger.error("response_generation_failed", error=str(e))
+        state["errors"].append({
+            "step": "respond",
+            "error": str(e),
+            "timestamp": datetime.utcnow().isoformat()
+        })
+    
+    return state
+
+
+# ==================== CONDITIONAL EDGES ====================
+
+def should_validate(state: {{pascalCase workflowName}}State) -> str:
+    """
+    Determine whether to proceed to validation or skip to response.
+    
+    Returns:
+        "validate" if validation is needed, "respond" otherwise
+    """
+    # Skip validation if there were processing errors
+    if any(e["step"] == "process" for e in state.get("errors", [])):
+        logger.info("skipping_validation", reason="processing_errors")
+        return "respond"
+    
+    # Skip validation if no processing results
+    if not state["results"].get("processing"):
+        logger.info("skipping_validation", reason="no_processing_results")
+        return "respond"
+    
+    # Check if validation is requested
+    if state.get("context", {}).get("skip_validation", False):
+        logger.info("skipping_validation", reason="explicitly_skipped")
+        return "respond"
+    
+    return "validate"
+
+
+def should_retry(state: {{pascalCase workflowName}}State) -> str:
+    """
+    Determine whether to retry a failed step or proceed.
+    
+    Returns:
+        "retry" if retry is needed, "continue" otherwise
+    """
+    # Check retry count
+    retry_count = state.get("metadata", {}).get("retry_count", 0)
+    max_retries = state.get("context", {}).get("max_retries", 3)
+    
+    if retry_count >= max_retries:
+        logger.info("max_retries_reached", retry_count=retry_count)
+        return "continue"
+    
+    # Check if last step had recoverable error
+    last_error = state["errors"][-1] if state["errors"] else None
+    if last_error and _is_recoverable_error(last_error):
+        logger.info("retrying_failed_step", step=last_error["step"])
+        state["metadata"]["retry_count"] = retry_count + 1
+        return "retry"
+    
+    return "continue"
+
+
+# ==================== HELPER FUNCTIONS ====================
+
+def _assess_complexity(input_data: Any) -> str:
+    """Assess the complexity of the input data."""
+    # Implement your complexity assessment logic
+    if isinstance(input_data, dict) and len(input_data) > 10:
+        return "high"
+    elif isinstance(input_data, list) and len(input_data) > 100:
+        return "high"
+    return "low"
+
+
+def _extract_requirements(input_data: Any) -> List[str]:
+    """Extract requirements from the input data."""
+    # Implement your requirement extraction logic
+    requirements = []
+    if isinstance(input_data, dict):
+        if "requirements" in input_data:
+            requirements = input_data["requirements"]
+    return requirements
+
+
+async def _process_complex(context: Dict[str, Any]) -> Dict[str, Any]:
+    """Process complex data."""
+    # Implement complex processing logic
+    await asyncio.sleep(0.1)  # Simulate processing
+    return {"type": "complex", "result": "processed"}
+
+
+async def _process_simple(context: Dict[str, Any]) -> Dict[str, Any]:
+    """Process simple data."""
+    # Implement simple processing logic
+    return {"type": "simple", "result": "processed"}
+
+
+def _get_validation_checks() -> Dict[str, callable]:
+    """Get validation check functions."""
+    return {
+        "has_result": lambda x: "result" in x,
+        "has_type": lambda x: "type" in x,
+        "non_empty": lambda x: bool(x),
+    }
+
+
+def _is_recoverable_error(error: Dict[str, Any]) -> bool:
+    """Check if an error is recoverable."""
+    recoverable_errors = [
+        "timeout", "connection", "rate_limit", "temporary"
+    ]
+    error_msg = str(error.get("error", "")).lower()
+    return any(err in error_msg for err in recoverable_errors)
+
+
+# ==================== WORKFLOW FACTORY ====================
+
+def create_{{snakeCase workflowName}}_workflow(
+    checkpointer: Optional[MemorySaver] = None,
+    enable_retries: bool = True,
+    enable_validation: bool = True
+) -> StateGraph:
+    """
+    Factory function to create the {{workflowName}} workflow.
+    
+    Args:
+        checkpointer: Optional checkpointer for state persistence
+        enable_retries: Enable automatic retry logic
+        enable_validation: Enable validation step
+    
+    Returns:
+        Compiled StateGraph ready for execution
+    """
+    logger.info("creating_workflow", workflow="{{workflowName}}")
+    
+    # Create the graph
+    workflow = StateGraph({{pascalCase workflowName}}State)
+    
+    # Add nodes
+    workflow.add_node("analyze", analyze_input)
+    workflow.add_node("process", process_data)
+    workflow.add_node("validate", validate_results)
+    workflow.add_node("respond", generate_response)
+    
+    # Set entry point
+    workflow.set_entry_point("analyze")
+    
+    # Add edges
+    workflow.add_edge("analyze", "process")
+    
+    # Add conditional edges
+    if enable_validation:
+        workflow.add_conditional_edges(
+            "process",
+            should_validate,
+            {
+                "validate": "validate",
+                "respond": "respond"
+            }
+        )
+        workflow.add_edge("validate", "respond")
+    else:
+        workflow.add_edge("process", "respond")
+    
+    # Add retry logic if enabled
+    if enable_retries:
+        workflow.add_conditional_edges(
+            "process",
+            should_retry,
+            {
+                "retry": "process",
+                "continue": "validate" if enable_validation else "respond"
+            }
+        )
+    
+    # Add end point
+    workflow.add_edge("respond", END)
+    
+    # Compile with checkpointer if provided
+    compiled = workflow.compile(checkpointer=checkpointer) if checkpointer else workflow.compile()
+    
+    logger.info("workflow_created", workflow="{{workflowName}}")
+    
+    return compiled
+
+
+# ==================== USAGE EXAMPLE ====================
+
+async def run_{{snakeCase workflowName}}_workflow(
+    input_data: Dict[str, Any],
+    config: Optional[Dict[str, Any]] = None
+) -> Dict[str, Any]:
+    """
+    Execute the {{workflowName}} workflow with the given input.
+    
+    Args:
+        input_data: Input data for the workflow
+        config: Optional configuration overrides
+    
+    Returns:
+        Workflow execution results
+    """
+    # Create initial state
+    initial_state = {
+        "messages": [],
+        "current_step": "start",
+        "context": {
+            "input": input_data,
+            **(config or {})
+        },
+        "errors": [],
+        "results": {},
+        "metadata": {
+            "start_time": datetime.utcnow().isoformat(),
+            "retry_count": 0
+        }
+    }
+    
+    # Create and run workflow
+    workflow = create_{{snakeCase workflowName}}_workflow()
+    
+    # Execute workflow
+    final_state = await workflow.ainvoke(initial_state)
+    
+    # Add execution time to metadata
+    final_state["metadata"]["end_time"] = datetime.utcnow().isoformat()
+    
+    return final_state["results"].get("response", {})
+
+
+# ==================== STREAMING EXECUTION ====================
+
+async def stream_{{snakeCase workflowName}}_workflow(
+    input_data: Dict[str, Any],
+    config: Optional[Dict[str, Any]] = None
+):
+    """
+    Execute the workflow with streaming output.
+    
+    Yields:
+        Dict containing step results as they complete
+    """
+    initial_state = {
+        "messages": [],
+        "current_step": "start",
+        "context": {
+            "input": input_data,
+            **(config or {})
+        },
+        "errors": [],
+        "results": {},
+        "metadata": {
+            "start_time": datetime.utcnow().isoformat(),
+            "retry_count": 0
+        }
+    }
+    
+    workflow = create_{{snakeCase workflowName}}_workflow()
+    
+    # Stream execution
+    async for state in workflow.astream(initial_state):
+        yield {
+            "step": state.get("current_step"),
+            "messages": state.get("messages", [])[-1] if state.get("messages") else None,
+            "partial_results": state.get("results", {})
+        }
+    
+    # Yield final result
+    yield {
+        "step": "complete",
+        "final_results": state.get("results", {}).get("response", {})
+    }
+
+
+if __name__ == "__main__":
+    # Example usage for testing
+    import asyncio
+    
+    async def main():
+        # Test input
+        test_input = {
+            "data": "test data",
+            "requirements": ["requirement1", "requirement2"]
+        }
+        
+        # Run workflow
+        result = await run_{{snakeCase workflowName}}_workflow(test_input)
+        print(f"Workflow result: {result}")
+        
+        # Test streaming
+        print("\nStreaming execution:")
+        async for step_result in stream_{{snakeCase workflowName}}_workflow(test_input):
+            print(f"Step: {step_result}")
+    
+    asyncio.run(main())

@@ -1,0 +1,120 @@
+{
+  "navigation": {
+    "pattern": "NavigationPage",
+    "root_page": "MainPage",
+    "conventions": {
+      "viewmodel_suffix": "ViewModel",
+      "page_suffix": "Page",
+      "viewmodel_namespace": "ViewModels",
+      "page_namespace": "Pages"
+    },
+    "error_strategy": "exception",
+    "enable_parameter_passing": true,
+    "enable_lifecycle_hooks": true
+  },
+  "architecture": {
+    "patterns": [
+      "MVVM",
+      "ErrorOr",
+      "Dependency Injection",
+      "UseCases",
+      "Repository Pattern"
+    ],
+    "principles": [
+      "SOLID",
+      "DRY",
+      "YAGNI"
+    ]
+  },
+  "testing": {
+    "framework": "xUnit",
+    "approach": "Outside-In TDD",
+    "mock_library": "NSubstitute",
+    "http_mocking": "JustEat.HttpClientInterception",
+    "coverage_tool": "Coverlet"
+  },
+  "quality_gates": {
+    "test_coverage": {
+      "minimum_line_coverage": 80,
+      "minimum_branch_coverage": 75,
+      "exclude_patterns": [
+        "*.Designer.cs",
+        "*.g.cs",
+        "*.g.i.cs"
+      ]
+    },
+    "code_quality": {
+      "max_cyclomatic_complexity": 10,
+      "max_method_length": 50,
+      "max_class_length": 300
+    },
+    "performance": {
+      "max_page_load_time_ms": 500,
+      "max_api_response_time_ms": 200
+    }
+  },
+  "dependencies": {
+    "required": [
+      {
+        "name": "CommunityToolkit.Maui",
+        "version": "7.0.0",
+        "purpose": "MAUI extensions and controls"
+      },
+      {
+        "name": "CommunityToolkit.Mvvm",
+        "version": "8.2.2",
+        "purpose": "MVVM infrastructure"
+      },
+      {
+        "name": "ErrorOr",
+        "version": "1.2.1",
+        "purpose": "Functional error handling"
+      },
+      {
+        "name": "Microsoft.Extensions.Http",
+        "version": "8.0.0",
+        "purpose": "HTTP client factory"
+      }
+    ],
+    "testing": [
+      {
+        "name": "xunit",
+        "version": "2.6.1",
+        "purpose": "Test framework"
+      },
+      {
+        "name": "FluentAssertions",
+        "version": "6.12.0",
+        "purpose": "Assertion library"
+      },
+      {
+        "name": "JustEat.HttpClientInterception",
+        "version": "4.0.0",
+        "purpose": "HTTP mocking"
+      }
+    ]
+  },
+  "code_generation": {
+    "namespace_template": "{{ProjectName}}.{{Category}}",
+    "file_header": {
+      "include": false,
+      "template": ""
+    },
+    "xml_documentation": {
+      "required": true,
+      "minimum_level": "public"
+    }
+  },
+  "conventions": {
+    "naming": {
+      "interfaces": "I{Name}",
+      "abstract_classes": "{Name}Base",
+      "test_classes": "{Name}Tests",
+      "async_methods": "{Name}Async"
+    },
+    "file_organization": {
+      "one_class_per_file": true,
+      "match_filename_to_classname": true
+    }
+  }
+}

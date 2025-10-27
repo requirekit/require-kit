@@ -1,0 +1,49 @@
+{
+  "task_id": "TASK-011B",
+  "calculated_at": "2025-10-13T00:00:00Z",
+  "total_score": 6,
+  "level": "medium",
+  "review_mode": "QUICK_OPTIONAL",
+  "factor_scores": [
+    {
+      "factor": "file_complexity",
+      "score": 2,
+      "max_score": 3,
+      "justification": "8 files affected (1 create, 7 modify) = 3-5 files range"
+    },
+    {
+      "factor": "pattern_familiarity",
+      "score": 1,
+      "max_score": 2,
+      "justification": "Mixed familiar (Repository, MVVM, ErrorOr) and unfamiliar (Retry with Backoff)"
+    },
+    {
+      "factor": "risk_level",
+      "score": 2,
+      "max_score": 3,
+      "justification": "Medium risk - templates affect all future MAUI development, no breaking changes"
+    },
+    {
+      "factor": "dependencies",
+      "score": 1,
+      "max_score": 2,
+      "justification": "1-2 dependencies: ErrorOr, CommunityToolkit.Mvvm"
+    }
+  ],
+  "forced_review_triggers": [],
+  "estimated_duration_minutes": 230,
+  "estimated_duration_display": "3.8 hours",
+  "files_breakdown": {
+    "create": 1,
+    "modify": 7,
+    "delete": 0,
+    "total": 8
+  },
+  "patterns_identified": [
+    "Repository Pattern (implemented)",
+    "MVVM Pattern (implemented)",
+    "ErrorOr Pattern (implemented, needs fixes)",
+    "Retry with Backoff (missing, must add)",
+    "Circuit Breaker (YAGNI, defer)"
+  ]
+}

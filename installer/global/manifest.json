@@ -1,0 +1,66 @@
+{
+  "name": "agentic-flow",
+  "version": "2.0.0",
+  "description": "Complete Agentecflow Implementation - Enterprise Software Engineering Lifecycle System",
+  "homepage": "https://github.com/appmilla/agentic-flow",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/appmilla/agentic-flow.git"
+  },
+  "author": "AppMilla",
+  "license": "MIT",
+  "system": {
+    "min_version": "1.0.0",
+    "api_version": "v1"
+  },
+  "capabilities": [
+    "requirements-engineering",
+    "bdd-generation",
+    "test-orchestration",
+    "quality-gates",
+    "state-tracking",
+    "kanban-workflow",
+    "task-management",
+    "test-verification"
+  ],
+  "stacks": {
+    "default": {
+      "name": "Default",
+      "description": "Language-agnostic base configuration"
+    },
+    "react": {
+      "name": "React",
+      "description": "React with TypeScript, Vite, and Playwright"
+    },
+    "python": {
+      "name": "Python",
+      "description": "Python with FastAPI, pytest, and SQLAlchemy"
+    },
+    "fullstack": {
+      "name": "Full Stack",
+      "description": "React frontend with Python backend"
+    },
+    "dotnet-microservice": {
+      "name": ".NET Microservice",
+      "description": ".NET 8+ microservice with FastEndpoints, Either monad, and OpenTelemetry"
+    },
+    "maui": {
+      "name": ".NET MAUI",
+      "description": ".NET MAUI mobile app with MVVM, UseCases, and functional error handling"
+    },
+    "typescript-api": {
+      "name": "TypeScript API",
+      "description": "NestJS TypeScript backend API with Result patterns, domain modeling, and comprehensive testing"
+    }
+  },
+  "dependencies": {
+    "required": ["bash", "git", "python3"],
+    "optional": ["node", "docker"],
+    "python": {
+      "min_version": "3.7",
+      "stdlib_only": true,
+      "no_external_deps": true,
+      "description": "Required for complexity evaluation and task splitting features"
+    }
+  }
+}

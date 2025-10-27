@@ -1,0 +1,25 @@
+namespace {{ProjectName}}.Presentation.{{FeatureName}};
+
+public partial class {{PageName}} : ContentPage
+{
+    private readonly {{ViewModelName}} _viewModel;
+
+    public {{PageName}}({{ViewModelName}} viewModel)
+    {
+        InitializeComponent();
+
+        _viewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));
+        BindingContext = _viewModel;
+    }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Load data when page appears
+        if (_viewModel.{{LoadCommand}}Command.CanExecute(null))
+        {
+            await _viewModel.{{LoadCommand}}Command.ExecuteAsync(null);
+        }
+    }
+}

@@ -1,0 +1,259 @@
+{
+  "name": "maui-stack",
+  "version": "1.0.0",
+  "description": ".NET MAUI mobile app with MVVM, UseCases, and functional error handling",
+  "extends": ["base"],
+  
+  "dependencies": {
+    "framework": "dotnet-maui@8",
+    "language": "csharp@12",
+    "mvvm": "CommunityToolkit.Mvvm",
+    "functional": "LanguageExt",
+    "ui": "CommunityToolkit.Maui"
+  },
+  
+  "testing": {
+    "unit": {
+      "framework": "xunit",
+      "pattern": "**/*.Tests.cs",
+      "coverage": {
+        "threshold": 80,
+        "exclude": ["*.Tests/**", "MauiProgram.cs", "Platforms/**"],
+        "reporters": ["text", "html", "cobertura"]
+      }
+    },
+    "integration": {
+      "framework": "xunit",
+      "approach": "outside-in-tdd",
+      "utilities": ["FluentAssertions", "JustEat.HttpClientInterception"],
+      "pattern": "**/Integration/*.cs"
+    },
+    "ui": {
+      "framework": "none",
+      "note": "UI testing not recommended for MAUI - focus on integration tests"
+    },
+    "bdd": {
+      "framework": "SpecFlow",
+      "pattern": "**/*.feature",
+      "optional": true
+    }
+  },
+  
+  "quality": {
+    "linting": {
+      "tools": ["dotnet-format", "Roslynator"],
+      "rules": {
+        "complexity": 10,
+        "max-lines": 300,
+        "max-params": 4
+      }
+    },
+    "code-analysis": {
+      "analyzers": ["StyleCop.Analyzers"],
+      "treat-warnings-as-errors": false
+    },
+    "naming": {
+      "convention": "PascalCase",
+      "async-suffix": "Async",
+      "interface-prefix": "I"
+    }
+  },
+  
+  "structure": {
+    "src": {
+      "core": "Core",
+      "usecases": "UseCases",
+      "services": "Services",
+      "viewmodels": "ViewModels",
+      "views": "Views",
+      "models": "Core/Models",
+      "configuration": "Configuration",
+      "resources": "Resources"
+    },
+    "tests": {
+      "integration": "Tests/Integration",
+      "fixtures": "Tests/Fixtures",
+      "helpers": "Tests/Helpers"
+    }
+  },
+  
+  "commands": {
+    "build": "dotnet build",
+    "run:android": "dotnet run --framework net8.0-android",
+    "run:ios": "dotnet run --framework net8.0-ios",
+    "run:windows": "dotnet run --framework net8.0-windows",
+    "test": "dotnet test",
+    "test:integration": "dotnet test --filter Category=Integration",
+    "test:coverage": "dotnet test --collect:\"XPlat Code Coverage\"",
+    "format": "dotnet format",
+    "publish:android": "dotnet publish -f net8.0-android -c Release",
+    "publish:ios": "dotnet publish -f net8.0-ios -c Release"
+  },
+  
+  "templates": {
+    "page": "templates/Page.xaml.hbs",
+    "viewmodel": "templates/ViewModel.cs.hbs",
+    "usecase": "templates/UseCase.cs.hbs",
+    "service": "templates/Service.cs.hbs",
+    "model": "templates/Model.cs.hbs",
+    "test": "templates/IntegrationTest.cs.hbs"
+  },
+  
+  "architecture": {
+    "pattern": "mvvm-usecases",
+    "layers": {
+      "presentation": ["ViewModels", "Views"],
+      "application": ["UseCases"],
+      "infrastructure": ["Services"],
+      "domain": ["Core/Models"]
+    },
+    "dependencies": {
+      "direction": "inward",
+      "rules": [
+        "Views depend on ViewModels",
+        "ViewModels depend on UseCases",
+        "UseCases depend on Services and Models",
+        "Services depend on Models"
+      ]
+    }
+  },
+  
+  "mvvm": {
+    "framework": "CommunityToolkit.Mvvm",
+    "patterns": {
+      "commands": "RelayCommand",
+      "properties": "ObservableProperty",
+      "messaging": "WeakReferenceMessenger"
+    },
+    "navigation": {
+      "service": "INavigationService",
+      "parameters": "typed-parameters",
+      "shell": true
+    }
+  },
+  
+  "functional": {
+    "library": "LanguageExt",
+    "patterns": {
+      "error-handling": "Either<Error, Success>",
+      "null-handling": "Option<T>",
+      "async": "TryAsync<T>"
+    },
+    "rules": [
+      "No exceptions in business logic",
+      "All UseCases return Either",
+      "ViewModels handle Either results functionally"
+    ]
+  },
+  
+  "services": {
+    "api": {
+      "pattern": "typed-http-client",
+      "error-handling": "either-monad",
+      "testing": "http-interception"
+    },
+    "cache": {
+      "levels": ["memory", "persistent"],
+      "pattern": "cache-aside",
+      "expiry": "configurable"
+    },
+    "navigation": {
+      "pattern": "service-based",
+      "parameters": "strongly-typed"
+    }
+  },
+  
+  "performance": {
+    "page-load": {
+      "target": "500ms",
+      "max": "1000ms"
+    },
+    "memory": {
+      "target": "150MB",
+      "max": "200MB"
+    },
+    "fps": {
+      "target": 60,
+      "min": 30
+    }
+  },
+  
+  "platforms": {
+    "android": {
+      "min-api": 21,
+      "target-api": 34
+    },
+    "ios": {
+      "min-version": "11.0",
+      "target-version": "17.0"
+    },
+    "windows": {
+      "min-version": "10.0.17763.0",
+      "target-version": "10.0.19041.0"
+    }
+  },
+  
+  "patterns": {
+    "business-logic": "usecase-pattern",
+    "error-handling": "either-monad",
+    "testing": "outside-in-tdd",
+    "caching": "cache-aside",
+    "loading": "loading-scope",
+    "validation": "fluent-validation"
+  },
+
+  "design_integration": {
+    "enabled": true,
+    "sources": ["zeplin"],
+    "agent": "maui-ux-specialist",
+    "orchestrator": "zeplin-maui-orchestrator",
+    "output": {
+      "xaml": "Views",
+      "viewmodels": "ViewModels",
+      "resources": "Resources/Styles",
+      "tests": "Tests/Unit"
+    },
+    "mcp_servers": {
+      "zeplin": {
+        "required": true,
+        "package": "@zeplin/mcp-server",
+        "tools": [
+          "zeplin:get_project",
+          "zeplin:get_screen",
+          "zeplin:get_component",
+          "zeplin:get_styleguide",
+          "zeplin:get_colors",
+          "zeplin:get_text_styles"
+        ]
+      }
+    },
+    "quality_gates": {
+      "xaml_correctness": {
+        "threshold": 1.0,
+        "description": "100% XAML structure and property correctness"
+      },
+      "constraint_violations": {
+        "threshold": 0,
+        "description": "Zero scope creep tolerance"
+      },
+      "platform_coverage": {
+        "required": ["ios", "android"],
+        "optional": ["windows", "macos"]
+      }
+    },
+    "prohibition_checklist": {
+      "loading_states": true,
+      "error_states": true,
+      "additional_form_validation": true,
+      "complex_state_management": true,
+      "api_integrations": true,
+      "navigation_beyond_design": true,
+      "additional_buttons": true,
+      "sample_data_beyond_design": true,
+      "responsive_breakpoints": true,
+      "animations_not_specified": true,
+      "best_practice_additions": true,
+      "extra_props_for_flexibility": true
+    }
+  }
+}

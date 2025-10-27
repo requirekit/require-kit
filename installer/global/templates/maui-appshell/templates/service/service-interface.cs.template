@@ -1,0 +1,15 @@
+using ErrorOr;
+
+namespace {{ProjectName}}.Domain.Services;
+
+/// <summary>
+/// Service interface for {{Purpose}} external integration.
+/// Abstracts external system operations behind interface contract.
+/// </summary>
+public interface I{{ServiceName}}
+{
+    /// <summary>
+    /// {{MethodDescription}}
+    /// </summary>
+    Task<ErrorOr<{{ReturnType}}>> {{MethodName}}Async({{Parameters}});
+}

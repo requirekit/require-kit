@@ -1,0 +1,66 @@
+using FastEndpoints;
+using LanguageExt;
+using static LanguageExt.Prelude;
+
+namespace {{ServiceName}}.API.Endpoints.{{Feature}};
+
+public class {{Action}}{{Feature}}Request
+{
+    public Guid Id { get; set; }
+    // Add other properties as needed
+}
+
+public class {{Action}}{{Feature}}Response
+{
+    public Guid Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    // Add other properties as needed
+}
+
+public class {{Action}}{{Feature}} : Endpoint<{{Action}}{{Feature}}Request, {{Action}}{{Feature}}Response>
+{
+    private readonly I{{Feature}}Service _service;
+    private readonly ILogger<{{Action}}{{Feature}}> _logger;
+    
+    public {{Action}}{{Feature}}(I{{Feature}}Service service, ILogger<{{Action}}{{Feature}}> logger)
+    {
+        _service = service;
+        _logger = logger;
+    }
+    
+    public override void Configure()
+    {
+        {{#if (eq Action "Get")}}
+        Get("/api/v1/{{feature}}/{id}");
+        {{else if (eq Action "Create")}}
+        Post("/api/v1/{{feature}}");
+        {{else if (eq Action "Update")}}
+        Put("/api/v1/{{feature}}/{id}");
+        {{else if (eq Action "Delete")}}
+        Delete("/api/v1/{{feature}}/{id}");
+        {{else}}
+        Get("/api/v1/{{feature}}");
+        {{/if}}
+        
+        AllowAnonymous(); // TODO: Replace with proper authorization
+        
+        Description(b => b
+            .Produces<{{Action}}{{Feature}}Response>(200)
+            .ProducesProblem(400)
+            .ProducesProblem(404)
+            .ProducesProblem(500)
+            .WithName("{{Action}}{{Feature}}")
+            .WithTags("{{Feature}}"));
+    }
+    
+    public override async Task HandleAsync({{Action}}{{Feature}}Request req, CancellationToken ct)
+    {
+        var result = await _service.{{Action}}{{Feature}}Async(req.Id, ct);
+        
+        await this.HandleEitherResultAsync(
+            result,
+            async response => await SendOkAsync(response, ct),
+            ct
+        );
+    }
+}

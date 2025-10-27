@@ -1,0 +1,41 @@
+{
+  "task_id": "TASK-011C",
+  "total_score": 7,
+  "max_score": 10,
+  "level": "complex",
+  "review_mode": "FULL_REQUIRED",
+  "factor_scores": [
+    {
+      "factor": "file_complexity",
+      "score": 3,
+      "max_score": 3,
+      "justification": "28 files to create (3 new Navigation files + 25 config/template/doc files)",
+      "details": "3 Navigation components, 3 config files, 3 docs, 10 template files, 3 agents, 1 script, 5 directories"
+    },
+    {
+      "factor": "pattern_familiarity",
+      "score": 1,
+      "max_score": 2,
+      "justification": "Mix of familiar (file copying, JSON config) and unfamiliar (NavigationService pattern, convention-based page resolution)",
+      "details": "New navigation patterns for this project, but file operations are standard"
+    },
+    {
+      "factor": "risk_level",
+      "score": 1,
+      "max_score": 3,
+      "justification": "Low-medium risk: cross-platform file compatibility, template verification, no external APIs",
+      "details": "Mostly file operations with some compilation verification; no security or data concerns"
+    },
+    {
+      "factor": "dependencies",
+      "score": 2,
+      "max_score": 2,
+      "justification": "3+ external dependencies: .NET SDK 8.0+, jq tool, bash shell",
+      "details": "Requires SDK for compilation tests, jq for JSON validation, bash for validation script"
+    }
+  ],
+  "estimated_duration": "4-6 hours (1.5 working days)",
+  "estimated_loc": 2060,
+  "forced_review_triggers": [],
+  "calculated_at": "2025-10-13T00:00:00Z"
+}

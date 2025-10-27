@@ -1,0 +1,120 @@
+{
+  "name": "ai-engineer-sdlc",
+  "version": "1.0.0",
+  "description": "Claude Code Software Engineering Lifecycle System",
+  "features": {
+    "requirements": {
+      "notation": "EARS",
+      "patterns": ["ubiquitous", "event-driven", "state-driven", "unwanted", "optional"]
+    },
+    "testing": {
+      "specification": "BDD/Gherkin",
+      "execution": "automated",
+      "gates": ["coverage", "complexity", "compliance"]
+    },
+    "tracking": {
+      "hierarchy": ["product", "epics", "features", "tasks"],
+      "state": "markdown",
+      "changelog": true
+    }
+  },
+  "defaults": {
+    "testCoverage": 80,
+    "earsCompliance": 100,
+    "bddCoverage": 95,
+    "maxComplexity": 10
+  },
+  "plan_review": {
+    "enabled": true,
+    "default_mode": "auto",
+    "thresholds": {
+      "default": {
+        "auto_approve": 80,
+        "approve_with_recommendations": 60,
+        "reject": 0
+      },
+      "stack_overrides": {
+        "python": {
+          "auto_approve": 80,
+          "approve_with_recommendations": 60,
+          "reject": 0
+        },
+        "typescript": {
+          "auto_approve": 80,
+          "approve_with_recommendations": 60,
+          "reject": 0
+        },
+        "react": {
+          "auto_approve": 80,
+          "approve_with_recommendations": 60,
+          "reject": 0
+        },
+        "dotnet": {
+          "auto_approve": 80,
+          "approve_with_recommendations": 60,
+          "reject": 0
+        }
+      }
+    },
+    "force_triggers": {
+      "min_complexity": 30,
+      "critical_keywords": [
+        "security",
+        "authentication",
+        "authorization",
+        "payment",
+        "database",
+        "migration",
+        "schema",
+        "api",
+        "integration"
+      ]
+    },
+    "timeouts": {
+      "architectural_review_seconds": 300,
+      "human_checkpoint_seconds": 1800
+    },
+    "weights": {
+      "solid_principles": 0.30,
+      "dry_principle": 0.25,
+      "yagni_principle": 0.25,
+      "testability": 0.20
+    },
+    "metrics": {
+      "enabled": true,
+      "retention_days": 90,
+      "output_format": "terminal"
+    }
+  },
+  "task_creation": {
+    "complexity_analysis": {
+      "enabled": true,
+      "auto_split_threshold": 7,
+      "max_recommended_splits": 4,
+      "interactive_mode": true,
+      "default_split_strategy": "vertical",
+      "patterns": {
+        "entity_keywords": ["user", "order", "product", "customer", "account", "profile"],
+        "api_keywords": ["endpoint", "route", "api", "rest", "graphql", "service"],
+        "ui_keywords": ["form", "dashboard", "component", "view", "page", "interface"],
+        "database_keywords": ["migration", "schema", "table", "database", "query"]
+      },
+      "risks": {
+        "security_keywords": ["auth", "password", "token", "encryption", "permission", "security"],
+        "data_keywords": ["migration", "schema", "database", "transaction", "consistency"],
+        "external_keywords": ["api", "integration", "third-party", "webhook", "external"]
+      },
+      "file_estimation": {
+        "files_per_entity": 2,
+        "files_per_api": 2,
+        "files_per_ui": 1,
+        "files_per_database": 1
+      },
+      "split_preferences": {
+        "prefer_vertical": true,
+        "isolate_risks": true,
+        "max_files_per_task": 5
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.dylib
+
+# Test artifacts
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+coverage.json
+htmlcov/
+.tox/
+.nox/
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Development
+tasks/
+*.log
+.DS_Store
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup

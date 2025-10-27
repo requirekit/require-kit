@@ -1,0 +1,575 @@
+"""
+AI Agent implementation for {{agentName}}
+
+This template demonstrates the agent pattern with factory functions learned from production implementations.
+"""
+
+from typing import Optional, Dict, Any, List, AsyncGenerator
+from pydantic import BaseModel, Field
+import structlog
+from datetime import datetime
+import asyncio
+
+from src.workflows.{{snakeCase agentName}}_workflow import create_{{snakeCase agentName}}_workflow
+from src.tools import create_tool_registry
+from src.models.config import AgentConfig
+from src.utils.error_handling import with_error_handling, AgentError
+from src.utils.monitoring import monitor_performance
+from src.utils.caching import CacheManager
+
+# Initialize structured logger
+logger = structlog.get_logger(__name__)
+
+
+class {{pascalCase agentName}}Config(BaseModel):
+    """Configuration for {{agentName}} agent."""
+    
+    name: str = Field(default="{{agentName}}", description="Agent name")
+    description: str = Field(default="{{agentDescription}}", description="Agent description")
+    model: str = Field(default="gpt-4", description="LLM model to use")
+    temperature: float = Field(default=0.7, ge=0, le=2, description="Model temperature")
+    max_tokens: int = Field(default=2000, ge=1, le=4000, description="Maximum tokens")
+    enable_caching: bool = Field(default=True, description="Enable response caching")
+    enable_monitoring: bool = Field(default=True, description="Enable performance monitoring")
+    enable_streaming: bool = Field(default=True, description="Enable streaming responses")
+    retry_attempts: int = Field(default=3, ge=0, le=10, description="Number of retry attempts")
+    timeout: int = Field(default=30, ge=5, le=300, description="Request timeout in seconds")
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "name": "{{agentName}}",
+                "model": "gpt-4",
+                "temperature": 0.7,
+                "max_tokens": 2000,
+                "enable_caching": True
+            }
+        }
+
+
+class {{pascalCase agentName}}Request(BaseModel):
+    """Request model for {{agentName}} agent."""
+    
+    query: str = Field(..., min_length=1, max_length=5000, description="User query")
+    context: Optional[Dict[str, Any]] = Field(default_factory=dict, description="Additional context")
+    session_id: Optional[str] = Field(None, description="Session ID for conversation tracking")
+    stream: bool = Field(default=False, description="Enable streaming response")
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "query": "What is the purpose of this agent?",
+                "context": {"user_id": "123"},
+                "session_id": "session_456",
+                "stream": False
+            }
+        }
+
+
+class {{pascalCase agentName}}Response(BaseModel):
+    """Response model for {{agentName}} agent."""
+    
+    answer: str = Field(..., description="Agent's response")
+    confidence: float = Field(..., ge=0, le=1, description="Confidence score")
+    sources: List[str] = Field(default_factory=list, description="Information sources used")
+    metadata: Dict[str, Any] = Field(default_factory=dict, description="Response metadata")
+    session_id: Optional[str] = Field(None, description="Session ID")
+    timestamp: datetime = Field(default_factory=datetime.utcnow, description="Response timestamp")
+    
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "answer": "This agent is designed to...",
+                "confidence": 0.95,
+                "sources": ["knowledge_base", "tool_1"],
+                "metadata": {"processing_time": 1.5},
+                "session_id": "session_456",
+                "timestamp": "2024-01-01T12:00:00Z"
+            }
+        }
+
+
+class {{pascalCase agentName}}Agent:
+    """
+    Main agent class for {{agentName}}.
+    
+    This agent coordinates tools, workflows, and LLM interactions to provide
+    intelligent responses to user queries.
+    """
+    
+    def __init__(self, config: {{pascalCase agentName}}Config):
+        """
+        Initialize the agent with configuration.
+        
+        Args:
+            config: Agent configuration
+        """
+        self.config = config
+        self.workflow = None
+        self.tools = None
+        self.cache = None
+        self.conversation_history = []
+        self.metrics = {
+            "total_requests": 0,
+            "successful_requests": 0,
+            "failed_requests": 0,
+            "total_processing_time": 0,
+            "cache_hits": 0,
+            "cache_misses": 0
+        }
+        
+        logger.info(
+            "initializing_agent",
+            agent_name=config.name,
+            model=config.model
+        )
+        
+        self._initialize_components()
+    
+    def _initialize_components(self):
+        """Initialize agent components."""
+        # Initialize workflow
+        self.workflow = create_{{snakeCase agentName}}_workflow()
+        
+        # Initialize tools
+        self.tools = create_tool_registry()
+        
+        # Initialize cache if enabled
+        if self.config.enable_caching:
+            self.cache = CacheManager(
+                ttl=3600,  # 1 hour TTL
+                max_size=1000
+            )
+        
+        logger.info("agent_components_initialized", agent_name=self.config.name)
+    
+    @monitor_performance
+    @with_error_handling(raise_on_error=True)
+    async def process(
+        self,
+        request: {{pascalCase agentName}}Request
+    ) -> {{pascalCase agentName}}Response:
+        """
+        Process a request and return a response.
+        
+        Args:
+            request: The request to process
+            
+        Returns:
+            Agent response
+            
+        Raises:
+            AgentError: If processing fails
+        """
+        start_time = datetime.utcnow()
+        self.metrics["total_requests"] += 1
+        
+        logger.info(
+            "processing_request",
+            agent_name=self.config.name,
+            session_id=request.session_id,
+            query_length=len(request.query)
+        )
+        
+        try:
+            # Check cache if enabled
+            if self.config.enable_caching and not request.stream:
+                cache_key = self._generate_cache_key(request)
+                cached_response = await self._get_cached_response(cache_key)
+                if cached_response:
+                    self.metrics["cache_hits"] += 1
+                    logger.info("cache_hit", cache_key=cache_key)
+                    return cached_response
+                else:
+                    self.metrics["cache_misses"] += 1
+            
+            # Prepare workflow input
+            workflow_input = {
+                "query": request.query,
+                "context": {
+                    **request.context,
+                    "session_id": request.session_id,
+                    "conversation_history": self._get_conversation_context(request.session_id),
+                    "agent_config": self.config.dict()
+                }
+            }
+            
+            # Execute workflow
+            if request.stream:
+                # Streaming is handled separately
+                raise ValueError("Use process_streaming for streaming responses")
+            
+            workflow_result = await self.workflow.ainvoke(workflow_input)
+            
+            # Process workflow result
+            response = self._build_response(workflow_result, request)
+            
+            # Cache response if enabled
+            if self.config.enable_caching:
+                await self._cache_response(cache_key, response)
+            
+            # Update conversation history
+            self._update_conversation_history(request, response)
+            
+            # Update metrics
+            processing_time = (datetime.utcnow() - start_time).total_seconds()
+            self.metrics["successful_requests"] += 1
+            self.metrics["total_processing_time"] += processing_time
+            response.metadata["processing_time"] = processing_time
+            
+            logger.info(
+                "request_processed",
+                agent_name=self.config.name,
+                session_id=request.session_id,
+                processing_time=processing_time,
+                confidence=response.confidence
+            )
+            
+            return response
+            
+        except Exception as e:
+            self.metrics["failed_requests"] += 1
+            logger.error(
+                "request_processing_failed",
+                agent_name=self.config.name,
+                session_id=request.session_id,
+                error=str(e)
+            )
+            raise AgentError(f"Failed to process request: {str(e)}") from e
+    
+    async def process_streaming(
+        self,
+        request: {{pascalCase agentName}}Request
+    ) -> AsyncGenerator[Dict[str, Any], None]:
+        """
+        Process a request with streaming response.
+        
+        Args:
+            request: The request to process
+            
+        Yields:
+            Streaming response chunks
+        """
+        if not self.config.enable_streaming:
+            raise AgentError("Streaming is not enabled for this agent")
+        
+        logger.info(
+            "processing_streaming_request",
+            agent_name=self.config.name,
+            session_id=request.session_id
+        )
+        
+        try:
+            # Prepare workflow input
+            workflow_input = {
+                "query": request.query,
+                "context": {
+                    **request.context,
+                    "session_id": request.session_id,
+                    "conversation_history": self._get_conversation_context(request.session_id),
+                    "agent_config": self.config.dict()
+                }
+            }
+            
+            # Stream workflow execution
+            async for chunk in self.workflow.astream(workflow_input):
+                # Format chunk for streaming
+                yield {
+                    "event": "message",
+                    "data": {
+                        "content": chunk.get("partial_response", ""),
+                        "step": chunk.get("current_step", ""),
+                        "metadata": chunk.get("metadata", {})
+                    }
+                }
+            
+            # Send completion event
+            yield {
+                "event": "done",
+                "data": {
+                    "session_id": request.session_id,
+                    "timestamp": datetime.utcnow().isoformat()
+                }
+            }
+            
+        except Exception as e:
+            logger.error(
+                "streaming_failed",
+                agent_name=self.config.name,
+                session_id=request.session_id,
+                error=str(e)
+            )
+            yield {
+                "event": "error",
+                "data": {
+                    "error": str(e),
+                    "timestamp": datetime.utcnow().isoformat()
+                }
+            }
+    
+    def _generate_cache_key(self, request: {{pascalCase agentName}}Request) -> str:
+        """Generate a cache key for the request."""
+        import hashlib
+        import json
+        
+        key_data = {
+            "query": request.query,
+            "context": request.context,
+            "config": {
+                "model": self.config.model,
+                "temperature": self.config.temperature
+            }
+        }
+        
+        key_string = json.dumps(key_data, sort_keys=True)
+        return hashlib.sha256(key_string.encode()).hexdigest()
+    
+    async def _get_cached_response(self, cache_key: str) -> Optional[{{pascalCase agentName}}Response]:
+        """Get cached response if available."""
+        if self.cache:
+            cached_data = await self.cache.get(cache_key)
+            if cached_data:
+                return {{pascalCase agentName}}Response(**cached_data)
+        return None
+    
+    async def _cache_response(self, cache_key: str, response: {{pascalCase agentName}}Response):
+        """Cache the response."""
+        if self.cache:
+            await self.cache.set(cache_key, response.dict())
+    
+    def _build_response(
+        self,
+        workflow_result: Dict[str, Any],
+        request: {{pascalCase agentName}}Request
+    ) -> {{pascalCase agentName}}Response:
+        """Build response from workflow result."""
+        return {{pascalCase agentName}}Response(
+            answer=workflow_result.get("response", ""),
+            confidence=workflow_result.get("confidence", 0.0),
+            sources=workflow_result.get("sources", []),
+            metadata=workflow_result.get("metadata", {}),
+            session_id=request.session_id,
+            timestamp=datetime.utcnow()
+        )
+    
+    def _get_conversation_context(self, session_id: Optional[str]) -> List[Dict[str, Any]]:
+        """Get conversation context for the session."""
+        if not session_id:
+            return []
+        
+        # Get last N turns from conversation history
+        max_context = 5
+        session_history = [
+            turn for turn in self.conversation_history
+            if turn.get("session_id") == session_id
+        ]
+        
+        return session_history[-max_context:] if session_history else []
+    
+    def _update_conversation_history(
+        self,
+        request: {{pascalCase agentName}}Request,
+        response: {{pascalCase agentName}}Response
+    ):
+        """Update conversation history."""
+        turn = {
+            "session_id": request.session_id,
+            "timestamp": datetime.utcnow().isoformat(),
+            "query": request.query,
+            "response": response.answer,
+            "confidence": response.confidence
+        }
+        
+        self.conversation_history.append(turn)
+        
+        # Limit history size
+        max_history = 100
+        if len(self.conversation_history) > max_history:
+            self.conversation_history = self.conversation_history[-max_history:]
+    
+    def get_metrics(self) -> Dict[str, Any]:
+        """Get agent metrics."""
+        metrics = self.metrics.copy()
+        
+        # Calculate derived metrics
+        if metrics["total_requests"] > 0:
+            metrics["success_rate"] = metrics["successful_requests"] / metrics["total_requests"]
+            metrics["average_processing_time"] = metrics["total_processing_time"] / metrics["total_requests"]
+            
+            if metrics["cache_hits"] + metrics["cache_misses"] > 0:
+                metrics["cache_hit_rate"] = metrics["cache_hits"] / (metrics["cache_hits"] + metrics["cache_misses"])
+        
+        return metrics
+    
+    def reset_metrics(self):
+        """Reset agent metrics."""
+        self.metrics = {
+            "total_requests": 0,
+            "successful_requests": 0,
+            "failed_requests": 0,
+            "total_processing_time": 0,
+            "cache_hits": 0,
+            "cache_misses": 0
+        }
+        logger.info("metrics_reset", agent_name=self.config.name)
+    
+    def clear_conversation_history(self, session_id: Optional[str] = None):
+        """Clear conversation history."""
+        if session_id:
+            self.conversation_history = [
+                turn for turn in self.conversation_history
+                if turn.get("session_id") != session_id
+            ]
+            logger.info("session_history_cleared", session_id=session_id)
+        else:
+            self.conversation_history = []
+            logger.info("all_history_cleared", agent_name=self.config.name)
+    
+    async def shutdown(self):
+        """Shutdown the agent and cleanup resources."""
+        logger.info("shutting_down_agent", agent_name=self.config.name)
+        
+        # Cleanup cache
+        if self.cache:
+            await self.cache.clear()
+        
+        # Log final metrics
+        logger.info("final_metrics", metrics=self.get_metrics())
+
+
+# ==================== FACTORY FUNCTION ====================
+
+def create_{{snakeCase agentName}}_agent(
+    config: Optional[{{pascalCase agentName}}Config] = None,
+    **kwargs
+) -> {{pascalCase agentName}}Agent:
+    """
+    Factory function to create {{agentName}} agent.
+    
+    Args:
+        config: Optional agent configuration
+        **kwargs: Additional configuration parameters
+        
+    Returns:
+        Configured {{agentName}} agent instance
+        
+    Example:
+        >>> agent = create_{{snakeCase agentName}}_agent(
+        ...     model="gpt-4",
+        ...     temperature=0.5,
+        ...     enable_caching=True
+        ... )
+    """
+    if config is None:
+        # Create config from kwargs or use defaults
+        config = {{pascalCase agentName}}Config(**kwargs)
+    
+    logger.info(
+        "creating_agent",
+        agent_name=config.name,
+        config=config.dict()
+    )
+    
+    agent = {{pascalCase agentName}}Agent(config)
+    
+    logger.info(
+        "agent_created",
+        agent_name=config.name,
+        tools_count=len(agent.tools) if agent.tools else 0
+    )
+    
+    return agent
+
+
+# ==================== SIMPLE INTERFACE ====================
+
+class Simple{{pascalCase agentName}}:
+    """
+    Simplified interface for {{agentName}} agent.
+    
+    This provides a simpler API for common use cases.
+    """
+    
+    def __init__(self, **kwargs):
+        """Initialize with optional configuration."""
+        self.agent = create_{{snakeCase agentName}}_agent(**kwargs)
+    
+    async def ask(self, query: str, context: Optional[Dict[str, Any]] = None) -> str:
+        """
+        Ask the agent a question and get a response.
+        
+        Args:
+            query: The question to ask
+            context: Optional context
+            
+        Returns:
+            The agent's response as a string
+        """
+        request = {{pascalCase agentName}}Request(
+            query=query,
+            context=context or {}
+        )
+        
+        response = await self.agent.process(request)
+        return response.answer
+    
+    async def ask_streaming(self, query: str, context: Optional[Dict[str, Any]] = None):
+        """
+        Ask the agent with streaming response.
+        
+        Yields:
+            Response chunks
+        """
+        request = {{pascalCase agentName}}Request(
+            query=query,
+            context=context or {},
+            stream=True
+        )
+        
+        async for chunk in self.agent.process_streaming(request):
+            yield chunk
+
+
+# ==================== USAGE EXAMPLE ====================
+
+if __name__ == "__main__":
+    import asyncio
+    
+    async def main():
+        # Create agent using factory
+        agent = create_{{snakeCase agentName}}_agent(
+            model="gpt-4",
+            temperature=0.7,
+            enable_caching=True
+        )
+        
+        # Create request
+        request = {{pascalCase agentName}}Request(
+            query="What is the weather today?",
+            context={"location": "London"},
+            session_id="test_session"
+        )
+        
+        # Process request
+        response = await agent.process(request)
+        print(f"Response: {response.answer}")
+        print(f"Confidence: {response.confidence}")
+        print(f"Sources: {response.sources}")
+        
+        # Test simple interface
+        simple_agent = Simple{{pascalCase agentName}}()
+        answer = await simple_agent.ask("Tell me a joke")
+        print(f"\nSimple response: {answer}")
+        
+        # Test streaming
+        print("\nStreaming response:")
+        async for chunk in simple_agent.ask_streaming("Explain quantum computing"):
+            print(f"Chunk: {chunk}")
+        
+        # Get metrics
+        print(f"\nMetrics: {agent.get_metrics()}")
+        
+        # Cleanup
+        await agent.shutdown()
+    
+    asyncio.run(main())

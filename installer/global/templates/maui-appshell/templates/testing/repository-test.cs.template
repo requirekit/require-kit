@@ -1,0 +1,179 @@
+using ErrorOr;
+using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
+using Xunit;
+
+namespace {{ProjectName}}.Tests.Repositories;
+
+/// <summary>
+/// Tests for {{Entity}}Repository.
+/// Uses in-memory database for isolated testing.
+/// </summary>
+public class {{Entity}}RepositoryTests : IDisposable
+{
+    private readonly {{DbContextName}} _context;
+    private readonly {{Entity}}Repository _sut;
+
+    public {{Entity}}RepositoryTests()
+    {
+        var options = new DbContextOptionsBuilder<{{DbContextName}}>()
+            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
+            .Options;
+
+        _context = new {{DbContextName}}(options);
+        _sut = new {{Entity}}Repository(_context);
+    }
+
+    [Fact]
+    public async Task GetAllAsync_WhenEntitiesExist_ReturnsAllEntities()
+    {
+        // Arrange
+        var entities = new List<{{Entity}}>
+        {
+            new {{Entity}} { Id = Guid.NewGuid(), {{PropertyInitializers1}} },
+            new {{Entity}} { Id = Guid.NewGuid(), {{PropertyInitializers2}} }
+        };
+        _context.{{Entity}}s.AddRange(entities);
+        await _context.SaveChangesAsync();
+
+        // Act
+        var result = await _sut.GetAllAsync();
+
+        // Assert
+        result.IsError.Should().BeFalse();
+        result.Value.Should().HaveCount(2);
+        result.Value.Should().BeEquivalentTo(entities);
+    }
+
+    [Fact]
+    public async Task GetAllAsync_WhenNoEntities_ReturnsEmptyList()
+    {
+        // Act
+        var result = await _sut.GetAllAsync();
+
+        // Assert
+        result.IsError.Should().BeFalse();
+        result.Value.Should().BeEmpty();
+    }
+
+    [Fact]
+    public async Task GetByIdAsync_WhenEntityExists_ReturnsEntity()
+    {
+        // Arrange
+        var entity = new {{Entity}} { Id = Guid.NewGuid(), {{PropertyInitializers}} };
+        _context.{{Entity}}s.Add(entity);
+        await _context.SaveChangesAsync();
+
+        // Act
+        var result = await _sut.GetByIdAsync(entity.Id);
+
+        // Assert
+        result.IsError.Should().BeFalse();
+        result.Value.Should().BeEquivalentTo(entity);
+    }
+
+    [Fact]
+    public async Task GetByIdAsync_WhenEntityNotFound_ReturnsNotFoundError()
+    {
+        // Arrange
+        var nonExistentId = Guid.NewGuid();
+
+        // Act
+        var result = await _sut.GetByIdAsync(nonExistentId);
+
+        // Assert
+        result.IsError.Should().BeTrue();
+        result.FirstError.Type.Should().Be(ErrorType.NotFound);
+    }
+
+    [Fact]
+    public async Task CreateAsync_WithValidEntity_CreatesAndReturnsEntity()
+    {
+        // Arrange
+        var entity = new {{Entity}} { Id = Guid.NewGuid(), {{PropertyInitializers}} };
+
+        // Act
+        var result = await _sut.CreateAsync(entity);
+
+        // Assert
+        result.IsError.Should().BeFalse();
+        result.Value.Should().BeEquivalentTo(entity);
+
+        var created = await _context.{{Entity}}s.FindAsync(entity.Id);
+        created.Should().NotBeNull();
+        created.Should().BeEquivalentTo(entity);
+    }
+
+    [Fact]
+    public async Task UpdateAsync_WhenEntityExists_UpdatesAndReturnsEntity()
+    {
+        // Arrange
+        var entity = new {{Entity}} { Id = Guid.NewGuid(), {{PropertyInitializers}} };
+        _context.{{Entity}}s.Add(entity);
+        await _context.SaveChangesAsync();
+
+        var updated = entity with { {{UpdatedProperty}} = {{UpdatedValue}} };
+
+        // Act
+        var result = await _sut.UpdateAsync(updated);
+
+        // Assert
+        result.IsError.Should().BeFalse();
+        result.Value.{{UpdatedProperty}}.Should().Be({{UpdatedValue}});
+
+        var retrieved = await _context.{{Entity}}s.FindAsync(entity.Id);
+        retrieved.{{UpdatedProperty}}.Should().Be({{UpdatedValue}});
+    }
+
+    [Fact]
+    public async Task UpdateAsync_WhenEntityNotFound_ReturnsNotFoundError()
+    {
+        // Arrange
+        var entity = new {{Entity}} { Id = Guid.NewGuid(), {{PropertyInitializers}} };
+
+        // Act
+        var result = await _sut.UpdateAsync(entity);
+
+        // Assert
+        result.IsError.Should().BeTrue();
+        result.FirstError.Type.Should().Be(ErrorType.NotFound);
+    }
+
+    [Fact]
+    public async Task DeleteAsync_WhenEntityExists_DeletesEntity()
+    {
+        // Arrange
+        var entity = new {{Entity}} { Id = Guid.NewGuid(), {{PropertyInitializers}} };
+        _context.{{Entity}}s.Add(entity);
+        await _context.SaveChangesAsync();
+
+        // Act
+        var result = await _sut.DeleteAsync(entity.Id);
+
+        // Assert
+        result.IsError.Should().BeFalse();
+
+        var deleted = await _context.{{Entity}}s.FindAsync(entity.Id);
+        deleted.Should().BeNull();
+    }
+
+    [Fact]
+    public async Task DeleteAsync_WhenEntityNotFound_ReturnsNotFoundError()
+    {
+        // Arrange
+        var nonExistentId = Guid.NewGuid();
+
+        // Act
+        var result = await _sut.DeleteAsync(nonExistentId);
+
+        // Assert
+        result.IsError.Should().BeTrue();
+        result.FirstError.Type.Should().Be(ErrorType.NotFound);
+    }
+
+    public void Dispose()
+    {
+        _context.Database.EnsureDeleted();
+        _context.Dispose();
+    }
+}

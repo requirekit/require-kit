@@ -1,0 +1,570 @@
+"""
+Test suite for {{resourceName}} endpoint
+
+EARS Requirements Tested:
+- REQ-{{upperCase resourceName}}-001: CRUD operations functionality
+- REQ-{{upperCase resourceName}}-002: Input validation
+- REQ-{{upperCase resourceName}}-003: Error handling
+
+BDD Scenarios Tested:
+- BDD-{{upperCase resourceName}}-001: User can create a new {{resourceName}}
+- BDD-{{upperCase resourceName}}-002: User can retrieve {{resourceName}} by ID
+- BDD-{{upperCase resourceName}}-003: System validates {{resourceName}} data
+"""
+
+import pytest
+from typing import Dict, Any, List
+from fastapi.testclient import TestClient
+from httpx import AsyncClient
+import asyncio
+import json
+from unittest.mock import Mock, AsyncMock, patch
+from datetime import datetime
+
+from src.main import app
+from src.models.{{snakeCase resourceName}} import (
+    {{pascalCase resourceName}}Create,
+    {{pascalCase resourceName}}Update,
+    {{pascalCase resourceName}}Response
+)
+from src.models.user import User
+from tests.factories import {{pascalCase resourceName}}Factory, UserFactory
+from tests.fixtures import (
+    client,
+    async_client,
+    authenticated_client,
+    test_user,
+    test_db_session
+)
+
+# Test client
+client = TestClient(app)
+
+
+class Test{{pascalCase resourceName}}Endpoints:
+    """Test suite for {{resourceName}} API endpoints."""
+    
+    @pytest.fixture(autouse=True)
+    def setup(self, test_db_session):
+        """Setup test database and cleanup after tests."""
+        # Setup code here
+        yield
+        # Cleanup code here
+    
+    @pytest.fixture
+    def sample_{{snakeCase resourceName}}_data(self) -> Dict[str, Any]:
+        """Generate sample {{resourceName}} data for testing."""
+        return {{pascalCase resourceName}}Factory.build_dict()
+    
+    @pytest.fixture
+    def authenticated_headers(self, test_user: User) -> Dict[str, str]:
+        """Generate authenticated headers for requests."""
+        return {"Authorization": f"Bearer {test_user.token}"}
+    
+    # ==================== CREATE TESTS ====================
+    
+    @pytest.mark.asyncio
+    async def test_create_{{snakeCase resourceName}}_success(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str],
+        sample_{{snakeCase resourceName}}_data: Dict[str, Any]
+    ):
+        """Test successful creation of {{resourceName}}."""
+        response = await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/",
+            json=sample_{{snakeCase resourceName}}_data,
+            headers=authenticated_headers
+        )
+        
+        assert response.status_code == 201
+        data = response.json()
+        assert data["id"] is not None
+        assert data["name"] == sample_{{snakeCase resourceName}}_data["name"]
+        
+        # Verify response matches model
+        {{pascalCase resourceName}}Response(**data)
+    
+    @pytest.mark.asyncio
+    async def test_create_{{snakeCase resourceName}}_validation_error(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str]
+    ):
+        """Test validation error when creating {{resourceName}} with invalid data."""
+        invalid_data = {"name": ""}  # Empty name should fail validation
+        
+        response = await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/",
+            json=invalid_data,
+            headers=authenticated_headers
+        )
+        
+        assert response.status_code == 422
+        error = response.json()
+        assert "detail" in error
+        assert any("name" in str(err) for err in error["detail"])
+    
+    @pytest.mark.asyncio
+    async def test_create_{{snakeCase resourceName}}_unauthorized(
+        self,
+        async_client: AsyncClient,
+        sample_{{snakeCase resourceName}}_data: Dict[str, Any]
+    ):
+        """Test unauthorized access when creating {{resourceName}}."""
+        response = await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/",
+            json=sample_{{snakeCase resourceName}}_data
+        )
+        
+        assert response.status_code == 401
+    
+    @pytest.mark.asyncio
+    async def test_create_{{snakeCase resourceName}}_duplicate(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str],
+        sample_{{snakeCase resourceName}}_data: Dict[str, Any]
+    ):
+        """Test conflict error when creating duplicate {{resourceName}}."""
+        # Create first item
+        response1 = await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/",
+            json=sample_{{snakeCase resourceName}}_data,
+            headers=authenticated_headers
+        )
+        assert response1.status_code == 201
+        
+        # Try to create duplicate
+        response2 = await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/",
+            json=sample_{{snakeCase resourceName}}_data,
+            headers=authenticated_headers
+        )
+        assert response2.status_code == 409
+    
+    # ==================== GET TESTS ====================
+    
+    @pytest.mark.asyncio
+    async def test_get_{{snakeCase resourceName}}_success(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str],
+        sample_{{snakeCase resourceName}}_data: Dict[str, Any]
+    ):
+        """Test successful retrieval of {{resourceName}} by ID."""
+        # Create item first
+        create_response = await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/",
+            json=sample_{{snakeCase resourceName}}_data,
+            headers=authenticated_headers
+        )
+        item_id = create_response.json()["id"]
+        
+        # Get item
+        response = await async_client.get(
+            f"/api/v1/{{kebabCase resourceName}}s/{item_id}",
+            headers=authenticated_headers
+        )
+        
+        assert response.status_code == 200
+        data = response.json()
+        assert data["id"] == item_id
+        assert data["name"] == sample_{{snakeCase resourceName}}_data["name"]
+    
+    @pytest.mark.asyncio
+    async def test_get_{{snakeCase resourceName}}_not_found(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str]
+    ):
+        """Test 404 error when getting non-existent {{resourceName}}."""
+        response = await async_client.get(
+            "/api/v1/{{kebabCase resourceName}}s/non-existent-id",
+            headers=authenticated_headers
+        )
+        
+        assert response.status_code == 404
+        assert "not found" in response.json()["detail"].lower()
+    
+    # ==================== LIST TESTS ====================
+    
+    @pytest.mark.asyncio
+    async def test_list_{{snakeCase resourceName}}s_success(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str]
+    ):
+        """Test successful listing of {{resourceName}}s with pagination."""
+        # Create multiple items
+        for i in range(5):
+            data = {{pascalCase resourceName}}Factory.build_dict()
+            await async_client.post(
+                "/api/v1/{{kebabCase resourceName}}s/",
+                json=data,
+                headers=authenticated_headers
+            )
+        
+        # List items
+        response = await async_client.get(
+            "/api/v1/{{kebabCase resourceName}}s/?skip=0&limit=3",
+            headers=authenticated_headers
+        )
+        
+        assert response.status_code == 200
+        data = response.json()
+        assert len(data["items"]) <= 3
+        assert data["total"] >= 5
+        assert data["metadata"]["has_more"] is True
+    
+    @pytest.mark.asyncio
+    async def test_list_{{snakeCase resourceName}}s_with_search(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str]
+    ):
+        """Test listing {{resourceName}}s with search filter."""
+        # Create items with specific names
+        await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/",
+            json={"name": "Test Item Alpha"},
+            headers=authenticated_headers
+        )
+        await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/",
+            json={"name": "Test Item Beta"},
+            headers=authenticated_headers
+        )
+        
+        # Search for specific item
+        response = await async_client.get(
+            "/api/v1/{{kebabCase resourceName}}s/?search=Alpha",
+            headers=authenticated_headers
+        )
+        
+        assert response.status_code == 200
+        data = response.json()
+        assert len(data["items"]) == 1
+        assert "Alpha" in data["items"][0]["name"]
+    
+    # ==================== UPDATE TESTS ====================
+    
+    @pytest.mark.asyncio
+    async def test_update_{{snakeCase resourceName}}_success(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str],
+        sample_{{snakeCase resourceName}}_data: Dict[str, Any]
+    ):
+        """Test successful update of {{resourceName}}."""
+        # Create item first
+        create_response = await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/",
+            json=sample_{{snakeCase resourceName}}_data,
+            headers=authenticated_headers
+        )
+        item_id = create_response.json()["id"]
+        
+        # Update item
+        update_data = {"name": "Updated Name"}
+        response = await async_client.put(
+            f"/api/v1/{{kebabCase resourceName}}s/{item_id}",
+            json=update_data,
+            headers=authenticated_headers
+        )
+        
+        assert response.status_code == 200
+        data = response.json()
+        assert data["id"] == item_id
+        assert data["name"] == "Updated Name"
+    
+    @pytest.mark.asyncio
+    async def test_update_{{snakeCase resourceName}}_partial(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str],
+        sample_{{snakeCase resourceName}}_data: Dict[str, Any]
+    ):
+        """Test partial update of {{resourceName}} (only provided fields)."""
+        # Create item with multiple fields
+        create_response = await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/",
+            json=sample_{{snakeCase resourceName}}_data,
+            headers=authenticated_headers
+        )
+        item_id = create_response.json()["id"]
+        original_data = create_response.json()
+        
+        # Update only one field
+        update_data = {"description": "Updated Description"}
+        response = await async_client.put(
+            f"/api/v1/{{kebabCase resourceName}}s/{item_id}",
+            json=update_data,
+            headers=authenticated_headers
+        )
+        
+        assert response.status_code == 200
+        data = response.json()
+        assert data["description"] == "Updated Description"
+        assert data["name"] == original_data["name"]  # Should remain unchanged
+    
+    # ==================== DELETE TESTS ====================
+    
+    @pytest.mark.asyncio
+    async def test_delete_{{snakeCase resourceName}}_success(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str],
+        sample_{{snakeCase resourceName}}_data: Dict[str, Any]
+    ):
+        """Test successful deletion of {{resourceName}}."""
+        # Create item first
+        create_response = await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/",
+            json=sample_{{snakeCase resourceName}}_data,
+            headers=authenticated_headers
+        )
+        item_id = create_response.json()["id"]
+        
+        # Delete item
+        response = await async_client.delete(
+            f"/api/v1/{{kebabCase resourceName}}s/{item_id}",
+            headers=authenticated_headers
+        )
+        
+        assert response.status_code == 204
+        
+        # Verify item is deleted
+        get_response = await async_client.get(
+            f"/api/v1/{{kebabCase resourceName}}s/{item_id}",
+            headers=authenticated_headers
+        )
+        assert get_response.status_code == 404
+    
+    # ==================== STREAMING TESTS ====================
+    
+    @pytest.mark.asyncio
+    async def test_stream_{{snakeCase resourceName}}_processing(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str],
+        sample_{{snakeCase resourceName}}_data: Dict[str, Any]
+    ):
+        """Test SSE streaming endpoint for {{resourceName}} processing."""
+        # Create item first
+        create_response = await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/",
+            json=sample_{{snakeCase resourceName}}_data,
+            headers=authenticated_headers
+        )
+        item_id = create_response.json()["id"]
+        
+        # Test streaming endpoint
+        events = []
+        async with async_client.stream(
+            "POST",
+            f"/api/v1/{{kebabCase resourceName}}s/{item_id}/process/stream",
+            json={"action": "process"},
+            headers=authenticated_headers
+        ) as response:
+            async for line in response.aiter_lines():
+                if line.startswith("data: "):
+                    event_data = json.loads(line[6:])
+                    events.append(event_data)
+                    if event_data.get("event") == "done":
+                        break
+        
+        # Verify we received events including completion
+        assert len(events) > 0
+        assert any(e.get("event") == "done" for e in events)
+    
+    # ==================== BATCH TESTS ====================
+    
+    @pytest.mark.asyncio
+    async def test_batch_create_{{snakeCase resourceName}}s(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str]
+    ):
+        """Test batch creation of multiple {{resourceName}}s."""
+        items = [
+            {{pascalCase resourceName}}Factory.build_dict() 
+            for _ in range(3)
+        ]
+        
+        response = await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/batch",
+            json=items,
+            headers=authenticated_headers
+        )
+        
+        assert response.status_code == 200
+        data = response.json()
+        assert len(data) == 3
+        for item in data:
+            assert item["id"] is not None
+    
+    @pytest.mark.asyncio
+    async def test_batch_create_{{snakeCase resourceName}}s_limit_exceeded(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str]
+    ):
+        """Test batch creation fails when exceeding limit."""
+        items = [
+            {{pascalCase resourceName}}Factory.build_dict() 
+            for _ in range(101)  # Exceeds 100 item limit
+        ]
+        
+        response = await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/batch",
+            json=items,
+            headers=authenticated_headers
+        )
+        
+        assert response.status_code == 400
+        assert "Maximum 100 items" in response.json()["detail"]
+
+
+# ==================== REGRESSION TESTS ====================
+
+@pytest.mark.regression
+class Test{{pascalCase resourceName}}Regression:
+    """Regression tests for critical {{resourceName}} functionality."""
+    
+    @pytest.mark.critical
+    @pytest.mark.asyncio
+    async def test_{{snakeCase resourceName}}_crud_flow(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str]
+    ):
+        """
+        Critical path test: Complete CRUD flow for {{resourceName}}.
+        This test prevents production issues by ensuring all operations work together.
+        """
+        # Create
+        create_data = {{pascalCase resourceName}}Factory.build_dict()
+        create_response = await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/",
+            json=create_data,
+            headers=authenticated_headers
+        )
+        assert create_response.status_code == 201
+        item_id = create_response.json()["id"]
+        
+        # Read
+        get_response = await async_client.get(
+            f"/api/v1/{{kebabCase resourceName}}s/{item_id}",
+            headers=authenticated_headers
+        )
+        assert get_response.status_code == 200
+        
+        # Update
+        update_response = await async_client.put(
+            f"/api/v1/{{kebabCase resourceName}}s/{item_id}",
+            json={"name": "Updated"},
+            headers=authenticated_headers
+        )
+        assert update_response.status_code == 200
+        assert update_response.json()["name"] == "Updated"
+        
+        # Delete
+        delete_response = await async_client.delete(
+            f"/api/v1/{{kebabCase resourceName}}s/{item_id}",
+            headers=authenticated_headers
+        )
+        assert delete_response.status_code == 204
+        
+        # Verify deletion
+        verify_response = await async_client.get(
+            f"/api/v1/{{kebabCase resourceName}}s/{item_id}",
+            headers=authenticated_headers
+        )
+        assert verify_response.status_code == 404
+    
+    @pytest.mark.critical
+    @pytest.mark.asyncio
+    async def test_streaming_completion_event(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str],
+        sample_{{snakeCase resourceName}}_data: Dict[str, Any]
+    ):
+        """
+        Critical: Ensure SSE streams complete properly.
+        This was a known production issue that must not regress.
+        """
+        # Create item
+        create_response = await async_client.post(
+            "/api/v1/{{kebabCase resourceName}}s/",
+            json=sample_{{snakeCase resourceName}}_data,
+            headers=authenticated_headers
+        )
+        item_id = create_response.json()["id"]
+        
+        # Stream processing and verify completion
+        completion_received = False
+        async with async_client.stream(
+            "POST",
+            f"/api/v1/{{kebabCase resourceName}}s/{item_id}/process/stream",
+            json={"action": "process"},
+            headers=authenticated_headers,
+            timeout=30  # 30 second timeout
+        ) as response:
+            async for line in response.aiter_lines():
+                if line.startswith("data: "):
+                    event_data = json.loads(line[6:])
+                    if event_data.get("event") == "done":
+                        completion_received = True
+                        break
+        
+        assert completion_received, "SSE stream did not send completion event"
+
+
+# ==================== PERFORMANCE TESTS ====================
+
+@pytest.mark.performance
+class Test{{pascalCase resourceName}}Performance:
+    """Performance tests for {{resourceName}} endpoints."""
+    
+    @pytest.mark.asyncio
+    async def test_list_{{snakeCase resourceName}}s_response_time(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str]
+    ):
+        """Test that list endpoint responds within acceptable time."""
+        import time
+        
+        start_time = time.time()
+        response = await async_client.get(
+            "/api/v1/{{kebabCase resourceName}}s/",
+            headers=authenticated_headers
+        )
+        end_time = time.time()
+        
+        assert response.status_code == 200
+        response_time = (end_time - start_time) * 1000  # Convert to ms
+        assert response_time < 200, f"Response time {response_time}ms exceeds 200ms limit"
+    
+    @pytest.mark.asyncio
+    async def test_concurrent_requests(
+        self,
+        async_client: AsyncClient,
+        authenticated_headers: Dict[str, str]
+    ):
+        """Test handling of concurrent requests."""
+        tasks = []
+        for i in range(10):
+            task = async_client.get(
+                "/api/v1/{{kebabCase resourceName}}s/",
+                headers=authenticated_headers
+            )
+            tasks.append(task)
+        
+        responses = await asyncio.gather(*tasks)
+        
+        # All requests should succeed
+        for response in responses:
+            assert response.status_code == 200

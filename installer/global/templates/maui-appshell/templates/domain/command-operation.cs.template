@@ -1,0 +1,65 @@
+using ErrorOr;
+
+namespace {{ProjectName}}.Domain.{{FeatureName}};
+
+/// <summary>
+/// Command operation: {{OperationName}}
+/// Modifies system state and returns result.
+/// </summary>
+public class {{OperationName}}
+{
+    private readonly I{{Entity}}Repository _repository;
+
+    public {{OperationName}}(I{{Entity}}Repository repository)
+    {
+        _repository = repository;
+    }
+
+    /// <summary>
+    /// Executes the command operation.
+    /// </summary>
+    /// <param name="request">Command request data</param>
+    /// <returns>Success with {{ReturnType}}, or Error if operation fails</returns>
+    public async Task<ErrorOr<{{ReturnType}}>> ExecuteAsync({{RequestType}} request)
+    {
+        // 1. Validate input
+        var validationResult = ValidateRequest(request);
+        if (validationResult.IsError)
+        {
+            return validationResult.Errors;
+        }
+
+        // 2. Execute business logic
+        var entity = MapToEntity(request);
+
+        // 3. Persist changes
+        var result = await _repository.{{RepositoryMethod}}Async(entity);
+
+        // 4. Return result
+        return result;
+    }
+
+    private ErrorOr<Success> ValidateRequest({{RequestType}} request)
+    {
+        var errors = new List<Error>();
+
+        // Add validation rules
+        if (string.IsNullOrWhiteSpace(request.{{RequiredField}}))
+        {
+            errors.Add(Error.Validation(
+                "{{Entity}}.{{RequiredField}}.Required",
+                "{{RequiredField}} is required"));
+        }
+
+        return errors.Count > 0 ? errors : Success.Value;
+    }
+
+    private {{Entity}} MapToEntity({{RequestType}} request)
+    {
+        return new {{Entity}}
+        {
+            // Map request properties to entity
+            {{EntityPropertyMappings}}
+        };
+    }
+}

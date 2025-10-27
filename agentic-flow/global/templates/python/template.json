@@ -1,0 +1,37 @@
+{
+  "name": "python",
+  "description": "Python project template",
+  "version": "1.0.0",
+  "extends": ["default"],
+  "claude": {
+    "contextFiles": [
+      "pyproject.toml",
+      "requirements.txt",
+      "setup.py"
+    ]
+  },
+  "testing": {
+    "framework": "pytest",
+    "bdd": "pytest-bdd",
+    "coverage": {
+      "threshold": 90,
+      "exclude": ["tests/*", "__pycache__/*"]
+    }
+  },
+  "dependencies": {
+    "required": ["pytest", "pytest-bdd"],
+    "recommended": ["black", "ruff", "mypy", "pytest-cov"]
+  },
+  "scripts": {
+    "test": "pytest",
+    "test:bdd": "pytest tests/features",
+    "test:coverage": "pytest --cov=src",
+    "lint": "ruff check . && mypy .",
+    "format": "black ."
+  },
+  "qualityGates": {
+    "testCoverage": 90,
+    "typeChecking": true,
+    "linting": "ruff"
+  }
+}
