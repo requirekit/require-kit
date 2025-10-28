@@ -6,6 +6,109 @@
 /task-work TASK-XXX [--design-only | --implement-only | --micro] [other-flags...]
 ```
 
+## Feature Detection and Package Integration
+
+The `/task-work` command automatically detects which Agentecflow packages are installed and adapts its workflow accordingly, enabling **bidirectional optional integration** between taskwright and require-kit.
+
+### Installation Scenarios
+
+| Installed Packages | Available Features | Unavailable Features |
+|-------------------|-------------------|----------------------|
+| **taskwright only** | ✅ Standard mode<br>✅ TDD mode<br>✅ Quality gates<br>✅ Stack templates | ❌ BDD mode<br>❌ EARS requirements loading<br>❌ Epic/Feature context |
+| **require-kit only** | ⚠️ Not applicable | ℹ️ Install taskwright for task execution |
+| **Both installed** | ✅ All modes (standard, TDD, BDD)<br>✅ EARS requirements<br>✅ BDD scenarios<br>✅ Epic/Feature context<br>✅ Full traceability | None - full integration |
+
+### Automatic Detection
+
+The command uses `feature_detection.py` library to detect installed packages:
+
+```python
+from lib.feature_detection import (
+    is_taskwright_installed,
+    is_require_kit_installed,
+    supports_requirements,
+    supports_bdd,
+    get_available_features
+)
+
+# Check what features are available
+features = get_available_features()
+# Returns: {
+#   "task_management": True/False,
+#   "requirements_engineering": True/False,
+#   "bdd_generation": True/False,
+#   ...
+# }
+```
+
+### Graceful Degradation
+
+**When require-kit is not installed:**
+- ✅ Task execution continues normally
+- ℹ️ EARS requirements not loaded (uses task description only)
+- ℹ️ BDD scenarios not loaded
+- ℹ️ Epic/Feature context not loaded
+- ⚠️ BDD mode blocked with clear error message
+
+**Example output (taskwright only):**
+```
+ℹ️  Package Detection
+- taskwright: ✅ installed (v1.0.0)
+- require-kit: ❌ not installed
+
+📋 Task Context
+- Description: Loaded ✅
+- Acceptance Criteria: Loaded ✅
+- Requirements (EARS): Skipped (install require-kit for this)
+- BDD Scenarios: Skipped (install require-kit for this)
+- Epic/Feature Context: Skipped (install require-kit for this)
+
+Continuing with available context...
+```
+
+### Mode Availability
+
+**BDD Mode requires require-kit:**
+```bash
+/task-work TASK-042 --mode=bdd
+
+# If require-kit not installed:
+❌ BDD mode requires require-kit
+
+You requested: /task-work TASK-042 --mode=bdd
+Available modes: standard, tdd
+
+Options:
+1. Install require-kit for BDD support:
+   cd require-kit && ./installer/scripts/install.sh
+
+2. Use alternative mode:
+   /task-work TASK-042 --mode=tdd
+
+3. Use standard mode:
+   /task-work TASK-042 --mode=standard
+```
+
+### Integration Suggestions
+
+When task references unavailable features:
+```
+⚠️  Task TASK-042 references features that cannot be loaded
+
+Referenced in task metadata:
+- Epic: EPIC-001
+- Requirements: [REQ-005, REQ-006]
+- BDD Scenarios: FEAT-001
+
+These require require-kit to be installed.
+
+To enable full context loading:
+  cd require-kit
+  ./installer/scripts/install.sh
+
+Continue with task description only? [Y/n]
+```
+
 ## Micro-Task Mode (NEW - TASK-020)
 
 The task-work command now supports a `--micro` flag for streamlined execution of trivial tasks (typo fixes, documentation updates, cosmetic changes) that don't require full architectural review.
@@ -624,53 +727,141 @@ Proceed with state transition? [Y/n]:
     # No transition needed, proceed directly
     **DISPLAY**: "✅ Task is already IN_PROGRESS"
 
-#### Phase 1.5: Load Task Context
+#### Phase 1.5: Load Task Context (Enhanced with Feature Detection)
+
+**STEP 1: Detect Installed Packages**
+
+**IMPORT** feature detection library:
+```python
+from lib.feature_detection import (
+    is_require_kit_installed,
+    supports_requirements,
+    supports_bdd,
+    get_available_features
+)
+```
+
+**CHECK** package availability:
+```python
+has_require_kit = is_require_kit_installed()
+features = get_available_features()
+```
+
+**STEP 2: Read Task File**
 
 **READ** task file from final location: `{file_path}`
 
-**EXTRACT** required context:
+**STEP 3: Extract Context (Conditional Loading)**
+
+**EXTRACT** required context with conditional loading:
 ```python
 task_context = {
     "task_id": task_id,
     "file_path": file_path,
     "state": current_state,
 
-    # From frontmatter
+    # From frontmatter (always loaded)
     "title": frontmatter.title,
-    "requirements": frontmatter.requirements,  # List of REQ-XXX IDs
-    "bdd_scenarios": frontmatter.bdd_scenarios,  # List of BDD-XXX IDs
-    "epic": frontmatter.epic,  # EPIC-XXX
-    "feature": frontmatter.feature,  # FEAT-XXX
     "priority": frontmatter.priority,
     "assignee": frontmatter.assignee,
 
-    # From content
+    # From content (always loaded)
     "acceptance_criteria": extract_acceptance_criteria(content),
     "description": extract_description(content),
-    "implementation_notes": extract_implementation_notes(content)
+    "implementation_notes": extract_implementation_notes(content),
+
+    # Conditional fields (only if require-kit installed)
+    "requirements": [],
+    "bdd_scenarios": [],
+    "epic": None,
+    "feature": None,
+    "requirements_loaded": False,
+    "epic_feature_loaded": False
 }
+
+# Load require-kit features if available
+if has_require_kit and supports_requirements():
+    task_context["requirements"] = frontmatter.requirements or []
+    task_context["bdd_scenarios"] = frontmatter.bdd_scenarios or []
+    task_context["epic"] = frontmatter.epic
+    task_context["feature"] = frontmatter.feature
+    task_context["requirements_loaded"] = True
+    task_context["epic_feature_loaded"] = True
 ```
+
+**STEP 4: Validate Context**
 
 **VALIDATE** essential fields exist:
 - `title`: Must be present
 - `acceptance_criteria`: At least one criterion required
-- Warn if missing: `requirements`, `bdd_scenarios` (not blocking)
+- Conditional validation:
+  - IF require-kit installed: Check if requirements/bdd_scenarios referenced but empty
+  - IF not installed: Warn if frontmatter references these fields
 
-**DISPLAY** loaded context summary:
+**STEP 5: Display Context Summary**
+
+**DISPLAY** loaded context summary with package status:
 ```
 📋 Task Context Loaded
+
+ℹ️  Package Detection:
+- taskwright: ✅ installed
+- require-kit: {✅ installed | ❌ not installed}
 
 ID: {task_id}
 Title: {title}
 State: {state}
 Priority: {priority}
 
+{If require-kit installed:}
 Requirements: {len(requirements)} linked ({', '.join(requirements[:3])}{' ...' if len > 3})
 BDD Scenarios: {len(bdd_scenarios)} linked
 Epic: {epic or 'None'}
 Feature: {feature or 'None'}
 
+{If require-kit NOT installed:}
+Requirements: Skipped (install require-kit for EARS requirements)
+BDD Scenarios: Skipped (install require-kit for BDD scenarios)
+Epic/Feature: Skipped (install require-kit for hierarchy context)
+
 Acceptance Criteria: {len(acceptance_criteria)} items
+```
+
+**STEP 6: Check for Unavailable Feature References**
+
+**IF** require-kit NOT installed AND task references require-kit features:
+```python
+if not has_require_kit:
+    referenced_features = []
+    if frontmatter.epic:
+        referenced_features.append(f"Epic: {frontmatter.epic}")
+    if frontmatter.requirements:
+        referenced_features.append(f"Requirements: {frontmatter.requirements}")
+    if frontmatter.bdd_scenarios:
+        referenced_features.append(f"BDD Scenarios: {frontmatter.bdd_scenarios}")
+
+    if referenced_features:
+        **DISPLAY** warning:
+        ```
+        ⚠️  Task {task_id} references features that cannot be loaded
+
+        Referenced in task metadata:
+        {for feature in referenced_features: print(f"- {feature}")}
+
+        These require require-kit to be installed.
+
+        To enable full context loading:
+          cd require-kit
+          ./installer/scripts/install.sh
+
+        Continue with task description only? [Y/n]
+        ```
+
+        **WAIT** for user confirmation (default: Yes after 5 seconds)
+
+        **IF** user declines:
+            **DISPLAY**: "Task execution cancelled. Install require-kit or remove references from task metadata."
+            **EXIT** with error code
 ```
 
 **PROCEED** to Step 2 (Detect Technology Stack)
@@ -704,7 +895,53 @@ Based on detected stack, **MAP** to agents using this table:
 
 **⚠️ CRITICAL: YOU MUST USE THE TASK TOOL. DO NOT ATTEMPT TO DO THE WORK YOURSELF.**
 
-#### Phase 1: Requirements Analysis
+#### Phase 1: Requirements Analysis (Enhanced with Feature Detection)
+
+**STEP 1: Validate Mode Requirements**
+
+**IF** mode == 'bdd':
+```python
+from lib.feature_detection import supports_bdd
+
+if not supports_bdd():
+    **DISPLAY** error:
+    ```
+    ❌ BDD mode requires require-kit
+
+    You requested: /task-work {task_id} --mode=bdd
+    Available modes: standard, tdd
+
+    Options:
+    1. Install require-kit for BDD support:
+       cd require-kit && ./installer/scripts/install.sh
+
+    2. Use alternative mode:
+       /task-work {task_id} --mode=tdd
+
+    3. Use standard mode:
+       /task-work {task_id} --mode=standard
+    ```
+    **EXIT** with error code
+
+# Check if task has BDD scenarios linked
+if not task_context.get("bdd_scenarios"):
+    **DISPLAY** error:
+    ```
+    ❌ BDD mode requires linked BDD scenarios
+
+    Task {task_id} has no linked BDD scenarios.
+
+    Options:
+    1. Generate BDD scenarios first:
+       /generate-bdd {task_id}
+
+    2. Use alternative mode:
+       /task-work {task_id} --mode=standard
+    ```
+    **EXIT** with error code
+```
+
+**STEP 2: Invoke Requirements Analysis**
 
 **INVOKE** Task tool:
 ```
@@ -713,7 +950,24 @@ description: "Analyze requirements for TASK-XXX"
 prompt: "Analyze task TASK-XXX requirements and acceptance criteria.
          Extract key functional requirements, non-functional requirements,
          and testable acceptance criteria for {stack} implementation.
-         Identify any gaps or ambiguities that need clarification."
+         Identify any gaps or ambiguities that need clarification.
+
+         {If require-kit installed and requirements linked:}
+         EARS Requirements Available:
+         {Load and include EARS requirements from linked REQ-XXX files}
+
+         {If BDD mode and scenarios linked:}
+         BDD Scenarios Available:
+         {Load and include BDD scenarios from linked BDD-XXX files}
+
+         {If epic/feature context available:}
+         Epic/Feature Context:
+         Epic: {epic_id} - {epic_title}
+         Feature: {feature_id} - {feature_title}
+
+         {If require-kit NOT installed:}
+         Note: Using task description and acceptance criteria only.
+         EARS requirements and BDD scenarios not available (require-kit not installed)."
 ```
 
 **WAIT** for agent to complete before proceeding.
@@ -2148,6 +2402,50 @@ The command supports multiple development modes via `--mode` flag:
 - Suggests optimization if exceeded
 
 ### Error Handling
+
+#### Scenario: BDD Mode Without require-kit
+```
+❌ BDD mode requires require-kit
+
+You requested: /task-work TASK-042 --mode=bdd
+Available modes: standard, tdd
+
+Current installation:
+- taskwright: ✅ installed
+- require-kit: ❌ not installed
+
+Options:
+1. Install require-kit for BDD support:
+   cd require-kit && ./installer/scripts/install.sh
+
+2. Use alternative mode:
+   /task-work TASK-042 --mode=tdd
+
+3. Use standard mode:
+   /task-work TASK-042 --mode=standard
+```
+
+#### Scenario: Task References Unavailable Features
+```
+⚠️  Task TASK-042 references features that cannot be loaded
+
+Referenced in task metadata:
+- Epic: EPIC-001
+- Requirements: [REQ-005, REQ-006]
+- BDD Scenarios: FEAT-001
+
+These require require-kit to be installed.
+
+Current installation:
+- taskwright: ✅ installed
+- require-kit: ❌ not installed
+
+To enable full context loading:
+  cd require-kit
+  ./installer/scripts/install.sh
+
+Continue with task description only? [Y/n]
+```
 
 #### Scenario: Task Not Found
 ```

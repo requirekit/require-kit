@@ -2,6 +2,48 @@
 
 Execute complete implementation workflow including code generation, testing, and verification with support for multiple development modes.
 
+## Feature Detection and Package Integration
+
+The `/task-work` command automatically detects which Agentecflow packages are installed and adapts its behavior accordingly, enabling **bidirectional optional integration** between taskwright and require-kit.
+
+### Package-Specific Features
+
+| Installed Packages | Available Features | Unavailable Features |
+|-------------------|-------------------|----------------------|
+| **taskwright only** | ✅ Task execution workflow<br>✅ Quality gate validation<br>✅ TDD/Standard modes<br>✅ Test orchestration | ❌ BDD mode (requires scenarios)<br>❌ Requirements loading<br>❌ Epic/Feature context |
+| **Both installed** | ✅ All features above<br>✅ BDD mode with Gherkin scenarios<br>✅ Requirements context loading<br>✅ Epic/Feature hierarchy | None - full integration |
+
+### Automatic Detection
+
+The command uses package detection to determine available features:
+- **taskwright.marker**: Enables task execution and quality gates
+- **require-kit.marker**: Enables requirements, BDD scenarios, and hierarchy
+
+### Graceful Degradation
+
+**When require-kit is not installed:**
+- ✅ Standard and TDD modes work normally
+- ❌ BDD mode unavailable (requires BDD scenarios from require-kit)
+- ℹ️ Requirements loading skipped
+- ℹ️ Epic/Feature context not loaded
+
+**Example output (taskwright only):**
+```
+🚀 Starting Task Work: TASK-045
+
+ℹ️  Package Detection:
+- taskwright: ✅ installed
+- require-kit: ❌ not installed
+
+📋 Task Loading
+✅ Loaded from tasks/in_progress/TASK-045.md
+✅ Acceptance criteria loaded
+ℹ️ Requirements loading skipped (install require-kit for EARS requirements)
+ℹ️ BDD scenarios skipped (install require-kit for BDD mode)
+
+🛠️  Mode: Standard (BDD mode unavailable)
+```
+
 ## Usage
 ```bash
 /task-work TASK-XXX [--mode=standard|tdd|bdd] [--language=auto|python|typescript|csharp] [--coverage-threshold=80]
@@ -49,17 +91,22 @@ Start from user scenarios:
 4. Add unit tests for completeness
 5. Verify all scenarios pass
 
+**Note**: BDD mode requires **require-kit** to be installed. If require-kit is not detected, the command will display an error with installation instructions.
+
 ## Process Flow
 
 ### Step 1: Task Loading and Analysis
 ```yaml
 Load task from: tasks/in_progress/TASK-XXX.md
 Extract:
-  - Requirements (EARS)
-  - BDD scenarios
-  - Acceptance criteria
-  - Technology stack
+  - Acceptance criteria (always)
+  - Technology stack (always)
+  - Requirements (EARS) - if require-kit installed
+  - BDD scenarios - if require-kit installed
+  - Epic/Feature context - if require-kit installed
 ```
+
+**Conditional Loading**: The system automatically detects installed packages and loads available features. If require-kit is not installed, the workflow continues with acceptance criteria only.
 
 ### Step 2: Mode-Specific Implementation
 
@@ -310,6 +357,24 @@ describe('AuthenticationService', () => {
 
 ### Common Issues and Solutions
 
+#### Issue: BDD Mode Without require-kit
+```
+❌ BDD mode unavailable
+
+BDD mode requires BDD scenarios from require-kit.
+
+Current configuration:
+- taskwright: ✅ installed
+- require-kit: ❌ not installed
+
+To use BDD mode:
+1. Install require-kit package
+2. Link BDD scenarios to your task
+3. Run /task-work TASK-XXX --mode=bdd
+
+Alternative: Use --mode=standard or --mode=tdd instead
+```
+
 #### Issue: Import Errors (TDD Mode)
 ```
 ❌ ImportError: cannot import name 'ServiceClass'
@@ -382,10 +447,12 @@ Consider:
 - Test results posted to CI system
 - Coverage reports uploaded
 
-### Future MCP Integration
+### External PM Tool Integration (require-kit)
+When require-kit is installed:
 - Sync task status to Jira/Azure DevOps/Linear
 - Post test results to external systems
 - Update external tickets on completion
+- Track progress rollup to epics and features
 
 ## Best Practices
 

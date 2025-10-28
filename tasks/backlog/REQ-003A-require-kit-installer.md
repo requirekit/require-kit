@@ -14,7 +14,22 @@ estimated_hours: 2
 
 ## Description
 
-Modify require-kit installer to install to namespaced directory `~/.agentecflow/commands/require-kit/` and `~/.agentecflow/agents/require-kit/`, allowing coexistence with dev-tasker.
+Modify require-kit installer to install to namespaced directory `~/.agentecflow/commands/require-kit/` and `~/.agentecflow/agents/require-kit/`, allowing coexistence with taskwright.
+
+**Integration Model**: Bidirectional Optional Integration
+- require-kit works standalone (requirements engineering only)
+- taskwright works standalone (task execution only)
+- Both detect each other and enable integration features when both present
+
+## Implementation Status
+
+✅ **feature_detection.py Available**: The feature detection library has been implemented in the taskwright repo (TASK-012) and copied to `installer/global/lib/feature_detection.py`. This library provides:
+- Package detection (taskwright/require-kit markers)
+- Feature availability queries (requirements, epics, BDD, task management)
+- Compatibility checking
+- User-friendly status messages
+
+The installer should use this library to create marker files and detect existing installations.
 
 ## Changes Required
 
@@ -115,6 +130,22 @@ install_agents() {
     print_success "Agents installed"
 }
 
+create_marker_file() {
+    print_info "Creating package marker..."
+
+    # Create marker file with metadata
+    cat > "$INSTALL_DIR/$PACKAGE_NAME.marker" <<EOF
+{
+  "name": "$PACKAGE_NAME",
+  "version": "$PACKAGE_VERSION",
+  "installed_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+  "install_dir": "$INSTALL_DIR"
+}
+EOF
+
+    print_success "Marker file created"
+}
+
 track_installation() {
     echo "$PACKAGE_VERSION" > "$INSTALL_DIR/.installed/$PACKAGE_NAME.version"
     date +%s > "$INSTALL_DIR/.installed/$PACKAGE_NAME.timestamp"
@@ -163,13 +194,43 @@ print_completion_message() {
     echo ""
 }
 
+install_lib() {
+    print_info "Installing library files..."
+
+    mkdir -p "$INSTALL_DIR/lib"
+
+    # Copy feature_detection.py (shared with taskwright)
+    cp "$SCRIPT_DIR/global/lib/feature_detection.py" "$INSTALL_DIR/lib/" 2>/dev/null || true
+
+    print_success "Library files installed"
+}
+
+check_integration_opportunities() {
+    print_info "Checking for integration opportunities..."
+
+    # Check if taskwright is installed (optional integration)
+    if [ ! -f "$INSTALL_DIR/taskwright.marker" ]; then
+        echo "  ℹ️  taskwright not detected"
+        echo "  require-kit works standalone for requirements management"
+        echo ""
+        echo "  For full integration (link requirements to tasks):"
+        echo "  Install taskwright: https://github.com/yourusername/taskwright"
+    else
+        print_success "taskwright detected - full integration available"
+        echo "  Commands can now link requirements to tasks"
+    fi
+}
+
 # Main installation flow
 main() {
     print_header
     check_prerequisites
+    check_integration_opportunities
     create_directory_structure
     install_commands
     install_agents
+    install_lib
+    create_marker_file
     track_installation
     verify_installation
     print_completion_message
@@ -208,10 +269,17 @@ main "$@"
   ],
   "dependencies": {
     "required": ["bash", "git"],
-    "optional": ["dev-tasker"]
+    "optional": ["taskwright"]
   },
   "compatible_with": {
-    "dev-tasker": ">=1.0.0"
+    "taskwright": ">=1.0.0"
+  },
+  "integration": {
+    "taskwright": {
+      "type": "bidirectional-optional",
+      "provides": "Requirements can be linked to tasks",
+      "description": "When both installed, enable full requirements-to-implementation traceability"
+    }
   }
 }
 ```
@@ -426,10 +494,81 @@ cd /path/to/require-kit
 - [ ] manifest.json updated with namespace info
 - [ ] uninstall.sh removes only require-kit files
 - [ ] Version tracking works (.installed/)
+- [ ] **Marker file created** (require-kit.marker with JSON metadata)
+- [ ] **feature_detection.py copied** to ~/.agentecflow/lib/
+- [ ] **Dependency check** for taskwright marker file
 - [ ] Standalone installation works
 - [ ] Project initialization works
 - [ ] Verification tests pass
 
+## Key Integration Points
+
+### 1. Feature Detection Library
+
+The `feature_detection.py` library (already implemented in taskwright TASK-012) should be:
+- Copied to `~/.agentecflow/lib/` during installation
+- Used by require-kit commands to detect taskwright presence
+- Available for Python-based command implementations
+
+Example usage in commands:
+```python
+from lib.feature_detection import is_taskwright_installed, supports_requirements
+
+if is_taskwright_installed():
+    # Full integration available
+    load_task_context()
+else:
+    # Standalone mode (requirements-only)
+    use_standalone_workflow()
+```
+
+### 2. Marker File Format
+
+The installer creates `~/.agentecflow/require-kit.marker`:
+```json
+{
+  "name": "require-kit",
+  "version": "1.0.0",
+  "installed_at": "2025-10-28T12:00:00Z",
+  "install_dir": "~/.agentecflow"
+}
+```
+
+This allows taskwright to detect require-kit and enable extended features.
+
+### 3. Bidirectional Optional Integration
+
+**require-kit standalone provides:**
+- Requirements engineering (EARS notation)
+- Epic/Feature hierarchy management
+- BDD/Gherkin scenario generation
+- Requirements traceability
+- Output for any PM tool (Jira, Linear, GitHub, etc.)
+
+**taskwright standalone provides:**
+- Task management workflow
+- Quality gates (architectural review, test enforcement)
+- Stack templates
+- Implementation execution
+
+**When both installed:**
+- Requirements can be linked to tasks
+- Tasks can reference epics/features
+- Full traceability: requirements → epics → features → tasks → implementation
+- Integrated status reporting
+
+The installer should detect taskwright.marker and inform the user about integration opportunities (not block installation).
+
+## Related Tasks
+
+- **REQ-003**: Parent task (shared installer strategy)
+- **taskwright TASK-012**: Feature detection implementation (COMPLETED)
+- Commands will need updates to use feature detection:
+  - epic-create.md
+  - feature-create.md
+  - gather-requirements.md
+  - formalize-ears.md
+
 ## Estimated Time
 
-2 hours
+2 hours (updated to include marker file + feature_detection.py integration)

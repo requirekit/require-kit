@@ -16,7 +16,13 @@ subtasks:
 
 ## Overview
 
-Create separate installers for **require-kit** (requirements management) and **dev-tasker** (task execution) that both install to the same `~/.agentecflow` directory, allowing them to be installed standalone or together.
+Create separate installers for **require-kit** (requirements management) and **taskwright** (task execution) that both install to the same `~/.agentecflow` directory, allowing them to be installed standalone or together.
+
+**Integration Model**: Bidirectional Optional Integration
+- Each package works independently
+- Both detect each other when installed
+- Enhanced features automatically available when both present
+- No hard dependencies either way
 
 ## Current Situation
 
@@ -78,38 +84,64 @@ cd require-kit
 Result:
 ~/.agentecflow/commands/require-kit/    ✅
 ~/.agentecflow/agents/require-kit/      ✅
-~/.agentecflow/commands/dev-tasker/     ❌ (not installed)
-~/.agentecflow/agents/dev-tasker/       ❌ (not installed)
+~/.agentecflow/lib/feature_detection.py ✅
+~/.agentecflow/require-kit.marker       ✅
+
+Capabilities:
+✅ Requirements engineering (EARS notation)
+✅ Epic/Feature hierarchy
+✅ BDD scenario generation
+✅ Requirements traceability
+❌ Task execution (install taskwright for this)
+❌ Quality gates (install taskwright for this)
 ```
 
-#### Scenario 2: Install dev-tasker Only
+#### Scenario 2: Install taskwright Only
 ```bash
-cd dev-tasker
+cd taskwright
 ./installer/scripts/install.sh
 
 Result:
-~/.agentecflow/commands/dev-tasker/     ✅
-~/.agentecflow/agents/dev-tasker/       ✅
+~/.agentecflow/commands/taskwright/     ✅
+~/.agentecflow/agents/taskwright/       ✅
 ~/.agentecflow/templates/               ✅
-~/.agentecflow/lib/dev-tasker/          ✅
-~/.agentecflow/commands/require-kit/    ❌ (not installed)
+~/.agentecflow/lib/                     ✅
+~/.agentecflow/taskwright.marker        ✅
+
+Capabilities:
+✅ Task management workflow
+✅ Quality gates (architectural review, test enforcement)
+✅ Stack templates
+✅ Implementation execution
+❌ EARS requirements (install require-kit for this)
+❌ Epic/Feature hierarchy (install require-kit for this)
 ```
 
-#### Scenario 3: Install Both
+#### Scenario 3: Install Both (Full Integration)
 ```bash
-cd require-kit
+cd taskwright
 ./installer/scripts/install.sh
 
-cd ../dev-tasker
+cd ../require-kit
 ./installer/scripts/install.sh
 
 Result:
 ~/.agentecflow/commands/require-kit/    ✅
 ~/.agentecflow/agents/require-kit/      ✅
-~/.agentecflow/commands/dev-tasker/     ✅
-~/.agentecflow/agents/dev-tasker/       ✅
+~/.agentecflow/commands/taskwright/     ✅
+~/.agentecflow/agents/taskwright/       ✅
 ~/.agentecflow/templates/               ✅
-~/.agentecflow/lib/dev-tasker/          ✅
+~/.agentecflow/lib/                     ✅
+~/.agentecflow/require-kit.marker       ✅
+~/.agentecflow/taskwright.marker        ✅
+
+Capabilities (Full Agentecflow):
+✅ Complete requirements-to-implementation workflow
+✅ Requirements → Epics → Features → Tasks → Code
+✅ EARS notation + BDD scenarios
+✅ Task execution with quality gates
+✅ Full traceability
+✅ Integrated status reporting
 ```
 
 #### Scenario 4: Upgrade One System
@@ -209,30 +241,38 @@ echo "✓ dev-tasker installed to ~/.agentecflow"
     "requirements-engineering",
     "ears-notation",
     "bdd-generation",
-    "epic-feature-hierarchy"
+    "epic-feature-hierarchy",
+    "requirements-traceability"
   ],
   "dependencies": {
     "required": ["bash", "git"],
-    "optional": ["dev-tasker"]
+    "optional": ["taskwright"]
   },
   "compatible_with": {
-    "dev-tasker": ">=1.0.0"
+    "taskwright": ">=1.0.0"
+  },
+  "integration": {
+    "taskwright": {
+      "type": "bidirectional-optional",
+      "provides": "Requirements can be linked to tasks",
+      "description": "When both installed, enable full requirements-to-implementation traceability"
+    }
   }
 }
 ```
 
-### dev-tasker/installer/global/manifest.json
+### taskwright/installer/global/manifest.json
 
 ```json
 {
-  "name": "dev-tasker",
+  "name": "taskwright",
   "version": "1.0.0",
   "description": "Task Execution System with Quality Gates and Stack Templates",
-  "homepage": "https://github.com/yourusername/dev-tasker",
+  "homepage": "https://github.com/yourusername/taskwright",
   "system": {
     "install_dir": "~/.agentecflow",
-    "package_name": "dev-tasker",
-    "namespace": "dev-tasker"
+    "package_name": "taskwright",
+    "namespace": "taskwright"
   },
   "capabilities": [
     "task-management",
@@ -247,6 +287,13 @@ echo "✓ dev-tasker installed to ~/.agentecflow"
   },
   "compatible_with": {
     "require-kit": ">=1.0.0"
+  },
+  "integration": {
+    "require-kit": {
+      "type": "bidirectional-optional",
+      "provides": "Tasks can reference requirements, epics, and features",
+      "description": "When both installed, enable full requirements-to-implementation traceability"
+    }
   }
 }
 ```
@@ -370,23 +417,28 @@ Result:
 
 ## Benefits
 
-1. **Modular**: Install only what you need
-2. **Clean Separation**: Each system has its own namespace
-3. **Backwards Compatible**: Symlinks maintain existing workflows
-4. **Upgradeable**: Update one system without affecting the other
-5. **Discoverable**: Claude Code finds all commands regardless of source
-6. **Integration**: Both systems work together seamlessly
+1. **Modular**: Install only what you need (requirements-only or tasks-only)
+2. **No Hard Dependencies**: Each package works standalone
+3. **Bidirectional Integration**: Enhanced features when both installed
+4. **Clean Separation**: Each system has its own namespace
+5. **Backwards Compatible**: Symlinks maintain existing workflows
+6. **Upgradeable**: Update one system without affecting the other
+7. **Discoverable**: Claude Code finds all commands regardless of source
+8. **Progressive Enhancement**: Start simple, add capabilities later
 
 ## Success Criteria
 
-- [ ] require-kit can be installed standalone
-- [ ] dev-tasker can be installed standalone
-- [ ] Both can be installed together
+- [ ] require-kit can be installed standalone (no taskwright required)
+- [ ] taskwright can be installed standalone (no require-kit required)
+- [ ] Both can be installed together (full integration)
+- [ ] Feature detection works correctly (marker files)
+- [ ] Commands gracefully detect missing packages
 - [ ] Upgrading one doesn't affect the other
 - [ ] Uninstalling one doesn't affect the other
 - [ ] Command discovery works for both systems
 - [ ] Version tracking works (`.installed/` directory)
 - [ ] Documentation clear for all scenarios
+- [ ] Bidirectional optional integration documented
 
 ## Timeline Estimate
 
