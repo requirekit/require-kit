@@ -2,6 +2,69 @@
 
 Complete tasks with comprehensive validation, automatic progress rollup to features and epics, and external PM tool synchronization.
 
+## Feature Detection and Package Integration
+
+The `/task-complete` command automatically detects which Agentecflow packages are installed and adapts its validation and reporting accordingly, enabling **bidirectional optional integration** between taskwright and require-kit.
+
+### Package-Specific Features
+
+| Installed Packages | Available Features | Unavailable Features |
+|-------------------|-------------------|----------------------|
+| **taskwright only** | ✅ Task completion workflow<br>✅ Quality gate validation<br>✅ File organization<br>✅ Basic metrics | ❌ Requirements satisfaction check<br>❌ BDD scenario validation<br>❌ Epic/Feature rollup<br>❌ PM tool sync |
+| **Both installed** | ✅ All features above<br>✅ Requirements verification<br>✅ BDD scenario validation<br>✅ Epic/Feature progress rollup<br>✅ PM tool synchronization | None - full integration |
+
+### Automatic Detection
+
+The command uses `feature_detection.py` to determine available features:
+
+```python
+from lib.feature_detection import (
+    is_require_kit_installed,
+    supports_requirements,
+    supports_epics
+)
+
+# Check what validation is available
+has_require_kit = is_require_kit_installed()
+can_validate_requirements = supports_requirements()
+can_rollup_progress = supports_epics()
+```
+
+### Graceful Degradation
+
+**When require-kit is not installed:**
+- ✅ Task completion proceeds normally
+- ✅ Quality gates validated (tests, coverage)
+- ✅ Files organized into completed directory
+- ℹ️ Requirements satisfaction check skipped
+- ℹ️ BDD scenario validation skipped
+- ℹ️ Epic/Feature rollup skipped
+- ℹ️ PM tool sync skipped
+
+**Example output (taskwright only):**
+```
+🏁 Completing Task: TASK-045
+
+ℹ️  Package Detection:
+- taskwright: ✅ installed
+- require-kit: ❌ not installed
+
+📁 Organizing Task Files
+✅ Files organized in tasks/completed/TASK-045/
+
+📊 Quality Gates
+✅ All tests passing
+✅ Coverage: 87.5%
+
+ℹ️  Optional Features Skipped:
+- Requirements validation (install require-kit)
+- BDD scenario verification (install require-kit)
+- Epic/Feature progress rollup (install require-kit)
+- PM tool synchronization (install require-kit)
+
+✅ Task completed successfully
+```
+
 ## Usage
 ```bash
 /task-complete TASK-XXX [options]
@@ -30,15 +93,43 @@ Complete tasks with comprehensive validation, automatic progress rollup to featu
 
 ## Completion Validation Process
 
-### Pre-Completion Checks
-Before marking a task as complete, the system validates:
+### Pre-Completion Checks (Conditional Based on Installed Packages)
 
+Before marking a task as complete, the system validates based on available features:
+
+**Always Validated (taskwright):**
 1. **Acceptance Criteria**: All criteria must be satisfied
 2. **Implementation Steps**: All steps marked as complete
 3. **Quality Gates**: All gates must pass (tests, coverage, security)
 4. **Code Review**: Implementation reviewed and approved
 5. **Documentation**: Required documentation completed
 6. **External Dependencies**: No blocking dependencies remain
+
+**Additional Validation (require-kit installed):**
+7. **Requirements Satisfaction**: All linked EARS requirements verified ✨
+8. **BDD Scenarios**: All linked BDD scenarios pass ✨
+9. **Epic/Feature Progress**: Progress rollup calculated ✨
+10. **PM Tool Sync**: External tools updated if configured ✨
+
+**Validation Logic:**
+```python
+from lib.feature_detection import supports_requirements, supports_bdd, supports_epics
+
+# Always validate core quality gates
+validate_acceptance_criteria()
+validate_quality_gates()
+validate_code_review()
+
+# Conditional validation based on installed packages
+if supports_requirements():
+    validate_requirements_satisfaction()  # Only if require-kit installed
+
+if supports_bdd():
+    validate_bdd_scenarios()  # Only if require-kit installed
+
+if supports_epics():
+    calculate_progress_rollup()  # Only if require-kit installed
+```
 
 ### File Organization on Completion
 
@@ -124,10 +215,16 @@ tasks/completed/
 - Preserve git history: Use `git mv` if files are tracked
 
 ### Completion Execution
+
+**Example 1: taskwright only (Graceful Degradation)**
 ```bash
 /task-complete TASK-045
 
 🏁 Completing Task: TASK-045
+
+ℹ️  Package Detection:
+- taskwright: ✅ installed (v1.0.0)
+- require-kit: ❌ not installed
 
 📁 Organizing Task Files
 Creating: tasks/completed/TASK-045/
@@ -144,12 +241,77 @@ Completion Date: 2024-01-20T16:30:00Z
 Duration: 2.5 days (estimated: 2 days)
 Location: tasks/completed/TASK-045/
 
-📊 Progress Rollup Calculation
+📊 Quality Gates (Core)
+✅ All tests passing (100%)
+✅ Coverage: 87.5% (≥80%)
+✅ Code review approved
+✅ Documentation complete
+
+ℹ️  Optional Features Skipped:
+- Requirements validation (install require-kit for EARS verification)
+- BDD scenario validation (install require-kit for BDD verification)
+- Epic/Feature rollup (install require-kit for hierarchy tracking)
+- PM tool sync (install require-kit for Jira/Linear/GitHub integration)
+
+🎉 Task Completion Summary
+✅ TASK-045 successfully completed
+✅ All task files organized in tasks/completed/TASK-045/
+✅ Core quality gates passed
+
+💡 Tip: Install require-kit for full integration features
+```
+
+**Example 2: Both packages installed (Full Integration)**
+```bash
+/task-complete TASK-045
+
+🏁 Completing Task: TASK-045
+
+ℹ️  Package Detection:
+- taskwright: ✅ installed (v1.0.0)
+- require-kit: ✅ installed (v1.0.0)
+
+📁 Organizing Task Files
+Creating: tasks/completed/TASK-045/
+Moving: tasks/in_progress/TASK-045.md → tasks/completed/TASK-045/
+Found related files:
+  ✅ TASK-045-IMPLEMENTATION-SUMMARY.md → implementation-summary.md
+  ✅ TASK-045-COMPLETION-REPORT.md → completion-report.md
+  ✅ coverage-task045.json → coverage-report.json
+Organized 4 files into tasks/completed/TASK-045/
+
+🔄 Task State Transition
+Status: IN_PROGRESS → COMPLETED
+Completion Date: 2024-01-20T16:30:00Z
+Duration: 2.5 days (estimated: 2 days)
+Location: tasks/completed/TASK-045/
+
+📊 Quality Gates (Core)
+✅ All tests passing (100%)
+✅ Coverage: 87.5% (≥80%)
+✅ Code review approved
+✅ Documentation complete
+
+📊 Requirements Validation (require-kit)
+✅ Requirements satisfied: 3/3
+  - REQ-005: Authentication logic ✅
+  - REQ-006: Session management ✅
+  - REQ-007: Error handling ✅
+
+📊 BDD Scenario Validation (require-kit)
+✅ BDD scenarios passed: 5/5
+  - Successful login ✅
+  - Invalid credentials ✅
+  - Session timeout ✅
+  - Token refresh ✅
+  - Logout ✅
+
+📊 Progress Rollup Calculation (require-kit)
 Feature FEAT-003: 65% → 85% (+20%)
 Epic EPIC-001: 57% → 63% (+6%)
 Portfolio: 46% → 48% (+2%)
 
-🔄 External Tool Updates
+🔄 External Tool Updates (require-kit)
 ✅ Jira Sub-task PROJ-129: Status → "Done"
 ✅ Linear Issue PROJECT-461: Status → "Completed"
 ✅ GitHub Issue #253: Closed
@@ -160,6 +322,7 @@ Portfolio: 46% → 48% (+2%)
 ✅ Epic EPIC-001 progressed to 63%
 ✅ All task files organized in tasks/completed/TASK-045/
 ✅ All downstream dependencies cleared
+✅ Full integration features activated
 ```
 
 ## Quality Assurance Integration
