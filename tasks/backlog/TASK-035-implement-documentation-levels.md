@@ -3,14 +3,16 @@ id: TASK-035
 title: Implement Documentation Levels for task-work Command (RequireKit)
 status: backlog
 created: 2025-10-29T12:00:00Z
-updated: 2025-10-29T18:00:00Z
+updated: 2025-10-30T12:30:00Z
 priority: high
-complexity: 7
-estimated_time: 4-5 hours
+complexity: 5
+estimated_time: 2-3 hours
 tags: [performance, optimization, documentation, task-work, user-experience, require-kit]
 epic: null
 feature: null
 parent_task: null
+related_tasks:
+  - TASK-036 (ai-engineer) - Proven implementation pattern
 requirements: []
 bdd_scenarios: []
 test_results:
@@ -27,6 +29,26 @@ Implement a 3-tier documentation system (Minimal, Standard, Comprehensive) for t
 
 **Note**: This task implements TASK-035 for the **RequireKit** repository. RequireKit will be split from ai-engineer and needs its own installer with updated agents.
 
+## ✅ PROVEN PATTERN AVAILABLE (TASK-036)
+
+**CRITICAL UPDATE (2025-10-30)**: The implementation pattern has been **proven and tested** in TASK-036 (ai-engineer):
+
+✅ **TASK-036 Complete** (`/Users/richardwoollcott/Projects/appmilla_github/ai-engineer/tasks/in_review/TASK-036-fix-minimal-docs-mode-enforcement.md`):
+- **Implementation**: 3 agents updated with "Documentation Level Handling" guard clauses
+- **Test Results**: 16/16 tests passed (100%)
+- **Code Quality**: 8.5/10 (Excellent)
+- **Architectural Review**: 88/100 (Auto-approved)
+- **Zero Scope Creep**: Perfect plan adherence
+- **Pattern Location**: `.claude/agents/requirements-analyst.md`, `bdd-generator.md`, `test-orchestrator.md`
+
+**Key Pattern Elements**:
+1. Guard clause section with CRITICAL marker
+2. Mode-specific behavior definitions (minimal/standard/comprehensive)
+3. Quality gate preservation statements
+4. Token reduction targets (60-75%)
+
+**Implementation Time Reduction**: Estimated time reduced from 4-5 hours to **2-3 hours** due to proven pattern.
+
 ## Context from ai-engineer Implementation
 
 The core documentation levels infrastructure has **already been implemented** in the ai-engineer repository:
@@ -39,6 +61,7 @@ The core documentation levels infrastructure has **already been implemented** in
 - Documentation templates created (minimal-summary, comprehensive-checklist)
 - User guide created (`documentation-levels-guide.md` - 439 lines)
 - Comprehensive test suite (58 tests, 100% pass rate)
+- **TASK-036**: Minimal docs enforcement fix (proven pattern)
 
 **Reference**: See `/Users/richardwoollcott/Projects/appmilla_github/ai-engineer/docs/requirements/TASK-035-FINAL-IMPLEMENTATION-SUMMARY.md`
 
@@ -529,7 +552,65 @@ Add this complete `documentation` section to template settings.json:
 - Installer integration
 - More complex than local agent updates (affects all RequireKit users)
 
-**Estimated Time Justification**: 4-5 hours
-- Agent updates: 3 hours (7 agents × ~25 min each)
+**Estimated Time Justification**: 2-3 hours (reduced from 4-5 hours)
+- Agent updates: 1.5 hours (7 agents × ~13 min each, using proven TASK-036 pattern)
 - Template configuration: 0.5 hours
-- Documentation & validation: 1.5 hours
+- Documentation & validation: 0.5 hours (pattern already validated)
+
+---
+
+## TASK-036 Reference Implementation
+
+**Use this proven pattern for all 7 agents**:
+
+### Guard Clause Section Template
+Location: After agent description, before examples
+
+```markdown
+## Documentation Level Handling
+
+CRITICAL: Check `<AGENT_CONTEXT>` for `documentation_level` parameter before generating output.
+
+### Minimal Mode (`documentation_level: minimal`)
+- Generate only essential outputs
+- Skip verbose explanations and examples
+- Focus on actionable content
+- Target: 50-75% token reduction
+
+### Standard Mode (`documentation_level: standard`)
+- Current default behavior
+- Balanced documentation
+- Include examples and context
+
+### Comprehensive Mode (`documentation_level: comprehensive`)
+- Full verbose documentation
+- Extensive examples and explanations
+- Complete traceability
+```
+
+### Quality Gate Preservation Statement
+**CRITICAL**: Include in every agent
+
+```markdown
+**Quality Gate Preservation**: The following quality checks run in ALL modes (minimal/standard/comprehensive):
+- [List agent-specific gates]
+- Same rigor, different output format
+```
+
+### Files Modified in TASK-036 (Reference)
+1. `.claude/agents/requirements-analyst.md` (+25 lines) - Lines 17-41
+2. `.claude/agents/bdd-generator.md` (+46 lines) - Lines 18-63
+3. `.claude/agents/test-orchestrator.md` (+41 lines) - Lines 18-58
+
+**View Complete Pattern**:
+```bash
+cat /Users/richardwoollcott/Projects/appmilla_github/ai-engineer/.claude/agents/requirements-analyst.md | sed -n '17,41p'
+```
+
+### Test Results from TASK-036
+- 16/16 tests passed (100%)
+- Code quality: 8.5/10
+- Architectural review: 88/100
+- Zero scope creep
+
+**Apply this exact pattern to RequireKit's 7 agents in `installer/global/agents/`**
