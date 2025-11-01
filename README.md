@@ -4,155 +4,245 @@
 
 ## Overview
 
-require-kit provides a structured approach to gathering, formalizing, and managing software requirements. It uses industry-standard EARS notation for requirements specification and generates BDD/Gherkin scenarios for testing.
+require-kit provides a structured approach to capturing, formalizing, and organizing software requirements. It uses proven methodologies including EARS notation for clear requirements, BDD/Gherkin for test specifications, and a hierarchical structure for project organization.
 
 ## Features
 
-- **Interactive Requirements Gathering**: Guided Q&A sessions to capture complete requirements
-- **EARS Notation Formalization**: Convert requirements to standardized EARS patterns
-- **BDD/Gherkin Scenario Generation**: Automatically generate testable scenarios from requirements
-- **Epic/Feature Hierarchy Management**: Organize requirements into structured hierarchies
-- **Requirements Traceability**: Clear links between epics, features, and requirements
-- **Technology Agnostic**: Works with any implementation system
+- **Interactive Requirements Gathering**: Conversational approach to capturing complete requirements
+- **EARS Notation Formalization**: Convert natural language to structured, unambiguous requirements
+- **BDD/Gherkin Scenario Generation**: Create testable scenarios from requirements
+- **Epic/Feature Hierarchy Management**: Organize requirements into logical project structures
+- **Requirements Traceability**: Clear links from epics to features to requirements
+- **Technology Agnostic**: Works with any implementation system or project management tool
 
 ## Quick Start
 
 ### Gather Requirements
 
-Interactive requirements gathering through Q&A:
+Start with an interactive Q&A session to capture requirements:
 
 ```bash
 /gather-requirements
 ```
 
+The system will guide you through questions to capture complete requirements for your feature or epic.
+
 ### Formalize with EARS
 
-Convert gathered requirements to EARS notation:
+Convert your gathered requirements into structured EARS notation:
 
 ```bash
 /formalize-ears
 ```
 
+This creates clear, unambiguous requirements following five proven patterns.
+
 ### Generate BDD Scenarios
 
-Create Gherkin scenarios from EARS requirements:
+Create testable Gherkin scenarios from your requirements:
 
 ```bash
 /generate-bdd
 ```
 
+These scenarios provide acceptance criteria and can drive test implementation.
+
 ## EARS Notation Patterns
 
-The system uses five EARS patterns for requirements:
+require-kit uses five EARS (Easy Approach to Requirements Syntax) patterns:
 
 1. **Ubiquitous**: `The [system] shall [behavior]`
+   - For requirements that always apply
+
 2. **Event-Driven**: `When [trigger], the [system] shall [response]`
+   - For requirements triggered by specific events
+
 3. **State-Driven**: `While [state], the [system] shall [behavior]`
+   - For requirements that apply in certain states
+
 4. **Unwanted Behavior**: `If [error], then the [system] shall [recovery]`
+   - For error handling and recovery requirements
+
 5. **Optional Feature**: `Where [feature], the [system] shall [behavior]`
+   - For optional or conditional features
 
 ## Epic/Feature Hierarchy
 
-Organize requirements into structured hierarchies:
+Organize your requirements hierarchically:
+
+### Create an Epic
 
 ```bash
-# Create an epic
 /epic-create "User Authentication System"
+```
 
-# Create a feature within the epic
+### Create a Feature
+
+```bash
 /feature-create "Login Functionality" epic:EPIC-001
+```
 
-# View the hierarchy
+### View Hierarchy
+
+```bash
 /hierarchy-view EPIC-001
 ```
 
-## Documentation Structure
+## Project Structure
 
 ```
 docs/
-├── requirements/         # EARS requirements
-├── epics/               # Epic specifications
-├── features/            # Feature specifications
-└── bdd/                # BDD/Gherkin scenarios
-```
+├── epics/                 # Epic specifications
+├── features/              # Feature specifications
+├── requirements/          # EARS requirements
+└── bdd/                   # BDD/Gherkin scenarios
 
-## Integration
-
-require-kit can be used standalone or integrated with task execution systems. It focuses on the specification phase of software development, providing clear, testable requirements that can feed into any implementation workflow.
-
-### Integration with Task Systems
-
-When integrated with task execution systems (like Agentecflow), require-kit provides:
-- Requirements context for task implementation
-- BDD scenarios for behavior-driven development
-- Epic/feature hierarchy for project organization
-- Traceability from requirements to implementation
-
-## Core Principles
-
-1. **Requirements First**: Every feature starts with clear EARS-notated requirements
-2. **BDD Scenarios**: Generate testable Gherkin scenarios from requirements
-3. **Traceability**: Clear links between epics, features, and requirements
-4. **Technology Agnostic**: Works with any implementation system
-5. **Human Readable**: Markdown-driven for clarity and version control
-
-## Essential Commands
-
-### Requirements Gathering
-```bash
-/gather-requirements   # Interactive Q&A
-/formalize-ears       # Convert to EARS notation
-/generate-bdd         # Generate Gherkin scenarios
-```
-
-### Epic/Feature Management
-```bash
-/epic-create "Title"                        # Create an epic
-/feature-create "Title" epic:EPIC-XXX       # Create a feature
-/hierarchy-view EPIC-XXX                    # View hierarchy
+.claude/
+├── agents/                # Specialized AI agents
+│   ├── requirements-analyst.md
+│   └── bdd-generator.md
+└── commands/              # Command specifications
 ```
 
 ## Example Workflow
 
+### 1. Gather Requirements
+
 ```bash
-# 1. Gather requirements interactively
 /gather-requirements
-
-# 2. Formalize into EARS notation
-/formalize-ears
-
-# 3. Generate BDD scenarios
-/generate-bdd
-
-# 4. Organize into epics/features
-/epic-create "User Management"
-/feature-create "Authentication" epic:EPIC-001
-
-# 5. Export to task system or use requirements directly
 ```
+
+**System**: What feature would you like to specify?
+**You**: User login functionality
+
+**System**: What triggers this feature?
+**You**: When a user enters credentials and clicks login
+
+**System**: What should happen on success?
+**You**: The user should be authenticated and redirected to dashboard
+
+### 2. Formalize with EARS
+
+```bash
+/formalize-ears
+```
+
+**Output**:
+```
+REQ-001: When a user submits valid credentials, the system shall authenticate
+         the user and redirect to the dashboard.
+
+REQ-002: If authentication fails, then the system shall display an error
+         message and remain on the login page.
+
+REQ-003: While the user is authenticated, the system shall maintain the
+         session for 24 hours.
+```
+
+### 3. Generate BDD Scenarios
+
+```bash
+/generate-bdd
+```
+
+**Output**:
+```gherkin
+Feature: User Authentication
+
+  Scenario: Successful login
+    Given a registered user with valid credentials
+    When the user submits the login form
+    Then the user should be authenticated
+    And the user should be redirected to the dashboard
+
+  Scenario: Failed login
+    Given a user with invalid credentials
+    When the user submits the login form
+    Then an error message should be displayed
+    And the user should remain on the login page
+```
+
+## Integration
+
+require-kit focuses on requirements gathering and management. It provides structured requirements that can be integrated with:
+
+- **Task Execution Systems**: Like [Agentecflow](https://github.com/yourusername/agentecflow) for complete SDLC
+- **Project Management Tools**: Jira, Linear, GitHub Projects, Azure DevOps
+- **Implementation Workflows**: Your team's development process
+- **CI/CD Pipelines**: Automated testing from BDD scenarios
+
+## Available Commands
+
+### Requirements Management
+- `/gather-requirements` - Interactive requirements gathering
+- `/formalize-ears` - Convert to EARS notation
+- `/generate-bdd` - Generate BDD scenarios
+
+### Epic Management
+- `/epic-create` - Create a new epic
+- `/epic-status` - View epic status
+- `/epic-sync` - Sync with external PM tools
+
+### Feature Management
+- `/feature-create` - Create a new feature
+- `/feature-status` - View feature status
+- `/feature-sync` - Sync with external PM tools
+
+### Hierarchy
+- `/hierarchy-view` - View epic/feature hierarchy
 
 ## Documentation
 
 - [EARS Notation Guide](docs/guides/ears-notation.md) - Understanding EARS patterns
-- [BDD Scenarios Guide](docs/guides/bdd-scenarios.md) - Creating effective scenarios
-- [Epic/Feature Hierarchy](docs/guides/epic-feature-hierarchy.md) - Organizing requirements
+- [BDD Scenarios Guide](docs/guides/bdd-scenarios.md) - Writing effective scenarios
+- [Epic/Feature Hierarchy](docs/guides/epic-feature-hierarchy.md) - Project organization
+
+## Core Principles
+
+1. **Start with Questions**: Use interactive gathering to capture complete requirements
+2. **Formalize Early**: Convert to EARS notation while context is fresh
+3. **Generate Scenarios**: Create BDD scenarios to validate understanding
+4. **Organize Logically**: Structure into meaningful epics and features
+5. **Maintain Traceability**: Always link requirements to features and epics
 
 ## Benefits
 
 ### Clear Requirements
-- **Standardized notation** (EARS) for consistency
-- **Unambiguous specifications** reduce implementation errors
-- **Testable scenarios** (BDD/Gherkin) for validation
+- Unambiguous EARS notation
+- Consistent format across projects
+- Easy to review and validate
 
-### Better Organization
-- **Epic/feature hierarchy** provides structure
-- **Traceability** from requirements to implementation
-- **Version control** friendly (markdown-based)
+### Testable Specifications
+- BDD scenarios provide acceptance criteria
+- Can drive automated testing
+- Clear definition of "done"
 
-### Team Collaboration
-- **Shared understanding** through clear requirements
-- **Stakeholder communication** via BDD scenarios
-- **Integration ready** for task systems
+### Organized Structure
+- Epic → Feature → Requirement hierarchy
+- Complete traceability
+- Easy navigation and maintenance
+
+### Technology Agnostic
+- Works with any implementation approach
+- Integrates with any project management tool
+- Supports any technology stack
+
+## Best Practices
+
+1. **Gather Requirements Interactively**: Don't skip the Q&A process - it captures crucial context
+2. **One Requirement Per Statement**: Keep EARS requirements focused and atomic
+3. **Link BDD to Requirements**: Always trace scenarios back to requirements
+4. **Review Before Implementation**: Validate requirements with stakeholders early
+5. **Update Documentation**: Keep requirements in sync with implementation changes
+
+## Contributing
+
+We welcome contributions! To add new features or improvements:
+
+1. Use `/gather-requirements` to capture your proposed feature
+2. Create EARS requirements with `/formalize-ears`
+3. Generate BDD scenarios with `/generate-bdd`
+4. Submit a PR with your changes
 
 ## License
 
@@ -160,8 +250,11 @@ MIT License - See LICENSE file for details
 
 ## Support
 
-For questions or issues, please create a GitHub issue.
+For questions or issues:
+- Create a GitHub issue
+- Check the documentation in `docs/guides/`
+- Review example requirements in `docs/requirements/`
 
 ---
 
-Built for clear, testable, traceable requirements.
+Built for clear requirements and structured specification.
