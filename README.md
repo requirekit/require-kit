@@ -1,297 +1,260 @@
-# AI Engineer - Claude Code Software Engineering Lifecycle System
+# require-kit
 
-A comprehensive, markdown-driven software engineering lifecycle system that combines EARS requirements notation, BDD/Gherkin specifications, and a unified task workflow with automatic testing and quality verification.
+**Requirements management toolkit with EARS notation, BDD scenarios, and epic/feature hierarchy.**
 
-## 🎉 New in v2.0: Unified Task Workflow
+## Overview
 
-**One command to rule them all!** The new `/task-work` command supports three development modes:
-- **Standard**: Traditional development (implementation + tests together)
-- **TDD**: Test-Driven Development (Red → Green → Refactor)
-- **BDD**: Behavior-Driven Development (Scenarios → Implementation)
+require-kit provides a structured approach to capturing, formalizing, and organizing software requirements. It uses proven methodologies including EARS notation for clear requirements, BDD/Gherkin for test specifications, and a hierarchical structure for project organization.
 
-All with automatic test execution, quality gates, and state management!
+## Features
 
-## 🚀 Quick Start
+- **Interactive Requirements Gathering**: Conversational approach to capturing complete requirements
+- **EARS Notation Formalization**: Convert natural language to structured, unambiguous requirements
+- **BDD/Gherkin Scenario Generation**: Create testable scenarios from requirements
+- **Epic/Feature Hierarchy Management**: Organize requirements into logical project structures
+- **Requirements Traceability**: Clear links from epics to features to requirements
+- **Technology Agnostic**: Works with any implementation system or project management tool
 
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/ai-engineer.git
-cd ai-engineer
+## Quick Start
 
-# Run setup
-chmod +x .claude/setup.sh
-.claude/setup.sh
+### Gather Requirements
 
-# Create your first task (in Claude Code)
-/task-create "My first feature"
-/task-work TASK-001              # This does EVERYTHING!
-```
-
-## 📋 System Overview
-
-This system provides a structured approach to software development that emphasizes:
-
-1. **Requirements First**: Every feature starts with clear EARS-notated requirements
-2. **Unified Workflow**: Single command handles implementation, testing, and verification
-3. **Development Flexibility**: Choose between Standard, TDD, or BDD approaches
-4. **Quality Built-In**: Automatic test execution and quality gate enforcement
-5. **Smart State Management**: Tasks progress automatically based on test results
-6. **Technology Agnostic**: Core methodology works across all stacks
-
-## 🔄 NEW: Simplified Development Workflow
-
-### Complete Task Lifecycle (3 Commands!)
+Start with an interactive Q&A session to capture requirements:
 
 ```bash
-# 1. Create task with requirements
-/task-create "User authentication feature" priority:high
-
-# 2. Implement with your preferred approach
-/task-work TASK-001 --mode=tdd    # or standard, or bdd
-
-# 3. Complete after review
-/task-complete TASK-001
+/gather-requirements
 ```
 
-That's it! The `/task-work` command handles:
-- ✅ Code generation based on requirements
-- ✅ Comprehensive test creation
-- ✅ Automatic test execution
-- ✅ Quality gate verification
-- ✅ State management based on results
-- ✅ Clear, actionable feedback
+The system will guide you through questions to capture complete requirements for your feature or epic.
 
-### Development Modes
+### Formalize with EARS
 
-#### Standard Mode (Default)
+Convert your gathered requirements into structured EARS notation:
+
 ```bash
-/task-work TASK-001
+/formalize-ears
 ```
-Best for straightforward features where implementation and tests are created together.
 
-#### TDD Mode
+This creates clear, unambiguous requirements following five proven patterns.
+
+### Generate BDD Scenarios
+
+Create testable Gherkin scenarios from your requirements:
+
 ```bash
-/task-work TASK-001 --mode=tdd
-```
-Follows Red-Green-Refactor cycle. Best for complex business logic.
-
-#### BDD Mode
-```bash
-/task-work TASK-001 --mode=bdd
-```
-Starts from Gherkin scenarios. Best for user-facing features.
-
-## 🏗️ Architecture
-
-```
-.claude/                    # Claude Code configuration
-├── methodology/           # Core SDLC methodology
-├── agents/               # Specialized AI agents
-│   └── task-manager.md  # NEW: Unified workflow orchestrator
-├── commands/             # Development workflow commands
-│   └── task-work.md     # NEW: Single command for everything
-├── templates/            # Reusable document templates
-├── stacks/              # Technology-specific configurations
-└── hooks/               # Automation scripts
-
-docs/                      # Project documentation
-├── requirements/         # EARS requirements
-├── bdd/                 # BDD/Gherkin scenarios
-├── adr/                 # Architecture decisions
-├── state/               # Progress tracking
-└── guides/              # User guides
-    ├── MIGRATION-GUIDE.md          # NEW: How to migrate to v2.0
-    └── task-work-practical-example.md  # NEW: Real examples
-
-tasks/                     # Task management (NEW structure)
-├── backlog/             # New tasks
-├── in_progress/         # Active development
-├── in_review/           # Passed quality gates
-├── blocked/             # Failed quality gates
-└── completed/           # Finished tasks
+/generate-bdd
 ```
 
-## 📊 Automatic Quality Gates
+These scenarios provide acceptance criteria and can drive test implementation.
 
-The `/task-work` command enforces quality standards automatically:
+## EARS Notation Patterns
 
-| Gate | Threshold | Action if Failed |
-|------|-----------|-----------------|
-| Tests Pass | 100% | Task → BLOCKED |
-| Line Coverage | ≥80% | Request more tests |
-| Branch Coverage | ≥75% | Request more tests |
-| Performance | <30s | Warning only |
-
-No manual checking needed - everything is automatic!
-
-## 🔧 Task States (Automatic Management)
-
-```
-BACKLOG → IN_PROGRESS → IN_REVIEW → COMPLETED
-             ↓              ↓
-          BLOCKED        BLOCKED
-```
-
-States update automatically based on test results:
-- ✅ All quality gates pass → `IN_REVIEW`
-- ❌ Tests fail → `BLOCKED`
-- ⚠️ Coverage low → Stay in `IN_PROGRESS` with feedback
-
-## 📚 EARS Notation
-
-The system uses five EARS patterns for requirements:
+require-kit uses five EARS (Easy Approach to Requirements Syntax) patterns:
 
 1. **Ubiquitous**: `The [system] shall [behavior]`
+   - For requirements that always apply
+
 2. **Event-Driven**: `When [trigger], the [system] shall [response]`
+   - For requirements triggered by specific events
+
 3. **State-Driven**: `While [state], the [system] shall [behavior]`
+   - For requirements that apply in certain states
+
 4. **Unwanted Behavior**: `If [error], then the [system] shall [recovery]`
+   - For error handling and recovery requirements
+
 5. **Optional Feature**: `Where [feature], the [system] shall [behavior]`
+   - For optional or conditional features
 
-## 🧪 Testing Strategy (Now Automatic!)
+## Epic/Feature Hierarchy
 
-### Test Execution by Technology
-- **Python**: pytest with coverage
-- **TypeScript/JavaScript**: npm test with coverage
-- **.NET**: dotnet test with coverage
-- **Java**: mvn test with jacoco
+Organize your requirements hierarchically:
 
-All handled automatically by `/task-work`!
-
-### Development Mode Testing
-
-#### TDD Mode Testing
-1. **RED**: Generate failing tests
-2. **GREEN**: Minimal implementation
-3. **REFACTOR**: Improve with tests passing
-
-#### BDD Mode Testing
-1. Parse Gherkin scenarios
-2. Generate step definitions
-3. Implement features
-4. Verify scenarios pass
-
-## 🔧 Supported Technology Stacks
-
-- **React/TypeScript**: Vite, Vitest, Playwright
-- **Python API**: FastAPI, pytest, LangGraph
-- **.NET Microservice**: FastEndpoints, Either monad
-- **.NET MAUI**: Cross-platform mobile with MVVM
-- **Java/Spring**: Maven, JUnit, Cucumber
-
-## 📊 Example Workflow
-
-### Real-World Example: User Authentication
+### Create an Epic
 
 ```bash
-# 1. Create task
-/task-create "Implement user authentication"
-
-# 2. Work on it with TDD
-/task-work TASK-042 --mode=tdd
-
-# Output:
-# 🔴 RED Phase: Creating 8 failing tests...
-# 🟢 GREEN Phase: Implementing to pass tests...
-# 🔵 REFACTOR Phase: Improving code quality...
-# ✅ All tests passing! Coverage: 92%
-# 📊 Task moved to IN_REVIEW
-
-# 3. Complete after review
-/task-complete TASK-042
+/epic-create "User Authentication System"
 ```
 
-Total time: ~2 minutes vs ~10 minutes with old workflow!
+### Create a Feature
 
-## 🚀 Migration from v1.0
-
-If you're using the old multi-command workflow:
-
-### Old Way (7+ commands)
 ```bash
-/task-create → /task-start → /task-implement → /task-test → /task-review → /task-complete
+/feature-create "Login Functionality" epic:EPIC-001
 ```
 
-### New Way (3 commands)
+### View Hierarchy
+
 ```bash
-/task-create → /task-work → /task-complete
+/hierarchy-view EPIC-001
 ```
 
-See [Migration Guide](docs/guides/MIGRATION-GUIDE.md) for detailed instructions.
+## Project Structure
 
-## 📚 Documentation
+```
+docs/
+├── epics/                 # Epic specifications
+├── features/              # Feature specifications
+├── requirements/          # EARS requirements
+└── bdd/                   # BDD/Gherkin scenarios
 
-### Essential Guides
-- **[Quick Reference v2.0](.claude/TASK-WORKFLOW-QUICK-REFERENCE-V2.md)** - All commands at a glance
-- **[Migration Guide](docs/guides/MIGRATION-GUIDE.md)** - Moving from v1.0 to v2.0
-- **[Task Work Examples](docs/guides/task-work-practical-example.md)** - Real-world scenarios
-- **[Command Specification](.claude/commands/task-work-specification.md)** - Technical details
+.claude/
+├── agents/                # Specialized AI agents
+│   ├── requirements-analyst.md
+│   └── bdd-generator.md
+└── commands/              # Command specifications
+```
 
-### Getting Started
-- [Setup Guide](installer/SETUP_GUIDE.md) - Complete setup instructions
-- [User Guide](docs/guides/AI-ENGINEER-USER-GUIDE.md) - Comprehensive user manual
-- [Command Usage](docs/guides/COMMAND_USAGE_GUIDE.md) - All commands explained
+## Example Workflow
 
-### Architecture & Design
-- [Task System Review](docs/guides/TASK-SYSTEM-REVIEW-AND-PLAN.md) - Design decisions
-- [Project Structure](docs/PROJECT_STRUCTURE_GUIDE.md) - Directory organization
-- [Workflow Guide](docs/guides/task-creation-implementation-workflow.md) - Detailed workflows
+### 1. Gather Requirements
 
-### Stack-Specific Documentation
-- [.NET Integration](docs/guides/NET_STACKS_INTEGRATION.md) - .NET Microservice and MAUI
-- [React Patterns](installer/global/templates/react/PATTERNS.md) - Production React patterns
-- [Python Patterns](installer/global/templates/python/CLAUDE.md) - LangGraph and SSE patterns
+```bash
+/gather-requirements
+```
 
-## 🤝 Contributing
+**System**: What feature would you like to specify?
+**You**: User login functionality
 
-1. Create a task using `/task-create`
-2. Implement using `/task-work` with your preferred mode
-3. Ensure all quality gates pass (automatic!)
-4. Submit PR after task completion
+**System**: What triggers this feature?
+**You**: When a user enters credentials and clicks login
 
-## 📈 Benefits of v2.0
+**System**: What should happen on success?
+**You**: The user should be authenticated and redirected to dashboard
 
-### Developer Productivity
-- **70% fewer commands** to remember
-- **50% faster** task completion
-- **Zero** manual quality checks
+### 2. Formalize with EARS
 
-### Code Quality
-- **100%** of tasks have tests
-- **Automatic** coverage enforcement
-- **Built-in** TDD/BDD support
+```bash
+/formalize-ears
+```
 
-### Team Collaboration
-- **Clear** task states
-- **Transparent** progress tracking
-- **Consistent** quality standards
+**Output**:
+```
+REQ-001: When a user submits valid credentials, the system shall authenticate
+         the user and redirect to the dashboard.
 
-## 🔮 Future Enhancements
+REQ-002: If authentication fails, then the system shall display an error
+         message and remain on the login page.
 
-### Coming Soon
-- MCP integration for Jira/Azure DevOps/Linear
-- Advanced test failure diagnosis
-- Performance profiling
-- AI-powered test generation
+REQ-003: While the user is authenticated, the system shall maintain the
+         session for 24 hours.
+```
 
-## 📄 License
+### 3. Generate BDD Scenarios
+
+```bash
+/generate-bdd
+```
+
+**Output**:
+```gherkin
+Feature: User Authentication
+
+  Scenario: Successful login
+    Given a registered user with valid credentials
+    When the user submits the login form
+    Then the user should be authenticated
+    And the user should be redirected to the dashboard
+
+  Scenario: Failed login
+    Given a user with invalid credentials
+    When the user submits the login form
+    Then an error message should be displayed
+    And the user should remain on the login page
+```
+
+## Integration
+
+require-kit focuses on requirements gathering and management. It provides structured requirements that can be integrated with:
+
+- **Task Execution Systems**: Like [Agentecflow](https://github.com/yourusername/agentecflow) for complete SDLC
+- **Project Management Tools**: Jira, Linear, GitHub Projects, Azure DevOps
+- **Implementation Workflows**: Your team's development process
+- **CI/CD Pipelines**: Automated testing from BDD scenarios
+
+## Available Commands
+
+### Requirements Management
+- `/gather-requirements` - Interactive requirements gathering
+- `/formalize-ears` - Convert to EARS notation
+- `/generate-bdd` - Generate BDD scenarios
+
+### Epic Management
+- `/epic-create` - Create a new epic
+- `/epic-status` - View epic status
+- `/epic-sync` - Sync with external PM tools
+
+### Feature Management
+- `/feature-create` - Create a new feature
+- `/feature-status` - View feature status
+- `/feature-sync` - Sync with external PM tools
+
+### Hierarchy
+- `/hierarchy-view` - View epic/feature hierarchy
+
+## Documentation
+
+- [EARS Notation Guide](docs/guides/ears-notation.md) - Understanding EARS patterns
+- [BDD Scenarios Guide](docs/guides/bdd-scenarios.md) - Writing effective scenarios
+- [Epic/Feature Hierarchy](docs/guides/epic-feature-hierarchy.md) - Project organization
+
+## Core Principles
+
+1. **Start with Questions**: Use interactive gathering to capture complete requirements
+2. **Formalize Early**: Convert to EARS notation while context is fresh
+3. **Generate Scenarios**: Create BDD scenarios to validate understanding
+4. **Organize Logically**: Structure into meaningful epics and features
+5. **Maintain Traceability**: Always link requirements to features and epics
+
+## Benefits
+
+### Clear Requirements
+- Unambiguous EARS notation
+- Consistent format across projects
+- Easy to review and validate
+
+### Testable Specifications
+- BDD scenarios provide acceptance criteria
+- Can drive automated testing
+- Clear definition of "done"
+
+### Organized Structure
+- Epic → Feature → Requirement hierarchy
+- Complete traceability
+- Easy navigation and maintenance
+
+### Technology Agnostic
+- Works with any implementation approach
+- Integrates with any project management tool
+- Supports any technology stack
+
+## Best Practices
+
+1. **Gather Requirements Interactively**: Don't skip the Q&A process - it captures crucial context
+2. **One Requirement Per Statement**: Keep EARS requirements focused and atomic
+3. **Link BDD to Requirements**: Always trace scenarios back to requirements
+4. **Review Before Implementation**: Validate requirements with stakeholders early
+5. **Update Documentation**: Keep requirements in sync with implementation changes
+
+## Contributing
+
+We welcome contributions! To add new features or improvements:
+
+1. Use `/gather-requirements` to capture your proposed feature
+2. Create EARS requirements with `/formalize-ears`
+3. Generate BDD scenarios with `/generate-bdd`
+4. Submit a PR with your changes
+
+## License
 
 MIT License - See LICENSE file for details
 
-## 🙏 Acknowledgments
-
-- Inspired by Agent OS's markdown-driven approach
-- EARS notation by Alistair Mavin
-- BDD methodology by Dan North
-- TDD practices by Kent Beck
-
-## 📞 Support
+## Support
 
 For questions or issues:
-- Check [Quick Reference v2.0](.claude/TASK-WORKFLOW-QUICK-REFERENCE-V2.md)
-- Read [Migration Guide](docs/guides/MIGRATION-GUIDE.md)
-- See [Examples](docs/guides/task-work-practical-example.md)
 - Create a GitHub issue
+- Check the documentation in `docs/guides/`
+- Review example requirements in `docs/requirements/`
 
 ---
 
-Built with ❤️ for AI-powered software engineering - Now with unified workflow!
+Built for clear requirements and structured specification.
