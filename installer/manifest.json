@@ -1,0 +1,40 @@
+{
+  "name": "require-kit",
+  "version": "1.0.0",
+  "description": "Requirements Management Toolkit with EARS, BDD, and Epic/Feature Hierarchy",
+  "homepage": "https://github.com/yourusername/require-kit",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/require-kit.git"
+  },
+  "author": "Your Name",
+  "license": "MIT",
+  "system": {
+    "min_version": "1.0.0",
+    "api_version": "v1",
+    "install_dir": "~/.agentecflow",
+    "package_name": "require-kit",
+    "namespace": "require-kit"
+  },
+  "capabilities": [
+    "requirements-engineering",
+    "ears-notation",
+    "bdd-generation",
+    "epic-feature-hierarchy",
+    "requirements-traceability"
+  ],
+  "dependencies": {
+    "required": ["bash", "git"],
+    "optional": ["taskwright", "python3"]
+  },
+  "compatible_with": {
+    "taskwright": ">=1.0.0"
+  },
+  "integration": {
+    "taskwright": {
+      "type": "bidirectional-optional",
+      "provides": "Requirements can be linked to tasks",
+      "description": "When both installed, enable full requirements-to-implementation traceability"
+    }
+  }
+}

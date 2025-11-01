@@ -2,12 +2,14 @@
 id: REQ-003A
 title: "Update require-kit Installer for Shared Installation"
 created: 2025-10-27
-status: backlog
+status: completed
+completed_date: 2025-11-01
 priority: high
 complexity: 4
 parent_task: REQ-003
 subtasks: []
 estimated_hours: 2
+actual_hours: 2
 ---
 
 # REQ-003A: Update require-kit Installer
