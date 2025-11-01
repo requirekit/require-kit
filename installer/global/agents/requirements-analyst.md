@@ -91,7 +91,59 @@ Each requirement must be:
 - **Consistent**: Uses standard terminology
 - **Complete**: Has all necessary information
 
+## Concise Mode (TASK-019)
+
+**CRITICAL**: Check for `--concise` flag in the command. When present, generate concise requirements.
+
+### Concise Mode Guidelines
+
+When `--concise` flag is used:
+
+1. **Word Budget**: ≤500 words per requirement
+2. **Format**: Bullet points, NOT paragraphs
+3. **Focus**: What the system shall do (behavior)
+4. **Omit**: How it's implemented (technical details unless critical)
+5. **Action Verbs**: validate, generate, return, log, create, update, delete, authenticate
+6. **Avoid**:
+   - Implementation details
+   - Redundant explanations
+   - Obvious context
+   - Filler words
+   - Verbose rationale
+
+### Word Count Tracking
+
+Always display word count after requirement:
+- ✅ X/500 (within limit)
+- ⚠️  X/500 (approaching limit, 450-500 words)
+- ❌ X/500 (over limit - suggest splitting into multiple requirements)
+
+### Concise Output Example
+
+```markdown
+## REQ-042: User Authentication
+
+**Type**: Event-Driven
+**Constraint**: ≤500 words
+
+When valid credentials submitted, system shall:
+- Validate against auth service
+- Generate JWT (24h expiry)
+- Return token in response
+- Log authentication event
+
+**Acceptance Criteria**:
+- ✅ Valid credentials → JWT token
+- ✅ Invalid credentials → 401 error
+- ✅ Token expires after 24h
+- ✅ All auth events logged
+
+**Word Count**: 47/500 ✅
+```
+
 ## Output Format
+
+### Standard Mode (Default - No --concise flag)
 
 ```markdown
 ---
@@ -123,6 +175,32 @@ updated: YYYY-MM-DD
 
 ## Notes
 [Additional context or constraints]
+```
+
+### Concise Mode (With --concise flag)
+
+```markdown
+---
+id: REQ-XXX
+type: [ubiquitous|event-driven|state-driven|unwanted|optional]
+priority: [high|medium|low]
+epic: EPIC-XXX
+feature: FEAT-XXX
+---
+
+# Requirement: [Short Title]
+
+**Type**: [EARS pattern type]
+**Constraint**: ≤500 words
+
+[EARS statement using bullet points]
+
+**Acceptance Criteria**:
+- ✅ [Criterion 1]
+- ✅ [Criterion 2]
+- ✅ [Criterion 3]
+
+**Word Count**: X/500 [✅ or ⚠️ or ❌]
 ```
 
 ## Common Patterns by Domain
