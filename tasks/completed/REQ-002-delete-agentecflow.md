@@ -2,16 +2,19 @@
 id: REQ-002
 title: "Delete Agentecflow Features from require-kit"
 created: 2025-10-27
-status: backlog
+status: completed
+completed: 2025-11-01
 priority: high
 complexity: 6
 parent_task: none
 subtasks:
-  - REQ-002A
-  - REQ-002B
-  - REQ-002C
-  - REQ-002D
-  - REQ-002E
+  - REQ-002A (completed)
+  - REQ-002B (completed)
+  - REQ-002C (completed)
+  - REQ-002D (completed)
+  - REQ-002E (completed)
+estimated_hours: 3.5
+actual_hours: 3.0
 ---
 
 # REQ-002: Delete Agentecflow Features from require-kit
