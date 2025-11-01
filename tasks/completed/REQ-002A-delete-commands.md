@@ -2,12 +2,14 @@
 id: REQ-002A
 title: "Delete Task Execution Commands"
 created: 2025-10-27
-status: backlog
+status: completed
+completed: 2025-11-01
 priority: high
 complexity: 3
 parent_task: REQ-002
 subtasks: []
 estimated_hours: 0.5
+actual_hours: 0.25
 ---
 
 # REQ-002A: Delete Task Execution Commands
@@ -108,12 +110,12 @@ Check `feature-generate-tasks.md`:
 
 ## Acceptance Criteria
 
-- [ ] 11-12 task execution/UX commands deleted
-- [ ] 11-12 requirements commands remain
-- [ ] No task-create, task-work, task-complete, etc.
-- [ ] No figma-to-react, zeplin-to-maui
-- [ ] Only requirements/epic/feature commands remain
-- [ ] Verification tests pass
+- [x] 11 task execution/UX commands deleted (task-create, task-work, task-complete, task-status, task-refine, task-sync, debug, figma-to-react, zeplin-to-maui, mcp-zeplin, portfolio-dashboard)
+- [x] 12 requirements commands remain
+- [x] No task-create, task-work, task-complete, etc.
+- [x] No figma-to-react, zeplin-to-maui
+- [x] Only requirements/epic/feature commands remain
+- [x] Verification tests pass
 
 ## Estimated Time
 
