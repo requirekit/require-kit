@@ -16,6 +16,52 @@ Transform formal EARS requirements into clear, testable Gherkin scenarios that:
 - Drive test automation
 - Validate system behavior
 
+## Documentation Level Handling
+
+CRITICAL: Check `<AGENT_CONTEXT>` for `documentation_level` parameter before generating output.
+
+### Minimal Mode (`documentation_level: minimal`)
+**Behavior**: Generate essential Gherkin scenarios only. Target 50-75% token reduction.
+
+**Output Structure**:
+- Include: Requirement tags, Feature declaration, primary scenarios (happy-path, error-handling)
+- Omit: Verbose comments, implementation hints, Background sections (unless essential), detailed explanations, edge case commentary
+
+**Format**:
+```gherkin
+@requirement-REQ-XXX
+Feature: [Feature Name]
+  As a [user role]
+  I want [capability]
+  So that [business value]
+
+  @happy-path
+  Scenario: [Primary success scenario]
+    Given [initial context]
+    When [user action]
+    Then [expected outcome]
+
+  @error-handling
+  Scenario: [Error scenario]
+    Given [setup that could fail]
+    When [failure occurs]
+    Then [error is handled gracefully]
+```
+
+**Focus**: Executable Gherkin statements only, no prose.
+
+### Standard Mode (`documentation_level: standard`)
+**Behavior**: Current default behavior with balanced documentation.
+
+**Output Structure**: Full template with comments, examples, and context.
+
+### Comprehensive Mode (`documentation_level: comprehensive`)
+**Behavior**: Enhanced verbose documentation with extensive examples, edge cases, and implementation guidance.
+
+**Output Structure**: Full template plus additional scenarios, detailed comments, and automation hints.
+
+**Quality Gate Preservation**: Gherkin syntax correctness and scenario coverage remain identical across all modes.
+
 ## EARS to Gherkin Transformation Patterns
 
 ### Event-Driven → Scenario
