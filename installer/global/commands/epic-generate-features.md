@@ -1,6 +1,6 @@
 # Epic Generate Features - Auto-Generate Features from Epic Requirements
 
-Automatically generate feature breakdown from epic business objectives, requirements, and success criteria for seamless transition from Stage 1 (Specification) to Stage 2 (Tasks Definition) in the Agentecflow workflow.
+Automatically generate feature breakdown from epic business objectives, requirements, and success criteria for seamless transition from requirements gathering to task definition. For task execution, see taskwright.
 
 ## Usage
 ```bash
@@ -370,14 +370,14 @@ Before finalizing features:
 - ✅ **Dependency Analysis**: Feature dependencies identified
 - ✅ **Team Capacity**: Features match available team size
 
-## Agentecflow Stage 1-2 Integration
+## Workflow Integration
 
 ### Human Checkpoint Integration
 ```bash
-# Generate features for review (Stage 1 checkpoint)
+# Generate features for review
 /epic-generate-features EPIC-001 --for-review
 
-# Approve and finalize features (proceed to Stage 2)
+# Approve and finalize features
 /epic-generate-features EPIC-001 --approve --export
 
 # Reject and regenerate
@@ -569,4 +569,4 @@ Recommendations:
 4. Increase team size or extend timeline
 ```
 
-This command bridges the critical gap between **Stage 1: Specification** (epic creation) and **Stage 2: Tasks Definition** (feature → task breakdown) in the Agentecflow workflow, ensuring comprehensive feature coverage while maintaining full integration with external PM tools.
+This command bridges the critical gap between requirements gathering (epic creation) and task definition (feature → task breakdown), ensuring comprehensive feature coverage while maintaining full integration with external PM tools. For task execution, see taskwright.

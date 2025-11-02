@@ -1,6 +1,6 @@
 # Hierarchy View - Visual Project Structure and Progress
 
-Comprehensive visualization of the Epic → Feature → Task hierarchy with progress tracking, dependency mapping, and Agentecflow workflow integration.
+Comprehensive visualization of the Epic → Feature → Task hierarchy with progress tracking, dependency mapping, and integration with external tools.
 
 ## Usage
 ```bash
@@ -27,8 +27,8 @@ Comprehensive visualization of the Epic → Feature → Task hierarchy with prog
 # Dependency mapping
 /hierarchy-view --dependencies
 
-# Agentecflow workflow status
-/hierarchy-view --agentecflow
+# Workflow status
+/hierarchy-view --workflow
 
 # External tool integration view
 /hierarchy-view --external-tools
@@ -215,24 +215,24 @@ External Dependencies: 2 (payment provider, mobile framework)
 4. Consider splitting TASK-017 to reduce blocking impact
 ```
 
-### Agentecflow Workflow Integration
+### Requirements Management Workflow Integration
 ```bash
-/hierarchy-view --agentecflow
+/hierarchy-view --workflow
 
-🔄 Agentecflow Workflow Status Overview
+🔄 Requirements Management Workflow Status Overview
 
 📊 Stage Distribution Across Hierarchy
 ┌─────────────────────────────────────────────────────────────────────────────────┐
-│                     AGENTECFLOW STAGE DISTRIBUTION                              │
+│                     REQUIREMENTS MANAGEMENT STAGE DISTRIBUTION                   │
 └─────────────────────────────────────────────────────────────────────────────────┘
 
-📋 Stage 1: Specification (100% Complete) ✅
+📋 Stage 1: Requirements Gathering (100% Complete) ✅
 ├── Epic specifications: 3/3 complete
 ├── Feature specifications: 6/6 complete
-├── Requirements documentation: 100% complete
+├── EARS requirements: 100% documented
 └── Human checkpoint: All specifications approved ✅
 
-📋 Stage 2: Tasks Definition (90% Complete) 🔄
+📋 Stage 2: Task Definition (90% Complete) 🔄
 ├── Task generation: 26/26 tasks created ✅
 ├── EARS requirements: 100% linked ✅
 ├── BDD scenarios: 85% coverage (22/26 tasks)
@@ -240,46 +240,46 @@ External Dependencies: 2 (payment provider, mobile framework)
 ├── PM tool export: 90% complete (Linear pending)
 └── Human checkpoint: 24/26 tasks approved ✅
 
-📋 Stage 3: Engineering (67% Complete) 🔄
+📋 Stage 3: Execution (67% Complete) 🔄
 ├── Implementation progress: 67% average
-├── Code quality gates: 95% pass rate ✅
+├── Quality gates: 95% pass rate ✅
 ├── Test coverage: 88% average ✅
-├── AI/Human collaboration: Active (60% human, 40% AI)
+├── Collaboration: Active (60% human, 40% AI)
 ├── External tool sync: 90% healthy
-└── Stage 3 → 4 readiness: 12/26 tasks ready
+└── Execution readiness: 12/26 tasks ready
 
-📋 Stage 4: Deployment & QA (35% Complete) ⏳
-├── Deployment-ready tasks: 12/26 (46%)
-├── QA testing: 8/12 completed tasks tested
-├── Production deployments: 6/12 deployed
-├── User acceptance: 4/6 deployed features validated
-└── Human checkpoint: QA approval pending for 4 tasks
+📋 Stage 4: Validation & Completion (35% Complete) ⏳
+├── Ready for completion: 12/26 (46%)
+├── Testing: 8/12 completed tasks verified
+├── Deployment: 6/12 deployed
+├── Acceptance: 4/6 deployed features validated
+└── Human checkpoint: Completion approval pending for 4 tasks
 
 🎯 Workflow Health by Epic
-EPIC-001: Stage 3 → Stage 4 (78% in engineering, 45% deployment-ready)
-├── 8/10 tasks in Stage 3 (implementation)
-├── 5/10 tasks ready for Stage 4 (deployment)
+EPIC-001: Execution → Completion (78% in execution, 45% completion-ready)
+├── 8/10 tasks in execution phase
+├── 5/10 tasks ready for completion
 └── Workflow status: Healthy ✅
 
-EPIC-002: Stage 2 → Stage 3 (34% in engineering, 15% deployment-ready)
-├── 6/8 tasks in Stage 3 (implementation)
-├── 2/8 tasks ready for Stage 4 (deployment)
+EPIC-002: Task Definition → Execution (34% in execution, 15% completion-ready)
+├── 6/8 tasks in execution phase
+├── 2/8 tasks ready for completion
 └── Workflow status: At risk ⚠️ (payment provider dependency)
 
-EPIC-003: Stage 2 → Stage 3 (15% in engineering, 0% deployment-ready)
-├── 2/8 tasks in Stage 3 (implementation)
-├── 0/8 tasks ready for Stage 4 (deployment)
+EPIC-003: Task Definition → Execution (15% in execution, 0% completion-ready)
+├── 2/8 tasks in execution phase
+├── 0/8 tasks ready for completion
 └── Workflow status: On track ✅ (early planning phase)
 
 🤝 Human Checkpoint Status
-┌─────────────┬─────────────┬─────────────┬─────────────┬─────────────┐
-│ Stage       │ Pending     │ In Review   │ Approved    │ Rejected    │
-├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
-│ Stage 1     │ 0           │ 0           │ 3           │ 0           │
-│ Stage 2     │ 2           │ 0           │ 24          │ 0           │
-│ Stage 3     │ 8           │ 6           │ 12          │ 0           │
-│ Stage 4     │ 4           │ 2           │ 6           │ 0           │
-└─────────────┴─────────────┴─────────────┴─────────────┴─────────────┘
+┌─────────────────┬─────────────┬─────────────┬─────────────┬─────────────┐
+│ Stage           │ Pending     │ In Review   │ Approved    │ Rejected    │
+├─────────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+│ Gathering       │ 0           │ 0           │ 3           │ 0           │
+│ Definition      │ 2           │ 0           │ 24          │ 0           │
+│ Execution       │ 8           │ 6           │ 12          │ 0           │
+│ Completion      │ 4           │ 2           │ 6           │ 0           │
+└─────────────────┴─────────────┴─────────────┴─────────────┴─────────────┘
 
 🔧 MCP Integration Status
 ✅ Requirements MCP: Active and healthy
@@ -526,4 +526,4 @@ Choice [1-5]: 1
 5. **Team Coordination**: Use assignee filtering for workload distribution
 6. **Stakeholder Communication**: Use executive reports for business updates
 
-This command provides comprehensive project visualization while maintaining seamless integration with the **Epic → Feature → Task hierarchy** and **Agentecflow workflow stages**.
+This command provides comprehensive project visualization while maintaining seamless integration with the **Epic → Feature → Task hierarchy** and requirements management workflow. For task execution, see taskwright.

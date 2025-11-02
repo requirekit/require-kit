@@ -1,42 +1,40 @@
-# Claude Code Software Engineering Lifecycle System
+# require-kit - Requirements Management System
 
 ## Project Context
 
-This is an AI-powered software engineering lifecycle system that uses EARS notation for requirements, BDD/Gherkin for test specifications, and markdown-driven state tracking. The system is technology-agnostic with stack-specific plugins.
+This is a requirements management toolkit that uses EARS notation for clear requirements specification, BDD/Gherkin for test scenarios, and epic/feature hierarchy for project organization. The system focuses on requirements gathering and formalization, providing outputs that integrate with any implementation system.
 
 ## Core Principles
 
-1. **Requirements First**: Every feature starts with EARS-notated requirements
-2. **Test-Driven**: BDD scenarios generated from requirements drive implementation
-3. **Quality Gates**: Automated testing and verification before completion
-4. **State Tracking**: Transparent progress monitoring through markdown
-5. **Technology Agnostic**: Core methodology works across all stacks
+1. **Requirements First**: Clear, unambiguous EARS-notated requirements
+2. **BDD Scenarios**: Generate testable Gherkin scenarios from requirements
+3. **Traceability**: Clear links between epics, features, and requirements
+4. **Technology Agnostic**: Works with any implementation system or PM tool
+5. **Human Readable**: Markdown-driven for clarity and version control
 
 ## System Philosophy
 
-- Start simple, iterate toward complexity
-- Markdown-driven for human and AI readability
-- Verification through actual test execution
-- Lightweight Architecture Decision Records
-- Comprehensive changelogs for traceability
+- Start with clear requirements using EARS notation
+- Generate testable BDD scenarios for validation
+- Organize hierarchically: Epic → Feature → Requirement
+- Maintain complete traceability
+- Stay technology agnostic - focus on specification, not implementation
 
 ## Workflow Overview
 
-1. **Gather Requirements**: Interactive Q&A sessions
-2. **Formalize with EARS**: Convert to structured notation
-3. **Generate BDD**: Create testable scenarios
-4. **Implement**: Build with tests
-5. **Verify**: Execute tests and quality gates
-6. **Track**: Update state and changelog
+1. **Gather Requirements**: Interactive Q&A sessions using `/gather-requirements`
+2. **Formalize with EARS**: Convert to structured notation using `/formalize-ears`
+3. **Generate BDD**: Create testable scenarios using `/generate-bdd`
+4. **Organize**: Structure into epics/features using epic/feature commands
+5. **Export**: Provide requirements to implementation systems
 
-## Technology Stack Detection
+## Integration
 
-The system will detect your project's technology stack and apply appropriate testing strategies:
-- React/TypeScript → Playwright + Vitest
-- Python API → pytest + pytest-bdd
-- Mobile → Platform-specific testing
-- Infrastructure → Terraform testing
+require-kit focuses on requirements management. For task execution and implementation, integrate with:
+- [taskwright](https://github.com/yourusername/taskwright) - Task execution workflow system
+- Your project management tools (Jira, Linear, GitHub Projects)
+- Your implementation workflows and CI/CD pipelines
 
 ## Getting Started
 
-Run `/gather-requirements` to begin a new feature development cycle.
+Run `/gather-requirements` to begin gathering requirements for a new feature or epic.

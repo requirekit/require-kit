@@ -1,5 +1,7 @@
 # Complete Task
 
+> **Note:** This command is part of [taskwright](https://github.com/yourusername/taskwright), the task execution system. It's included here to document the optional integration between require-kit (requirements management) and taskwright (task execution).
+
 Mark a task as complete after review approval and final verification.
 
 ## Feature Detection and Package Integration

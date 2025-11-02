@@ -71,7 +71,7 @@ This toolkit focuses on requirements gathering and management. It provides:
 - Traceability from requirements to features
 
 For task execution and implementation, integrate with:
-- [Agentecflow](https://github.com/yourusername/agentecflow) - Complete SDLC with task execution
+- [taskwright](https://github.com/yourusername/taskwright) - Task execution workflow system
 - Your project management tools (Jira, Linear, GitHub Projects)
 - Your implementation workflows and CI/CD pipelines
 

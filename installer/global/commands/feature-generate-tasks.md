@@ -1,6 +1,6 @@
 # Feature Generate Tasks - Auto-Generate Implementation Tasks from Features
 
-Automatically generate implementation tasks from feature requirements, acceptance criteria, and BDD scenarios for seamless transition from Stage 2 to Stage 3 in the Agentecflow workflow.
+Automatically generate implementation tasks from feature requirements, acceptance criteria, and BDD scenarios for seamless transition from requirements to task management. For task execution, see taskwright.
 
 ## Usage
 ```bash
@@ -372,14 +372,14 @@ Automatic documentation tasks for:
 - **User Documentation**: For UI/UX tasks
 - **Technical Documentation**: For complex implementation tasks
 
-## Agentecflow Stage 2-3 Integration
+## Workflow Integration
 
 ### Human Checkpoint Integration
 ```bash
-# Generate tasks for review (Stage 2 checkpoint)
+# Generate tasks for review
 /feature-generate-tasks FEAT-001 --for-review
 
-# Approve and finalize tasks (proceed to Stage 3)
+# Approve and finalize tasks
 /feature-generate-tasks FEAT-001 --approve --export
 
 # Reject and regenerate
@@ -629,4 +629,4 @@ Duplicate Tasks Prevented: 3
 - Epic progress rolls up from generated task completion
 - Complexity scores tracked for velocity analysis
 
-This command bridges the critical gap between **Stage 2: Tasks Definition** and **Stage 3: Engineering** in the Agentecflow workflow, ensuring comprehensive task coverage with automatic complexity management and intelligent breakdown strategies while maintaining full integration with external PM tools.
+This command bridges the critical gap between requirements management and task execution, ensuring comprehensive task coverage with automatic complexity management and intelligent breakdown strategies while maintaining full integration with external PM tools. For task execution and workflow management, use taskwright.

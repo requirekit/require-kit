@@ -266,16 +266,16 @@ Next Steps:
 3. Monitor progress: /feature-status FEAT-001
 ```
 
-## Agentecflow Integration
+## Workflow Integration
 
-### Stage 2 → Stage 3 Transition Support
+### Task Definition → Execution Transition Support
 ```bash
-/feature-sync FEAT-001 --agentecflow-bridge
+/feature-sync FEAT-001 --workflow-bridge
 
 # Output:
-🔄 Agentecflow Stage 2-3 Bridge: FEAT-001
+🔄 Workflow Bridge: FEAT-001
 
-📋 Stage 2: Tasks Definition Status
+📋 Task Definition Complete
 ✅ Feature specification complete
 ✅ Requirements traceability established
 ✅ Acceptance criteria defined (4 criteria)
@@ -290,28 +290,28 @@ Next Steps:
 👥 Human Checkpoint Status
 ✅ Feature specification approved
 ✅ Task breakdown reviewed
-🔄 Implementation in progress (54% complete)
+🔄 Task execution in progress (54% complete)
 
-🎯 Stage 3: Engineering Integration
-✅ Tasks ready for AI/human assignment
+🎯 Task Execution Integration
+✅ Tasks ready for assignment (taskwright)
 ✅ PM tools configured for progress tracking
 ✅ Quality gates defined and monitored
-🔄 Implementation actively tracked
+🔄 Execution actively tracked
 
 📊 Workflow Health Metrics
 Task Definition Completeness: 100%
 PM Tool Integration: 100%
-Implementation Progress: 54%
+Execution Progress: 54%
 Quality Gate Compliance: 85%
 
 🔄 MCP Integration Status
 ✅ Requirements MCP: Active
 ✅ PM Tools MCP: Connected and syncing
-✅ Task Management MCP: Operational
-⏳ Deployment MCP: Ready for Stage 4
+✅ Task Management MCP: Operational (taskwright)
+⏳ Validation MCP: Ready for completion
 
-✅ Stage 2-3 Bridge Healthy
-Feature ready for continued implementation
+✅ Workflow Bridge Healthy
+Feature ready for continued execution
 All external integrations operational
 Progress tracking active across tools
 ```
@@ -444,4 +444,4 @@ Features automatically inherit sync configuration from their epic where not spec
 5. **Conflict Strategy**: Choose appropriate resolution strategy per project workflow
 6. **Performance Monitoring**: Monitor sync performance and optimize for large feature sets
 
-This command ensures seamless integration between local feature management and external PM tools while maintaining the complete **Epic → Feature → Task hierarchy** and supporting the **Agentecflow Stage 2-3 transition workflow**.
+This command ensures seamless integration between local feature management and external PM tools while maintaining the complete **Epic → Feature → Task hierarchy** and supporting the requirements management to task execution workflow. For task execution, see taskwright.
