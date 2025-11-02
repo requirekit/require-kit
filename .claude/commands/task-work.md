@@ -1,5 +1,7 @@
 # Task Work - Unified Implementation Command
 
+> **Note:** This command is part of [taskwright](https://github.com/yourusername/taskwright), the task execution system. It's included here to document the optional integration between require-kit (requirements management) and taskwright (task execution).
+
 Execute complete implementation workflow including code generation, testing, and verification with support for multiple development modes.
 
 ## Feature Detection and Package Integration

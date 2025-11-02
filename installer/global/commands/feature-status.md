@@ -192,37 +192,37 @@ Linear Initiative: PROJECT-456 (67% complete)
 Sync Status: All tools current ✅
 ```
 
-### Agentecflow Integration Dashboard
+### Workflow Integration Dashboard
 ```bash
-/feature-status --agentecflow
+/feature-status --workflow
 
-🔄 Agentecflow Stage 2-3 Integration Status
+🔄 Workflow Integration Status
 
-📋 Stage 2: Tasks Definition (Feature Level)
-┌─────────────┬─────────────────────────┬─────────────┬─────────────┬─────────────┐
-│ Feature ID  │ Title                   │ Tasks Gen   │ PM Export   │ Stage 3 Ready│
-├─────────────┼─────────────────────────┼─────────────┼─────────────┼─────────────┤
-│ FEAT-001    │ User Authentication     │ ✅ Complete │ ✅ Synced   │ 🔄 In Prog  │
-│ FEAT-002    │ User Profile            │ ✅ Complete │ ✅ Synced   │ ✅ Complete │
-│ FEAT-003    │ User Permissions        │ ✅ Complete │ ⏳ Pending  │ ⏳ Waiting  │
-└─────────────┴─────────────────────────┴─────────────┴─────────────┴─────────────┘
+📋 Task Definition (Feature Level)
+┌─────────────┬─────────────────────────┬─────────────┬─────────────┬──────────────┐
+│ Feature ID  │ Title                   │ Tasks Gen   │ PM Export   │ Ready Status │
+├─────────────┼─────────────────────────┼─────────────┼─────────────┼──────────────┤
+│ FEAT-001    │ User Authentication     │ ✅ Complete │ ✅ Synced   │ 🔄 In Prog   │
+│ FEAT-002    │ User Profile            │ ✅ Complete │ ✅ Synced   │ ✅ Complete  │
+│ FEAT-003    │ User Permissions        │ ✅ Complete │ ⏳ Pending  │ ⏳ Waiting    │
+└─────────────┴─────────────────────────┴─────────────┴─────────────┴──────────────┘
 
 🎯 Human Checkpoints Status
 ✅ Feature specifications reviewed and approved
 ✅ Task definitions reviewed and approved
-🔄 Implementation in progress (FEAT-001)
+🔄 Execution in progress (FEAT-001)
 ⏳ Pending PM tool export (FEAT-003)
 
 📈 Workflow Health
-Stage 2 → Stage 3 Transition: 67% complete
+Task Definition → Execution Transition: 67% complete
 AI/Human Task Assignment: Mixed mode active
 External Tool Integration: Healthy ✅
 
 🔄 MCP Integration Status
 ✅ Requirements MCP: Active and synced
 ✅ PM Tools MCP: Connected (Jira, Linear, GitHub)
-⚠️ Deployment MCP: Pending configuration
-⏳ Testing MCP: Ready for Stage 4
+⚠️ Execution MCP: Pending configuration (taskwright)
+⏳ Validation MCP: Ready for completion
 ```
 
 ## Options
@@ -299,12 +299,12 @@ Task Weighting = Based on complexity and acceptance criteria count
 - **Health Monitoring**: Tracks API connectivity and sync frequency
 - **Automatic Recovery**: Retries failed syncs with backoff strategy
 
-### Agentecflow Workflow Integration
-Features provide critical metrics for Stage 2 → Stage 3 transition:
+### Requirements Management Workflow Integration
+Features provide critical metrics for task definition → execution transition:
 - **Task Definition Completeness**: All tasks generated and approved
 - **Human Checkpoint Status**: Approvals and review states
 - **PM Tool Readiness**: External integrations configured
-- **Implementation Readiness**: Prerequisites satisfied for coding
+- **Execution Readiness**: Prerequisites satisfied for task execution (taskwright)
 
 ## Command Variations
 
@@ -384,4 +384,4 @@ Trend: Slightly below target ⚠️
 5. **Epic Alignment**: Ensure feature progress supports epic objectives
 6. **Quality Focus**: Monitor coverage and performance metrics continuously
 
-This command provides comprehensive feature tracking while maintaining seamless integration with the **Agentecflow Stage 2: Tasks Definition** workflow and external PM tool ecosystem.
+This command provides comprehensive feature tracking while maintaining seamless integration with the task definition workflow and external PM tool ecosystem. For task execution, see taskwright.

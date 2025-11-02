@@ -25,9 +25,9 @@ Create features that decompose epics into implementable units with EARS requirem
 /feature-create "User Authentication" epic:EPIC-001 requirements:[REQ-001,REQ-002] auto-tasks:true
 ```
 
-## Feature Structure (Agentecflow Stage 2 Integration)
+## Feature Structure
 
-Creates a comprehensive feature definition optimized for the Agentecflow workflow:
+Creates a comprehensive feature definition optimized for requirements management and external PM tool integration:
 
 ```markdown
 ---
@@ -269,36 +269,36 @@ feature_mapping:
 - `sprint:X` - Target sprint number
 - `deadline:YYYY-MM-DD` - Hard deadline
 
-## Agentecflow Stage 2 Integration
+## Workflow Integration
 
-Features are central to **Stage 2: Tasks Definition** in the Agentecflow workflow:
+Features bridge requirements and implementation:
 
-### Human Checkpoint Integration
+### Review and Approval Workflow
 ```bash
 # Create feature for review
 /feature-create "User Authentication" epic:EPIC-001 requirements:[REQ-001,REQ-002]
 
 # Review and approve feature specification
-# (Human checkpoint: Does feature match expectations?)
+# (Checkpoint: Does feature match expectations?)
 
-# Generate tasks automatically after approval
+# Generate tasks automatically after approval (if using taskwright)
 /feature-generate-tasks FEAT-001
 
-# Review generated tasks before Git issue creation
-# (Human checkpoint: Are tasks appropriate?)
+# Review generated tasks
+# (Checkpoint: Are tasks appropriate?)
 
 # Export to PM tools after approval
 /feature-sync FEAT-001 --export
 ```
 
-### Specification to Code Bridge
-Features provide the critical bridge from **Stage 1: Specification** to **Stage 3: Engineering**:
+### Requirements to Implementation Bridge
+Features provide the critical connection from requirements to implementation:
 
-1. **Requirements Input**: EARS notation from specification stage
+1. **Requirements Input**: EARS notation from requirements gathering
 2. **Feature Definition**: Breakdown into implementable units
-3. **Task Generation**: Concrete implementation tasks
+3. **Task Generation**: Concrete implementation tasks (optional, via taskwright)
 4. **PM Tool Export**: Integration with project management systems
-5. **Code Generation**: Tasks ready for AI or human implementation
+5. **Implementation**: Tasks ready for execution in any workflow system
 
 ## Validation
 
@@ -356,11 +356,11 @@ Next Steps:
 4. Sync to PM tools: /feature-sync FEAT-042
 ```
 
-### Integration with Agentecflow MCPs
+### Integration Example
 ```
-🔄 Agentecflow Integration Active
+🔄 Integration Active
 
-📋 Stage 2: Tasks Definition
+📋 Feature Specification Complete
 ✅ Feature specification created
 ✅ Requirements traceability established
 ✅ Acceptance criteria defined
@@ -372,9 +372,9 @@ Next Steps:
 ✅ Linear: Feature PROJECT-457 created
 📋 GitHub: Ready for issue export
 
-🎯 Ready for Stage 3: Engineering
-All tasks ready for AI or human implementation
-Human checkpoint: Proceed with implementation?
+🎯 Ready for Implementation
+All tasks ready for execution in any workflow system
+Checkpoint: Proceed with implementation?
 ```
 
 ## File Organization
@@ -404,4 +404,4 @@ docs/
 6. **PM Tool Integration**: Export early and sync frequently
 7. **Human Checkpoints**: Review before task generation and implementation
 
-This feature management system seamlessly integrates with the **Agentecflow Stage 2: Tasks Definition** workflow, providing the critical bridge between business requirements and implementation tasks while maintaining full integration with external PM tools.
+This feature management system provides the critical bridge between business requirements and implementation tasks while maintaining full integration with external PM tools. For task execution, consider integrating with [taskwright](https://github.com/yourusername/taskwright).

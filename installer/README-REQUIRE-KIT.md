@@ -188,18 +188,17 @@ bash scripts/test-require-kit-install.sh
 - `manifest.json` - Package metadata
 - `global/lib/feature_detection.py` - Feature detection library (shared)
 
-## Comparison with Full Installer
+## Installation Options
 
-**install.sh** (full Agentecflow):
-- Installs everything (commands, agents, templates, docs)
-- Creates full ~/.agentecflow structure
-- Includes both require-kit AND taskwright
-- Used for complete Agentecflow installation
-
-**install-require-kit.sh** (require-kit only):
+**install-require-kit.sh** (require-kit standalone):
 - Installs only require-kit components
-- Uses namespaced directories
+- Uses namespaced directories in `~/.agentecflow`
 - Allows coexistence with taskwright
 - Used for require-kit as a standalone package
 
-Both can coexist - install.sh installs the full system, while install-require-kit.sh can be used to update just the require-kit portion or install require-kit standalone.
+**For taskwright installation:**
+- See [taskwright repository](https://github.com/yourusername/taskwright)
+- taskwright has its own installer for task execution features
+- Both packages can coexist in `~/.agentecflow` using namespaced directories
+
+**Note:** The configuration folder remains `~/.agentecflow` for backwards compatibility and to allow both packages to work together if installed.

@@ -166,7 +166,7 @@ Feature: User Authentication
 
 require-kit focuses on requirements gathering and management. It provides structured requirements that can be integrated with:
 
-- **Task Execution Systems**: Like [Agentecflow](https://github.com/yourusername/agentecflow) for complete SDLC
+- **Task Execution Systems**: Like [taskwright](https://github.com/yourusername/taskwright) for task workflow management
 - **Project Management Tools**: Jira, Linear, GitHub Projects, Azure DevOps
 - **Implementation Workflows**: Your team's development process
 - **CI/CD Pipelines**: Automated testing from BDD scenarios

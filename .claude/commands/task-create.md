@@ -1,5 +1,7 @@
 # Task Create - Start a New Development Task
 
+> **Note:** This command is part of [taskwright](https://github.com/yourusername/taskwright), the task execution system. It's included here to document the optional integration between require-kit (requirements management) and taskwright (task execution).
+
 Create a new task with requirements, acceptance criteria, and optional BDD scenarios.
 
 ## ⚠️ CRITICAL: Documentation Only - No Implementation! ⚠️
