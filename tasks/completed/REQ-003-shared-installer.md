@@ -1,15 +1,17 @@
 ---
 id: REQ-003
-title: "Create Shared Installer Strategy for require-kit and dev-tasker"
+title: "Create Shared Installer Strategy for require-kit and taskwright"
 created: 2025-10-27
-status: backlog
+status: completed
+completed_date: 2025-11-02
 priority: high
 complexity: 6
 parent_task: none
 subtasks:
-  - REQ-003A
-  - REQ-003B
-  - REQ-003C
+  - REQ-003A (✅ completed in this repo)
+  - REQ-003B (→ taskwright repo)
+  - REQ-003C (→ cross-repo testing)
+completion_scope: require-kit installer implementation (REQ-003A)
 ---
 
 # REQ-003: Create Shared Installer Strategy
