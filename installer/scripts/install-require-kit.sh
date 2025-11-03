@@ -213,7 +213,7 @@ check_integration_opportunities() {
         echo "  require-kit works standalone for requirements management"
         echo ""
         echo "  For full integration (link requirements to tasks):"
-        echo "  Install taskwright from: https://github.com/yourusername/taskwright"
+        echo "  Install taskwright from: https://github.com/taskwright-dev/taskwright"
     else
         echo ""
         print_success "taskwright detected - full integration available"

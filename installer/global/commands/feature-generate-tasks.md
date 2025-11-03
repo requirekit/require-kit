@@ -1,6 +1,13 @@
-# Feature Generate Tasks - Auto-Generate Implementation Tasks from Features
+# Feature Generate Tasks - Auto-Generate Implementation Task Specifications from Features
 
-Automatically generate implementation tasks from feature requirements, acceptance criteria, and BDD scenarios for seamless transition from requirements to task management. For task execution, see taskwright.
+Automatically generate task specification files from feature requirements, acceptance criteria, and BDD scenarios. Creates task markdown files with full traceability to requirements and acceptance criteria.
+
+**Standalone Operation:** This command works independently of taskwright. It creates task specification files that can be:
+- Exported to PM tools (Jira, Linear, GitHub, Azure DevOps) for team collaboration
+- Used as implementation blueprints in any development workflow
+- Executed via taskwright's task workflow system (if installed)
+
+**For task execution workflow (implementation, testing, quality gates):** Install [taskwright](https://github.com/taskwright-dev/taskwright)
 
 ## Usage
 ```bash
@@ -258,7 +265,7 @@ Task files created in: tasks/backlog/
 
 Next Steps:
 1. Review generated tasks: /feature-status FEAT-001 --tasks
-2. Begin implementation: /task-work TASK-043
+2. Begin implementation with your workflow or integrate with taskwright
 3. Export to PM tools: /feature-sync FEAT-001 --include-tasks
 4. Track progress: /feature-status FEAT-001
 ```
@@ -620,7 +627,7 @@ Duplicate Tasks Prevented: 3
 /feature-create "User Auth" epic:EPIC-001 requirements:[REQ-001,REQ-002]
 /feature-generate-tasks FEAT-001 --interactive --threshold 6
 /feature-status FEAT-001 --tasks
-/task-work TASK-043
+# Execute tasks using your workflow or taskwright integration
 ```
 
 ### Cross-Command References
@@ -629,4 +636,20 @@ Duplicate Tasks Prevented: 3
 - Epic progress rolls up from generated task completion
 - Complexity scores tracked for velocity analysis
 
-This command bridges the critical gap between requirements management and task execution, ensuring comprehensive task coverage with automatic complexity management and intelligent breakdown strategies while maintaining full integration with external PM tools. For task execution and workflow management, use taskwright.
+This command bridges the critical gap between requirements management and task specification, ensuring comprehensive task coverage with automatic complexity management and intelligent breakdown strategies while maintaining full integration with external PM tools.
+
+**What This Command Does (Standalone):**
+- ✅ Creates task specification markdown files in `tasks/backlog/`
+- ✅ Generates task IDs with proper hierarchy (TASK-001.2.01)
+- ✅ Links tasks to requirements, BDD scenarios, and acceptance criteria
+- ✅ Exports task specifications to PM tools (Jira, Linear, GitHub, etc.)
+- ✅ Provides complexity analysis and automatic task breakdown
+- ✅ Maintains full traceability from epic → feature → task → requirement
+
+**What Requires taskwright (Optional):**
+- ❌ Task execution workflow (`/task-work` command)
+- ❌ Automated testing and quality gates
+- ❌ Kanban state management (in_progress, in_review, completed)
+- ❌ Test-driven development workflow
+
+**Integration:** When both require-kit and taskwright are installed, task specifications created here flow seamlessly into the task execution workflow. Without taskwright, task specifications can still be exported to your PM tools for team collaboration.

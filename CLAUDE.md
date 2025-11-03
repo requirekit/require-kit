@@ -58,22 +58,38 @@ docs/                       # Documentation
 **Requirements Agents:**
 - **requirements-analyst**: EARS notation requirements gathering and formalization
 - **bdd-generator**: BDD/Gherkin scenario generation from requirements
-- **epic-manager**: Epic/feature hierarchy management
 
-**See**: `.claude/agents/*.md` for agent specifications.
+**Note**: Epic/feature hierarchy management is handled through slash commands (`/epic-create`, `/feature-create`, etc.) rather than a dedicated agent.
 
-## Integration
+**See**: `installer/global/agents/*.md` for agent specifications.
 
-This toolkit focuses on requirements gathering and management. It provides:
-- EARS-notated requirements for clear specification
-- BDD/Gherkin scenarios for testing
-- Epic/feature hierarchy for organization
-- Traceability from requirements to features
+## Package Status
 
-For task execution and implementation, integrate with:
-- [taskwright](https://github.com/yourusername/taskwright) - Task execution workflow system
-- Your project management tools (Jira, Linear, GitHub Projects)
-- Your implementation workflows and CI/CD pipelines
+require-kit is a **standalone requirements management toolkit** with no dependencies:
+
+- **Fully Functional Independently**: Complete requirements gathering, EARS formalization, BDD generation, and epic/feature hierarchy management
+- **No Required Dependencies**: Works entirely on its own without external packages
+- **Optional Integration**: Can optionally integrate with [taskwright](https://github.com/taskwright-dev/taskwright) for task execution workflow
+- **Bidirectional Detection**: Automatically detects taskwright if installed for enhanced workflow
+- **Technology Agnostic**: Outputs work with any implementation system or project management tool
+
+Use require-kit standalone for requirements management, or pair it with taskwright when you need task execution, quality gates, and automated testing workflows.
+
+## Integration and Standalone Use
+
+**Standalone Capabilities:**
+- ✅ EARS-notated requirements for clear specification
+- ✅ BDD/Gherkin scenarios for testing
+- ✅ Epic/feature hierarchy for organization
+- ✅ Task specification generation from features
+- ✅ Structured metadata for PM tool integration (specification ready)
+- ✅ Traceability from requirements to features
+
+**Optional Integration (No Hard Dependencies):**
+- **Task Execution**: Install [taskwright](https://github.com/yourusername/taskwright) for TDD/BDD workflow, quality gates, and automated testing
+- **PM Tools**: Epic/feature files include structured metadata ready for PM tool export. Actual API integration requires user implementation or MCP server integration
+- **CI/CD**: BDD scenarios can drive automated testing pipelines
+- **Bidirectional Detection**: Packages detect each other automatically via marker files
 
 ## System Philosophy
 
@@ -97,6 +113,7 @@ Run `/gather-requirements` to begin gathering requirements for a new feature or 
 
 ## Documentation
 
+- Integration guide: `docs/INTEGRATION-GUIDE.md` - Using with taskwright
 - Requirements stored in `docs/requirements/`
 - BDD scenarios stored in `docs/bdd/`
 - Epic specifications stored in `docs/epics/`

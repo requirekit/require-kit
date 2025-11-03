@@ -1,6 +1,8 @@
 # Epic Generate Features - Auto-Generate Features from Epic Requirements
 
-Automatically generate feature breakdown from epic business objectives, requirements, and success criteria for seamless transition from requirements gathering to task definition. For task execution, see taskwright.
+Automatically generate feature breakdown from epic business objectives, requirements, and success criteria for seamless transition from requirements gathering to feature specifications.
+
+**Standalone Operation:** This command works independently and creates feature specification files with full requirements traceability. Generated features can be exported to PM tools or used with taskwright for task execution workflow.
 
 ## Usage
 ```bash

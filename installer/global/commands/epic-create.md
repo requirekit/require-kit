@@ -279,8 +279,11 @@ docs/
 
 ### Enhanced Task Linking
 ```bash
-# Tasks can now link to epics properly
-/task-create "Login implementation" epic:EPIC-001
+# Note: Task execution requires taskwright integration
+# See INTEGRATION-GUIDE.md for setup
+
+# Tasks can link to epics (taskwright)
+# /task-create "Login implementation" epic:EPIC-001
 
 # Epic information flows down to tasks
 # External epic IDs automatically linked in task exports

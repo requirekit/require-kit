@@ -1,0 +1,81 @@
+{
+  "task_id": "TASK-036",
+  "calculated_at": "2025-11-03T11:15:00Z",
+  "total_score": 2,
+  "complexity_level": "low",
+  "review_mode": "AUTO_PROCEED",
+  "forced_review_triggers": [],
+  "factor_scores": {
+    "file_complexity": {
+      "score": 0.5,
+      "max_score": 3,
+      "details": {
+        "file_count": 2,
+        "files_to_create": 0,
+        "files_to_modify": 2,
+        "rationale": "Only 2 markdown files to modify (README.md, CLAUDE.md), both documentation-only"
+      }
+    },
+    "pattern_familiarity": {
+      "score": 0,
+      "max_score": 2,
+      "details": {
+        "patterns_identified": [],
+        "new_patterns": 0,
+        "familiar_patterns": 0,
+        "rationale": "No code patterns involved - documentation task using standard GitHub badge conventions"
+      }
+    },
+    "risk_level": {
+      "score": 0.5,
+      "max_score": 3,
+      "details": {
+        "risk_count": 1,
+        "high_risk_count": 0,
+        "medium_risk_count": 0,
+        "low_risk_count": 1,
+        "risks": [
+          {
+            "description": "Badge URLs may change if shields.io API changes",
+            "severity": "low"
+          }
+        ],
+        "rationale": "Very low risk - documentation-only changes, no code or functionality affected"
+      }
+    },
+    "dependency_complexity": {
+      "score": 1,
+      "max_score": 2,
+      "details": {
+        "external_dependencies": 1,
+        "internal_dependencies": 0,
+        "new_dependencies": 1,
+        "dependency_list": [
+          {
+            "name": "shields.io",
+            "type": "external_service",
+            "risk": "low"
+          }
+        ],
+        "rationale": "Single external service dependency (shields.io) with low risk and standard API"
+      }
+    }
+  },
+  "evaluation_context": {
+    "is_documentation_only": true,
+    "is_testing_only": false,
+    "involves_security": false,
+    "involves_database": false,
+    "involves_api_changes": false,
+    "involves_breaking_changes": false,
+    "estimated_duration_minutes": 30,
+    "estimated_loc": 20
+  },
+  "routing_decision": {
+    "review_mode": "AUTO_PROCEED",
+    "rationale": "Low complexity score (2/10) with no force-review triggers. Documentation-only task with minimal risk.",
+    "auto_proceed": true,
+    "quick_review": false,
+    "full_review": false
+  }
+}

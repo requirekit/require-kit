@@ -1,352 +1,464 @@
-# Getting Started with AI Engineer v2.0
+# Getting Started with require-kit
 
-## 🎉 Welcome to the Unified Workflow!
+**Quick Start Guide** | **Version 1.0.0**
 
-AI Engineer v2.0 introduces a revolutionary unified task workflow that combines implementation, testing, and verification into a single command with support for Standard, TDD, and BDD development modes.
+## Welcome to require-kit!
 
-## 🚀 Quick Start (3 Minutes!)
-
-### Step 1: Initialize Your Project
-```bash
-# Clone and setup
-git clone https://github.com/yourusername/ai-engineer.git
-cd ai-engineer
-chmod +x .claude/setup.sh
-.claude/setup.sh
-```
-
-### Step 2: Create Your First Task (in Claude Code)
-```bash
-# Create a task
-/task-create "Add user authentication"
-
-# Work on it (THIS DOES EVERYTHING!)
-/task-work TASK-001
-
-# Complete it
-/task-complete TASK-001
-```
-
-That's it! The `/task-work` command handles implementation, testing, and quality verification automatically.
-
-## 📚 Documentation Structure
-
-```
-docs/guides/
-├── README.md                                    # Index and navigation
-├── AI-ENGINEER-USER-GUIDE.md                   # Complete guide (START HERE!)
-├── MIGRATION-GUIDE.md                          # NEW: v1.0 to v2.0 migration
-├── task-work-practical-example.md              # NEW: Real examples
-├── TASK-WORKFLOW-QUICK-REFERENCE-V2.md         # NEW: Quick command reference
-├── KANBAN-WORKFLOW-GUIDE.md                    # Task management details
-├── COMMAND_USAGE_GUIDE.md                      # All commands reference
-└── [other guides...]
-```
-
-## 🎯 What's New in v2.0
-
-### The One Command That Does Everything
-```bash
-/task-work TASK-XXX [--mode=standard|tdd|bdd]
-```
-
-This single command replaces the old 7-step process:
-- ✅ Generates implementation
-- ✅ Creates comprehensive tests
-- ✅ Runs tests automatically
-- ✅ Checks quality gates
-- ✅ Updates task state
-- ✅ Provides actionable feedback
-
-### Three Development Modes
-
-#### Standard Mode (Default)
-```bash
-/task-work TASK-001
-```
-Traditional approach - implementation and tests together.
-
-#### TDD Mode
-```bash
-/task-work TASK-001 --mode=tdd
-```
-Red → Green → Refactor cycle for complex logic.
-
-#### BDD Mode
-```bash
-/task-work TASK-001 --mode=bdd
-```
-From Gherkin scenarios to implementation.
-
-## 🔄 The Complete Development Flow
-
-### 1. Requirements Phase
-```bash
-# Gather requirements interactively
-/gather-requirements
-
-# Formalize into EARS notation
-/formalize-ears
-
-# Generate BDD scenarios
-/generate-bdd
-```
-
-### 2. Task Phase (NEW SIMPLIFIED!)
-```bash
-# Create task
-/task-create "Feature name"
-
-# Link specifications (if needed)
-/task-link-requirements TASK-001 REQ-001
-/task-link-bdd TASK-001 BDD-001
-
-# WORK ON IT (one command!)
-/task-work TASK-001 --mode=tdd
-
-# Complete after review
-/task-complete TASK-001
-```
-
-## ✨ Key Features
-
-### Automatic Quality Gates
-| Gate | Threshold | Enforcement |
-|------|-----------|-------------|
-| Tests Pass | 100% | Required |
-| Line Coverage | ≥80% | Required |
-| Branch Coverage | ≥75% | Required |
-| Performance | <30s | Warning |
-
-### Smart State Management
-```
-Tests Pass + Coverage Good → IN_REVIEW
-Tests Fail → BLOCKED
-Coverage Low → Stay IN_PROGRESS
-```
-
-### Clear Feedback
-```
-✅ Task Work Complete - TASK-001
-Tests: 15/15 passing
-Coverage: 92%
-Status: IN_PROGRESS → IN_REVIEW
-Next: /task-complete TASK-001
-```
-
-## 💡 Real-World Example
-
-### Implementing User Authentication with TDD
-
-```bash
-# 1. Create the task
-/task-create "Implement user authentication" priority:high
-
-# 2. Link requirements (if you have them)
-/task-link-requirements TASK-042 REQ-001 REQ-002 REQ-003
-
-# 3. Work on it with TDD
-/task-work TASK-042 --mode=tdd
-
-# Claude's response:
-# 🔴 RED Phase: Creating 8 failing tests...
-#    ❌ All tests failing (expected)
-# 
-# 🟢 GREEN Phase: Implementing code...
-#    ✅ 8/8 tests passing
-#
-# 🔵 REFACTOR Phase: Improving quality...
-#    ✅ All tests still passing
-#
-# 📊 Coverage: 92%
-# ✅ Task moved to IN_REVIEW
-
-# 4. Complete the task
-/task-complete TASK-042
-```
-
-Total time: ~2 minutes (vs ~10 minutes with old workflow)
-
-## 🔧 Common Scenarios
-
-### Scenario 1: Simple Feature
-```bash
-/task-create "Add user profile page"
-/task-work TASK-050              # Standard mode by default
-/task-complete TASK-050
-```
-
-### Scenario 2: Complex Business Logic
-```bash
-/task-create "Calculate tax rates"
-/task-work TASK-051 --mode=tdd   # TDD for complex logic
-/task-complete TASK-051
-```
-
-### Scenario 3: User Story
-```bash
-/task-create "User checkout flow"
-/task-link-bdd TASK-052 BDD-001
-/task-work TASK-052 --mode=bdd   # BDD for user features
-/task-complete TASK-052
-```
-
-### Scenario 4: Bug Fix
-```bash
-/task-create "Fix login timeout" priority:critical
-/task-work TASK-053               # Quick fix
-/task-complete TASK-053
-```
-
-## 📊 Migration from v1.0
-
-If you're using the old workflow:
-
-### Old Way (7 commands)
-```bash
-/task-create
-/task-start
-/task-implement
-/task-test
-/task-review
-/task-complete
-```
-
-### New Way (3 commands)
-```bash
-/task-create
-/task-work      # Does everything!
-/task-complete
-```
-
-See [Migration Guide](MIGRATION-GUIDE.md) for details.
-
-## 🎯 Decision Tree
-
-```
-Need to implement a task?
-    ↓
-Is it user-facing with scenarios?
-    Yes → /task-work --mode=bdd
-    No ↓
-Is it complex business logic?
-    Yes → /task-work --mode=tdd
-    No → /task-work (standard)
-```
-
-## 📋 Essential Commands
-
-### Task Commands
-```bash
-/task-create "name"        # Create task
-/task-work TASK-XXX       # Implement + test + verify
-/task-complete TASK-XXX   # Mark done
-/task-status              # View board
-```
-
-### Requirements Commands
-```bash
-/gather-requirements      # Interactive Q&A
-/formalize-ears          # Create EARS
-/generate-bdd            # Create scenarios
-```
-
-### Options for task-work
-```bash
---mode=standard          # Default
---mode=tdd              # Test-driven
---mode=bdd              # Behavior-driven
---fix-only              # Just fix and test
---coverage-threshold=90 # Custom coverage
-```
-
-## 🏆 Best Practices
-
-1. **Start with requirements** - Don't skip the specification phase
-2. **Choose the right mode** - TDD for logic, BDD for features
-3. **Trust the process** - Let `/task-work` complete all phases
-4. **Fix immediately** - Use `--fix-only` for quick iterations
-5. **Keep tasks small** - 1-2 hour chunks work best
-
-## 🚦 Quality Standards
-
-All enforced automatically by `/task-work`:
-- ✅ 100% of tasks have tests
-- ✅ ≥80% code coverage
-- ✅ All tests must pass
-- ✅ Performance <30s
-- ✅ Proper documentation
-
-## 📚 Learning Path
-
-### For New Users
-1. **Read** [User Guide](AI-ENGINEER-USER-GUIDE.md) - Complete overview
-2. **Try** [Practical Examples](task-work-practical-example.md) - Real scenarios
-3. **Reference** [Quick Guide](../../.claude/TASK-WORKFLOW-QUICK-REFERENCE-V2.md) - Commands
-
-### For Existing Users
-1. **Read** [Migration Guide](MIGRATION-GUIDE.md) - What's changed
-2. **Try** new `/task-work` command - See the difference
-3. **Adopt** development modes - TDD and BDD support
-
-## 🛠 Technology Support
-
-Works with all major stacks:
-- **Python**: pytest, FastAPI, LangGraph
-- **TypeScript/React**: Vitest, Playwright
-- **.NET**: xUnit, NUnit, SpecFlow
-- **Java**: JUnit, Cucumber
-- **MAUI**: Platform testing
-
-## 💡 Key Benefits
-
-### Developer Experience
-- **70% fewer commands** to remember
-- **50% faster** task completion
-- **Zero** manual quality checks
-
-### Code Quality
-- **100%** test coverage enforcement
-- **Automatic** quality gates
-- **Built-in** TDD/BDD support
-
-### Team Collaboration
-- **Clear** task states
-- **Transparent** progress
-- **Consistent** standards
-
-## 🆘 Getting Help
-
-### Quick Help
-```bash
-/task-work --help           # Command help
-/task-work --examples       # See examples
-/task-work --mode-help=tdd  # Mode details
-```
-
-### Documentation
-- [Complete User Guide](AI-ENGINEER-USER-GUIDE.md)
-- [Migration Guide](MIGRATION-GUIDE.md)
-- [Command Reference](COMMAND_USAGE_GUIDE.md)
-- [Quick Reference](../../.claude/TASK-WORKFLOW-QUICK-REFERENCE-V2.md)
-
-### Common Issues
-| Problem | Solution |
-|---------|----------|
-| Tests failing | Use `/task-work --fix-only` |
-| Wrong mode | Re-run with different `--mode` |
-| Low coverage | Check uncovered lines |
-
-## 🎉 Start Building!
-
-You now have everything you need to use AI Engineer v2.0:
-
-1. **Create** tasks with clear requirements
-2. **Work** on them with your preferred mode
-3. **Complete** with confidence knowing quality is built-in
-
-The unified workflow ensures every piece of code is tested, verified, and ready for production.
+require-kit is a requirements management toolkit that helps you capture, formalize, and organize software requirements using proven methodologies. This guide will get you started in just a few minutes.
 
 ---
 
-*"Implementation and testing are inseparable" - Start with `/task-create` and let `/task-work` handle the rest!*
+## Table of Contents
+
+1. [Installation](#installation)
+2. [Your First Requirements Session](#your-first-requirements-session)
+3. [Understanding the Workflow](#understanding-the-workflow)
+4. [Quick Examples](#quick-examples)
+5. [Next Steps](#next-steps)
+
+---
+
+## Installation
+
+### Prerequisites
+
+- Claude Code or compatible Claude environment
+- Git (for version control of requirements)
+
+### Install require-kit
+
+```bash
+# Clone the repository
+git clone https://github.com/requirekit/require-kit.git
+cd require-kit
+
+# Run the installer
+chmod +x ./installer/scripts/install.sh
+./installer/scripts/install.sh
+```
+
+### Verify Installation
+
+```bash
+# Check that commands are available
+/gather-requirements --version
+/formalize-ears --version
+/generate-bdd --version
+
+# All should respond with require-kit version info
+```
+
+### Project Initialization
+
+```bash
+# Initialize require-kit in your project
+cd /path/to/your/project
+/require-kit init
+
+# Creates directory structure:
+# docs/
+# ├── epics/
+# ├── features/
+# ├── requirements/
+# └── bdd/
+```
+
+---
+
+## Your First Requirements Session
+
+Let's capture requirements for a simple user login feature.
+
+### Step 1: Gather Requirements (2 minutes)
+
+```bash
+/gather-requirements user-login
+```
+
+**The system will guide you through questions:**
+
+```
+Claude: Let's gather requirements for user-login. What problem are we solving?
+
+You: Users need to securely log into our application with email and password.
+
+Claude: Who will be using this feature?
+
+You: Regular users and administrators.
+
+Claude: What should happen on successful login?
+
+You: Redirect to dashboard and create a session.
+
+Claude: What should happen on failed login?
+
+You: Show an error message.
+
+Claude: Any performance requirements?
+
+You: Login should complete in under 1 second.
+
+Claude: Security requirements?
+
+You: Passwords must be hashed. Use HTTPS only.
+
+Claude: ✅ Requirements captured!
+
+Output: docs/requirements/draft/user-login.md
+```
+
+### Step 2: Formalize with EARS (1 minute)
+
+```bash
+/formalize-ears
+```
+
+**Output:**
+```
+✅ Created 5 EARS requirements:
+
+REQ-001: When a user submits valid credentials, the system shall
+         authenticate and redirect to dashboard within 1 second.
+
+REQ-002: If authentication fails, then the system shall display
+         "Invalid email or password" message.
+
+REQ-003: The system shall hash all passwords using bcrypt.
+
+REQ-004: The system shall accept authentication requests only over HTTPS.
+
+REQ-005: While a user session is active, the system shall validate
+         the session token on each request.
+
+Files: docs/requirements/REQ-001.md through REQ-005.md
+```
+
+### Step 3: Generate BDD Scenarios (1 minute)
+
+```bash
+/generate-bdd
+```
+
+**Output:**
+```
+✅ Generated BDD scenarios:
+
+Feature: User Authentication
+  Scenario: Successful login
+  Scenario: Failed login
+  Scenario: HTTPS enforcement
+  Scenario: Session validation
+
+File: docs/bdd/BDD-001-user-authentication.feature
+```
+
+### 🎉 Congratulations!
+
+You've just created complete, testable requirements in under 5 minutes:
+- ✅ 5 EARS-formatted requirements
+- ✅ 4 BDD scenarios for testing
+- ✅ Full traceability
+
+---
+
+## Understanding the Workflow
+
+### The require-kit Process
+
+```
+┌─────────────────┐
+│ 1. GATHER       │  Interactive Q&A
+│  Requirements   │  /gather-requirements
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ 2. FORMALIZE    │  Convert to EARS
+│  with EARS      │  /formalize-ears
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ 3. GENERATE     │  Create BDD scenarios
+│  BDD Scenarios  │  /generate-bdd
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ 4. ORGANIZE     │  Epic/Feature hierarchy
+│  Hierarchy      │  /epic-create, /feature-create
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ 5. EXPORT       │  PM tools or implementation
+│  Integration    │  /feature-sync --jira
+└─────────────────┘
+```
+
+### EARS Notation Patterns
+
+require-kit uses five patterns for clear requirements:
+
+1. **Ubiquitous**: `The system shall [behavior]`
+   - Always applies, no conditions
+
+2. **Event-Driven**: `When [trigger], the system shall [response]`
+   - Triggered by specific events
+
+3. **State-Driven**: `While [state], the system shall [behavior]`
+   - Applies in certain states
+
+4. **Unwanted Behavior**: `If [error], then the system shall [recovery]`
+   - Error handling
+
+5. **Optional Feature**: `Where [feature], the system shall [behavior]`
+   - Optional/conditional features
+
+---
+
+## Quick Examples
+
+### Example 1: Complete Feature Specification
+
+```bash
+# Gather requirements
+/gather-requirements shopping-cart
+
+# Answer questions about adding items, removing items, calculating totals
+
+# Formalize to EARS
+/formalize-ears
+# Output: REQ-010 through REQ-015
+
+# Generate BDD
+/generate-bdd
+# Output: BDD-002-shopping-cart.feature with scenarios
+
+# Create epic and feature
+/epic-create "E-Commerce Platform"
+/feature-create "Shopping Cart" epic:EPIC-001 requirements:[REQ-010,REQ-011,REQ-012]
+
+# View complete hierarchy
+/hierarchy-view EPIC-001
+```
+
+### Example 2: Export to Jira
+
+```bash
+# After creating requirements and features
+/feature-sync FEAT-001 --jira
+
+# Creates Jira ticket with:
+# - Feature description
+# - Requirements as acceptance criteria
+# - BDD scenarios for testing
+# - Links to epic
+```
+
+### Example 3: Multiple Features in Epic
+
+```bash
+# Create epic
+/epic-create "User Management"
+
+# Create multiple features
+/feature-create "Login" epic:EPIC-002
+/feature-create "Registration" epic:EPIC-002
+/feature-create "Password Reset" epic:EPIC-002
+
+# For each feature:
+/gather-requirements login
+/formalize-ears
+/generate-bdd
+# Repeat for registration, password reset
+
+# View complete epic
+/hierarchy-view EPIC-002
+```
+
+---
+
+## Next Steps
+
+### Learn More
+
+- **[require-kit User Guide](REQUIRE-KIT-USER-GUIDE.md)** - Comprehensive guide to all features
+- **[Command Reference](COMMAND_USAGE_GUIDE.md)** - Complete command documentation
+- **[Integration Guide](../INTEGRATION-GUIDE.md)** - Using with taskwright or PM tools
+
+### Common Workflows
+
+#### Workflow 1: Start New Project
+
+```bash
+# Initialize
+/require-kit init
+
+# Create project epic
+/epic-create "My Application"
+
+# For each major feature:
+/gather-requirements feature-name
+/formalize-ears
+/generate-bdd
+/feature-create "Feature Name" epic:EPIC-001
+```
+
+#### Workflow 2: Add Requirements to Existing Project
+
+```bash
+# Document existing functionality
+/gather-requirements existing-feature
+
+# Formalize what exists
+/formalize-ears
+
+# Create BDD for regression testing
+/generate-bdd
+
+# Organize into hierarchy
+/epic-create "Existing System"
+/feature-create "Existing Feature" epic:EPIC-001
+```
+
+#### Workflow 3: Requirements Review Cycle
+
+```bash
+# Draft requirements
+/gather-requirements proposed-feature
+
+# Formalize for review
+/formalize-ears
+
+# Share docs/requirements/ files with stakeholders
+
+# Iterate based on feedback (edit files)
+
+# Generate BDD scenarios for discussion
+/generate-bdd
+
+# Finalize and organize
+/epic-create "Feature Area"
+/feature-create "Proposed Feature" epic:EPIC-001
+```
+
+### Integration Options
+
+#### Standalone Use
+Use require-kit for requirements management, export to your preferred PM tool:
+
+```bash
+/feature-sync FEAT-001 --jira      # Export to Jira
+/feature-sync FEAT-001 --linear    # Export to Linear
+/feature-sync FEAT-001 --github    # Export to GitHub Projects
+```
+
+#### Full Integration with taskwright
+For complete requirements-to-implementation workflow with quality gates:
+
+```bash
+# Install taskwright
+cd /path/to/taskwright
+./installer/scripts/install.sh
+
+# Now use combined workflow:
+/gather-requirements          # require-kit
+/formalize-ears              # require-kit
+/generate-bdd                # require-kit
+/feature-generate-tasks FEAT-001  # require-kit generates task specs
+/task-work TASK-001          # taskwright executes with context
+
+# See Integration Guide for full details
+```
+
+### Best Practices
+
+1. **Start with Questions**: Use `/gather-requirements` - don't skip the Q&A process
+2. **Be Specific**: Include concrete numbers for performance, scalability
+3. **Cover Error Cases**: What happens when things go wrong?
+4. **Link Everything**: Maintain traceability Epic → Feature → Requirement → BDD
+5. **Version Control**: Commit requirements files with your code
+
+### Essential Commands
+
+| Command | Purpose | When to Use |
+|---------|---------|-------------|
+| `/gather-requirements` | Interactive Q&A | Start of every feature |
+| `/formalize-ears` | Convert to EARS | After gathering |
+| `/generate-bdd` | Create test scenarios | After formalizing |
+| `/epic-create` | Create epic | Organizing features |
+| `/feature-create` | Create feature | For each capability |
+| `/hierarchy-view` | View structure | Check organization |
+
+---
+
+## Getting Help
+
+### Documentation
+- **[User Guide](REQUIRE-KIT-USER-GUIDE.md)** - Complete feature documentation
+- **[Integration Guide](../INTEGRATION-GUIDE.md)** - Integration with taskwright
+- **[README](../../README.md)** - Overview and quick reference
+
+### Support
+- **GitHub Issues**: [require-kit issues](https://github.com/requirekit/require-kit/issues)
+- **Examples**: See `docs/requirements/`, `docs/bdd/` for example output
+
+### Quick Tips
+
+**Tip 1**: Requirements gathering takes 2-5 minutes per feature. Don't skip it - it saves hours later.
+
+**Tip 2**: EARS patterns make requirements unambiguous. Choose the right pattern for each requirement.
+
+**Tip 3**: BDD scenarios become your acceptance criteria and can drive automated testing.
+
+**Tip 4**: Organize early. Create your epic structure before diving into features.
+
+**Tip 5**: Use `--help` with any command for detailed usage: `/gather-requirements --help`
+
+---
+
+## What's Next?
+
+Now that you've completed your first requirements session, you can:
+
+1. **Explore Features**: Read the [User Guide](REQUIRE-KIT-USER-GUIDE.md) for advanced capabilities
+2. **Practice**: Create requirements for a real feature in your project
+3. **Export**: Try exporting to your PM tool with `/feature-sync`
+4. **Integrate**: If you need task execution, explore [taskwright integration](../INTEGRATION-GUIDE.md)
+
+---
+
+## Quick Reference
+
+### Installation
+```bash
+git clone https://github.com/requirekit/require-kit.git
+cd require-kit && ./installer/scripts/install.sh
+```
+
+### Basic Workflow
+```bash
+/gather-requirements     # Interactive Q&A
+/formalize-ears         # Convert to EARS
+/generate-bdd           # Create scenarios
+```
+
+### Organization
+```bash
+/epic-create "Name"                    # Create epic
+/feature-create "Name" epic:EPIC-XXX   # Create feature
+/hierarchy-view EPIC-XXX               # View structure
+```
+
+### Export
+```bash
+/feature-sync FEAT-XXX --jira    # Export to Jira
+/feature-sync FEAT-XXX --linear  # Export to Linear
+```
+
+---
+
+**Ready to start?** Run `/gather-requirements` and begin capturing your first feature requirements!
+
+For detailed documentation, see [REQUIRE-KIT-USER-GUIDE.md](REQUIRE-KIT-USER-GUIDE.md).

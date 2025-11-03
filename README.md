@@ -1,10 +1,28 @@
 # require-kit
 
+![Version](https://img.shields.io/badge/version-1.0.0-0366d6)
+![License](https://img.shields.io/badge/license-MIT-28a745)
+![Standalone](https://img.shields.io/badge/standalone-no%20dependencies-6f42c1)
+![Optional Integration](https://img.shields.io/badge/integration-taskwright%20optional-ffd33d)
+![Bidirectional Detection](https://img.shields.io/badge/detection-automatic-6f42c1)
+
 **Requirements management toolkit with EARS notation, BDD scenarios, and epic/feature hierarchy.**
 
 ## Overview
 
 require-kit provides a structured approach to capturing, formalizing, and organizing software requirements. It uses proven methodologies including EARS notation for clear requirements, BDD/Gherkin for test specifications, and a hierarchical structure for project organization.
+
+## Package Status
+
+require-kit is a **standalone requirements management toolkit** with no dependencies:
+
+- **Fully Functional Independently**: Complete requirements gathering, EARS formalization, BDD generation, and epic/feature hierarchy management
+- **No Required Dependencies**: Works entirely on its own without external packages
+- **Optional Integration**: Can optionally integrate with [taskwright](https://github.com/taskwright-dev/taskwright) for task execution workflow
+- **Bidirectional Detection**: Automatically detects taskwright if installed for enhanced workflow
+- **Technology Agnostic**: Outputs work with any implementation system or project management tool
+
+Use require-kit standalone for requirements management, or pair it with taskwright when you need task execution, quality gates, and automated testing workflows.
 
 ## Features
 
@@ -14,6 +32,15 @@ require-kit provides a structured approach to capturing, formalizing, and organi
 - **Epic/Feature Hierarchy Management**: Organize requirements into logical project structures
 - **Requirements Traceability**: Clear links from epics to features to requirements
 - **Technology Agnostic**: Works with any implementation system or project management tool
+
+### PM Tool Integration Status
+
+**Specification Ready**: Epic and feature files include structured frontmatter with metadata fields for PM tool integration (Jira, Linear, GitHub Projects, Azure DevOps). Command specifications define the integration patterns. Actual API integration requires:
+- User implementation of API connectors
+- MCP server for PM tool integration
+- Custom export scripts using the structured metadata
+
+The structured format makes it straightforward to build custom integrations or use MCP servers when available.
 
 ## Quick Start
 
@@ -162,14 +189,34 @@ Feature: User Authentication
     And the user should remain on the login page
 ```
 
-## Integration
+## Integration and Standalone Use
 
-require-kit focuses on requirements gathering and management. It provides structured requirements that can be integrated with:
+require-kit is a **standalone requirements management toolkit** that works independently or integrates seamlessly with other tools:
 
-- **Task Execution Systems**: Like [taskwright](https://github.com/yourusername/taskwright) for task workflow management
-- **Project Management Tools**: Jira, Linear, GitHub Projects, Azure DevOps
-- **Implementation Workflows**: Your team's development process
-- **CI/CD Pipelines**: Automated testing from BDD scenarios
+### Standalone Capabilities
+- ✅ Requirements gathering and EARS notation formalization
+- ✅ Epic/Feature hierarchy management
+- ✅ BDD/Gherkin scenario generation
+- ✅ Task specification generation from features
+- ✅ Structured metadata for PM tool integration (specification ready)
+- ✅ Requirements traceability and documentation
+
+### Optional Integration
+When you need task execution workflow (implementation, testing, quality gates):
+- **Task Execution**: Install [taskwright](https://github.com/taskwright-dev/taskwright) for TDD/BDD workflow, automated testing, and quality gates
+- **Bidirectional Detection**: Both packages detect each other automatically via marker files
+- **No Hard Dependencies**: Each package works fully independently
+
+### Integration Flow
+```
+require-kit (Standalone)          taskwright (Optional)
+├── Requirements Gathering
+├── EARS Formalization
+├── BDD Scenario Generation
+├── Epic/Feature Hierarchy
+├── Task Specifications    ─────► Task Execution (/task-work)
+└── Structured PM Metadata ─────► Quality Gates & Testing
+```
 
 ## Available Commands
 
@@ -179,20 +226,21 @@ require-kit focuses on requirements gathering and management. It provides struct
 - `/generate-bdd` - Generate BDD scenarios
 
 ### Epic Management
-- `/epic-create` - Create a new epic
-- `/epic-status` - View epic status
-- `/epic-sync` - Sync with external PM tools
+- `/epic-create` - Create a new epic with structured metadata
+- `/epic-status` - View epic status and hierarchy
+- `/epic-sync` - PM tool sync (specification provided, implementation required)
 
 ### Feature Management
-- `/feature-create` - Create a new feature
-- `/feature-status` - View feature status
-- `/feature-sync` - Sync with external PM tools
+- `/feature-create` - Create a new feature linked to epic
+- `/feature-status` - View feature status and progress
+- `/feature-sync` - PM tool sync (specification provided, implementation required)
 
 ### Hierarchy
 - `/hierarchy-view` - View epic/feature hierarchy
 
 ## Documentation
 
+- [Integration Guide](docs/INTEGRATION-GUIDE.md) - Using require-kit with taskwright
 - [EARS Notation Guide](docs/guides/ears-notation.md) - Understanding EARS patterns
 - [BDD Scenarios Guide](docs/guides/bdd-scenarios.md) - Writing effective scenarios
 - [Epic/Feature Hierarchy](docs/guides/epic-feature-hierarchy.md) - Project organization

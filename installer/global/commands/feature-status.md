@@ -336,21 +336,20 @@ Features provide critical metrics for task definition → execution transition:
 
 ### Cross-Command Navigation
 ```bash
-# From feature status to task breakdown
-/feature-status FEAT-001 → shows "Run: /task-status feature:FEAT-001"
-
 # From feature status to epic overview
 /feature-status FEAT-001 → shows "Run: /epic-status EPIC-001"
 
 # Sync management
 /feature-status FEAT-001 → shows "Run: /feature-sync FEAT-001"
+
+# Note: Task status tracking requires taskwright integration
+# See INTEGRATION-GUIDE.md for setup
 ```
 
 ### Workflow Integration
 ```bash
-# Status check before adding tasks
+# Status check and progress tracking
 /feature-status FEAT-001 --brief
-/task-create "New Task" feature:FEAT-001
 
 # Progress check before feature completion
 /feature-status FEAT-001 --completion-check
@@ -384,4 +383,6 @@ Trend: Slightly below target ⚠️
 5. **Epic Alignment**: Ensure feature progress supports epic objectives
 6. **Quality Focus**: Monitor coverage and performance metrics continuously
 
-This command provides comprehensive feature tracking while maintaining seamless integration with the task definition workflow and external PM tool ecosystem. For task execution, see taskwright.
+This command provides comprehensive feature tracking while maintaining seamless integration with the task specification workflow and external PM tool ecosystem.
+
+**Standalone:** Works without taskwright. For task execution workflow (TDD, quality gates), install taskwright.

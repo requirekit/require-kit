@@ -1,4 +1,0 @@
-# Python dependencies for AI Engineer project
-pydantic>=2.0.0
-Jinja2>=3.1.0
-python-frontmatter>=1.0.0

@@ -215,7 +215,7 @@ After generating BDD scenarios:
 1. Review scenarios with stakeholders
 2. Implement step definitions
 3. Create test data fixtures
-4. Run tests with `/execute-tests`
+4. Use test automation tools or integrate with [taskwright](https://github.com/taskwright-dev/taskwright) for execution workflows
 
 ## Best Practices
 
