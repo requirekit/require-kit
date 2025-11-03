@@ -1,227 +1,216 @@
-# AI Engineer Documentation Guides
+# require-kit Documentation Guides
 
-## 📚 Guide Index
+Welcome to the require-kit documentation! These guides will help you understand and use the requirements management toolkit that uses EARS notation for requirements, BDD/Gherkin for test specifications, and epic/feature hierarchy for organization.
 
-Welcome to the AI Engineer documentation! These guides will help you understand and use the complete **Agentecflow Enterprise Software Engineering Lifecycle System** - a comprehensive specification-driven development platform with Epic → Feature → Task hierarchy, PM tool integration, and portfolio management.
+## 📚 Core Guides
 
-## Core Guides
-
-### 🎤 [Markdown Spec-Driven Development Presentation](MARKDOWN-SPEC-DRIVEN-DEVELOPMENT-PRESENTATION.md) **NEW!**
-**Present to Your Team!** - Comprehensive presentation document explaining:
-- What is markdown spec-driven development and why we use it
-- Complete system overview with real examples
-- Key advantages: parallel development, quality gates, traceability
-- Competitive landscape (replaces 8 tools)
-- Future enhancements roadmap
-- Getting started guide for all roles
-- **Perfect for team onboarding and stakeholder presentations**
-
-### 🎯 [AI Engineer Complete User Guide](AI-ENGINEER-USER-GUIDE.md)
-**Start Here!** - Comprehensive overview of the entire system including:
-- System philosophy and architecture
-- Complete development pipeline
-- Task management with verification
-- Requirements and BDD integration
-- All commands with examples
+### 🎯 [require-kit User Guide](REQUIRE-KIT-USER-GUIDE.md) **START HERE!**
+Comprehensive overview of the entire require-kit system including:
+- System philosophy and core principles
+- Complete requirements workflow (EARS → BDD → Organization)
+- Epic and feature hierarchy management
+- All commands with detailed examples
+- PM tool integration and export
 - Best practices and troubleshooting
 
-### 📋 [Kanban Workflow Guide](KANBAN-WORKFLOW-GUIDE.md)
-Complete guide to the kanban task management system:
-- Task lifecycle and states
-- Mandatory test verification
-- File organization
-- Dashboard views
-- Quality gates
-- Workflow examples
+**Perfect for**: New users, comprehensive reference
 
-### 🔄 [Task Integration Guide](TASK-INTEGRATION-GUIDE.md)
-How tasks integrate with requirements and BDD:
-- Requirements → BDD → Tasks pipeline
-- Linking and traceability
-- Test generation from specifications
-- Coverage verification
-- Integration patterns
+### 🚀 [Getting Started](GETTING-STARTED.md)
+Quick start guide to get up and running with require-kit:
+- Installation and setup
+- Your first requirements gathering session
+- Creating epics and features
+- Understanding the workflow
+- Next steps and learning path
 
-## Reference Guides
+**Perfect for**: First-time users, quick onboarding
 
 ### 📖 [Command Usage Guide](COMMAND_USAGE_GUIDE.md)
-Detailed command reference with examples:
-- All commands with full syntax
+Detailed command reference with syntax and examples:
+- Requirements commands (/gather-requirements, /formalize-ears, /generate-bdd)
+- Epic management commands (/epic-create, /epic-status, /epic-sync)
+- Feature management commands (/feature-create, /feature-status, /feature-sync)
+- Hierarchy visualization (/hierarchy-view)
 - Complete workflow examples
-- Stack-specific commands
-- Tips and best practices
-- Troubleshooting
+- Command options and parameters
 
-### ⚡ [Quick Reference](QUICK_REFERENCE.md)
-Quick lookup for common tasks:
-- Installation commands
-- Stack features summary
-- Quality gates
-- Key patterns by stack
-- Command shortcuts
+**Perfect for**: Daily reference, command lookups
 
-## Enterprise Guides (New in v2.0)
+## 🏢 Reference Guides
 
-### 🏢 [Enterprise Features Guide](ENTERPRISE-FEATURES-GUIDE.md)
-**Complete enterprise capabilities overview:**
-- Epic → Feature → Task hierarchy management
-- PM tool integration (Jira, Linear, GitHub, Azure DevOps)
-- Portfolio dashboard and executive reporting
-- Progress rollup and stakeholder management
-- Quality gates and validation workflows
-- Agentecflow Stage 1-4 implementation
+### 🔄 [Migration Guides](MIGRATION-GUIDE.md)
+Guides for upgrading and migrating:
+- [Migration Guide](MIGRATION-GUIDE.md) - Migration guidance
+- [V2 Migration Guide](V2-MIGRATION-GUIDE.md) - Version migration
 
-### 🔄 [v2.0 Migration Guide](V2-MIGRATION-GUIDE.md)
-**Upgrade from v1.x to enterprise v2.0:**
-- Migration strategies and timelines
-- Command mapping and evolution
-- Project structure changes
-- PM tool integration setup
-- Team migration best practices
-- Troubleshooting common issues
+### 📝 [Documentation Update Summary](DOCUMENTATION-UPDATE-SUMMARY.md)
+Summary of documentation updates.
 
-## Specialized Guides
+## 🔗 Integration and Advanced Topics
 
-### 🔧 [.NET Stacks Integration](NET_STACKS_INTEGRATION.md)
-Guide for .NET development:
-- Microservice stack with FastEndpoints
-- MAUI mobile development
-- Either monad patterns
-- Integration testing
+### Integration with Other Tools
 
-### 📦 [Template Integration Summary](TEMPLATE_INTEGRATION_SUMMARY.md)
-Overview of all stack templates:
-- React with advanced patterns
-- Python with LangGraph
-- .NET microservices
-- .NET MAUI mobile
-- TypeScript API with NestJS (New)
-- Full Stack React + Python (New)
+**Standalone Use**
+- require-kit works completely standalone for requirements management
+- Generates structured markdown files with PM tool metadata
+- Provides specifications for any implementation system
 
-### 🚀 [Agentecflow Task Management](agentic-flow-task-management-with-verification.md)
-Detailed task management with verification:
-- Test verification requirements
-- Multi-language support
-- Failure handling
-- Implementation strategy
+**Integration with Task Execution**
+- Optional integration for task execution workflow
+- Bidirectional detection with compatible task systems
+- See [Integration Guide](../INTEGRATION-GUIDE.md) for combined workflow
 
-### 📝 [Task Creation Workflow](task-creation-implementation-workflow.md)
-Step-by-step task creation:
-- Creating tasks from requirements
-- Implementation workflow
-- Testing and verification
-- Completion criteria
+**PM Tool Integration (Specification Ready)**
+- Epic/feature files include structured metadata for PM tool export
+- Command specifications define integration patterns with Jira, Linear, GitHub, Azure DevOps
+- Actual API integration requires user implementation or MCP server
+- Structured output enables custom export scripts or automation
 
-## Getting Started
+## 📋 Quick Reference
 
-### For Team Presentations
-1. **Present** the **[Markdown Spec-Driven Development Presentation](MARKDOWN-SPEC-DRIVEN-DEVELOPMENT-PRESENTATION.md)** to your team
-2. Explain the advantages: parallel development, quality guarantees, tool consolidation
-3. Show the competitive landscape (replaces 8 tools, saves $10,000+/year)
+### Essential Commands
 
-### For New Users
-1. Start with the **[AI Engineer Complete User Guide](AI-ENGINEER-USER-GUIDE.md)**
-2. Review the **[Quick Reference](QUICK_REFERENCE.md)** for commands
-3. Follow the examples in **[Command Usage Guide](COMMAND_USAGE_GUIDE.md)**
-
-### For Task Management
-1. Read the **[Kanban Workflow Guide](KANBAN-WORKFLOW-GUIDE.md)**
-2. Understand **[Task Integration Guide](TASK-INTEGRATION-GUIDE.md)**
-3. Practice with examples in the guides
-
-### For Specific Stacks
-- **React**: See React sections in guides
-- **Python**: See Python sections in guides
-- **.NET**: Read **[.NET Stacks Integration](NET_STACKS_INTEGRATION.md)**
-- **MAUI**: Check MAUI sections in .NET guide
-
-## Key Concepts
-
-### The Agentecflow Pipeline
-```
-Stage 1: Requirements & Planning
-  └─ Requirements → EARS → Epics → PM Tool Export
-
-Stage 2: Feature & Task Definition
-  └─ Features → BDD → Tasks → Automatic Generation
-
-Stage 3: Engineering & Implementation
-  └─ Development → Testing → Quality Gates → Progress Rollup
-
-Stage 4: Deployment & QA
-  └─ Validation → Completion → Portfolio Metrics → Sync
-```
-
-### Core Enterprise Commands
+**Requirements Gathering**
 ```bash
-# Stage 1: Requirements & Planning
-/gather-requirements    # Interactive requirements session
-/formalize-ears        # Convert to EARS notation
-/epic-create           # Create epic with PM tool integration
-
-# Stage 2: Feature & Task Definition
-/feature-create        # Create feature with epic linkage
-/generate-bdd          # Create BDD scenarios
-/task-create           # Create implementation tasks
-
-# Stage 3: Engineering & Implementation
-/task-work             # Unified implementation + testing
-/task-status           # Monitor progress with hierarchy context
-
-# Stage 4: Deployment & QA
-/task-complete         # Complete with validation + rollup
-/hierarchy-view        # View complete project hierarchy
-/portfolio-dashboard   # Executive portfolio overview
+/gather-requirements   # Interactive Q&A for capturing requirements
+/formalize-ears       # Convert to EARS notation
+/generate-bdd         # Generate Gherkin scenarios from requirements
 ```
 
-### Quality Gates
-- **Test Coverage**: ≥80%
-- **Test Pass Rate**: 100%
-- **Performance**: <30s execution
-- **Complexity**: ≤10
-
-## System Philosophy
-
-> **"No task is complete until tests pass"**
-
-The AI Engineer system enforces quality through:
-1. **Formal specifications** (EARS requirements)
-2. **Behavioral scenarios** (BDD/Gherkin)
-3. **Mandatory verification** (tests must pass)
-4. **Full traceability** (requirements → tests → results)
-
-## Quick Links
-
-### Installation
+**Epic Management**
 ```bash
-curl -sSL https://raw.githubusercontent.com/appmilla/ai-engineer/main/installer/scripts/install.sh | bash
+/epic-create "Title"                        # Create an epic
+/epic-status EPIC-XXX                       # View epic progress
+/epic-generate-features EPIC-XXX            # Generate features from epic
+/epic-sync EPIC-XXX                         # Sync with PM tools
 ```
 
-### Initialize Project
+**Feature Management**
 ```bash
-agentecflow init [stack-name]
+/feature-create "Title" epic:EPIC-XXX       # Create a feature
+/feature-status FEAT-XXX                    # View feature progress
+/feature-generate-tasks FEAT-XXX            # Generate task specifications
+/feature-sync FEAT-XXX                      # Sync with PM tools
 ```
 
-### Start Development
+**Hierarchy and Visualization**
 ```bash
-/gather-requirements
+/hierarchy-view EPIC-XXX                    # View epic hierarchy
 ```
 
-## Support
+### EARS Notation Quick Reference
 
-For issues or questions:
-1. Check the troubleshooting sections in guides
-2. Review examples in [Command Usage Guide](COMMAND_USAGE_GUIDE.md)
-3. See recovery commands in [Kanban Workflow Guide](KANBAN-WORKFLOW-GUIDE.md)
+1. **Ubiquitous**: `The [system] shall [behavior]`
+2. **Event-Driven**: `When [trigger], the [system] shall [response]`
+3. **State-Driven**: `While [state], the [system] shall [behavior]`
+4. **Unwanted Behavior**: `If [error], then the [system] shall [recovery]`
+5. **Optional Feature**: `Where [feature], the [system] shall [behavior]`
 
-## Contributing
+## 🏗️ Project Structure
 
-To improve these guides:
-1. Follow the existing structure
-2. Include practical examples
-3. Test all commands
-4. Update the index
+```
+docs/
+├── epics/                 # Epic specifications
+├── features/              # Feature specifications
+├── requirements/          # EARS requirements
+├── bdd/                   # BDD/Gherkin scenarios
+└── guides/                # Documentation (you are here)
+
+installer/
+└── global/
+    ├── agents/            # Global agents (requirements-analyst, bdd-generator)
+    └── commands/          # Global commands (epic/feature management)
+```
+
+**Note**: `.claude/` directory is gitignored as it contains user-specific local configuration (agents, commands, settings) that varies by installation.
+
+## 🎯 Typical Workflow
+
+1. **Gather Requirements**
+   ```bash
+   /gather-requirements
+   ```
+   Interactively capture requirements through Q&A
+
+2. **Formalize with EARS**
+   ```bash
+   /formalize-ears
+   ```
+   Convert to structured EARS notation
+
+3. **Generate BDD Scenarios**
+   ```bash
+   /generate-bdd
+   ```
+   Create testable Gherkin scenarios
+
+4. **Organize into Epics**
+   ```bash
+   /epic-create "User Management System"
+   ```
+   Create strategic business initiatives
+
+5. **Create Features**
+   ```bash
+   /feature-create "User Authentication" epic:EPIC-001
+   ```
+   Bridge strategy to implementation
+
+6. **Export or Integrate**
+   - Export to PM tools for tracking
+   - Integrate with task execution systems
+   - Provide specifications to development teams
+
+## 📁 Additional Documentation
+
+- **[Integration Guide](../INTEGRATION-GUIDE.md)** - Using require-kit with task execution systems
+- **[README.md](../../README.md)** - Project overview and installation
+
+## 🔍 Finding Help
+
+### In Documentation
+1. **New to require-kit?** → [Getting Started](GETTING-STARTED.md)
+2. **Need comprehensive guide?** → [require-kit User Guide](REQUIRE-KIT-USER-GUIDE.md)
+3. **Looking up a command?** → [Command Usage Guide](COMMAND_USAGE_GUIDE.md)
+4. **Want to integrate?** → [Integration Guide](../INTEGRATION-GUIDE.md)
+
+### By Task
+- **Capturing requirements** → /gather-requirements, /formalize-ears
+- **Creating test scenarios** → /generate-bdd
+- **Organizing work** → /epic-create, /feature-create
+- **Viewing structure** → /hierarchy-view
+- **Exporting** → epic/feature commands with export: parameter
+
+## 🎓 Best Practices
+
+1. **Start with Questions**: Use `/gather-requirements` to capture complete context
+2. **Formalize Early**: Convert to EARS notation while context is fresh
+3. **Generate Scenarios**: Create BDD scenarios to validate understanding
+4. **Organize Logically**: Structure into meaningful epics and features
+5. **Maintain Traceability**: Always link requirements to features and epics
+6. **Export Regularly**: Keep PM tools synchronized with latest specifications
+
+## 📊 What require-kit Provides
+
+### ✅ Core Features
+- Requirements gathering and formalization (EARS notation)
+- BDD/Gherkin scenario generation
+- Epic and feature hierarchy management
+- Structured markdown files with PM tool metadata
+- Requirements traceability and organization
+
+### 🔌 Integration Options
+- Optional integration with task execution systems
+- PM tool metadata in structured format (ready for export implementation)
+- Bidirectional detection with compatible systems
+- Technology-agnostic specification output
+
+### 📋 PM Tool Export Status
+**Specification Ready**: Epic and feature files include structured frontmatter with fields for PM tool integration (Jira, Linear, GitHub, Azure DevOps). The command specifications define the integration patterns. Actual API integration requires:
+- User implementation of API connectors
+- MCP server for PM tool integration
+- Custom export scripts using the structured metadata
 
 ---
 
-*These guides represent a complete specification-driven development system that ensures quality through mandatory test verification at every stage.*
+*require-kit focuses on requirements management. User-specific configuration (`.claude/` directory) is gitignored - users install and configure agents/commands locally based on their needs.*

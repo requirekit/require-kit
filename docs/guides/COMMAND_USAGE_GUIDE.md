@@ -1,72 +1,273 @@
-# Complete Command Usage Guide - v2.0 Enterprise Edition
+# require-kit Command Usage Guide
 
-## 📚 Table of Contents
+**Version**: 1.0.0
+**Last Updated**: 2025-11-03
+
+## Table of Contents
+
 1. [Quick Command Reference](#quick-command-reference)
-2. [Epic Management Commands](#epic-management-commands)
-3. [Feature Management Commands](#feature-management-commands)
-4. [Enhanced Task Commands](#enhanced-task-commands)
-5. [Hierarchy and Portfolio Commands](#hierarchy-and-portfolio-commands)
-6. [Requirements and BDD Commands](#requirements-and-bdd-commands)
-7. [Stack-Specific Commands](#stack-specific-commands)
-8. [Complete Workflow Examples](#complete-workflow-examples)
+2. [Requirements Management Commands](#requirements-management-commands)
+3. [Epic Management Commands](#epic-management-commands)
+4. [Feature Management Commands](#feature-management-commands)
+5. [Hierarchy Commands](#hierarchy-commands)
+6. [Export and Integration Commands](#export-and-integration-commands)
+7. [Complete Workflow Examples](#complete-workflow-examples)
+
+---
 
 ## Quick Command Reference
 
-### Enterprise Hierarchy Commands
+### Requirements Commands
 | Command | Purpose | Example |
 |---------|---------|---------|
-| `/epic-create` | Create strategic epic with PM integration | `/epic-create "User Management" export:jira` |
-| `/epic-status` | View epic progress with feature rollup | `/epic-status EPIC-001 --hierarchy` |
-| `/epic-sync` | Sync epic with external PM tools | `/epic-sync EPIC-001 --force-push` |
-| `/feature-create` | Create feature with epic linkage | `/feature-create "Auth" epic:EPIC-001` |
-| `/feature-status` | View feature progress with tasks | `/feature-status FEAT-001 --breakdown` |
-| `/feature-sync` | Sync feature and rollup to epic | `/feature-sync FEAT-001 --rollup-progress` |
-| `/feature-generate-tasks` | Auto-generate tasks from specs | `/feature-generate-tasks FEAT-001` |
-
-### Enhanced Task Commands
-| Command | Purpose | Example |
-|---------|---------|---------|
-| `/task-create` | Create task with hierarchy context | `/task-create "Login API" feature:FEAT-001` |
-| `/task-work` | Unified implementation + testing | `/task-work TASK-001 --mode=tdd` |
-| `/task-status` | Monitor task with hierarchy context | `/task-status TASK-001 --hierarchy` |
-| `/task-sync` | Sync task with cascade rollup | `/task-sync TASK-001 --rollup-progress` |
-| `/task-complete` | Complete with validation + rollup | `/task-complete TASK-001` |
-
-### Visualization Commands
-| Command | Purpose | Example |
-|---------|---------|---------|
-| `/hierarchy-view` | View complete project hierarchy | `/hierarchy-view --mode=detailed` |
-| `/portfolio-dashboard` | Executive portfolio overview | `/portfolio-dashboard --stakeholder=executive` |
-
-### Legacy Commands (Still Supported)
-| Command | Purpose | Example |
-|---------|---------|---------|
-| `/gather-requirements` | Interactive requirements elicitation | `/gather-requirements user-auth` |
-| `/formalize-ears` | Convert to EARS notation | `/formalize-ears auth-requirements.md` |
+| `/gather-requirements` | Interactive requirements gathering | `/gather-requirements user-auth` |
+| `/formalize-ears` | Convert to EARS notation | `/formalize-ears draft/auth.md` |
 | `/generate-bdd` | Create Gherkin scenarios | `/generate-bdd REQ-001` |
+
+### Epic Management Commands
+| Command | Purpose | Example |
+|---------|---------|---------|
+| `/epic-create` | Create strategic epic | `/epic-create "User Management"` |
+| `/epic-status` | View epic progress | `/epic-status EPIC-001` |
+| `/epic-sync` | Sync with PM tools | `/epic-sync EPIC-001 --jira` |
+
+### Feature Management Commands
+| Command | Purpose | Example |
+|---------|---------|---------|
+| `/feature-create` | Create feature with epic linkage | `/feature-create "Auth" epic:EPIC-001` |
+| `/feature-status` | View feature progress | `/feature-status FEAT-001` |
+| `/feature-sync` | Sync feature with PM tools | `/feature-sync FEAT-001 --jira` |
+| `/feature-generate-tasks` | Generate task specifications | `/feature-generate-tasks FEAT-001` |
+
+### Hierarchy Commands
+| Command | Purpose | Example |
+|---------|---------|---------|
+| `/hierarchy-view` | View project hierarchy | `/hierarchy-view EPIC-001` |
+
+---
+
+## Requirements Management Commands
+
+### `/gather-requirements` - Interactive Requirements Gathering
+
+**Purpose**: Conduct guided Q&A sessions to capture complete requirements.
+
+**Basic Usage:**
+```bash
+/gather-requirements
+```
+
+**With Feature Name:**
+```bash
+/gather-requirements user-authentication
+```
+
+**With Context:**
+```bash
+/gather-requirements user-authentication --context="Web application for healthcare"
+```
+
+**Output:**
+```
+✅ Requirements Gathering Complete
+
+Captured Requirements:
+- Functional: 12 items
+- Non-Functional: 5 items
+- Security: 4 items
+- Performance: 3 items
+
+Output File: docs/requirements/draft/user-authentication.md
+
+Next Steps:
+1. Review captured requirements
+2. Formalize with /formalize-ears
+3. Generate BDD with /generate-bdd
+```
+
+**Question Categories:**
+- Problem Definition
+- User Roles and Personas
+- Functional Behavior
+- Error Handling
+- Performance Requirements
+- Security Constraints
+- Compliance Needs
+- Integration Points
+- Future Considerations
+
+### `/formalize-ears` - Convert to EARS Notation
+
+**Purpose**: Transform natural language requirements into structured EARS notation.
+
+**Basic Usage:**
+```bash
+/formalize-ears
+```
+
+**From Specific File:**
+```bash
+/formalize-ears docs/requirements/draft/user-authentication.md
+```
+
+**With Validation:**
+```bash
+/formalize-ears --validate --strict
+```
+
+**Output:**
+```
+✅ EARS Formalization Complete
+
+Generated Requirements:
+- Ubiquitous: 3 requirements
+- Event-Driven: 5 requirements
+- State-Driven: 4 requirements
+- Unwanted Behavior: 3 requirements
+- Optional Feature: 2 requirements
+
+Total: 17 EARS requirements
+
+Files Created:
+- docs/requirements/REQ-001.md through REQ-017.md
+
+Validation Results:
+✅ All requirements are atomic
+✅ All requirements are testable
+✅ All requirements have measurable criteria
+✅ No conflicts detected
+✅ Coverage complete
+
+Next Steps:
+1. Review generated EARS requirements
+2. Generate BDD scenarios: /generate-bdd
+```
+
+**EARS Patterns:**
+
+1. **Ubiquitous**: `The [system] shall [behavior]`
+```
+REQ-001: The system shall encrypt all passwords using bcrypt with cost factor 12.
+```
+
+2. **Event-Driven**: `When [trigger], the [system] shall [response]`
+```
+REQ-002: When a user submits valid credentials, the system shall authenticate
+         within 1 second and redirect to the dashboard.
+```
+
+3. **State-Driven**: `While [state], the [system] shall [behavior]`
+```
+REQ-003: While a user session is active, the system shall validate the session
+         token on each request.
+```
+
+4. **Unwanted Behavior**: `If [error], then the [system] shall [recovery]`
+```
+REQ-004: If authentication fails 3 times within 5 minutes, then the system shall
+         lock the account for 15 minutes and send a security alert email.
+```
+
+5. **Optional Feature**: `Where [feature], the [system] shall [behavior]`
+```
+REQ-005: Where the user has selected "Remember Me", the system shall maintain
+         the session for 30 days with automatic token refresh.
+```
+
+### `/generate-bdd` - Create BDD/Gherkin Scenarios
+
+**Purpose**: Generate testable Gherkin scenarios from EARS requirements.
+
+**Basic Usage:**
+```bash
+/generate-bdd
+```
+
+**For Specific Requirement:**
+```bash
+/generate-bdd REQ-001
+```
+
+**For Feature:**
+```bash
+/generate-bdd --feature FEAT-001
+```
+
+**For Epic:**
+```bash
+/generate-bdd --epic EPIC-001
+```
+
+**Output:**
+```
+✅ BDD Generation Complete
+
+Generated Scenarios:
+- Feature: User Authentication
+  - 8 scenarios (6 positive, 2 negative)
+  - Coverage: REQ-001 through REQ-005
+
+Files Created:
+- docs/bdd/BDD-001-user-authentication.feature
+
+Scenario Types:
+✅ Happy Path: 4 scenarios
+✅ Error Handling: 2 scenarios
+✅ Performance: 1 scenario
+✅ Security: 1 scenario
+
+Tags Applied:
+@requirement-REQ-XXX (links to requirements)
+@epic-EPIC-001 (links to epic)
+@feature-FEAT-001 (links to feature)
+@smoke, @critical (test priority)
+
+Next Steps:
+1. Review generated scenarios with stakeholders
+2. Export to test framework
+3. Link to features: /feature-create with bdd:[BDD-001]
+```
+
+**Example Generated Scenario:**
+```gherkin
+@epic-EPIC-001 @feature-FEAT-001 @requirement-REQ-002
+Scenario: Successful user login
+  Given a registered user with email "user@example.com"
+  And the user's password is "Valid123!"
+  When the user submits the login form
+  Then the user should be authenticated
+  And the user should be redirected to "/dashboard"
+  And a session cookie should be created
+  And the authentication should complete within 1 second
+```
+
+---
 
 ## Epic Management Commands
 
 ### `/epic-create` - Create Strategic Epic
+
+**Purpose**: Create a new epic representing a strategic initiative or major feature area.
 
 **Basic Usage:**
 ```bash
 /epic-create "User Management System"
 ```
 
-**With PM Tool Integration:**
-```bash
-/epic-create "User Management System" priority:high export:jira
-```
-
-**With Full Configuration:**
+**With Metadata:**
 ```bash
 /epic-create "User Management System" \
   priority:high \
-  export:[jira,linear] \
-  stakeholders:[pm@company.com,lead@company.com] \
   business_value:8 \
-  effort_estimate:21
+  effort_estimate:21 \
+  stakeholders:[pm@company.com,lead@company.com]
+```
+
+**With PM Tool Integration:**
+```bash
+/epic-create "User Management System" \
+  priority:high \
+  export:[jira,linear]
 ```
 
 **Output:**
@@ -78,33 +279,42 @@ Title: User Management System
 Priority: high
 Business Value: 8/10
 Effort Estimate: 21 story points
-
-🔗 External Integration
-Jira Epic: PROJ-123 (created)
-Linear Initiative: PROJECT-456 (created)
+Status: active
 
 👥 Stakeholders
 Product Owner: pm@company.com
 Tech Lead: lead@company.com
 
+🔗 External Integration
+Jira Epic: PROJ-123 (created)
+Linear Initiative: PROJECT-456 (created)
+
 📁 File Location
-epics/active/EPIC-001-user-management-system.md
+docs/epics/EPIC-001-user-management-system.md
 
 Next Steps:
 1. Create features: /feature-create "Feature Name" epic:EPIC-001
 2. Monitor progress: /epic-status EPIC-001
+3. View hierarchy: /hierarchy-view EPIC-001
 ```
 
 ### `/epic-status` - View Epic Progress
+
+**Purpose**: Monitor epic progress including feature rollup and completion metrics.
 
 **Basic Status:**
 ```bash
 /epic-status EPIC-001
 ```
 
-**With Hierarchy View:**
+**With Hierarchy:**
 ```bash
 /epic-status EPIC-001 --hierarchy
+```
+
+**With Detailed Metrics:**
+```bash
+/epic-status EPIC-001 --detailed --include-bdd
 ```
 
 **Output:**
@@ -117,21 +327,35 @@ Progress: 63% complete (5/8 features completed)
 Timeline: On track (3 days ahead of schedule)
 
 🔧 Features Progress
-✅ FEAT-001: User Authentication (100% - 4/4 tasks)
-✅ FEAT-002: Password Reset (100% - 2/2 tasks)
-🔄 FEAT-003: Role Management (75% - 3/4 tasks)
-⏳ FEAT-004: Admin Dashboard (0% - 0/5 tasks)
+✅ FEAT-001: User Authentication (100% - 5/5 requirements)
+✅ FEAT-002: Password Reset (100% - 3/3 requirements)
+🔄 FEAT-003: Role Management (75% - 3/4 requirements)
+⏳ FEAT-004: Admin Dashboard (0% - 0/6 requirements)
+
+📋 Requirements Summary
+Total: 18 requirements
+Completed: 11 (61%)
+In Progress: 3 (17%)
+Not Started: 4 (22%)
+
+🧪 BDD Scenarios
+Total: 25 scenarios
+Linked to Features: 20
+Ready for Testing: 18
 
 🔗 External Tool Status
 Jira Epic PROJ-123: In Progress (synced 2 hours ago)
 Linear Initiative PROJECT-456: Active (synced 1 hour ago)
 
 🚀 Next Actions
-1. Complete TASK-015 in Role Management
-2. Start Admin Dashboard feature planning
+1. Complete FEAT-003 remaining requirements
+2. Start FEAT-004 requirements gathering
+3. Review BDD scenarios for FEAT-003
 ```
 
 ### `/epic-sync` - Sync with PM Tools
+
+**Purpose**: Bidirectional sync of epic data with external project management tools.
 
 **Bidirectional Sync:**
 ```bash
@@ -143,14 +367,44 @@ Linear Initiative PROJECT-456: Active (synced 1 hour ago)
 /epic-sync EPIC-001 --force-push
 ```
 
-**Pull Remote Changes First:**
+**Pull Remote Changes:**
 ```bash
 /epic-sync EPIC-001 --pull-first
 ```
 
+**Sync to Specific Tool:**
+```bash
+/epic-sync EPIC-001 --jira-only
+/epic-sync EPIC-001 --linear-only
+```
+
+**Output:**
+```
+🔄 Syncing EPIC-001 with External Tools
+
+📤 Pushing to Jira (PROJ-123)
+✅ Updated epic status: In Progress
+✅ Updated progress: 63%
+✅ Synced 4 features
+✅ Updated stakeholder assignments
+
+📤 Pushing to Linear (PROJECT-456)
+✅ Updated initiative status: Active
+✅ Updated completion: 63%
+✅ Synced feature links
+
+✅ Sync Complete
+Last Sync: 2025-11-03T14:30:00Z
+Next Sync: 2025-11-03T15:30:00Z (auto)
+```
+
+---
+
 ## Feature Management Commands
 
 ### `/feature-create` - Create Feature with Epic Linkage
+
+**Purpose**: Create a feature specification linked to an epic with requirements and BDD.
 
 **Basic Usage:**
 ```bash
@@ -161,7 +415,7 @@ Linear Initiative PROJECT-456: Active (synced 1 hour ago)
 ```bash
 /feature-create "User Authentication" \
   epic:EPIC-001 \
-  requirements:[REQ-001,REQ-002] \
+  requirements:[REQ-001,REQ-002,REQ-003] \
   priority:high
 ```
 
@@ -169,7 +423,7 @@ Linear Initiative PROJECT-456: Active (synced 1 hour ago)
 ```bash
 /feature-create "User Authentication" \
   epic:EPIC-001 \
-  requirements:[REQ-001,REQ-002] \
+  requirements:[REQ-001,REQ-002,REQ-003] \
   bdd:[BDD-001] \
   export:jira \
   priority:high
@@ -186,38 +440,134 @@ Priority: high
 Status: active
 
 📑 Linked Specifications
-Requirements: REQ-001, REQ-002
-BDD Scenarios: BDD-001
+Requirements: REQ-001, REQ-002, REQ-003
+BDD Scenarios: BDD-001 (8 scenarios)
 
-🔄 Automatic Task Generation
-5 tasks generated from requirements and BDD scenarios:
-- TASK-001: Implement login endpoint
-- TASK-002: Create user registration
-- TASK-003: Add session management
-- TASK-004: Build login UI components
-- TASK-005: Write integration tests
+🔄 PM Tool Integration
+Jira Story: PROJ-124 (created)
+- User Story: From feature description
+- Acceptance Criteria: From BDD scenarios
+- Linked to Epic: PROJ-123
 
 📁 File Location
-features/active/FEAT-001-user-authentication.md
+docs/features/FEAT-001-user-authentication.md
 
 Next Steps:
-1. Review generated tasks
-2. Start implementation: /task-work TASK-001
+1. Review generated feature specification
+2. Generate task specs: /feature-generate-tasks FEAT-001
+3. Export to additional tools: /feature-sync FEAT-001 --linear
 ```
 
-### `/feature-generate-tasks` - Auto-Generate Tasks
+### `/feature-status` - View Feature Progress
 
-**Generate from EARS and BDD:**
+**Purpose**: Monitor feature progress including requirements and BDD scenario completion.
+
+**Basic Status:**
+```bash
+/feature-status FEAT-001
+```
+
+**With Requirements Breakdown:**
+```bash
+/feature-status FEAT-001 --breakdown
+```
+
+**With BDD Coverage:**
+```bash
+/feature-status FEAT-001 --bdd-coverage
+```
+
+**Output:**
+```
+📋 Feature Status: FEAT-001 - User Authentication
+
+🎯 Feature Details
+Epic: EPIC-001 - User Management System
+Status: in_progress
+Progress: 75% complete
+
+📋 Requirements Progress
+✅ REQ-001: Password Encryption [Ubiquitous] (complete)
+✅ REQ-002: Successful Login [Event-Driven] (complete)
+🔄 REQ-003: Session Management [State-Driven] (in progress)
+⏳ REQ-004: Account Lockout [Unwanted Behavior] (not started)
+
+🧪 BDD Scenario Coverage
+Total Scenarios: 8
+✅ Implemented: 6 (75%)
+🔄 In Progress: 1 (13%)
+⏳ Not Started: 1 (12%)
+
+Scenarios by Type:
+- Happy Path: 4/4 complete
+- Error Handling: 1/2 complete
+- Security: 1/1 complete
+- Performance: 0/1 complete
+
+🔗 Traceability
+Epic → Feature → Requirements → BDD: Complete
+External Links: Jira PROJ-124, Linear ISS-456
+
+⏭️ Next Steps
+1. Complete REQ-003 specification
+2. Start REQ-004 implementation planning
+3. Implement remaining BDD scenario
+```
+
+### `/feature-sync` - Sync with PM Tools
+
+**Purpose**: Sync feature and requirements with external project management tools.
+
+**Basic Sync:**
+```bash
+/feature-sync FEAT-001
+```
+
+**With Progress Rollup:**
+```bash
+/feature-sync FEAT-001 --rollup-progress
+```
+
+**To Specific Tool:**
+```bash
+/feature-sync FEAT-001 --jira
+/feature-sync FEAT-001 --linear
+/feature-sync FEAT-001 --github
+```
+
+**Output:**
+```
+🔄 Syncing FEAT-001 with PM Tools
+
+📤 Exporting to Jira
+✅ Updated story: PROJ-124
+✅ Status: In Progress
+✅ Progress: 75%
+✅ Updated acceptance criteria from BDD-001
+✅ Linked 4 requirements as subtasks
+
+📤 Exporting to Linear
+✅ Updated issue: ISS-456
+✅ Status: In Progress
+✅ Progress: 75%
+
+📈 Rolling up to Epic
+✅ Updated EPIC-001 progress
+✅ Recalculated epic completion: 58% → 63%
+
+✅ Sync Complete
+```
+
+### `/feature-generate-tasks` - Generate Task Specifications
+
+**Purpose**: Auto-generate task specifications from feature requirements and BDD scenarios.
+
+**Basic Generation:**
 ```bash
 /feature-generate-tasks FEAT-001
 ```
 
-**Interactive Generation:**
-```bash
-/feature-generate-tasks FEAT-001 --interactive
-```
-
-**With Custom Parameters:**
+**With Parameters:**
 ```bash
 /feature-generate-tasks FEAT-001 \
   --max-tasks=8 \
@@ -225,1127 +575,400 @@ Next Steps:
   --epic-context
 ```
 
-## Enhanced Task Commands
-
-### `/task-work` - Unified Implementation Workflow
-
-**Standard Mode (Default):**
+**Interactive Mode:**
 ```bash
-/task-work TASK-001
-```
-
-**Test-Driven Development:**
-```bash
-/task-work TASK-001 --mode=tdd
-```
-
-**Behavior-Driven Development:**
-```bash
-/task-work TASK-001 --mode=bdd
-```
-
-**With Coverage Threshold:**
-```bash
-/task-work TASK-001 --mode=tdd --coverage-threshold=90
-```
-
-**Output (TDD Mode):**
-```
-🔄 Starting Task: TASK-001 - Implement login endpoint
-Mode: Test-Driven Development (TDD)
-
-📊 TDD Cycle 1: RED
-✅ Created failing test: test_login_endpoint_validation
-❌ Test Status: FAILING (expected)
-
-📊 TDD Cycle 1: GREEN
-✅ Implemented: LoginEndpoint.authenticate()
-✅ Test Status: PASSING
-
-📊 TDD Cycle 1: REFACTOR
-✅ Refactored: Extracted validation logic
-✅ All tests still passing
-
-🎯 Quality Gates
-✅ Test Coverage: 92% (threshold: 80%)
-✅ All Tests Passing: 15/15
-✅ Code Complexity: 7 (limit: 10)
-✅ Type Checking: Passed
-
-📈 Progress Update
-Task: TASK-001 → IN_REVIEW
-Feature: FEAT-001 → 60% complete (3/5 tasks)
-Epic: EPIC-001 → 47% complete
-```
-
-### `/task-status` - Monitor with Hierarchy Context
-
-**Basic Status:**
-```bash
-/task-status TASK-001
-```
-
-**With Hierarchy Context:**
-```bash
-/task-status TASK-001 --hierarchy
+/feature-generate-tasks FEAT-001 --interactive
 ```
 
 **Output:**
 ```
-📋 Task Status: TASK-001 - Implement login endpoint
+✅ Task Specifications Generated
 
-🎯 Task Details
-Status: in_review
-Progress: Implementation complete, awaiting review
-Quality Gates: 4/4 passed
+Generated 5 tasks from FEAT-001:
 
-🔗 Hierarchy Context
-Epic: EPIC-001 - User Management System (47% complete)
-Feature: FEAT-001 - User Authentication (60% complete)
-Position: Task 3 of 5 in feature
+📋 TASK-001: Implement login endpoint
+- Requirements: REQ-002
+- BDD Scenarios: BDD-001 (scenarios 1-3)
+- Estimated Effort: 3 story points
 
-🧪 Quality Metrics
-Test Coverage: 92%
-Complexity Score: 7/10
-Performance: 150ms (target: <200ms)
+📋 TASK-002: Create user registration
+- Requirements: REQ-006, REQ-007
+- BDD Scenarios: BDD-001 (scenarios 4-5)
+- Estimated Effort: 5 story points
 
-🔄 Recent Activity
-- 15 minutes ago: All quality gates passed
-- 30 minutes ago: Implementation completed
-- 1 hour ago: TDD cycle 3 completed
+📋 TASK-003: Add session management
+- Requirements: REQ-003
+- BDD Scenarios: BDD-001 (scenario 6)
+- Estimated Effort: 3 story points
 
-⏭️ Next Steps
-1. Code review by @tech-lead
-2. Integration testing
-3. Complete task: /task-complete TASK-001
+📋 TASK-004: Build login UI components
+- Requirements: REQ-002
+- BDD Scenarios: BDD-001 (scenarios 1-2)
+- Estimated Effort: 2 story points
+
+📋 TASK-005: Integration tests
+- Requirements: All
+- BDD Scenarios: BDD-001 (all)
+- Estimated Effort: 2 story points
+
+Total Effort: 15 story points
+
+📁 Files Created
+tasks/backlog/TASK-001.md through TASK-005.md
+
+Next Steps:
+1. Review generated task specifications
+2. For task execution: Install taskwright
+3. See Integration Guide for workflow
 ```
 
-## Hierarchy and Portfolio Commands
+---
 
-### `/hierarchy-view` - Complete Project Visualization
+## Hierarchy Commands
+
+### `/hierarchy-view` - View Project Hierarchy
+
+**Purpose**: Visualize complete project structure showing epics, features, requirements, and BDD.
 
 **Overview Mode:**
 ```bash
 /hierarchy-view
 ```
 
+**For Specific Epic:**
+```bash
+/hierarchy-view EPIC-001
+```
+
 **Detailed Mode:**
 ```bash
-/hierarchy-view --mode=detailed
+/hierarchy-view EPIC-001 --mode=detailed
 ```
 
-**Timeline View:**
+**With BDD:**
 ```bash
-/hierarchy-view --mode=timeline
+/hierarchy-view EPIC-001 --include-bdd
 ```
 
-**Dependencies View:**
-```bash
-/hierarchy-view --mode=dependencies
+**Output:**
 ```
-
-**Output (Detailed Mode):**
-```
-📊 Project Hierarchy - MyProject
+📊 Project Hierarchy - User Management System
 
 ├── 🎯 EPIC-001: User Management System (63% complete)
-│   ├── 🔧 FEAT-001: User Authentication (85% complete)
-│   │   ├── ✅ TASK-001: Implement login endpoint (completed)
-│   │   ├── ✅ TASK-002: Create user registration (completed)
-│   │   ├── ✅ TASK-003: Add session management (completed)
-│   │   ├── 🔄 TASK-004: Build login UI (in_progress)
-│   │   └── ⏳ TASK-005: Integration tests (backlog)
+│   │
+│   ├── 🔧 FEAT-001: User Authentication (100% complete)
+│   │   ├── 📋 REQ-001: Password Encryption [Ubiquitous] ✅
+│   │   ├── 📋 REQ-002: Successful Login [Event-Driven] ✅
+│   │   ├── 📋 REQ-003: Session Management [State-Driven] ✅
+│   │   ├── 📋 REQ-004: Account Lockout [Unwanted Behavior] ✅
+│   │   ├── 📋 REQ-005: Remember Me [Optional Feature] ✅
+│   │   └── 🧪 BDD-001: User Authentication (8 scenarios) ✅
+│   │
 │   ├── 🔧 FEAT-002: Password Reset (100% complete)
-│   │   ├── ✅ TASK-006: Reset endpoint (completed)
-│   │   └── ✅ TASK-007: Reset UI (completed)
-│   └── 🔧 FEAT-003: Role Management (25% complete)
-│       ├── ✅ TASK-008: Role model (completed)
-│       ├── ⏳ TASK-009: RBAC logic (backlog)
-│       └── ⏳ TASK-010: Admin interface (backlog)
-└── 🎯 EPIC-002: Reporting System (0% complete)
-    └── 🔧 FEAT-004: Basic Reports (planning)
+│   │   ├── 📋 REQ-006: Reset Request [Event-Driven] ✅
+│   │   ├── 📋 REQ-007: Email Validation [Ubiquitous] ✅
+│   │   ├── 📋 REQ-008: Token Expiry [Unwanted Behavior] ✅
+│   │   └── 🧪 BDD-002: Password Reset (5 scenarios) ✅
+│   │
+│   ├── 🔧 FEAT-003: Role Management (75% complete)
+│   │   ├── 📋 REQ-009: Role Assignment [Event-Driven] ✅
+│   │   ├── 📋 REQ-010: Permission Check [State-Driven] ✅
+│   │   ├── 📋 REQ-011: Role Hierarchy [Ubiquitous] 🔄
+│   │   ├── 📋 REQ-012: Invalid Role [Unwanted Behavior] ⏳
+│   │   └── 🧪 BDD-003: Role Management (6 scenarios) 🔄
+│   │
+│   └── 🔧 FEAT-004: Admin Dashboard (0% complete)
+│       ├── 📋 REQ-013: Dashboard Layout [Ubiquitous] ⏳
+│       ├── 📋 REQ-014: User List View [State-Driven] ⏳
+│       ├── 📋 REQ-015: User Actions [Event-Driven] ⏳
+│       ├── 📋 REQ-016: Audit Log [Ubiquitous] ⏳
+│       ├── 📋 REQ-017: Access Control [State-Driven] ⏳
+│       ├── 📋 REQ-018: Error Display [Unwanted Behavior] ⏳
+│       └── 🧪 BDD-004: Admin Dashboard (planning)
 
 🎯 Summary
-Total Epics: 2 (1 active, 1 planning)
-Total Features: 4 (3 active, 1 planning)
-Total Tasks: 10 (4 completed, 1 in_progress, 5 backlog)
-Overall Progress: 42% complete
-```
-
-### `/portfolio-dashboard` - Executive Overview
-
-**Executive View:**
-```bash
-/portfolio-dashboard --stakeholder=executive
-```
-
-**Development Team View:**
-```bash
-/portfolio-dashboard --stakeholder=development
-```
-
-**Output (Executive View):**
-```
-📈 Portfolio Dashboard - Executive Summary
-
-🎯 Strategic Overview
-Active Epics: 3
-Total Business Value: 24 points
-Delivered Value: 15 points (62.5%)
-ROI Target: On track for 150% ROI
-
-📊 Progress Metrics
-Overall Portfolio: 58% complete
-On Schedule: 2 epics
-At Risk: 1 epic (EPIC-003 - timeline concerns)
-Blocked: 0 epics
-
-👥 Resource Allocation
-Development: 8 engineers (fully allocated)
-QA: 2 engineers (75% allocated)
-Product: 1 PM (overallocated at 110%)
-
-🎲 Risk Assessment
-🔴 High Risk: Resource constraint in QA
-🟡 Medium Risk: Third-party integration delays
-🟢 Low Risk: Technology stack maturity
-
-💰 Business Metrics
-Budget Utilization: 67% of allocated budget
-Value Delivery Rate: 2.1 points/week (target: 2.0)
-Time to Market: 3 weeks ahead of schedule
-
-📅 Key Milestones
-✅ MVP Feature Set: Completed (2 weeks early)
-🔄 Beta Release: In progress (on track)
-⏳ GA Release: Scheduled for 2024-Q1
-
-🚀 Recommendations
-1. Add 1 QA engineer to reduce risk
-2. Prioritize EPIC-002 for Q4 delivery
-3. Consider scope reduction for EPIC-003
-```
-
-## Requirements Gathering
-
-### Basic Usage
-```bash
-/gather-requirements
-```
-
-### With Feature Name
-```bash
-/gather-requirements user-authentication
-```
-
-### Complete Example Session
-
-```markdown
-Claude: Let's gather requirements for user-authentication. What problem are we solving?
-
-You: We need users to securely log into our web application with email and password.
-
-Claude: Who will be using this authentication system?
-
-You: Both regular users and administrators. Admins need access to an admin panel.
-
-Claude: What authentication methods should we support?
-
-You: Initially just email/password, but we want to add OAuth and 2FA later.
-
-Claude: What should happen when authentication fails?
-
-You: Show an error message and lock the account after 3 failed attempts.
-
-Claude: What are the performance requirements?
-
-You: Login should complete within 1 second, and support 1000 concurrent users.
-
-Claude: What about session management?
-
-You: Sessions should last 24 hours with a "remember me" option for 30 days.
-
-Claude: Any security requirements?
-
-You: Yes - passwords must be 8+ characters with complexity requirements, and all traffic must be HTTPS.
-
-Claude: Great! I've captured these requirements. Here's the summary:
-
-## Requirements Summary
-
-### Functional Requirements
-- User login with email/password
-- Admin users with elevated access
-- Account lockout after 3 failed attempts
-- Session management (24hr default, 30 day remember)
-- Future: OAuth and 2FA support
-
-### Non-Functional Requirements
-- Performance: <1 second login
-- Scalability: 1000 concurrent users
-- Security: Password complexity, HTTPS only
-- Availability: 99.9% uptime
-
-Ready to formalize these with /formalize-ears
-```
-
-## EARS Formalization
-
-### Basic Usage
-```bash
-/formalize-ears
-```
-
-### From Specific File
-```bash
-/formalize-ears docs/requirements/draft/auth.md
-```
-
-### Complete Example Output
-
-```markdown
-## Formalized EARS Requirements
-
-### REQ-001: User Login [Event-Driven]
-**When** a user submits valid email and password credentials via the login form, 
-**the system** shall authenticate the user and create a session within 1 second.
-
-**Metadata:**
-- Priority: High
-- Epic: AUTH-001
-- Test: BDD-001
-
-### REQ-002: Invalid Login Attempt [Event-Driven]
-**When** a user submits invalid credentials,
-**the system** shall display an error message "Invalid email or password" 
-and increment the failed attempt counter for that email.
-
-### REQ-003: Account Lockout [Unwanted Behavior]
-**If** a user submits invalid credentials 3 times within 5 minutes,
-**then the system** shall lock the account for 15 minutes,
-display "Account locked due to multiple failed attempts",
-and send a security alert email to the account owner.
-
-### REQ-004: Admin Access [State-Driven]
-**While** a user session has admin role privileges,
-**the system** shall display the admin panel navigation option
-and allow access to administrative functions.
-
-### REQ-005: Session Duration [State-Driven]
-**While** a user session is active without "remember me",
-**the system** shall maintain the session for 24 hours from last activity,
-then require re-authentication.
-
-### REQ-006: Remember Me [Optional Feature]
-**Where** the user has selected "remember me" during login,
-**the system** shall maintain the session for 30 days
-and refresh the token on each visit.
-
-### REQ-007: Concurrent Users [Ubiquitous]
-**The system** shall support at least 1000 concurrent authenticated users
-without performance degradation below 1 second response time.
-
-### REQ-008: Password Complexity [Ubiquitous]
-**The system** shall require passwords to be at least 8 characters
-and contain at least one uppercase, one lowercase, one number, and one special character.
-
-### REQ-009: Secure Transport [Ubiquitous]
-**The system** shall only accept authentication requests over HTTPS connections
-and reject any HTTP authentication attempts.
-
-### REQ-010: Session Timeout [Unwanted Behavior]
-**If** a user session expires,
-**then the system** shall redirect to the login page with message "Session expired, please log in again"
-and preserve the intended destination URL for post-login redirect.
-```
-
-### Validation Output
-```markdown
-✅ Requirements Validation Results:
-- All requirements are atomic (single behavior)
-- All requirements are testable
-- All requirements have measurable criteria
-- No conflicts detected
-- Coverage: Authentication flow complete
-
-⚠️ Suggestions:
-- Consider adding requirement for password reset
-- Consider adding requirement for email verification
-- Consider adding audit logging requirement
-```
-
-## BDD Generation
-
-### Basic Usage
-```bash
-/generate-bdd
-```
-
-### For Specific Requirement
-```bash
-/generate-bdd REQ-001
-```
-
-### For Epic
-```bash
-/generate-bdd --epic AUTH-001
-```
-
-### Complete Example Output
-
-```gherkin
-# Generated from: REQ-001, REQ-002, REQ-003
-# File: docs/bdd/features/authentication.feature
-
-@epic-AUTH-001 @authentication
-Feature: User Authentication System
-  As a user of the application
-  I want to securely log in with my credentials
-  So that I can access my protected resources
-
-  Background:
-    Given the authentication service is running
-    And the database is accessible
-    And the following users exist:
-      | email                | password    | role    | status |
-      | user@example.com     | Valid123!   | user    | active |
-      | admin@example.com    | Admin456!   | admin   | active |
-      | locked@example.com   | Locked789!  | user    | locked |
-      | inactive@example.com | Inactive0!  | user    | inactive |
-
-  @requirement-REQ-001 @happy-path @smoke
-  Scenario: Successful user login
-    Given I am on the login page
-    When I enter "user@example.com" in the email field
-    And I enter "Valid123!" in the password field
-    And I click the "Sign In" button
-    Then I should be redirected to "/dashboard"
-    And I should see "Welcome back!" message
-    And a session cookie should be created
-    And the authentication should complete within 1 second
-
-  @requirement-REQ-001 @happy-path
-  Scenario: Successful admin login
-    Given I am on the login page
-    When I enter "admin@example.com" in the email field
-    And I enter "Admin456!" in the password field
-    And I click the "Sign In" button
-    Then I should be redirected to "/admin/dashboard"
-    And I should see the admin navigation menu
-    And the session should have admin privileges
-
-  @requirement-REQ-002 @error-handling
-  Scenario: Login with invalid password
-    Given I am on the login page
-    When I enter "user@example.com" in the email field
-    And I enter "WrongPassword!" in the password field
-    And I click the "Sign In" button
-    Then I should remain on "/login"
-    And I should see error message "Invalid email or password"
-    And no session cookie should be created
-    And the failed attempt should be logged
-
-  @requirement-REQ-002 @error-handling
-  Scenario: Login with non-existent email
-    Given I am on the login page
-    When I enter "notfound@example.com" in the email field
-    And I enter "Password123!" in the password field
-    And I click the "Sign In" button
-    Then I should remain on "/login"
-    And I should see error message "Invalid email or password"
-    And the response should not reveal the email doesn't exist
-
-  @requirement-REQ-003 @security @critical
-  Scenario: Account lockout after failed attempts
-    Given I am on the login page
-    And the user "user@example.com" has 2 failed login attempts in the last 5 minutes
-    When I enter "user@example.com" in the email field
-    And I enter "WrongPassword!" in the password field
-    And I click the "Sign In" button
-    Then I should see error message "Account locked due to multiple failed attempts"
-    And the account should be locked for 15 minutes
-    And a security alert email should be sent to "user@example.com"
-    And subsequent login attempts should be rejected
-
-  @requirement-REQ-003 @security
-  Scenario: Account unlock after timeout
-    Given the user "user@example.com" was locked 16 minutes ago
-    When I enter "user@example.com" in the email field
-    And I enter "Valid123!" in the password field
-    And I click the "Sign In" button
-    Then I should be successfully authenticated
-    And the failed attempt counter should be reset
-
-  @requirement-REQ-006 @optional-feature
-  Scenario: Login with remember me option
-    Given I am on the login page
-    When I enter "user@example.com" in the email field
-    And I enter "Valid123!" in the password field
-    And I check the "Remember me" checkbox
-    And I click the "Sign In" button
-    Then I should be redirected to "/dashboard"
-    And a persistent session cookie should be created
-    And the cookie should expire in 30 days
-    And the cookie should be marked as secure and httpOnly
-
-  @requirement-REQ-010 @session-management
-  Scenario: Redirect after session expiry
-    Given I am logged in as "user@example.com"
-    And I am on page "/profile/settings"
-    When my session expires after 24 hours
-    And I try to access "/profile/settings"
-    Then I should be redirected to "/login"
-    And I should see message "Session expired, please log in again"
-    And the return URL should be set to "/profile/settings"
-
-  @requirement-REQ-010 @session-management
-  Scenario: Successful redirect after re-login
-    Given I was redirected to login from "/profile/settings"
-    When I successfully log in
-    Then I should be redirected to "/profile/settings"
-    And not to the default dashboard
-
-  @requirement-REQ-007 @performance @load-testing
-  Scenario Outline: Concurrent user logins
-    Given <users> users are attempting to login simultaneously
-    When all users submit valid credentials
-    Then all authentications should complete within <time> seconds
-    And the system should remain responsive
-
-    Examples:
-      | users | time |
-      | 100   | 1    |
-      | 500   | 1    |
-      | 1000  | 1    |
-
-  @requirement-REQ-008 @validation
-  Scenario Outline: Password complexity validation
-    Given I am on the registration page
-    When I enter "<password>" as my password
-    Then I should see validation "<result>"
-
-    Examples:
-      | password      | result                                          |
-      | short         | Password must be at least 8 characters         |
-      | lowercase123! | Password must contain an uppercase letter      |
-      | UPPERCASE123! | Password must contain a lowercase letter       |
-      | NoNumbers!    | Password must contain a number                 |
-      | NoSpecial123  | Password must contain a special character      |
-      | Valid123!     | Password meets requirements                    |
-```
-
-### Step Definitions Generated
-
-```typescript
-// Generated step definitions template
-// File: tests/steps/authentication.steps.ts
-
-import { Given, When, Then } from '@cucumber/cucumber';
-import { expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
-import { DashboardPage } from '../pages/DashboardPage';
-
-Given('I am on the login page', async function() {
-  await this.page.goto('/login');
-  this.loginPage = new LoginPage(this.page);
-});
-
-Given('the following users exist:', async function(dataTable) {
-  const users = dataTable.hashes();
-  await this.testDatabase.seedUsers(users);
-});
-
-When('I enter {string} in the email field', async function(email: string) {
-  await this.loginPage.enterEmail(email);
-});
-
-When('I enter {string} in the password field', async function(password: string) {
-  await this.loginPage.enterPassword(password);
-});
-
-When('I click the {string} button', async function(buttonText: string) {
-  await this.loginPage.clickButton(buttonText);
-});
-
-Then('I should be redirected to {string}', async function(path: string) {
-  await expect(this.page).toHaveURL(path);
-});
-
-Then('I should see {string} message', async function(message: string) {
-  await expect(this.page.locator(`text=${message}`)).toBeVisible();
-});
-
-Then('a session cookie should be created', async function() {
-  const cookies = await this.page.context().cookies();
-  const sessionCookie = cookies.find(c => c.name === 'session');
-  expect(sessionCookie).toBeDefined();
-  expect(sessionCookie?.httpOnly).toBe(true);
-  expect(sessionCookie?.secure).toBe(true);
-});
-
-Then('the authentication should complete within {int} second(s)', async function(seconds: number) {
-  expect(this.responseTime).toBeLessThan(seconds * 1000);
-});
-```
-
-## Test Execution
-
-### Complete Test Execution Examples
-
-#### Run All Tests
-```bash
-/execute-tests
-
-Output:
-═══════════════════════════════════════════════════════════════
-                    TEST EXECUTION REPORT
-═══════════════════════════════════════════════════════════════
-Started: 2024-01-19 14:30:00
-Environment: Development
-Runner: Local
-
-PHASE 1: Linting & Formatting
-═══════════════════════════════════════════════════════════════
-✅ ESLint.......................... PASSED [1.2s]
-✅ Prettier........................ PASSED [0.8s]
-✅ TypeScript Compiler............ PASSED [3.4s]
-
-PHASE 2: Unit Tests
-═══════════════════════════════════════════════════════════════
-Running: 156 tests across 24 files
-
-✅ auth.service.test.ts........... 12/12 passed [245ms]
-✅ user.service.test.ts........... 8/8 passed [189ms]
-✅ session.service.test.ts........ 15/15 passed [302ms]
-✅ validators.test.ts............. 23/23 passed [156ms]
-⚠️ cache.service.test.ts.......... 7/8 passed [445ms]
-   ❌ Failed: Should evict LRU items when full
-
-Unit Test Summary: 155/156 passed (99.4%)
-Coverage: 87.3% statements, 82.1% branches
-
-PHASE 3: Integration Tests
-═══════════════════════════════════════════════════════════════
-Running: 45 integration tests
-
-✅ API Authentication.............. 8/8 passed [1.2s]
-✅ Database Transactions........... 12/12 passed [2.3s]
-✅ Session Management.............. 6/6 passed [0.9s]
-❌ Rate Limiting................... 4/5 passed [3.1s]
-   ❌ Failed: Should handle burst traffic
-
-Integration Summary: 44/45 passed (97.8%)
-
-PHASE 4: BDD Scenarios
-═══════════════════════════════════════════════════════════════
-Feature: User Authentication
-  ✅ Successful user login.................. [245ms]
-  ✅ Login with invalid password............ [123ms]
-  ✅ Account lockout after failed attempts.. [456ms]
-  ✅ Remember me option..................... [189ms]
-  ✅ Session expiry redirect................ [567ms]
-
-Feature: User Management  
-  ✅ Create new user........................ [234ms]
-  ✅ Update user profile.................... [345ms]
-  ⚠️ Delete user account.................... [5234ms] SLOW
-  
-BDD Summary: 8/8 scenarios passed
-Total Steps: 52/52 passed
-
-PHASE 5: End-to-End Tests
-═══════════════════════════════════════════════════════════════
-Browser: Chromium
-
-✅ Complete user journey............. PASSED [8.5s]
-✅ Admin workflow.................... PASSED [6.2s]
-✅ Password reset flow............... PASSED [4.3s]
-❌ Concurrent user test.............. FAILED [timeout]
-
-E2E Summary: 3/4 passed (75%)
-
-QUALITY GATES
-═══════════════════════════════════════════════════════════════
-✅ Code Coverage............. 87.3% > 80%    [PASSED]
-✅ Unit Test Pass Rate....... 99.4% > 95%    [PASSED]
-⚠️ Integration Pass Rate..... 97.8% > 99%    [WARNING]
-❌ E2E Pass Rate............. 75.0% < 90%    [FAILED]
-✅ Performance............... 189ms < 200ms  [PASSED]
-✅ Security Scan............. No issues      [PASSED]
-✅ Complexity................ 7.2 < 10       [PASSED]
-
-Overall Status: FAILED (1 gate failed, 1 warning)
-
-FAILED TESTS DETAIL
-═══════════════════════════════════════════════════════════════
-1. cache.service.test.ts > Should evict LRU items when full
-   Expected: ['item2', 'item3', 'item4']
-   Received: ['item1', 'item3', 'item4']
-   
-   Suggested Fix:
-   - Check LRU eviction logic in cache.service.ts:45
-   - Verify timestamp comparison
-
-2. Rate Limiting > Should handle burst traffic
-   Expected: 429 status after 100 requests
-   Received: 200 status for all requests
-   
-   Suggested Fix:
-   - Review rate limit configuration
-   - Check Redis connection for rate limit store
-
-3. E2E > Concurrent user test
-   Error: Timeout exceeded 30000ms
-   
-   Suggested Fix:
-   - Increase timeout for load tests
-   - Check for deadlocks in concurrent scenarios
-
-RECOMMENDATIONS
-═══════════════════════════════════════════════════════════════
-1. Fix failing tests before merge
-2. Investigate slow BDD test (>5s)
-3. Add retry logic for flaky E2E test
-4. Increase integration test coverage
-
-Total Duration: 4m 32s
-Report saved to: test-results/report-2024-01-19-143000.html
-```
-
-#### Run Specific Test Level
-```bash
-/execute-tests --level unit --coverage
-
-Output:
-Running Unit Tests with Coverage...
-════════════════════════════════════════
-
- PASS  src/auth/auth.service.test.ts (12 tests, 245ms)
- PASS  src/user/user.service.test.ts (8 tests, 189ms)
- PASS  src/utils/validators.test.ts (23 tests, 156ms)
-
-Test Suites: 24 passed, 24 total
-Tests:       156 passed, 156 total
-Time:        28.5s
-
-Coverage Report:
-════════════════════════════════════════
-File                  | % Stmts | % Branch | % Funcs | % Lines |
-----------------------|---------|----------|---------|---------|
-All files             |   87.32 |    82.14 |   89.47 |   87.32 |
- src/auth/            |   92.31 |    87.50 |   95.00 |   92.31 |
-  auth.service.ts     |   91.67 |    85.71 |  100.00 |   91.67 |
-  auth.controller.ts  |   93.33 |    90.00 |   90.00 |   93.33 |
- src/user/            |   85.71 |    78.57 |   87.50 |   85.71 |
-  user.service.ts     |   84.62 |    75.00 |   85.71 |   84.62 |
-  user.repository.ts  |   87.50 |    83.33 |   90.00 |   87.50 |
- src/utils/           |   83.33 |    80.00 |   85.71 |   83.33 |
-  validators.ts       |   81.82 |    77.78 |   83.33 |   81.82 |
-  helpers.ts          |   85.71 |    83.33 |   88.89 |   85.71 |
-
-✅ Coverage threshold met: 87.32% > 80%
-```
-
-## State Management
-
-### Complete State Update Examples
-
-#### Update Task Status
-```bash
-/update-state task TASK-001 complete
-
-Output:
-════════════════════════════════════════
-         TASK STATUS UPDATE
-════════════════════════════════════════
-
-Task: TASK-001 - Implement login form
-Previous Status: in-progress
-New Status: ✅ COMPLETE
-
-Related Updates:
-────────────────────────────────────────
-📊 Feature Progress: Authentication
-   Before: 60% [██████    ]
-   After:  80% [████████  ]
-
-📈 Sprint Velocity:
-   Before: 12/21 points
-   After:  15/21 points
-
-📋 Requirements Completed:
-   - REQ-001: User login (100% implemented)
-   - REQ-002: Error handling (100% implemented)
-
-🧪 Test Coverage:
-   - Unit Tests: 18/18 passing
-   - Integration: 5/5 passing
-   - BDD Scenarios: 3/3 passing
-
-Files Updated:
-────────────────────────────────────────
-✅ docs/state/current-sprint.md
-✅ docs/state/changelog.md
-✅ docs/state/metrics.json
-
-Notifications Sent:
-────────────────────────────────────────
-📧 Team notified of task completion
-📊 Dashboard updated
-🔄 GitHub issue #23 updated
-```
-
-#### Update Sprint Progress
-```bash
-/update-state sprint progress
-
-Output:
-════════════════════════════════════════
-         SPRINT 3 PROGRESS
-════════════════════════════════════════
-Sprint 3: Authentication Implementation
-Duration: Jan 15 - Jan 29, 2024
-Day 5 of 14
-
-VELOCITY
-────────────────────────────────────────
-Planned:    21 points
-Completed:  15 points
-Remaining:   6 points
-Pace:       ON TRACK ✅
-
-Progress:   71% [███████░░░]
-
-EPIC BREAKDOWN
-────────────────────────────────────────
-User Management [85% Complete]
-├─ Authentication [100% ✅]
-│  ├─ TASK-001: Login form ✅
-│  ├─ TASK-002: JWT tokens ✅
-│  └─ TASK-003: Session mgmt ✅
-├─ Authorization [60% 🔄]
-│  ├─ TASK-004: RBAC ✅
-│  ├─ TASK-005: Permissions 🔄
-│  └─ TASK-006: Admin panel ⏳
-└─ Profile Mgmt [0% ⏳]
-
-QUALITY METRICS
-────────────────────────────────────────
-Code Coverage:      87.3% ✅ (target: 80%)
-Test Pass Rate:     98.2% ✅ (target: 95%)
-Code Complexity:     7.2 ✅ (target: <10)
-Performance:       189ms ✅ (target: <200ms)
-
-BLOCKERS & RISKS
-────────────────────────────────────────
-⚠️ TASK-005: Waiting for security review
-🔴 TASK-008: API specs not finalized
-
-BURNDOWN CHART
-────────────────────────────────────────
-Points
-21 |█
-18 |██░
-15 |███░░
-12 |█████░░
- 9 |███████░░
- 6 |█████████░░ ← Current
- 3 |████████████░
- 0 |██████████████
-   |1 2 3 4 5 6 7 8 9 10 11 12 13 14
-   Days
-
-Projected Completion: On Schedule ✅
-```
-
-## Stack-Specific Commands
-
-### React Stack Commands
-```bash
-# Create a new component with advanced patterns
-/create-component UserProfile
-Output: Created with error boundary, SSE hook, performance optimization
-
-# Add SSE endpoint connection
-/add-sse-endpoint /api/notifications
-Output: Created useSSE hook with proper error handling and completion events
-
-# Generate accessibility tests
-/generate-a11y-tests UserProfile
-Output: Created WCAG 2.1 AA compliance tests
-```
-
-### Python Stack Commands
-```bash
-# Create LangGraph workflow
-/create-workflow document-processing
-Output: Created workflow with nodes, edges, and state management
-
-# Add SSE endpoint
-/create-sse-endpoint stream-results
-Output: Created with proper completion events and error handling
-
-# Generate factory
-/create-factory AgentFactory
-Output: Created factory pattern with configuration
-```
-
-### .NET Microservice Commands
-```bash
-# Create FastEndpoint
-/create-endpoint GetProductById
-Output: Created with Either monad, validation, and OpenTelemetry
-
-# Add health check
-/add-health-check database
-Output: Created health check with detailed status reporting
-
-# Generate integration test
-/create-integration-test GetProductById
-Output: Created with WebApplicationFactory and test data
-```
-
-### .NET MAUI Commands
-```bash
-# Create page with ViewModel
-/create-page ProductDetail
-Output: Created XAML, ViewModel with UseCase, and navigation
-
-# Add UseCase
-/create-usecase GetProductDetails
-Output: Created with Either monad, caching, and error handling
-
-# Generate integration test
-/create-feature-test ProductDetail
-Output: Created Outside-In test with HTTP mocking
-```
-
-## Complete Workflow Examples
-
-### Example 1: Building Authentication Feature
-
-```bash
-# Step 1: Gather Requirements
-/gather-requirements authentication
-
-# Step 2: Formalize to EARS
-/formalize-ears
-Output: 10 EARS requirements generated
-
-# Step 3: Generate BDD Scenarios
-/generate-bdd
-Output: 15 scenarios across 3 feature files
-
-# Step 4: Review generated artifacts
-Files created:
-- docs/requirements/approved/AUTH-001.md
-- docs/bdd/features/authentication.feature
-- docs/bdd/features/session-management.feature
-- docs/bdd/features/password-reset.feature
-
-# Step 5: Implement feature (React)
-/create-component LoginForm
-/create-hook useAuth
-/create-service AuthService
-
-# Step 6: Run tests
-/execute-tests --level unit
-Output: 24/24 tests passing
-
-# Step 7: Run integration tests
-/execute-tests --level integration
-Output: 8/8 tests passing
-
-# Step 8: Run BDD tests
-/execute-tests --level bdd
-Output: 15/15 scenarios passing
-
-# Step 9: Update state
-/update-state feature AUTH-001 complete
-Output: Feature marked complete, sprint progress updated
-```
-
-### Example 2: API Development (Python)
-
-```bash
-# Step 1: Requirements
-/gather-requirements api-endpoints
-
-# Step 2: EARS
-/formalize-ears
-Output: REQ-API-001 through REQ-API-008
-
-# Step 3: Implementation
-/create-endpoint products --method GET POST PUT DELETE
-/create-service ProductService
-/create-repository ProductRepository
-/create-workflow product-validation
-
-# Step 4: Add streaming
-/create-sse-endpoint product-updates
-Output: SSE endpoint with completion events
-
-# Step 5: Testing
-/execute-tests
-Output: All tests passing, coverage 92%
-
-# Step 6: Documentation
-/generate-api-docs
-Output: OpenAPI specification generated
-```
-
-### Example 3: Mobile App Feature (MAUI)
-
-```bash
-# Step 1: Requirements for mobile shopping cart
-/gather-requirements shopping-cart-mobile
-
-# Step 2: EARS formalization
-/formalize-ears
-Output: 12 requirements for cart management
-
-# Step 3: Create UI and logic
-/create-page ShoppingCart
-/create-usecase AddToCart
-/create-usecase RemoveFromCart
-/create-usecase CalculateTotal
-/create-service CartService
-
-# Step 4: Integration tests
-/create-feature-test shopping-cart-flow
-Output: Outside-In test with mocked API
-
-# Step 5: Run tests
-/execute-tests --platform android
-Output: All tests passing on Android emulator
-
-# Step 6: Performance check
-/execute-tests --performance
-Output: Page load: 423ms ✅, Memory: 145MB ✅
-```
-
-## Tips and Best Practices
-
-### Requirements Gathering
-- Be specific about user roles
-- Include performance requirements
-- Don't forget error scenarios
-- Mention security constraints
-- Consider future extensibility
-
-### EARS Formalization
-- Keep each requirement atomic
-- Use measurable criteria
-- Include timing requirements
-- Cover error conditions
-- Link to epics and features
-
-### BDD Generation
-- Review scenarios with stakeholders
-- Ensure scenarios are independent
-- Use concrete examples
-- Tag appropriately for test organization
-- Keep scenarios focused
-
-### Test Execution
-- Run tests frequently
-- Fix failures immediately
-- Monitor coverage trends
-- Optimize slow tests
-- Use parallel execution for speed
-
-### State Management
-- Update immediately after changes
-- Include context in updates
-- Link to evidence (PRs, tests)
-- Communicate blockers quickly
-- Keep metrics current
-
-## Command Shortcuts
-
-Create aliases in `.claude/config.json`:
-```json
-{
-  "aliases": {
-    "gr": "gather-requirements",
-    "fe": "formalize-ears", 
-    "gb": "generate-bdd",
-    "et": "execute-tests",
-    "us": "update-state",
-    "cc": "create-component",
-    "ce": "create-endpoint",
-    "cu": "create-usecase"
-  }
-}
-```
-
-Then use:
-```bash
-/gr authentication
-/fe
-/gb REQ-001
-/et --coverage
-/us task TASK-001 complete
-```
-
-## Troubleshooting Commands
-
-### Debug Mode
-```bash
-/gather-requirements --debug
-# Shows internal processing steps
-
-/execute-tests --verbose
-# Detailed test output
-
-/update-state --dry-run
-# Preview changes without applying
-```
-
-### Recovery Commands
-```bash
-/rollback-state
-# Revert last state change
-
-/reset-tests
-# Clear test cache and retry
-
-/validate-requirements
-# Check requirement consistency
-
-/repair-links
-# Fix broken requirement-test links
-```
-
-## Integration with CI/CD
-
-### GitHub Actions
-```yaml
-- name: Validate Requirements
-  run: agentecflow validate-ears
-
-- name: Run Quality Gates
-  run: agentecflow execute-tests --ci
-
-- name: Update State
-  run: agentecflow update-state --from-ci
-```
-
-### Pre-commit Hooks
-```bash
-#!/bin/bash
-# .git/hooks/pre-commit
-
-# Check EARS compliance
-agentecflow validate-ears
-
-# Run quick tests
-agentecflow execute-tests --fast
-
-# Update state
-agentecflow update-state --auto
+Epics: 1 active
+Features: 4 (2 completed, 1 in progress, 1 not started)
+Requirements: 18 total (11 complete, 3 in progress, 4 not started)
+BDD Scenarios: 25 total (20 complete, 3 in progress, 2 planned)
+Overall Progress: 63% complete
+
+📈 Progress Trend
+Last 7 days: +15% completion
+Velocity: 2.1 requirements/day
+Projected Completion: 5 days
+
+🔗 External Links
+Jira Epic: PROJ-123
+Linear Initiative: PROJECT-456
 ```
 
 ---
 
-This comprehensive guide covers all aspects of using the AI Engineer commands with detailed examples and complete workflows.
+## Export and Integration Commands
+
+### Export to Jira
+
+```bash
+# Export epic
+/epic-sync EPIC-001 --jira
+
+# Export feature
+/feature-sync FEAT-001 --jira
+
+# Export with force
+/feature-sync FEAT-001 --jira --force-push
+```
+
+**Creates in Jira:**
+- Epic with business value and timeline
+- User Stories from features
+- Acceptance criteria from BDD scenarios
+- Requirements as subtasks
+- Full traceability links
+
+### Export to Linear
+
+```bash
+# Export epic
+/epic-sync EPIC-001 --linear
+
+# Export feature
+/feature-sync FEAT-001 --linear
+```
+
+**Creates in Linear:**
+- Initiative from epic
+- Issues from features
+- Requirements context
+- BDD acceptance criteria
+- Traceability metadata
+
+### Export to GitHub Projects
+
+```bash
+# Export feature
+/feature-sync FEAT-001 --github
+
+# Creates GitHub issue with:
+# - Feature description
+# - Requirements checklist
+# - BDD scenarios
+# - Labels from tags
+```
+
+### Export to Azure DevOps
+
+```bash
+# Export epic
+/epic-sync EPIC-001 --azure
+
+# Export feature
+/feature-sync FEAT-001 --azure
+```
+
+---
+
+## Complete Workflow Examples
+
+### Example 1: New Feature from Scratch
+
+```bash
+# Step 1: Gather requirements
+/gather-requirements shopping-cart
+# Interactive Q&A captures complete requirements
+
+# Step 2: Formalize to EARS
+/formalize-ears
+# Output: docs/requirements/REQ-020.md through REQ-028.md
+
+# Step 3: Create epic
+/epic-create "E-Commerce Platform"
+# Output: docs/epics/EPIC-002.md
+
+# Step 4: Create feature
+/feature-create "Shopping Cart" \
+  epic:EPIC-002 \
+  requirements:[REQ-020,REQ-021,REQ-022] \
+  priority:high
+# Output: docs/features/FEAT-004.md
+
+# Step 5: Generate BDD scenarios
+/generate-bdd FEAT-004
+# Output: docs/bdd/BDD-004-shopping-cart.feature
+
+# Step 6: View complete hierarchy
+/hierarchy-view EPIC-002
+
+# Step 7: Export to Jira
+/feature-sync FEAT-004 --jira
+
+# Step 8: Generate task specifications (optional)
+/feature-generate-tasks FEAT-004
+# Output: tasks/backlog/TASK-*.md
+```
+
+**Result**: Complete feature specification ready for implementation or export.
+
+### Example 2: Epic with Multiple Features
+
+```bash
+# Create epic
+/epic-create "User Management System" \
+  priority:high \
+  business_value:9 \
+  export:[jira,linear]
+# Output: EPIC-001
+
+# Create features
+/feature-create "Login" epic:EPIC-001
+/feature-create "Registration" epic:EPIC-001
+/feature-create "Password Reset" epic:EPIC-001
+/feature-create "User Profiles" epic:EPIC-001
+
+# For each feature, gather and formalize
+/gather-requirements login
+/formalize-ears
+/generate-bdd
+# Link to FEAT-001
+
+/gather-requirements registration
+/formalize-ears
+/generate-bdd
+# Link to FEAT-002
+
+# Continue for remaining features...
+
+# View complete epic
+/hierarchy-view EPIC-001
+
+# Export epic with all features
+/epic-sync EPIC-001 --jira
+```
+
+### Example 3: Requirements Review and Iteration
+
+```bash
+# Step 1: Draft initial requirements
+/gather-requirements reporting-system
+# Output: docs/requirements/draft/reporting-system.md
+
+# Step 2: Formalize for review
+/formalize-ears docs/requirements/draft/reporting-system.md
+# Output: REQ-030 through REQ-040
+
+# Step 3: Share with stakeholders
+# Team reviews docs/requirements/REQ-*.md files
+
+# Step 4: Iterate based on feedback
+# Edit requirement files to incorporate feedback
+
+# Step 5: Re-validate
+/formalize-ears --validate docs/requirements/REQ-030.md
+
+# Step 6: Generate BDD for validation
+/generate-bdd --feature reporting-system
+# Output: docs/bdd/BDD-005-reporting.feature
+
+# Step 7: Review BDD with stakeholders
+# BDD scenarios serve as acceptance criteria
+
+# Step 8: Finalize and organize
+/epic-create "Reporting System"
+/feature-create "Sales Reports" \
+  epic:EPIC-003 \
+  requirements:[REQ-030,REQ-031,REQ-032]
+/feature-create "Analytics Dashboard" \
+  epic:EPIC-003 \
+  requirements:[REQ-033,REQ-034]
+
+# Step 9: Export to PM tools
+/epic-sync EPIC-003 --jira --linear
+```
+
+### Example 4: Adding Requirements to Existing Code
+
+```bash
+# You have existing code, need to add requirements retroactively
+
+# Step 1: Document what exists
+/gather-requirements existing-payment-system
+# Describe current functionality
+
+# Step 2: Formalize
+/formalize-ears
+# Output: REQ-050 through REQ-058
+
+# Step 3: Create structure
+/epic-create "Payment Processing"
+/feature-create "Credit Card Payments" \
+  epic:EPIC-004 \
+  requirements:[REQ-050,REQ-051,REQ-052]
+
+# Step 4: Generate BDD for regression testing
+/generate-bdd FEAT-010
+
+# Step 5: Link to existing code
+# Edit feature file to add implementation references
+
+# Step 6: Export for tracking
+/feature-sync FEAT-010 --jira
+```
+
+---
+
+## Task Execution (Optional Integration)
+
+For task execution workflow, install [taskwright](https://github.com/taskwright-dev/taskwright).
+
+See [Integration Guide](../INTEGRATION-GUIDE.md) for:
+- Installing taskwright alongside require-kit
+- Using `/task-work` for implementation
+- Complete requirements-to-implementation traceability
+- TDD/BDD workflow with quality gates
+
+---
+
+## Tips and Best Practices
+
+### Requirements Gathering
+- **Be Specific**: Use concrete numbers ("1 second", "1000 users") not vague terms ("fast", "many")
+- **Include Error Cases**: Don't forget what happens when things go wrong
+- **Ask "Why"**: Understand the problem before prescribing solutions
+- **Capture Context**: Document assumptions and constraints
+
+### EARS Formalization
+- **One Behavior Per Requirement**: Keep requirements atomic and focused
+- **Choose Right Pattern**: Match the requirement type to the EARS pattern
+- **Measurable Criteria**: Include specific, testable thresholds
+- **Avoid Ambiguity**: Use clear, unambiguous language
+
+### BDD Scenarios
+- **User Perspective**: Write from the user's point of view ("I", "user")
+- **Independent Scenarios**: Each should run standalone
+- **Concrete Examples**: Use specific data, not abstract variables
+- **Complete Coverage**: Include happy paths, error cases, edge cases
+
+### Project Organization
+- **Meaningful Epics**: Group related features by business capability
+- **Focused Features**: One feature = one user-facing capability
+- **Clear Hierarchy**: Maintain Epic → Feature → Requirement → BDD links
+- **Regular Sync**: Keep PM tools synchronized
+
+---
+
+## Additional Resources
+
+### Documentation
+- **[Getting Started](GETTING-STARTED.md)** - Quick start guide
+- **[User Guide](REQUIRE-KIT-USER-GUIDE.md)** - Comprehensive feature documentation
+- **[Integration Guide](../INTEGRATION-GUIDE.md)** - Using with taskwright
+- **[README](../../README.md)** - Overview and quick reference
+
+### Support
+- **GitHub Issues**: [require-kit issues](https://github.com/requirekit/require-kit/issues)
+- **Examples**: See `docs/requirements/`, `docs/bdd/`, `docs/epics/`, `docs/features/`
+
+---
+
+**Version**: 1.0.0 | **Last Updated**: 2025-11-03 | [require-kit](https://github.com/requirekit/require-kit)

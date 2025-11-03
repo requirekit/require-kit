@@ -233,7 +233,7 @@ echo "✓ dev-tasker installed to ~/.agentecflow"
   "name": "require-kit",
   "version": "1.0.0",
   "description": "Requirements Management Toolkit with EARS, BDD, and Epic/Feature Hierarchy",
-  "homepage": "https://github.com/yourusername/require-kit",
+  "homepage": "https://github.com/requirekit/require-kit",
   "system": {
     "install_dir": "~/.agentecflow",
     "package_name": "require-kit",
@@ -270,7 +270,7 @@ echo "✓ dev-tasker installed to ~/.agentecflow"
   "name": "taskwright",
   "version": "1.0.0",
   "description": "Task Execution System with Quality Gates and Stack Templates",
-  "homepage": "https://github.com/yourusername/taskwright",
+  "homepage": "https://github.com/taskwright-dev/taskwright",
   "system": {
     "install_dir": "~/.agentecflow",
     "package_name": "taskwright",

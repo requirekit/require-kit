@@ -104,7 +104,7 @@ Target Completion: Q1 2024 (on track)
 
 💡 Quick Actions
 ├── View epic details: /epic-status EPIC-002
-├── Work on critical task: /task-work TASK-017
+├── Task execution: Use your workflow or taskwright integration
 ├── Sync all external tools: /epic-sync --all
 └── Generate progress report: /hierarchy-view --report
 ```
@@ -497,10 +497,9 @@ Choice [1-5]: 1
 
 # Suggested actions shown:
 💡 Available Actions:
-├── Work on critical task: /task-work TASK-011
+├── Task execution: Use your workflow or taskwright integration
 ├── View feature details: /feature-status FEAT-003
 ├── Sync epic progress: /epic-sync EPIC-001
-├── Update task status: /task-status TASK-011 --update
 └── Generate epic report: /epic-status EPIC-001 --report
 ```
 
@@ -526,4 +525,6 @@ Choice [1-5]: 1
 5. **Team Coordination**: Use assignee filtering for workload distribution
 6. **Stakeholder Communication**: Use executive reports for business updates
 
-This command provides comprehensive project visualization while maintaining seamless integration with the **Epic → Feature → Task hierarchy** and requirements management workflow. For task execution, see taskwright.
+This command provides comprehensive project visualization while maintaining seamless integration with the **Epic → Feature → Task hierarchy** and requirements management workflow.
+
+**Standalone:** Works independently to visualize project structure. For task execution workflow, install taskwright.

@@ -390,16 +390,19 @@ Feature Progress = Calculated from actual task completion
 
 ### Automatic Sync Triggers
 ```bash
-# Feature sync triggered by task completion
-/task-complete TASK-043
+# Note: The following examples show integration with taskwright
+# See INTEGRATION-GUIDE.md for taskwright setup
+
+# Feature sync triggered by task completion (taskwright)
+# /task-complete TASK-043
 # Automatically triggers: /feature-sync FEAT-001 --fields progress
 
 # Epic sync triggered by feature completion
-/feature-complete FEAT-001
+# /feature-complete FEAT-001
 # Automatically triggers: /epic-sync EPIC-001 --fields progress
 
-# Task creation triggers feature sync
-/task-create "New Task" feature:FEAT-001
+# Task creation triggers feature sync (taskwright)
+# /task-create "New Task" feature:FEAT-001
 # Automatically triggers: /feature-sync FEAT-001 --fields tasks
 ```
 
@@ -444,4 +447,6 @@ Features automatically inherit sync configuration from their epic where not spec
 5. **Conflict Strategy**: Choose appropriate resolution strategy per project workflow
 6. **Performance Monitoring**: Monitor sync performance and optimize for large feature sets
 
-This command ensures seamless integration between local feature management and external PM tools while maintaining the complete **Epic → Feature → Task hierarchy** and supporting the requirements management to task execution workflow. For task execution, see taskwright.
+This command ensures seamless integration between local feature management and external PM tools while maintaining the complete **Epic → Feature → Task hierarchy** and supporting the requirements management to task specification workflow.
+
+**Standalone:** Works independently for PM tool synchronization. For task execution workflow, install taskwright.

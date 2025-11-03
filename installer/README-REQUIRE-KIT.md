@@ -197,7 +197,7 @@ bash scripts/test-require-kit-install.sh
 - Used for require-kit as a standalone package
 
 **For taskwright installation:**
-- See [taskwright repository](https://github.com/yourusername/taskwright)
+- See [taskwright repository](https://github.com/taskwright-dev/taskwright)
 - taskwright has its own installer for task execution features
 - Both packages can coexist in `~/.agentecflow` using namespaced directories
 

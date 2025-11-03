@@ -2,10 +2,10 @@
   "name": "require-kit",
   "version": "1.0.0",
   "description": "Requirements Management Toolkit with EARS, BDD, and Epic/Feature Hierarchy",
-  "homepage": "https://github.com/yourusername/require-kit",
+  "homepage": "https://github.com/requirekit/require-kit",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/require-kit.git"
+    "url": "https://github.com/requirekit/require-kit.git"
   },
   "author": "Your Name",
   "license": "MIT",

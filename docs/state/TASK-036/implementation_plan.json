@@ -1,0 +1,110 @@
+{
+  "task_id": "TASK-036",
+  "title": "Update GitHub README Badges to Show Both Packages Separately",
+  "technology_stack": "markdown",
+  "plan_version": 1,
+  "generated_at": "2025-11-03T11:15:00Z",
+  "files": {
+    "to_create": [],
+    "to_modify": [
+      {
+        "path": "README.md",
+        "purpose": "Update badges section to show require-kit as standalone with optional taskwright integration",
+        "estimated_loc": 15,
+        "changes_description": "Add version, license, standalone, and optional integration badges. Update package status section."
+      },
+      {
+        "path": "CLAUDE.md",
+        "purpose": "Update integration documentation references to reflect optional nature",
+        "estimated_loc": 5,
+        "changes_description": "Ensure consistency with README badge messaging about optional integration."
+      }
+    ]
+  },
+  "patterns": [],
+  "dependencies": {
+    "external": [
+      {
+        "name": "shields.io",
+        "type": "service",
+        "purpose": "Badge generation service for GitHub README",
+        "required": true,
+        "risk_level": "low"
+      }
+    ],
+    "internal": []
+  },
+  "risks": [
+    {
+      "description": "Badge URLs may change if shields.io API changes",
+      "severity": "low",
+      "mitigation": "Use standard shields.io format with stable API"
+    }
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Analysis",
+      "description": "Review current badge status and plan updates",
+      "estimated_minutes": 5,
+      "tasks": [
+        "Read current README.md badge section",
+        "Read current CLAUDE.md for badge references",
+        "Identify old/monolithic badges to remove"
+      ]
+    },
+    {
+      "phase": 2,
+      "name": "Design",
+      "description": "Design badge layout and color scheme",
+      "estimated_minutes": 5,
+      "tasks": [
+        "Define badge order and placement",
+        "Confirm color scheme (blue for require-kit, purple for standalone, yellow for optional)",
+        "Create shields.io URLs for all badges"
+      ]
+    },
+    {
+      "phase": 3,
+      "name": "README Update",
+      "description": "Update README.md with new badges",
+      "estimated_minutes": 10,
+      "tasks": [
+        "Add version, license, standalone badges",
+        "Add optional integration badge with taskwright link",
+        "Update Package Status section",
+        "Remove old monolithic badges"
+      ]
+    },
+    {
+      "phase": 4,
+      "name": "CLAUDE.md Update",
+      "description": "Update CLAUDE.md references",
+      "estimated_minutes": 5,
+      "tasks": [
+        "Update integration section references",
+        "Ensure consistency with README messaging"
+      ]
+    },
+    {
+      "phase": 5,
+      "name": "Testing",
+      "description": "Verify badges and links",
+      "estimated_minutes": 5,
+      "tasks": [
+        "Verify all badge URLs render correctly",
+        "Test badge links functionality",
+        "Check mobile/desktop rendering",
+        "Verify color scheme consistency"
+      ]
+    }
+  ],
+  "estimated_total_duration_minutes": 30,
+  "estimated_total_loc": 20,
+  "notes": [
+    "Documentation-only task, no code changes required",
+    "Badges will be visible on GitHub immediately after push",
+    "This is a require-kit-only update; taskwright will need similar changes in separate task",
+    "Uses shields.io static badges (no API calls needed at runtime)"
+  ]
+}

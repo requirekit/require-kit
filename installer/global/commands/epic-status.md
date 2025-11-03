@@ -172,7 +172,7 @@ Current: (100% + 100% + 60%) / 3 = 87% → Weighted: 67%
 💡 Quick Actions
 Create feature: /feature-create "Feature Name" epic:EPIC-001
 View feature: /feature-status FEAT-003
-Work on task: /task-work TASK-010
+# Task execution: Use your workflow or integrate with taskwright
 Sync hierarchy: /epic-sync EPIC-001 --include-features
 ```
 

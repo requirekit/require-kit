@@ -1,0 +1,127 @@
+{
+  "task_id": "TASK-037",
+  "calculated_at": "2025-11-03T10:45:00Z",
+  "version": 1,
+  "technology_stack": "documentation",
+
+  "total_score": 5,
+  "complexity_level": "medium",
+
+  "factor_scores": {
+    "file_complexity": {
+      "score": 2.5,
+      "max_score": 3.0,
+      "details": {
+        "new_files": 11,
+        "modified_files": 2,
+        "total_files": 13,
+        "justification": "13 files (6-8 range: 2.5 points) - significant documentation structure"
+      }
+    },
+    "pattern_familiarity": {
+      "score": 0.5,
+      "max_score": 2.0,
+      "details": {
+        "patterns_identified": [
+          "Progressive Disclosure (high familiarity)",
+          "Mirrored Architecture (medium familiarity)",
+          "User Journey Mapping (high familiarity)",
+          "Cross-Referencing (high familiarity)"
+        ],
+        "unfamiliar_patterns": 0,
+        "justification": "All patterns are familiar documentation patterns (0.5 points)"
+      }
+    },
+    "risk_level": {
+      "score": 1.0,
+      "max_score": 3.0,
+      "details": {
+        "risks_identified": [
+          {
+            "area": "Cross-Repository Synchronization",
+            "severity": "medium"
+          },
+          {
+            "area": "User Onboarding Experience",
+            "severity": "medium"
+          },
+          {
+            "area": "Link Rot",
+            "severity": "low"
+          }
+        ],
+        "high_risk_count": 0,
+        "medium_risk_count": 2,
+        "low_risk_count": 1,
+        "justification": "Medium risk overall - affects user experience but no code changes (1.0 points)"
+      }
+    },
+    "dependency_complexity": {
+      "score": 0.0,
+      "max_score": 2.0,
+      "details": {
+        "external_dependencies": 0,
+        "internal_dependencies": 1,
+        "new_dependencies": 0,
+        "justification": "No new dependencies, only references existing docs (0 points)"
+      }
+    },
+    "documentation_specific": {
+      "score": 1.0,
+      "max_score": 2.0,
+      "details": {
+        "cross_repo_coordination": true,
+        "multiple_user_personas": true,
+        "examples_require_testing": true,
+        "justification": "Additional complexity from cross-repo mirroring and multiple personas (1.0 points)"
+      }
+    }
+  },
+
+  "review_mode": "QUICK_OPTIONAL",
+  "review_mode_rationale": "Medium complexity (5/10) documentation task with no critical force triggers",
+
+  "forced_review_triggers": [
+    {
+      "trigger": "integration_keyword",
+      "detected": true,
+      "severity": "low",
+      "description": "Task title contains 'integration' but this is documentation only, not a breaking change"
+    }
+  ],
+
+  "forced_review_decision": {
+    "escalate_to_full": false,
+    "reason": "Integration keyword detected but severity is low (documentation only). Medium complexity (5/10) qualifies for quick optional review."
+  },
+
+  "auto_proceed_eligible": false,
+  "quick_review_eligible": true,
+  "full_review_required": false,
+
+  "complexity_breakdown": {
+    "score_1_3_simple": false,
+    "score_4_6_medium": true,
+    "score_7_10_complex": false
+  },
+
+  "estimated_review_time_seconds": 10,
+
+  "metadata": {
+    "calculation_method": "ComplexityCalculator v1.0",
+    "evaluation_context": {
+      "architectural_review_score": 68,
+      "architectural_review_status": "conditional_pass",
+      "task_priority": "high",
+      "task_tags": ["documentation", "integration", "guide", "require-kit", "taskwright", "workflow"]
+    }
+  },
+
+  "notes": [
+    "Documentation task with medium complexity due to file count and cross-repo coordination",
+    "Integration keyword detected but low severity (not a breaking change)",
+    "Quick optional review recommended - 10-second countdown with escalation option",
+    "All documentation patterns are familiar, reducing complexity",
+    "No code changes reduces risk significantly"
+  ]
+}

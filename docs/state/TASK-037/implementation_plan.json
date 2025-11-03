@@ -1,0 +1,200 @@
+{
+  "task_id": "TASK-037",
+  "generated_at": "2025-11-03T10:45:00Z",
+  "version": 1,
+  "technology_stack": "documentation",
+
+  "files": [
+    {
+      "path": "docs/integration/INTEGRATION-GUIDE.md",
+      "purpose": "Main integration guide showing package overview, feature matrix, detection mechanism",
+      "action": "create",
+      "estimated_loc": 400
+    },
+    {
+      "path": "docs/integration/feature-matrix.md",
+      "purpose": "Detailed feature availability matrix by installation scenario",
+      "action": "create",
+      "estimated_loc": 150
+    },
+    {
+      "path": "docs/integration/installation-scenarios.md",
+      "purpose": "Three installation paths: require-kit only, taskwright only, full integration",
+      "action": "create",
+      "estimated_loc": 200
+    },
+    {
+      "path": "docs/integration/workflows/requirements-driven.md",
+      "purpose": "Full workflow example with both packages integrated",
+      "action": "create",
+      "estimated_loc": 150
+    },
+    {
+      "path": "docs/integration/workflows/lean-startup.md",
+      "purpose": "Taskwright-only rapid iteration workflow",
+      "action": "create",
+      "estimated_loc": 100
+    },
+    {
+      "path": "docs/integration/workflows/requirements-export.md",
+      "purpose": "Require-kit-only PM tool export workflow",
+      "action": "create",
+      "estimated_loc": 100
+    },
+    {
+      "path": "docs/integration/architecture/dependency-inversion.md",
+      "purpose": "Explain DIP and why BDD mode was removed from taskwright",
+      "action": "create",
+      "estimated_loc": 200
+    },
+    {
+      "path": "docs/integration/architecture/marker-detection.md",
+      "purpose": "How marker-based detection mechanism works",
+      "action": "create",
+      "estimated_loc": 150
+    },
+    {
+      "path": "docs/integration/troubleshooting/detection-issues.md",
+      "purpose": "Troubleshoot feature detection problems",
+      "action": "create",
+      "estimated_loc": 120
+    },
+    {
+      "path": "docs/integration/troubleshooting/installation-issues.md",
+      "purpose": "Troubleshoot installation problems",
+      "action": "create",
+      "estimated_loc": 120
+    },
+    {
+      "path": "docs/integration/troubleshooting/bdd-mode-questions.md",
+      "purpose": "Explain BDD mode removal and restoration documentation",
+      "action": "create",
+      "estimated_loc": 150
+    },
+    {
+      "path": "README.md",
+      "purpose": "Add link to integration guide",
+      "action": "modify",
+      "estimated_loc": 10
+    },
+    {
+      "path": "CLAUDE.md",
+      "purpose": "Reference integration guide for AI agents",
+      "action": "modify",
+      "estimated_loc": 10
+    }
+  ],
+
+  "patterns": [
+    {
+      "name": "Progressive Disclosure",
+      "description": "Start with overview, drill down to details in separate files",
+      "familiarity": "high"
+    },
+    {
+      "name": "Mirrored Architecture",
+      "description": "Identical structure in both require-kit and taskwright repos",
+      "familiarity": "medium"
+    },
+    {
+      "name": "User Journey Mapping",
+      "description": "Document from user perspective (personas: requirements team, dev team, enterprise)",
+      "familiarity": "high"
+    },
+    {
+      "name": "Cross-Referencing",
+      "description": "Internal links between docs, external links to other repo",
+      "familiarity": "high"
+    }
+  ],
+
+  "dependencies": {
+    "external": [],
+    "internal": [
+      {
+        "name": "docs/architecture/bidirectional-integration.md",
+        "reason": "Already exists, will be referenced"
+      }
+    ]
+  },
+
+  "risks": [
+    {
+      "area": "Cross-Repository Synchronization",
+      "severity": "medium",
+      "description": "Guide must be mirrored to taskwright repo, risk of drift",
+      "mitigation": "Create identical structure, use shared examples, document synchronization process"
+    },
+    {
+      "area": "User Onboarding Experience",
+      "severity": "medium",
+      "description": "Poor documentation affects user adoption and satisfaction",
+      "mitigation": "Test all examples, clear troubleshooting, progressive disclosure"
+    },
+    {
+      "area": "Link Rot",
+      "severity": "low",
+      "description": "Cross-repo links may break if file structure changes",
+      "mitigation": "Use relative paths where possible, document link maintenance process"
+    }
+  ],
+
+  "phases": [
+    {
+      "phase": 1,
+      "name": "Research and Outline",
+      "description": "Review existing docs, create outline, identify cross-references",
+      "estimated_minutes": 30
+    },
+    {
+      "phase": 2,
+      "name": "Draft Main Integration Guide",
+      "description": "Write INTEGRATION-GUIDE.md with overview, feature matrix, detection",
+      "estimated_minutes": 60
+    },
+    {
+      "phase": 3,
+      "name": "Create Workflow Examples",
+      "description": "Write three workflow examples with tested code samples",
+      "estimated_minutes": 45
+    },
+    {
+      "phase": 4,
+      "name": "Write Architecture Docs",
+      "description": "Document DIP rationale and marker detection mechanism",
+      "estimated_minutes": 40
+    },
+    {
+      "phase": 5,
+      "name": "Create Troubleshooting Guides",
+      "description": "Document common issues and solutions",
+      "estimated_minutes": 30
+    },
+    {
+      "phase": 6,
+      "name": "Update Cross-References",
+      "description": "Update README.md, CLAUDE.md, verify links",
+      "estimated_minutes": 15
+    },
+    {
+      "phase": 7,
+      "name": "Review and Polish",
+      "description": "Test examples, verify rendering, check consistency",
+      "estimated_minutes": 20
+    }
+  ],
+
+  "estimated_duration_minutes": 240,
+  "estimated_duration_display": "3-4 hours",
+
+  "total_files_new": 11,
+  "total_files_modified": 2,
+  "total_estimated_loc": 1870,
+
+  "notes": [
+    "Documentation-only task, no code changes",
+    "Must be mirrored to taskwright repository",
+    "All code examples must be tested before publication",
+    "BDD mode removal explanation is critical for user understanding"
+  ]
+}

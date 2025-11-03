@@ -281,8 +281,8 @@ Features bridge requirements and implementation:
 # Review and approve feature specification
 # (Checkpoint: Does feature match expectations?)
 
-# Generate tasks automatically after approval (if using taskwright)
-/feature-generate-tasks FEAT-001
+# Generate task specifications automatically after approval
+/feature-generate-tasks FEAT-001  # Works with or without taskwright
 
 # Review generated tasks
 # (Checkpoint: Are tasks appropriate?)
@@ -351,7 +351,7 @@ Performance Target: <200ms
 
 Next Steps:
 1. Review feature specification
-2. Begin implementation: /task-work TASK-043
+2. Begin implementation with your workflow or taskwright integration
 3. Track progress: /feature-status FEAT-042
 4. Sync to PM tools: /feature-sync FEAT-042
 ```
@@ -404,4 +404,4 @@ docs/
 6. **PM Tool Integration**: Export early and sync frequently
 7. **Human Checkpoints**: Review before task generation and implementation
 
-This feature management system provides the critical bridge between business requirements and implementation tasks while maintaining full integration with external PM tools. For task execution, consider integrating with [taskwright](https://github.com/yourusername/taskwright).
+This feature management system provides the critical bridge between business requirements and implementation tasks while maintaining full integration with external PM tools. For task execution, consider integrating with [taskwright](https://github.com/taskwright-dev/taskwright).
