@@ -86,7 +86,7 @@ Use require-kit standalone for requirements management, or pair it with taskwrig
 - ✅ Traceability from requirements to features
 
 **Optional Integration (No Hard Dependencies):**
-- **Task Execution**: Install [taskwright](https://github.com/yourusername/taskwright) for TDD/BDD workflow, quality gates, and automated testing
+- **Task Execution**: Install [taskwright](https://github.com/taskwright-dev/taskwright) for TDD workflow, quality gates, and automated testing
 - **PM Tools**: Epic/feature files include structured metadata ready for PM tool export. Actual API integration requires user implementation or MCP server integration
 - **CI/CD**: BDD scenarios can drive automated testing pipelines
 - **Bidirectional Detection**: Packages detect each other automatically via marker files

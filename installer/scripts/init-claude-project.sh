@@ -835,7 +835,7 @@ print_next_steps() {
         echo ""
         echo "Task Execution & Quality Gates"
         echo -e "   ${BLUE}/task-create${NC}   - Create implementation tasks"
-        echo -e "   ${BLUE}/task-work${NC}     - Implement with TDD/BDD and quality gates"
+        echo -e "   ${BLUE}/task-work${NC}     - Implement with TDD and quality gates"
         echo -e "   ${BLUE}/task-status${NC}   - Monitor task progress"
         echo -e "   ${BLUE}/task-complete${NC} - Complete task with validation"
         echo ""

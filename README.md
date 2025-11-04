@@ -203,7 +203,7 @@ require-kit is a **standalone requirements management toolkit** that works indep
 
 ### Optional Integration
 When you need task execution workflow (implementation, testing, quality gates):
-- **Task Execution**: Install [taskwright](https://github.com/taskwright-dev/taskwright) for TDD/BDD workflow, automated testing, and quality gates
+- **Task Execution**: Install [taskwright](https://github.com/taskwright-dev/taskwright) for TDD workflow, automated testing, and quality gates
 - **Bidirectional Detection**: Both packages detect each other automatically via marker files
 - **No Hard Dependencies**: Each package works fully independently
 

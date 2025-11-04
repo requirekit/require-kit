@@ -925,7 +925,7 @@ See [Integration Guide](../INTEGRATION-GUIDE.md) for:
 - Installing taskwright alongside require-kit
 - Using `/task-work` for implementation
 - Complete requirements-to-implementation traceability
-- TDD/BDD workflow with quality gates
+- TDD workflow with quality gates
 
 ---
 
