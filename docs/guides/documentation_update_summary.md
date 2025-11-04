@@ -21,7 +21,7 @@ This document summarizes all documentation updates made to support the new unifi
 ### 1. Main Documentation
 - **`README.md`** - Updated with v2.0 features, unified workflow emphasis
 - **`docs/guides/AI-ENGINEER-USER-GUIDE.md`** - Complete rewrite for v2.0
-- **`docs/guides/GETTING-STARTED.md`** - Simplified for new workflow
+- **`docs/guides/getting_started.md`** - Simplified for new workflow
 
 ### 2. Existing Files (Preserved)
 - `.claude/TASK-WORKFLOW-QUICK-REFERENCE.md` - Original kept for reference
@@ -43,7 +43,7 @@ This document summarizes all documentation updates made to support the new unifi
 - Updated all examples to use `/task-work`
 - Added troubleshooting for new workflow
 
-### GETTING-STARTED.md
+### getting_started.md
 - Simplified to 3-minute quick start
 - Added decision tree for choosing development mode
 - Updated all examples to v2.0 workflow

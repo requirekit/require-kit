@@ -960,8 +960,8 @@ See [Integration Guide](../INTEGRATION-GUIDE.md) for:
 ## Additional Resources
 
 ### Documentation
-- **[Getting Started](GETTING-STARTED.md)** - Quick start guide
-- **[User Guide](REQUIRE-KIT-USER-GUIDE.md)** - Comprehensive feature documentation
+- **[Getting Started](getting_started.md)** - Quick start guide
+- **[User Guide](require_kit_user_guide.md)** - Comprehensive feature documentation
 - **[Integration Guide](../INTEGRATION-GUIDE.md)** - Using with taskwright
 - **[README](../../README.md)** - Overview and quick reference
 

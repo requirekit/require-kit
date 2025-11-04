@@ -4,7 +4,7 @@ Welcome to the require-kit documentation! These guides will help you understand 
 
 ## 📚 Core Guides
 
-### 🎯 [require-kit User Guide](REQUIRE-KIT-USER-GUIDE.md) **START HERE!**
+### 🎯 [require-kit User Guide](require_kit_user_guide.md) **START HERE!**
 Comprehensive overview of the entire require-kit system including:
 - System philosophy and core principles
 - Complete requirements workflow (EARS → BDD → Organization)
@@ -15,7 +15,7 @@ Comprehensive overview of the entire require-kit system including:
 
 **Perfect for**: New users, comprehensive reference
 
-### 🚀 [Getting Started](GETTING-STARTED.md)
+### 🚀 [Getting Started](getting_started.md)
 Quick start guide to get up and running with require-kit:
 - Installation and setup
 - Your first requirements gathering session
@@ -25,7 +25,7 @@ Quick start guide to get up and running with require-kit:
 
 **Perfect for**: First-time users, quick onboarding
 
-### 📖 [Command Usage Guide](COMMAND_USAGE_GUIDE.md)
+### 📖 [Command Usage Guide](command_usage_guide.md)
 Detailed command reference with syntax and examples:
 - Requirements commands (/gather-requirements, /formalize-ears, /generate-bdd)
 - Epic management commands (/epic-create, /epic-status, /epic-sync)
@@ -38,12 +38,7 @@ Detailed command reference with syntax and examples:
 
 ## 🏢 Reference Guides
 
-### 🔄 [Migration Guides](MIGRATION-GUIDE.md)
-Guides for upgrading and migrating:
-- [Migration Guide](MIGRATION-GUIDE.md) - Migration guidance
-- [V2 Migration Guide](V2-MIGRATION-GUIDE.md) - Version migration
-
-### 📝 [Documentation Update Summary](DOCUMENTATION-UPDATE-SUMMARY.md)
+### 📝 [Documentation Update Summary](documentation_update_summary.md)
 Summary of documentation updates.
 
 ## 🔗 Integration and Advanced Topics
@@ -169,9 +164,9 @@ installer/
 ## 🔍 Finding Help
 
 ### In Documentation
-1. **New to require-kit?** → [Getting Started](GETTING-STARTED.md)
-2. **Need comprehensive guide?** → [require-kit User Guide](REQUIRE-KIT-USER-GUIDE.md)
-3. **Looking up a command?** → [Command Usage Guide](COMMAND_USAGE_GUIDE.md)
+1. **New to require-kit?** → [Getting Started](getting_started.md)
+2. **Need comprehensive guide?** → [require-kit User Guide](require_kit_user_guide.md)
+3. **Looking up a command?** → [Command Usage Guide](command_usage_guide.md)
 4. **Want to integrate?** → [Integration Guide](../INTEGRATION-GUIDE.md)
 
 ### By Task

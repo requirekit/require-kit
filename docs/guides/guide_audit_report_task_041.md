@@ -23,17 +23,17 @@ Comprehensive audit of 24 guide files in `docs/guides/` directory to ensure prop
 
 These files were updated in TASK-038 and are correctly scoped to require-kit:
 
-1. **COMMAND_USAGE_GUIDE.md** (24,040 bytes)
+1. **command_usage_guide.md** (24,040 bytes)
    - Updated: 2025-11-03
    - Status: ✅ Correctly scoped to require-kit commands
    - Content: Epic, feature, and requirements commands only
 
-2. **GETTING-STARTED.md** (11,767 bytes)
+2. **getting_started.md** (11,767 bytes)
    - Updated: 2025-11-03
    - Status: ✅ Correctly scoped to require-kit workflow
    - Content: Requirements, EARS, BDD, epic/feature basics
 
-3. **REQUIRE-KIT-USER-GUIDE.md** (30,995 bytes)
+3. **require_kit_user_guide.md** (30,995 bytes)
    - Updated: 2025-11-03
    - Status: ✅ Comprehensive require-kit guide
    - Content: Full system overview, commands, best practices
@@ -71,7 +71,7 @@ Moved to `.deprecated/taskwright/` - These files describe task execution and imp
    - Reason: Enhancing `/task-work` command with design patterns
    - Content: MCP setup for task execution, architectural review integration
 
-9. **DOCUMENTATION-UPDATE-SUMMARY.md** (6,098 bytes)
+9. **documentation_update_summary.md** (6,098 bytes)
    - Reason: v2.0 unified task workflow documentation summary
    - Content: `/task-work` command, TDD/BDD modes, task execution
 
@@ -151,9 +151,9 @@ After cleanup, `docs/guides/` now has a clear structure focused on require-kit:
 ```
 docs/guides/
 ├── README.md                           # Guide index (rewritten for require-kit)
-├── REQUIRE-KIT-USER-GUIDE.md          # Comprehensive user guide
-├── GETTING-STARTED.md                  # Quick start guide
-├── COMMAND_USAGE_GUIDE.md              # Command reference
+├── require_kit_user_guide.md          # Comprehensive user guide
+├── getting_started.md                  # Quick start guide
+├── command_usage_guide.md              # Command reference
 ├── GUIDE-AUDIT-REPORT-TASK-041.md      # This audit report
 └── .deprecated/                        # Deprecated documentation
     ├── README.md                       # Deprecation overview
@@ -259,7 +259,7 @@ docs/guides/
 ## Related Tasks
 
 - **TASK-038**: Core documentation update (completed before this)
-  - Updated COMMAND_USAGE_GUIDE.md, GETTING-STARTED.md, REQUIRE-KIT-USER-GUIDE.md
+  - Updated command_usage_guide.md, getting_started.md, require_kit_user_guide.md
   - These updates were verified and kept as-is in this audit
 
 - **TASK-039**: Commands cleanup (completed before this)

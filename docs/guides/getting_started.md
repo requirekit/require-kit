@@ -283,8 +283,8 @@ require-kit uses five patterns for clear requirements:
 
 ### Learn More
 
-- **[require-kit User Guide](REQUIRE-KIT-USER-GUIDE.md)** - Comprehensive guide to all features
-- **[Command Reference](COMMAND_USAGE_GUIDE.md)** - Complete command documentation
+- **[require-kit User Guide](require_kit_user_guide.md)** - Comprehensive guide to all features
+- **[Command Reference](command_usage_guide.md)** - Complete command documentation
 - **[Integration Guide](../INTEGRATION-GUIDE.md)** - Using with taskwright or PM tools
 
 ### Common Workflows
@@ -396,7 +396,7 @@ cd /path/to/taskwright
 ## Getting Help
 
 ### Documentation
-- **[User Guide](REQUIRE-KIT-USER-GUIDE.md)** - Complete feature documentation
+- **[User Guide](require_kit_user_guide.md)** - Complete feature documentation
 - **[Integration Guide](../INTEGRATION-GUIDE.md)** - Integration with taskwright
 - **[README](../../README.md)** - Overview and quick reference
 
@@ -422,7 +422,7 @@ cd /path/to/taskwright
 
 Now that you've completed your first requirements session, you can:
 
-1. **Explore Features**: Read the [User Guide](REQUIRE-KIT-USER-GUIDE.md) for advanced capabilities
+1. **Explore Features**: Read the [User Guide](require_kit_user_guide.md) for advanced capabilities
 2. **Practice**: Create requirements for a real feature in your project
 3. **Export**: Try exporting to your PM tool with `/feature-sync`
 4. **Integrate**: If you need task execution, explore [taskwright integration](../INTEGRATION-GUIDE.md)
@@ -461,4 +461,4 @@ cd require-kit && ./installer/scripts/install.sh
 
 **Ready to start?** Run `/gather-requirements` and begin capturing your first feature requirements!
 
-For detailed documentation, see [REQUIRE-KIT-USER-GUIDE.md](REQUIRE-KIT-USER-GUIDE.md).
+For detailed documentation, see [require_kit_user_guide.md](require_kit_user_guide.md).
