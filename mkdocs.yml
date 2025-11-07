@@ -1,0 +1,344 @@
+# RequireKit Documentation Configuration
+# MkDocs + Material theme configuration for GitHub Pages
+# Based on planning document: docs/planning/documentation-organization-plan.md
+
+# ============================================================================
+# Site Metadata
+# ============================================================================
+
+site_name: RequireKit
+site_description: >-
+  Requirements management toolkit using EARS notation for clear requirements,
+  BDD/Gherkin for test scenarios, and epic/feature hierarchy for organization.
+site_author: RequireKit Team
+site_url: https://requirekit.github.io/require-kit/
+
+# Repository integration
+repo_url: https://github.com/yourusername/require-kit
+repo_name: require-kit
+edit_uri: edit/main/docs/
+
+# Copyright
+copyright: Copyright &copy; 2025 RequireKit
+
+# ============================================================================
+# Theme Configuration - Material for MkDocs
+# ============================================================================
+
+theme:
+  name: material
+  language: en
+
+  # Color palette with light/dark mode toggle
+  palette:
+    # Light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  # Font configuration
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+  # Material features
+  features:
+    # Navigation features
+    - navigation.instant        # Instant loading (SPA-like)
+    - navigation.instant.prefetch  # Prefetch pages on hover
+    - navigation.tracking       # Anchor tracking in URL
+    - navigation.tabs           # Top-level tabs
+    - navigation.tabs.sticky    # Sticky navigation tabs
+    - navigation.sections       # Group sections in sidebar
+    - navigation.expand         # Expand sections by default
+    - navigation.indexes        # Section index pages
+    - navigation.top            # Back to top button
+
+    # Search features
+    - search.suggest            # Search suggestions
+    - search.highlight          # Highlight search terms
+    - search.share              # Share search results
+
+    # Header features
+    - header.autohide           # Auto-hide header on scroll
+
+    # Content features
+    - content.code.copy         # Copy button for code blocks
+    - content.code.annotate     # Code annotations support
+    - content.tabs.link         # Link content tabs
+    - content.tooltips          # Improved tooltips
+
+    # Table of contents features
+    - toc.follow                # Follow TOC on scroll
+    - toc.integrate             # Integrate TOC into navigation
+
+  # Icons
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/file-document-outline
+
+# ============================================================================
+# Plugins
+# ============================================================================
+
+plugins:
+  # Built-in search plugin
+  - search:
+      lang: en
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+      pipeline:
+        - stemmer
+        - stopWordFilter
+        - trimmer
+
+# ============================================================================
+# Markdown Extensions
+# ============================================================================
+
+markdown_extensions:
+  # Python Markdown extensions
+  - abbr                        # Abbreviations
+  - admonition                  # Callout boxes (notes, warnings)
+  - attr_list                   # Add HTML attributes to elements
+  - def_list                    # Definition lists
+  - footnotes                   # Footnote support
+  - md_in_html                  # Markdown in HTML
+  - tables                      # Table support
+
+  # Table of contents
+  - toc:
+      permalink: true           # Add permalink to headings
+      permalink_title: Link to this section
+
+  # PyMdown Extensions
+  - pymdownx.arithmatex:        # LaTeX math support
+      generic: true
+
+  - pymdownx.betterem:          # Better emphasis handling
+      smart_enable: all
+
+  - pymdownx.caret              # Insert/superscript support
+  - pymdownx.mark               # Highlight/mark support
+  - pymdownx.tilde              # Delete/subscript support
+
+  - pymdownx.details            # Collapsible admonitions
+
+  - pymdownx.emoji:             # Emoji support
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+
+  - pymdownx.highlight:         # Code syntax highlighting
+      anchor_linenums: true     # Anchor line numbers
+      line_spans: __span
+      pygments_lang_class: true
+
+  - pymdownx.inlinehilite       # Inline code highlighting
+
+  - pymdownx.keys               # Keyboard key rendering
+
+  - pymdownx.smartsymbols       # Smart symbols (copyright, arrows, etc.)
+
+  - pymdownx.snippets:          # Include file snippets
+      auto_append:
+        - includes/abbreviations.md
+      check_paths: true
+
+  - pymdownx.superfences:       # Enhanced fenced code blocks
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  - pymdownx.tabbed:            # Content tabs
+      alternate_style: true
+      combine_header_slug: true
+
+  - pymdownx.tasklist:          # Task lists with checkboxes
+      custom_checkbox: true
+      clickable_checkbox: false
+
+# ============================================================================
+# Navigation Structure
+# Based on: docs/planning/documentation-organization-plan.md
+# ============================================================================
+
+nav:
+  - Home: index.md
+
+  - Getting Started:
+      - Overview: getting-started/index.md
+      - Quickstart: getting-started/quickstart.md
+      - Installation: getting-started/installation.md
+      - Your First Requirements: getting-started/first-requirements.md
+      - Integration with taskwright: getting-started/integration.md
+
+  - Core Concepts:
+      - Overview: core-concepts/index.md
+      - EARS Notation Patterns: core-concepts/ears-notation.md
+      - BDD/Gherkin Scenarios: core-concepts/bdd-scenarios.md
+      - Epic/Feature Hierarchy: core-concepts/hierarchy.md
+      - Requirements Traceability: core-concepts/traceability.md
+
+  - User Guides:
+      - Overview: guides/README.md
+      - Complete User Guide: guides/require_kit_user_guide.md
+      - Getting Started Guide: guides/getting_started.md
+      - Command Usage Guide: guides/command_usage_guide.md
+
+  - Commands Reference:
+      - Overview: commands/index.md
+      - Requirements Commands: commands/requirements.md
+      - Epic Commands: commands/epics.md
+      - Feature Commands: commands/features.md
+      - Hierarchy Commands: commands/hierarchy.md
+
+  - MCP Setup:
+      - Overview: mcp-setup/index.md
+      - Figma MCP: mcp-setup/figma-mcp-setup.md
+      - Zeplin MCP: mcp-setup/zeplin-mcp-setup.md
+
+  - Integration:
+      - taskwright Integration: INTEGRATION-GUIDE.md
+      - PM Tool Export: integration/pm-tools.md
+
+  - Quick Reference:
+      - Overview: quick-reference/README.md
+      - Task Work Cheat Sheet: quick-reference/task-work-cheat-sheet.md
+      - Complexity Guide: quick-reference/complexity-guide.md
+      - Quality Gates Card: quick-reference/quality-gates-card.md
+      - Design-First Workflow: quick-reference/design-first-workflow-card.md
+
+  - Examples:
+      - Overview: examples/index.md
+      - Requirements Examples: examples/requirements.md
+      - Feature Examples: examples/features.md
+      - BDD Scenarios Examples: examples/bdd.md
+
+  - Developer Docs:
+      - Overview: developer/index.md
+      - Architecture: developer/architecture.md
+      - Architecture Decision Records: developer/adr.md
+      - Contributing: developer/contributing.md
+      - Templates: developer/templates.md
+
+  - Troubleshooting & FAQ:
+      - Troubleshooting: troubleshooting/index.md
+      - FAQ: faq.md
+
+# ============================================================================
+# Exclusion Patterns
+# Exclude internal development artifacts from the site build
+# These directories remain in the repository for version control
+# ============================================================================
+
+exclude_docs: |
+  # Internal development artifacts
+  research/
+  analysis/
+  state/
+  implementation-plans/
+  implementation/
+  test_reports/
+  tests/
+  reviews/
+  fixes/
+  proposals/
+  migration/
+  requirements-gathering-api/
+  planning/
+
+  # Example/draft content (will be aggregated into examples/ pages)
+  requirements/draft/
+  features/active/
+
+  # Temporary and build files
+  .DS_Store
+  *.tmp
+  *.bak
+  __pycache__/
+
+# ============================================================================
+# Extra Configuration
+# ============================================================================
+
+extra:
+  # Social links
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/yourusername/require-kit
+      name: RequireKit on GitHub
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/yourhandle
+      name: Follow us on Twitter
+
+  # Version
+  version:
+    provider: mike
+    default: latest
+
+  # Analytics (optional - add Google Analytics ID if needed)
+  # analytics:
+  #   provider: google
+  #   property: G-XXXXXXXXXX
+
+# ============================================================================
+# Extra CSS and JavaScript (optional)
+# ============================================================================
+
+# extra_css:
+#   - stylesheets/extra.css
+
+# extra_javascript:
+#   - javascripts/extra.js
+
+# ============================================================================
+# Build Configuration
+# ============================================================================
+
+# Documentation directory
+docs_dir: docs
+
+# Build output directory
+site_dir: site
+
+# Strict mode - fail on warnings
+strict: true
+
+# Use directory URLs (cleaner URLs without .html)
+use_directory_urls: true
+
+# ============================================================================
+# Development Server Configuration
+# ============================================================================
+
+dev_addr: 127.0.0.1:8000
+
+# Watch additional directories for changes during development
+watch:
+  - mkdocs.yml
+  - docs/
+
+# ============================================================================
+# Validation Configuration
+# ============================================================================
+
+validation:
+  nav:
+    omitted_files: info
+    not_found: warn
+    absolute_links: warn
+  links:
+    not_found: warn
+    absolute_links: warn
+    unrecognized_links: warn

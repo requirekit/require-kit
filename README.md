@@ -5,6 +5,7 @@
 ![Standalone](https://img.shields.io/badge/standalone-no%20dependencies-6f42c1)
 ![Optional Integration](https://img.shields.io/badge/integration-taskwright%20optional-ffd33d)
 ![Bidirectional Detection](https://img.shields.io/badge/detection-automatic-6f42c1)
+[![Documentation](https://img.shields.io/badge/docs-online-blue)](https://appmilla.github.io/require-kit/)
 
 **Requirements management toolkit with EARS notation, BDD scenarios, and epic/feature hierarchy.**
 
@@ -42,7 +43,22 @@ Use require-kit standalone for requirements management, or pair it with taskwrig
 
 The structured format makes it straightforward to build custom integrations or use MCP servers when available.
 
+## Documentation
+
+📚 **[View Full Documentation](https://appmilla.github.io/require-kit/)**
+
+Comprehensive guides for requirements management:
+- [Getting Started](https://appmilla.github.io/require-kit/getting-started/) - Quick setup and first steps
+- [EARS Notation](https://appmilla.github.io/require-kit/core-concepts/ears-notation/) - Understanding requirement patterns
+- [BDD/Gherkin Generation](https://appmilla.github.io/require-kit/core-concepts/bdd-generation/) - Creating test scenarios
+- [Epic/Feature Hierarchy](https://appmilla.github.io/require-kit/core-concepts/hierarchy/) - Organizing your requirements
+- [Command Reference](https://appmilla.github.io/require-kit/commands/) - All available commands
+- [Integration Guide](https://appmilla.github.io/require-kit/integration/pm-tools/) - PM tool integration
+- [Troubleshooting](https://appmilla.github.io/require-kit/troubleshooting/) - Common issues and solutions
+
 ## Quick Start
+
+📚 **For detailed setup instructions, see the [Getting Started Guide](https://appmilla.github.io/require-kit/getting-started/)**
 
 ### Gather Requirements
 
