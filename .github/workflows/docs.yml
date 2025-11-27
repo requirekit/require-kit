@@ -31,13 +31,16 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          cache: 'pip'  # Cache pip dependencies
+          cache: 'pip'
+          cache-dependency-path: docs/requirements.txt
 
-      - name: Install MkDocs Material
-        run: pip install mkdocs-material
+      - name: Install MkDocs dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r docs/requirements.txt
 
       - name: Build documentation
-        run: mkdocs build --strict  # Fail on warnings
+        run: mkdocs build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

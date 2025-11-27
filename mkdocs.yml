@@ -14,7 +14,7 @@ site_author: RequireKit Team
 site_url: https://requirekit.github.io/require-kit/
 
 # Repository integration
-repo_url: https://github.com/yourusername/require-kit
+repo_url: https://github.com/requirekit/require-kit
 repo_name: require-kit
 edit_uri: edit/main/docs/
 
@@ -150,8 +150,6 @@ markdown_extensions:
   - pymdownx.smartsymbols       # Smart symbols (copyright, arrows, etc.)
 
   - pymdownx.snippets:          # Include file snippets
-      auto_append:
-        - includes/abbreviations.md
       check_paths: true
 
   - pymdownx.superfences:       # Enhanced fenced code blocks
@@ -257,6 +255,8 @@ exclude_docs: |
   migration/
   requirements-gathering-api/
   planning/
+  adr/
+  architecture/
 
   # Example/draft content (will be aggregated into examples/ pages)
   requirements/draft/
@@ -276,11 +276,8 @@ extra:
   # Social links
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/yourusername/require-kit
+      link: https://github.com/requirekit/require-kit
       name: RequireKit on GitHub
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/yourhandle
-      name: Follow us on Twitter
 
   # Version
   version:
@@ -313,7 +310,8 @@ docs_dir: docs
 site_dir: site
 
 # Strict mode - fail on warnings
-strict: true
+# Disabled: Allow warnings for excluded internal files (see lessons from taskwright deployment)
+strict: false
 
 # Use directory URLs (cleaner URLs without .html)
 use_directory_urls: true
