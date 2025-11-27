@@ -117,6 +117,9 @@ FEAT-001 (Feature)           Quality Gates
 /task-work TASK-001
 ```
 
+!!! note "BDD Mode Temporarily Removed"
+    The `--mode=BDD` option has been temporarily removed from the `/task-work` command to maintain taskwright's independence from require-kit. This will be reintroduced in a future release with proper dependency inversion. For now, BDD scenarios are manually referenced during task execution.
+
 **taskwright loads:**
 - Requirements context from REQ-001
 - BDD scenarios as acceptance criteria from BDD-001
