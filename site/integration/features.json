@@ -1,0 +1,239 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-11-03",
+  "description": "Feature availability matrix for require-kit and taskwright integration scenarios",
+
+  "installation_scenarios": {
+    "require_kit_only": {
+      "name": "require-kit Only",
+      "description": "Standalone requirements management without task execution",
+      "use_case": "Requirements team without dev implementation, or using external PM tools"
+    },
+    "taskwright_only": {
+      "name": "taskwright Only",
+      "description": "Standalone task execution without requirements traceability",
+      "use_case": "Lean startup, rapid iteration, no formal requirements process"
+    },
+    "full_integration": {
+      "name": "Both Integrated",
+      "description": "Complete requirements-to-implementation workflow",
+      "use_case": "Enterprise teams needing full traceability"
+    }
+  },
+
+  "feature_categories": [
+    {
+      "category": "Requirements Management",
+      "features": [
+        {
+          "name": "EARS Requirements",
+          "require_kit_only": "full",
+          "taskwright_only": "none",
+          "full_integration": "full",
+          "description": "Easy Approach to Requirements Syntax notation"
+        },
+        {
+          "name": "Requirements Gathering",
+          "require_kit_only": "interactive",
+          "taskwright_only": "none",
+          "full_integration": "interactive",
+          "description": "Interactive Q&A for requirements capture"
+        },
+        {
+          "name": "Requirements Traceability",
+          "require_kit_only": "full",
+          "taskwright_only": "none",
+          "full_integration": "enhanced",
+          "description": "Track requirements through implementation"
+        }
+      ]
+    },
+    {
+      "category": "BDD/Testing",
+      "features": [
+        {
+          "name": "BDD Scenario Generation",
+          "require_kit_only": "gherkin",
+          "taskwright_only": "none",
+          "full_integration": "gherkin",
+          "description": "Generate Gherkin/Cucumber scenarios"
+        },
+        {
+          "name": "BDD-Driven Testing",
+          "require_kit_only": "manual",
+          "taskwright_only": "manual",
+          "full_integration": "automated",
+          "description": "Execute tests based on BDD scenarios"
+        },
+        {
+          "name": "Test Execution",
+          "require_kit_only": "none",
+          "taskwright_only": "full",
+          "full_integration": "full",
+          "description": "Run test suites with reporting"
+        },
+        {
+          "name": "Test Coverage",
+          "require_kit_only": "none",
+          "taskwright_only": "≥80%",
+          "full_integration": "≥80%",
+          "description": "Code coverage tracking and enforcement"
+        }
+      ]
+    },
+    {
+      "category": "Project Organization",
+      "features": [
+        {
+          "name": "Epic Management",
+          "require_kit_only": "full",
+          "taskwright_only": "none",
+          "full_integration": "full",
+          "description": "Epic creation, status, and hierarchy"
+        },
+        {
+          "name": "Feature Management",
+          "require_kit_only": "full",
+          "taskwright_only": "none",
+          "full_integration": "full",
+          "description": "Feature creation, status, and linking"
+        },
+        {
+          "name": "Task Management",
+          "require_kit_only": "specs_only",
+          "taskwright_only": "full",
+          "full_integration": "enhanced",
+          "description": "Task creation, execution, and completion"
+        },
+        {
+          "name": "Hierarchy View",
+          "require_kit_only": "epic_to_feature",
+          "taskwright_only": "task_only",
+          "full_integration": "epic_to_task",
+          "description": "Visualize project hierarchy"
+        }
+      ]
+    },
+    {
+      "category": "Task Execution",
+      "features": [
+        {
+          "name": "Task Workflow",
+          "require_kit_only": "none",
+          "taskwright_only": "full",
+          "full_integration": "full",
+          "description": "Structured task execution workflow"
+        },
+        {
+          "name": "TDD Mode",
+          "require_kit_only": "none",
+          "taskwright_only": "yes",
+          "full_integration": "yes",
+          "description": "Test-driven development workflow"
+        },
+        {
+          "name": "Micro-Task Mode",
+          "require_kit_only": "none",
+          "taskwright_only": "yes",
+          "full_integration": "yes",
+          "description": "Streamlined workflow for trivial tasks"
+        },
+        {
+          "name": "Quality Gates",
+          "require_kit_only": "none",
+          "taskwright_only": "full",
+          "full_integration": "enhanced",
+          "description": "Automated quality checks"
+        }
+      ]
+    },
+    {
+      "category": "Code Quality",
+      "features": [
+        {
+          "name": "Architectural Review",
+          "require_kit_only": "none",
+          "taskwright_only": "full",
+          "full_integration": "enhanced",
+          "description": "Pattern compliance and design validation"
+        },
+        {
+          "name": "Code Review",
+          "require_kit_only": "none",
+          "taskwright_only": "solid_dry",
+          "full_integration": "solid_dry",
+          "description": "SOLID principles and DRY validation"
+        },
+        {
+          "name": "Plan Audit",
+          "require_kit_only": "none",
+          "taskwright_only": "scope_creep",
+          "full_integration": "scope_creep",
+          "description": "Detect implementation scope creep"
+        },
+        {
+          "name": "Complexity Evaluation",
+          "require_kit_only": "none",
+          "taskwright_only": "1-10_scale",
+          "full_integration": "1-10_scale",
+          "description": "Task complexity scoring"
+        }
+      ]
+    },
+    {
+      "category": "Integration",
+      "features": [
+        {
+          "name": "PM Tool Export",
+          "require_kit_only": "jira_linear_github_azure",
+          "taskwright_only": "none",
+          "full_integration": "full",
+          "description": "Export to project management tools"
+        },
+        {
+          "name": "Requirements Context",
+          "require_kit_only": "local",
+          "taskwright_only": "none",
+          "full_integration": "injected",
+          "description": "Requirements available during task execution"
+        },
+        {
+          "name": "BDD → Task Link",
+          "require_kit_only": "manual",
+          "taskwright_only": "none",
+          "full_integration": "automatic",
+          "description": "Automatic linking of BDD to tasks"
+        }
+      ]
+    }
+  ],
+
+  "availability_legend": {
+    "full": {
+      "symbol": "✅",
+      "description": "Fully available"
+    },
+    "enhanced": {
+      "symbol": "✅",
+      "description": "Enhanced with integration context"
+    },
+    "partial": {
+      "symbol": "⚠️",
+      "description": "Partially available or manual process"
+    },
+    "none": {
+      "symbol": "❌",
+      "description": "Not available"
+    },
+    "custom": {
+      "description": "Custom text description (see feature details)"
+    }
+  },
+
+  "notes": [
+    "This JSON serves as the single source of truth for feature availability",
+    "Markdown tables are generated from this data",
+    "Update this file when features change, then regenerate tables",
+    "Symbols (✅⚠️❌) are added during markdown generation based on availability values"
+  ]
+}
