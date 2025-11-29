@@ -293,7 +293,8 @@ check_integration_opportunities() {
     print_info "Checking for integration opportunities..."
 
     # Check if taskwright is installed (optional integration)
-    if [ ! -f "$INSTALL_DIR/taskwright.marker" ]; then
+    # Support both legacy .marker and new .marker.json formats
+    if [ ! -f "$INSTALL_DIR/taskwright.marker" ] && [ ! -f "$INSTALL_DIR/taskwright.marker.json" ]; then
         echo ""
         echo -e "${YELLOW}  ℹ️  taskwright not detected${NC}"
         echo "  require-kit works standalone for requirements management"
