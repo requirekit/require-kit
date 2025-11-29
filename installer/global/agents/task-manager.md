@@ -746,7 +746,7 @@ Review Mode: {review_mode}
 **BEFORE** starting micro-task workflow, validate task eligibility:
 
 ```python
-from installer.global.commands.lib.micro_task_detector import MicroTaskDetector
+from lib.micro_task_detector import MicroTaskDetector
 
 detector = MicroTaskDetector()
 analysis = detector.analyze(task_metadata)
@@ -955,9 +955,9 @@ Next Steps:
 - Continue to Phase 3 if approved
 
 **Integration Points**:
-- Import: `from installer.global.commands.lib.phase_execution import execute_phases`
-- Import: `from installer.global.commands.lib.plan_persistence import save_plan, load_plan, plan_exists`
-- Import: `from installer.global.commands.lib.flag_validator import validate_flags`
+- Import: `from lib.phase_execution import execute_phases`
+- Import: `from lib.plan_persistence import save_plan, load_plan, plan_exists`
+- Import: `from lib.flag_validator import validate_flags`
 
 **State Transitions**:
 - `backlog` → `design_approved` (design-only approval)

@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Dict, Any, Optional, Literal
 
 from .metrics_storage import MetricsStorage
-from config import PlanReviewConfig
+from ..config import PlanReviewConfig
 
 
 class PlanReviewMetrics:

@@ -497,7 +497,7 @@ Code review in Phase 5 includes **Plan Audit** (Phase 5.5) which verifies:
 Before reviewing code quality, verify implementation matches requirements:
 
 ```python
-from installer.global.commands.lib.spec_drift_detector import (
+from lib.spec_drift_detector import (
     SpecDriftDetector,
     format_drift_report
 )
