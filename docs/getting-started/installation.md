@@ -60,19 +60,23 @@ cat ~/.agentecflow/require-kit.marker
 
 ## Project Initialization
 
-Initialize RequireKit in your project:
+Navigate to your project and create the require-kit documentation structure:
 
 ```bash
 cd /path/to/your/project
-/require-kit init
-
-# Creates directory structure:
-# docs/
-# ├── epics/
-# ├── features/
-# ├── requirements/
-# └── bdd/
+mkdir -p docs/requirements/{draft,approved,implemented}
+mkdir -p docs/epics/{active,completed,cancelled}
+mkdir -p docs/features/{active,in_progress,completed}
+mkdir -p docs/bdd
 ```
+
+After creating the directory structure, require-kit commands are automatically available in Claude Code:
+- `/gather-requirements` - Interactive requirements gathering
+- `/formalize-ears` - Convert to EARS notation
+- `/generate-bdd` - Generate BDD scenarios
+- `/epic-create` - Create epic
+- `/feature-create` - Create feature
+- `/hierarchy-view` - View epic/feature hierarchy
 
 ## Configuration
 

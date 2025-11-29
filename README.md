@@ -81,21 +81,14 @@ chmod +x installer/scripts/install.sh
 
 ### Initialize Your Project
 
-Navigate to your project directory and initialize require-kit:
+Navigate to your project directory and create the documentation structure:
 
 ```bash
 cd /path/to/your/project
-require-kit init
+mkdir -p docs/{epics,features,requirements,bdd}
 ```
 
-This creates the documentation structure:
-```
-docs/
-├── epics/
-├── features/
-├── requirements/
-└── bdd/
-```
+Alternatively, require-kit commands (`/gather-requirements`, `/formalize-ears`, etc.) are automatically available in Claude Code after installation - no manual project initialization needed.
 
 ---
 

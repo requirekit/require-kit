@@ -238,12 +238,11 @@ print_completion_message() {
     echo "  /feature-create      - Create feature"
     echo "  /hierarchy-view      - View epic/feature hierarchy"
     echo ""
-    echo "For project setup, run:"
+    echo "For project setup, create the documentation structure:"
     echo "  cd your-project"
-    echo "  require-kit init"
+    echo "  mkdir -p docs/{epics,features,requirements,bdd}"
     echo ""
-    echo "Check installation:"
-    echo "  require-kit doctor"
+    echo "Then use require-kit commands in Claude Code to start gathering requirements."
     echo ""
 }
 
