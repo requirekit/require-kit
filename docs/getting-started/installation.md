@@ -10,35 +10,52 @@ Install RequireKit and set up your environment for requirements management.
 
 ## Installation Steps
 
-### 1. Clone the Repository
+### Method 1: Quick Install (Recommended)
+
+**For macOS/Linux:**
+
+```bash
+curl -sSL https://raw.githubusercontent.com/requirekit/require-kit/main/installer/scripts/install.sh | bash
+```
+
+This single command downloads and runs the installer, setting up require-kit globally on your system.
+
+**For Windows (via WSL2):**
+
+1. Ensure WSL2 is installed on your Windows machine
+2. Open your WSL2 terminal
+3. Run the same curl command above
+
+### Method 2: Clone Repository
+
+If you prefer to clone the source code first:
 
 ```bash
 git clone https://github.com/requirekit/require-kit.git
 cd require-kit
-```
-
-### 2. Run the Installer
-
-```bash
-chmod +x ./installer/scripts/install.sh
+chmod +x installer/scripts/install.sh
 ./installer/scripts/install.sh
 ```
 
-The installer will:
-- Install global agents (requirements-analyst, bdd-generator)
-- Install global commands (epic/feature management)
-- Create marker file for package detection
-- Set up PATH for commands
+### What the Installer Does
 
-### 3. Verify Installation
+The installer will:
+- Install global agents (requirements-analyst, bdd-generator) to `~/.agentecflow/agents/`
+- Install global commands (epic/feature management) to `~/.agentecflow/commands/`
+- Create marker file for package detection at `~/.agentecflow/require-kit.marker`
+- Add `~/.agentecflow/bin` to your PATH
+- Set up Claude Code integration
+
+### Verify Installation
+
+After installation, verify that require-kit is available:
 
 ```bash
-# Check that commands are available
-/gather-requirements --version
-/formalize-ears --version
-/generate-bdd --version
+# Check installation directory
+ls ~/.agentecflow/
 
-# All should respond with require-kit version info
+# Verify marker file exists
+cat ~/.agentecflow/require-kit.marker
 ```
 
 ## Project Initialization

@@ -56,9 +56,52 @@ Comprehensive guides for requirements management:
 - [Integration Guide](https://requirekit.github.io/require-kit/integration/pm-tools/) - PM tool integration
 - [Troubleshooting](https://requirekit.github.io/require-kit/troubleshooting/) - Common issues and solutions
 
-## Quick Start
+## 5 Minute Quickstart
+
+### Quick Install (Recommended)
+
+**For macOS/Linux:**
+
+```bash
+curl -sSL https://raw.githubusercontent.com/requirekit/require-kit/main/installer/scripts/install.sh | bash
+```
+
+**Windows (via WSL2):** First ensure WSL2 is installed, then run the same curl command in your WSL2 terminal.
+
+### Clone Repository Method
+
+Prefer to clone the source code?
+
+```bash
+git clone https://github.com/requirekit/require-kit.git
+cd require-kit
+chmod +x installer/scripts/install.sh
+./installer/scripts/install.sh
+```
+
+### Initialize Your Project
+
+Navigate to your project directory and initialize require-kit:
+
+```bash
+cd /path/to/your/project
+require-kit init
+```
+
+This creates the documentation structure:
+```
+docs/
+├── epics/
+├── features/
+├── requirements/
+└── bdd/
+```
+
+---
 
 📚 **For detailed setup instructions, see the [Getting Started Guide](https://requirekit.github.io/require-kit/getting-started/)**
+
+## Usage
 
 ### Gather Requirements
 

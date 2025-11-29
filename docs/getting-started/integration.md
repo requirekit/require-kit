@@ -44,21 +44,43 @@ Add taskwright when you need:
 
 ### Install RequireKit Only
 
+**Quick Install (Recommended):**
+
+```bash
+curl -sSL https://raw.githubusercontent.com/requirekit/require-kit/main/installer/scripts/install.sh | bash
+```
+
+**Or Clone Repository:**
+
 ```bash
 git clone https://github.com/requirekit/require-kit.git
 cd require-kit
+chmod +x installer/scripts/install.sh
 ./installer/scripts/install.sh
 ```
 
 ### Add taskwright Integration
 
+**Quick Install:**
+
 ```bash
-# After installing RequireKit
+curl -sSL https://raw.githubusercontent.com/taskwright-dev/taskwright/main/installer/scripts/install.sh | bash
+```
+
+**Or Clone Repository:**
+
+```bash
 git clone https://github.com/taskwright-dev/taskwright.git
 cd taskwright
+chmod +x installer/scripts/install.sh
 ./installer/scripts/install.sh
+```
 
-# Verify integration
+### Verify Integration
+
+After installing both packages, verify they're both present:
+
+```bash
 ls ~/.agentecflow/*.marker
 # Should show both: require-kit.marker + taskwright.marker
 ```
