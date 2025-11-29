@@ -45,7 +45,7 @@ Add taskwright when you need:
 ### Install RequireKit Only
 
 ```bash
-git clone https://github.com/yourusername/require-kit.git
+git clone https://github.com/requirekit/require-kit.git
 cd require-kit
 ./installer/scripts/install.sh
 ```

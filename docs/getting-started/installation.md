@@ -13,7 +13,7 @@ Install RequireKit and set up your environment for requirements management.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/require-kit.git
+git clone https://github.com/requirekit/require-kit.git
 cd require-kit
 ```
 
@@ -168,7 +168,7 @@ exec $SHELL
 
 - Check the [Troubleshooting Guide](../troubleshooting/index.md)
 - Review the [FAQ](../faq.md)
-- Report issues on [GitHub](https://github.com/yourusername/require-kit/issues)
+- Report issues on [GitHub](https://github.com/requirekit/require-kit/issues)
 
 ---
 
