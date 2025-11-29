@@ -309,9 +309,13 @@ validate_installation() {
     # Test Python import of feature_detection module
     if ! python3 <<EOF
 import sys
-sys.path.insert(0, "$INSTALL_DIR")
+import os
+
+# Change to installed directory
+os.chdir(os.path.expanduser("$INSTALL_DIR"))
+
 try:
-    from lib.feature_detection import detect_packages
+    from lib.feature_detection import is_require_kit_installed
     print("Import successful")
     sys.exit(0)
 except ImportError as e:
