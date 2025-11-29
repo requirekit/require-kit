@@ -13,7 +13,7 @@ This directory contains the require-kit-specific installer that installs to name
 
 ## Installation Scripts
 
-### install-require-kit.sh
+### install.sh
 Installs require-kit to `~/.agentecflow` using namespaced directories:
 - Commands: `~/.agentecflow/commands/require-kit/`
 - Agents: `~/.agentecflow/agents/require-kit/`
@@ -24,11 +24,16 @@ Creates backwards-compatible symlinks for commands and agents.
 
 **Usage:**
 ```bash
-cd require-kit/installer
-bash scripts/install-require-kit.sh
+# Quick install (recommended)
+curl -sSL https://raw.githubusercontent.com/requirekit/require-kit/main/installer/scripts/install.sh | bash
+
+# Or clone and run
+cd require-kit
+chmod +x installer/scripts/install.sh
+./installer/scripts/install.sh
 ```
 
-### uninstall-require-kit.sh
+### uninstall.sh
 Removes require-kit from `~/.agentecflow`:
 - Removes namespaced directories
 - Removes symlinks pointing to require-kit
@@ -38,41 +43,8 @@ Removes require-kit from `~/.agentecflow`:
 
 **Usage:**
 ```bash
-cd require-kit/installer
-bash scripts/uninstall-require-kit.sh
-```
-
-### init-require-kit-project.sh
-Initializes a project for require-kit:
-- Creates `docs/requirements/` (draft, approved, implemented)
-- Creates `docs/epics/` (active, completed, cancelled)
-- Creates `docs/features/` (active, in_progress, completed)
-- Creates `docs/bdd/`
-- Creates `.claude/CLAUDE.md` with configuration
-- Detects taskwright integration if available
-
-**Usage:**
-```bash
-cd your-project
-~/.agentecflow/bin/require-kit init
-# OR
-bash /path/to/require-kit/installer/scripts/init-require-kit-project.sh
-```
-
-### test-require-kit-install.sh
-Automated test suite that verifies:
-- Directory structure creation
-- Commands and agents installation
-- Symlink creation
-- Marker file creation
-- feature_detection.py installation
-- Version tracking
-- Clean uninstallation
-
-**Usage:**
-```bash
-cd require-kit/installer
-bash scripts/test-require-kit-install.sh
+cd require-kit
+./installer/scripts/uninstall.sh
 ```
 
 ## Directory Structure After Installation
@@ -161,10 +133,10 @@ else:
 
 The test script verifies all acceptance criteria from REQ-003A:
 
-- [x] install-require-kit.sh installs to namespaced directories
+- [x] install.sh installs to namespaced directories
 - [x] Symlinks created for backwards compatibility
 - [x] manifest.json updated with namespace info
-- [x] uninstall-require-kit.sh removes only require-kit files
+- [x] uninstall.sh removes only require-kit files
 - [x] Version tracking works (.installed/)
 - [x] Marker file created (require-kit.marker with JSON metadata)
 - [x] feature_detection.py copied to ~/.agentecflow/lib/
@@ -173,24 +145,16 @@ The test script verifies all acceptance criteria from REQ-003A:
 - [x] Project initialization works
 - [x] Verification tests pass
 
-Run tests:
-```bash
-cd require-kit/installer
-bash scripts/test-require-kit-install.sh
-```
-
 ## Files
 
-- `scripts/install-require-kit.sh` - Main installation script
-- `scripts/uninstall-require-kit.sh` - Uninstallation script
-- `scripts/init-require-kit-project.sh` - Project initialization
-- `scripts/test-require-kit-install.sh` - Automated test suite
+- `scripts/install.sh` - Main installation script
+- `scripts/uninstall.sh` - Uninstallation script
 - `manifest.json` - Package metadata
 - `global/lib/feature_detection.py` - Feature detection library (shared)
 
 ## Installation Options
 
-**install-require-kit.sh** (require-kit standalone):
+**install.sh** (require-kit standalone):
 - Installs only require-kit components
 - Uses namespaced directories in `~/.agentecflow`
 - Allows coexistence with taskwright
