@@ -309,7 +309,7 @@ validate_installation() {
     # Test Python import of feature_detection module
     if ! python3 <<EOF
 import sys
-sys.path.insert(0, "$INSTALL_DIR/lib")
+sys.path.insert(0, "$INSTALL_DIR")
 try:
     from lib.feature_detection import detect_packages
     print("Import successful")
