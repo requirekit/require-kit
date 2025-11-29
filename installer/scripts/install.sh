@@ -202,12 +202,20 @@ install_agents() {
 install_lib() {
     print_info "Installing library files..."
 
-    # Copy feature_detection.py (shared with taskwright)
-    if [ -f "$SCRIPT_DIR/global/lib/feature_detection.py" ]; then
-        cp "$SCRIPT_DIR/global/lib/feature_detection.py" "$INSTALL_DIR/lib/" 2>/dev/null || true
-        print_success "Library files installed (feature_detection.py)"
+    # Copy entire lib directory structure (preserves relative imports)
+    if [ -d "$SCRIPT_DIR/global/lib" ]; then
+        # Use cp -r to recursively copy entire lib structure
+        cp -r "$SCRIPT_DIR/global/lib/"* "$INSTALL_DIR/lib/" 2>/dev/null || true
+
+        # Count Python files installed
+        local py_count=$(find "$INSTALL_DIR/lib" -name "*.py" -type f 2>/dev/null | wc -l)
+        if [ "$py_count" -gt 0 ]; then
+            print_success "Library files installed ($py_count Python modules)"
+        else
+            print_warning "No Python files found in $INSTALL_DIR/lib"
+        fi
     else
-        print_warning "feature_detection.py not found at $SCRIPT_DIR/global/lib/feature_detection.py"
+        print_warning "lib directory not found at $SCRIPT_DIR/global/lib"
     fi
 }
 

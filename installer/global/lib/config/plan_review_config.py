@@ -5,7 +5,7 @@ from pathlib import Path
 
 from .defaults import DEFAULT_CONFIG
 from .config_schema import ConfigSchema, ThresholdConfig
-from utils import JsonSerializer, PathResolver
+from ..utils import JsonSerializer, PathResolver
 
 
 class PlanReviewConfig:
