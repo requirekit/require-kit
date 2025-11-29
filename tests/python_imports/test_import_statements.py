@@ -13,12 +13,12 @@ class TestImportStatements:
     """Validate import statements in modified files."""
 
     def __init__(self):
-        self.repo_root = Path(__file__).parent.parent.parent
+        self.repo_root = Path(__file__).parent.parent.parent.parent.parent
         self.lib_dir = self.repo_root / "installer" / "global" / "lib"
         self.errors = []
         self.warnings = []
 
-        # Files modified in TASK-FIX-D2C0
+        # Files modified in TASK-FIX-D2C0 and TASK-FIX-3196
         self.modified_files = [
             'config/plan_review_config.py',
             'metrics/metrics_storage.py',
@@ -85,22 +85,19 @@ class TestImportStatements:
         imports = self.parse_imports(file_path)
 
         # Define expected patterns for each file
+        # TASK-FIX-3196: All cross-package imports must use RELATIVE imports
         expected_imports = {
             'config/plan_review_config.py': {
-                'relative': ['.defaults', '.config_schema'],
-                'absolute': ['utils']
+                'relative': ['.defaults', '.config_schema', '..utils'],
             },
             'metrics/metrics_storage.py': {
-                'relative': [],
-                'absolute': ['utils']
+                'relative': ['..utils'],
             },
             'metrics/plan_review_dashboard.py': {
-                'relative': ['.metrics_storage'],
-                'absolute': ['config']
+                'relative': ['.metrics_storage', '..config'],
             },
             'metrics/plan_review_metrics.py': {
-                'relative': ['.metrics_storage'],
-                'absolute': ['config']
+                'relative': ['.metrics_storage', '..config'],
             },
         }
 
@@ -111,24 +108,17 @@ class TestImportStatements:
             if expected_import not in imports['from_relative']:
                 messages.append(f"Missing expected relative import: from {expected_import}")
 
-        # Check for expected absolute imports
-        for expected_import in expected.get('absolute', []):
-            found = False
-            for imp in imports['from_absolute']:
-                if imp.startswith(expected_import):
-                    found = True
-                    break
-            if not found:
-                messages.append(f"Missing expected absolute import: from {expected_import}")
-
-        # Verify no incorrect patterns
-        # Check that config/metrics modules use relative imports for same-package imports
+        # Verify no incorrect absolute imports for cross-package dependencies
+        # Cross-package imports (utils, config, metrics) must be relative
         package = rel_path.split('/')[0]  # 'config' or 'metrics'
 
         for imp in imports['from_absolute']:
-            # If importing from same package, should be relative
-            if imp.startswith(package + '.'):
-                messages.append(f"Should use relative import instead of: from {imp}")
+            # Check if importing from lib packages (should be relative)
+            if imp in ['utils', 'config', 'metrics'] or \
+               imp.startswith('utils.') or \
+               imp.startswith('config.') or \
+               imp.startswith('metrics.'):
+                messages.append(f"Should use relative import instead of absolute: from {imp}")
 
         return len(messages) == 0, messages
 

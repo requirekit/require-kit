@@ -111,6 +111,77 @@ class TestInstallScript:
         except Exception as e:
             return False, f"Error reading install script: {e}"
 
+    def test_validate_function_exists(self) -> Tuple[bool, str]:
+        """Test that validate_installation function exists in script."""
+        try:
+            with open(self.install_script, 'r') as f:
+                content = f.read()
+
+            if 'validate_installation()' not in content:
+                return False, "validate_installation function not found in script"
+
+            return True, ""
+        except Exception as e:
+            return False, f"Error reading install script: {e}"
+
+    def test_validate_function_content(self) -> Tuple[bool, str]:
+        """Test that validate_installation function has expected content."""
+        try:
+            with open(self.install_script, 'r') as f:
+                content = f.read()
+
+            # Check for Python import test
+            if 'from lib.feature_detection import detect_packages' not in content:
+                return False, "Validation does not test feature_detection import"
+
+            # Check for proper error handling
+            if 'Python module validation failed' not in content:
+                return False, "Validation missing proper error message"
+
+            # Check for exit on failure
+            if 'exit 1' not in content:
+                return False, "Validation does not exit with error code on failure"
+
+            # Check for Python 3 check
+            if 'command -v python3' not in content:
+                return False, "Validation does not check for Python 3"
+
+            return True, ""
+        except Exception as e:
+            return False, f"Error reading install script: {e}"
+
+    def test_validate_called_in_main(self) -> Tuple[bool, str]:
+        """Test that validate_installation is called in main flow."""
+        try:
+            with open(self.install_script, 'r') as f:
+                content = f.read()
+
+            # Find the main() function
+            main_start = content.find('main() {')
+            if main_start == -1:
+                return False, "main() function not found"
+
+            main_end = content.find('}', main_start)
+            main_content = content[main_start:main_end]
+
+            if 'validate_installation' not in main_content:
+                return False, "validate_installation not called in main()"
+
+            # Check it's called before completion message
+            verify_pos = main_content.find('verify_installation')
+            validate_pos = main_content.find('validate_installation')
+            complete_pos = main_content.find('print_completion_message')
+
+            if verify_pos == -1 or validate_pos == -1 or complete_pos == -1:
+                return False, "Cannot find all required function calls in main()"
+
+            if not (verify_pos < validate_pos < complete_pos):
+                return False, "validate_installation not called in correct order (should be after verify, before completion)"
+
+            return True, ""
+        except Exception as e:
+            return False, f"Error analyzing main() function: {e}"
+
     def run_all_tests(self) -> bool:
         """
         Run all installation script tests.
@@ -127,6 +198,9 @@ class TestInstallScript:
             ("Lib directory structure", self.test_lib_directory_structure),
             ("Bash syntax validation", self.test_install_script_syntax),
             ("install_lib function exists", self.test_install_function_exists),
+            ("validate_installation function exists", self.test_validate_function_exists),
+            ("validate_installation function content", self.test_validate_function_content),
+            ("validate_installation called in main", self.test_validate_called_in_main),
         ]
 
         passed = 0
