@@ -297,6 +297,44 @@ verify_installation() {
     print_success "Installation verified"
 }
 
+validate_installation() {
+    print_info "Validating installation..."
+
+    # Check if Python 3 is available
+    if ! command -v python3 &> /dev/null; then
+        print_warning "Python 3 not found - skipping Python validation"
+        return 0
+    fi
+
+    # Test Python import of feature_detection module
+    if ! python3 <<EOF
+import sys
+sys.path.insert(0, "$INSTALL_DIR/lib")
+try:
+    from lib.feature_detection import detect_packages
+    print("Import successful")
+    sys.exit(0)
+except ImportError as e:
+    print(f"Import failed: {e}", file=sys.stderr)
+    sys.exit(1)
+EOF
+    then
+        print_error "Python module validation failed"
+        echo ""
+        echo "The feature_detection module could not be imported."
+        echo "This indicates an installation problem with the Python library files."
+        echo ""
+        echo "Troubleshooting steps:"
+        echo "  1. Check that $INSTALL_DIR/lib/feature_detection.py exists"
+        echo "  2. Verify Python 3 is installed: python3 --version"
+        echo "  3. Try reinstalling: bash install.sh"
+        echo ""
+        exit 1
+    fi
+
+    print_success "Python module validation passed"
+}
+
 check_integration_opportunities() {
     print_info "Checking for integration opportunities..."
 
@@ -353,6 +391,7 @@ main() {
     create_marker_file
     track_installation
     verify_installation
+    validate_installation
     check_integration_opportunities
     print_completion_message
 }

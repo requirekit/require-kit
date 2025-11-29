@@ -14,7 +14,7 @@ class TestIntegration:
     """Integration tests for complete workflow."""
 
     def __init__(self):
-        self.repo_root = Path(__file__).parent.parent.parent
+        self.repo_root = Path(__file__).parent.parent.parent.parent.parent
         self.lib_dir = self.repo_root / "installer" / "global" / "lib"
         self.install_script = self.repo_root / "installer" / "scripts" / "install.sh"
         self.errors = []
@@ -117,12 +117,12 @@ class TestIntegration:
             return False, f"Error reading utils/__init__.py: {e}"
 
     def test_cross_package_imports(self) -> Tuple[bool, str]:
-        """Test that cross-package imports are correctly specified."""
+        """Test that cross-package imports use RELATIVE imports (TASK-FIX-3196)."""
         test_cases = [
-            ('config/plan_review_config.py', 'from utils import'),
-            ('metrics/metrics_storage.py', 'from utils import'),
-            ('metrics/plan_review_dashboard.py', 'from config import'),
-            ('metrics/plan_review_metrics.py', 'from config import'),
+            ('config/plan_review_config.py', 'from ..utils import'),
+            ('metrics/metrics_storage.py', 'from ..utils import'),
+            ('metrics/plan_review_dashboard.py', 'from ..config import'),
+            ('metrics/plan_review_metrics.py', 'from ..config import'),
         ]
 
         errors = []
