@@ -166,17 +166,23 @@ cd /path/to/require-kit
 
 ## Uninstallation
 
-To uninstall RequireKit:
+To uninstall require-kit:
 
 ```bash
-# Remove agentecflow directory
+# Remove require-kit files
+rm -rf ~/.agentecflow/agents/require-kit
+rm -rf ~/.agentecflow/commands/require-kit
+rm -rf ~/.agentecflow/lib  # Shared library files
+rm ~/.agentecflow/require-kit.marker
+
+# Remove installation tracking
+rm -f ~/.agentecflow/.installed/require-kit.*
+```
+
+**If you don't have taskwright or other packages installed**, you can remove the entire directory:
+
+```bash
 rm -rf ~/.agentecflow
-
-# Remove from PATH (edit ~/.bashrc or ~/.zshrc)
-# Remove line: export PATH="$HOME/.agentecflow/bin:$PATH"
-
-# Reload shell
-exec $SHELL
 ```
 
 ## What's Next?
