@@ -1,14 +1,23 @@
 ---
 id: TASK-035
 title: Review Task ID Strategy and Integration Dependencies Between require-kit and taskwright
-status: backlog
+status: review_complete
 created: 2025-11-29T15:30:00Z
-updated: 2025-11-29T15:30:00Z
+updated: 2025-11-29T16:45:00Z
 priority: high
 tags: [architecture, integration, design-decision, review]
 complexity: 0
 task_type: review
 decision_required: true
+review_results:
+  mode: architectural
+  depth: standard
+  score: 8
+  findings_count: 12
+  recommendations_count: 2
+  decision: "Option D: Hash-based IDs with metadata hierarchy"
+  report_path: .claude/reviews/TASK-035-review-report.md
+  completed_at: 2025-11-29T16:45:00Z
 test_results:
   status: pending
   coverage: null
