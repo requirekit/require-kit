@@ -8,6 +8,8 @@ INSTALL_DIR="$HOME/.agentecflow"
 PACKAGE_NAME="require-kit"
 PACKAGE_VERSION="1.0.0"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+GITHUB_REPO="https://github.com/requirekit/require-kit"
+GITHUB_BRANCH="main"
 
 # Color codes for output
 RED='\033[0;31m'
@@ -40,6 +42,71 @@ print_warning() {
 
 print_info() {
     echo -e "${BLUE}ℹ $1${NC}"
+}
+
+# Download repository if running via curl (files not available locally)
+ensure_repository_files() {
+    # Check if we have the required files
+    if [ ! -f "$SCRIPT_DIR/scripts/install.sh" ] || [ ! -d "$SCRIPT_DIR/global/commands" ]; then
+        print_info "Running from curl - cloning repository permanently..."
+
+        # Determine permanent location for repository
+        # Use ~/Projects/require-kit or ~/require-kit if ~/Projects doesn't exist
+        local REPO_DEST
+        if [ -d "$HOME/Projects" ]; then
+            REPO_DEST="$HOME/Projects/require-kit"
+        else
+            REPO_DEST="$HOME/require-kit"
+        fi
+
+        # Check if git is available for cloning
+        if command -v git &> /dev/null; then
+            # Git available - clone repository
+            print_info "Cloning repository to $REPO_DEST..."
+
+            # Remove existing directory if present
+            if [ -d "$REPO_DEST" ]; then
+                print_warning "Repository already exists at $REPO_DEST"
+                print_info "Updating existing repository..."
+                cd "$REPO_DEST" && git pull
+            else
+                # Clone fresh
+                if ! git clone "$GITHUB_REPO" "$REPO_DEST"; then
+                    print_error "Failed to clone repository"
+                    print_info "Try cloning manually: git clone $GITHUB_REPO $REPO_DEST"
+                    exit 1
+                fi
+            fi
+
+            # Update SCRIPT_DIR to point to cloned repo
+            SCRIPT_DIR="$REPO_DEST/installer"
+            print_success "Repository cloned to $REPO_DEST"
+        else
+            # Git not available - fall back to tarball download (PERMANENT location)
+            print_warning "git not found - downloading tarball instead"
+            print_info "Installing git is recommended for easier updates"
+
+            # Create permanent directory
+            mkdir -p "$REPO_DEST"
+
+            # Download and extract
+            print_info "Downloading from $GITHUB_REPO to $REPO_DEST..."
+            if ! curl -sSL "$GITHUB_REPO/archive/refs/heads/$GITHUB_BRANCH.tar.gz" | tar -xz -C "$REPO_DEST" --strip-components=1; then
+                print_error "Failed to download repository"
+                print_info "Try installing git and cloning: git clone $GITHUB_REPO $REPO_DEST"
+                exit 1
+            fi
+
+            # Update SCRIPT_DIR to point to downloaded repo
+            SCRIPT_DIR="$REPO_DEST/installer"
+            print_success "Repository downloaded to $REPO_DEST"
+        fi
+
+        if [ ! -d "$SCRIPT_DIR" ]; then
+            print_error "Downloaded repository structure not as expected"
+            exit 1
+        fi
+    fi
 }
 
 check_prerequisites() {
@@ -147,24 +214,43 @@ install_lib() {
 create_marker_file() {
     print_info "Creating package marker..."
 
-    # Create marker file with metadata
-    cat > "$INSTALL_DIR/$PACKAGE_NAME.marker" <<EOF
+    # Determine repository root (parent of installer/)
+    # SCRIPT_DIR points to installer/ directory
+    local repo_root
+    if [ -d "$SCRIPT_DIR" ]; then
+        repo_root="$(cd "$SCRIPT_DIR/.." && pwd)"
+    else
+        repo_root="$PWD"  # Fallback to current directory
+    fi
+
+    local install_date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+    # Create marker file with metadata (JSON format to match taskwright)
+    cat > "$INSTALL_DIR/$PACKAGE_NAME.marker.json" <<EOF
 {
-  "name": "$PACKAGE_NAME",
+  "package": "$PACKAGE_NAME",
   "version": "$PACKAGE_VERSION",
-  "installed_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
-  "install_dir": "$INSTALL_DIR",
-  "capabilities": [
-    "requirements-engineering",
-    "ears-notation",
-    "bdd-generation",
-    "epic-feature-hierarchy",
-    "requirements-traceability"
-  ]
+  "installed": "$install_date",
+  "install_location": "$INSTALL_DIR",
+  "repo_path": "$repo_root",
+  "provides": [
+    "requirements_engineering",
+    "ears_notation",
+    "bdd_generation",
+    "epic_management",
+    "feature_management",
+    "requirements_traceability"
+  ],
+  "requires": [
+    "taskwright"
+  ],
+  "integration_model": "bidirectional_optional",
+  "description": "Requirements engineering and BDD for Agentecflow",
+  "homepage": "https://github.com/requirekit/require-kit"
 }
 EOF
 
-    print_success "Marker file created at $INSTALL_DIR/$PACKAGE_NAME.marker"
+    print_success "Marker file created at $INSTALL_DIR/$PACKAGE_NAME.marker.json"
 }
 
 track_installation() {
@@ -190,8 +276,8 @@ verify_installation() {
         print_error "No agents installed"
     fi
 
-    # Verify marker file exists
-    if [ ! -f "$INSTALL_DIR/$PACKAGE_NAME.marker" ]; then
+    # Verify marker file exists (JSON format)
+    if [ ! -f "$INSTALL_DIR/$PACKAGE_NAME.marker.json" ]; then
         print_error "Marker file not created"
     fi
 
@@ -249,6 +335,7 @@ print_completion_message() {
 # Main installation flow
 main() {
     print_header
+    ensure_repository_files
     check_prerequisites
     create_directory_structure
     install_commands

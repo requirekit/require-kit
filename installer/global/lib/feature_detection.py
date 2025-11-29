@@ -80,8 +80,13 @@ class FeatureDetector:
 
     def is_require_kit_installed(self) -> bool:
         """Check if require-kit is installed."""
-        marker = self.agentecflow_home / "require-kit.marker"
-        return marker.exists()
+        # Check for JSON marker file (new format)
+        marker_json = self.agentecflow_home / "require-kit.marker.json"
+        if marker_json.exists():
+            return True
+        # Fallback to old format for backwards compatibility
+        marker_old = self.agentecflow_home / "require-kit.marker"
+        return marker_old.exists()
 
     def supports_requirements(self) -> bool:
         """
