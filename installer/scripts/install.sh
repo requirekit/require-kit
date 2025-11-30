@@ -636,6 +636,78 @@ print_completion_message() {
     echo ""
     echo "Then use require-kit commands in Claude Code to start gathering requirements."
     echo ""
+    echo "${BOLD}${YELLOW}NOTE:${RESET} Please restart your terminal or run 'source ~/.zshrc' (or ~/.bashrc) to use require-kit commands."
+    echo ""
+}
+
+# Setup shell integration
+setup_shell_integration() {
+    echo ""
+    echo "${BOLD}Setting up shell integration...${RESET}"
+
+    # Detect shell
+    if [ -n "$ZSH_VERSION" ]; then
+        shell_config="$HOME/.zshrc"
+    elif [ -n "$BASH_VERSION" ]; then
+        shell_config="$HOME/.bashrc"
+    else
+        # Fallback: check SHELL environment variable
+        case "$SHELL" in
+            */zsh)
+                shell_config="$HOME/.zshrc"
+                ;;
+            */bash)
+                shell_config="$HOME/.bashrc"
+                ;;
+            *)
+                echo "${YELLOW}⚠ Could not detect shell type. Skipping shell integration.${RESET}"
+                echo "  Please manually add to your shell config:"
+                echo "  export PATH=\"/usr/local/bin:\$HOME/.agentecflow/bin:\$PATH\""
+                echo "  export AGENTECFLOW_HOME=\"\$HOME/.agentecflow\""
+                return
+                ;;
+        esac
+    fi
+
+    # Create shell config if it doesn't exist
+    if [ ! -f "$shell_config" ]; then
+        touch "$shell_config"
+    fi
+
+    # Remove old configurations (from previous installations)
+    # This includes: .agenticflow, .agentic-flow, .claude, old CLAUDE_HOME, AGENTIC_FLOW_HOME, AGENTICFLOW_HOME, old Taskwright configs, old RequireKit configs
+    if grep -q "\.agenticflow\|\.agentic-flow\|\.claude\|CLAUDE_HOME\|AGENTIC_FLOW_HOME\|AGENTICFLOW_HOME\|# Taskwright\|# RequireKit" "$shell_config" 2>/dev/null; then
+        echo "${YELLOW}Removing old configurations...${RESET}"
+        # Create backup
+        cp "$shell_config" "${shell_config}.bak"
+
+        # Remove old configuration blocks
+        # Pattern: Remove from marker comment to closing 'fi' or empty line
+        sed -i.bak '/# Agentic Flow/,/^fi$/d; /# Agentecflow/,/^fi$/d; /# Taskwright$/,/^$/d; /# RequireKit$/,/^$/d' "$shell_config" 2>/dev/null
+
+        # Remove any remaining old PATH exports
+        sed -i.bak '/\.agenticflow\/bin/d; /\.agentic-flow\/bin/d; /\.claude\/bin/d' "$shell_config" 2>/dev/null
+        sed -i.bak '/CLAUDE_HOME/d; /AGENTIC_FLOW_HOME/d' "$shell_config" 2>/dev/null
+    fi
+
+    # Check if already configured with correct PATH
+    if grep -q "/usr/local/bin:\$HOME/\.agentecflow/bin" "$shell_config" 2>/dev/null; then
+        echo "${GREEN}✓ Shell integration already configured${RESET}"
+        return
+    fi
+
+    # Add new configuration
+    echo "${YELLOW}Adding RequireKit configuration to $shell_config...${RESET}"
+    cat >> "$shell_config" << 'EOF'
+
+# RequireKit
+# Ensure /usr/local/bin is first in PATH for newer Python versions (e.g., Python 3.13 from Homebrew)
+export PATH="/usr/local/bin:$HOME/.agentecflow/bin:$PATH"
+export AGENTECFLOW_HOME="$HOME/.agentecflow"
+EOF
+
+    echo "${GREEN}✓ Shell integration configured${RESET}"
+    echo "${YELLOW}  Please restart your terminal or run: source $shell_config${RESET}"
 }
 
 # Main installation flow
@@ -652,6 +724,7 @@ main() {
     track_installation
     verify_installation
     validate_installation
+    setup_shell_integration
     check_integration_opportunities
     print_completion_message
 }
