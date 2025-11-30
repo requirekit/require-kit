@@ -4,8 +4,18 @@
 **Last Updated**: 2025-11-03
 **Status**: Production
 
+## Prerequisites
+
+- **Python 3.10 or later** (required by both require-kit and taskwright)
+- pip (Python package installer)
+- git (for repository cloning)
+- bash shell (macOS, Linux, or Windows WSL2)
+
+Both packages require Python 3.10+ for ecosystem consistency. This ensures compatibility with modern Python features (PEP 604 union types) and alignment with AI/ML tooling standards.
+
 ## Table of Contents
 
+- [Prerequisites](#prerequisites)
 - [Overview](#overview)
 - [Integration Architecture](#integration-architecture)
 - [Installation Scenarios](#installation-scenarios)

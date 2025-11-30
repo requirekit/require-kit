@@ -44,6 +44,47 @@ print_info() {
     echo -e "${BLUE}ℹ $1${NC}"
 }
 
+# Python version requirements
+REQUIRED_PYTHON_VERSION="3.10"
+
+check_python_version() {
+    print_info "Checking Python version..."
+
+    local min_major=3
+    local min_minor=10
+
+    # Check if python3 is available
+    if ! command -v python3 &> /dev/null; then
+        print_error "python3 not found. Please install Python 3.10 or later."
+        echo ""
+        echo "Installation instructions:"
+        echo "  macOS:   brew install python@3.10"
+        echo "  Ubuntu:  sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt install python3.10"
+        echo "  Windows: Download from https://www.python.org/downloads/"
+        exit 1
+    fi
+
+    # Get Python version
+    local python_version=$(python3 --version 2>&1 | awk '{print $2}')
+    local python_major=$(echo "$python_version" | cut -d. -f1)
+    local python_minor=$(echo "$python_version" | cut -d. -f2)
+
+    # Check version meets minimum requirement
+    if ! python3 -c "import sys; exit(0 if sys.version_info >= ($min_major, $min_minor) else 1)" 2>/dev/null; then
+        print_error "Python $min_major.$min_minor or later is required (found $python_version)"
+        echo ""
+        print_info "require-kit requires Python 3.10+ to align with taskwright integration"
+        echo ""
+        echo "Upgrade instructions:"
+        echo "  macOS:   brew install python@3.10"
+        echo "  Ubuntu:  sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt install python3.10"
+        echo "  Windows: Download from https://www.python.org/downloads/"
+        exit 1
+    fi
+
+    print_success "Python version $python_version meets requirements"
+}
+
 # Download repository if running via curl (files not available locally)
 ensure_repository_files() {
     # Check if we have the required files
@@ -238,6 +279,7 @@ create_marker_file() {
 
     local install_date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
     local marker_file=$(get_marker_path)
+    local python_version=$(python3 --version 2>&1 | awk '{print $2}')
 
     # Create marker file with metadata (JSON format to match taskwright)
     if ! cat > "$marker_file" <<EOF
@@ -247,6 +289,9 @@ create_marker_file() {
   "installed": "$install_date",
   "install_location": "$INSTALL_DIR",
   "repo_path": "$repo_root",
+  "python_version": ">=3.10",
+  "python_detected": "$python_version",
+  "python_alignment": "taskwright_ecosystem",
   "provides": [
     "requirements_engineering",
     "ears_notation",
@@ -407,6 +452,7 @@ print_completion_message() {
 # Main installation flow
 main() {
     print_header
+    check_python_version
     ensure_repository_files
     check_prerequisites
     create_directory_structure

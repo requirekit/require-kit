@@ -9,6 +9,17 @@
 
 **Requirements management toolkit with EARS notation, BDD scenarios, and epic/feature hierarchy.**
 
+## Requirements
+
+- **Python 3.10 or later**
+- pip (Python package installer)
+
+**Note**: This version requirement aligns with taskwright for consistent ecosystem experience. Python 3.10 is widely available on modern systems:
+- macOS 12+: Install via Homebrew (`brew install python@3.10`)
+- Ubuntu 22.04+: Built-in default Python
+- Ubuntu 20.04: Install from deadsnakes PPA
+- Windows: Download from [python.org](https://www.python.org/downloads/)
+
 ## Overview
 
 require-kit provides a structured approach to capturing, formalizing, and organizing software requirements. It uses proven methodologies including EARS notation for clear requirements, BDD/Gherkin for test specifications, and a hierarchical structure for project organization.
