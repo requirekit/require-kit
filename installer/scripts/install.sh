@@ -33,7 +33,6 @@ print_success() {
 
 print_error() {
     echo -e "${RED}✗ $1${NC}"
-    exit 1
 }
 
 print_warning() {
