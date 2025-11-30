@@ -219,6 +219,11 @@ install_lib() {
     fi
 }
 
+# Get the marker file path (helper function for DRY principle)
+get_marker_path() {
+    echo "$INSTALL_DIR/$PACKAGE_NAME.marker.json"
+}
+
 create_marker_file() {
     print_info "Creating package marker..."
 
@@ -232,9 +237,10 @@ create_marker_file() {
     fi
 
     local install_date=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+    local marker_file=$(get_marker_path)
 
     # Create marker file with metadata (JSON format to match taskwright)
-    cat > "$INSTALL_DIR/$PACKAGE_NAME.marker.json" <<EOF
+    if ! cat > "$marker_file" <<EOF
 {
   "package": "$PACKAGE_NAME",
   "version": "$PACKAGE_VERSION",
@@ -257,8 +263,18 @@ create_marker_file() {
   "homepage": "https://github.com/requirekit/require-kit"
 }
 EOF
+    then
+        print_error "Failed to create marker file at $marker_file"
+        return 1
+    fi
 
-    print_success "Marker file created at $INSTALL_DIR/$PACKAGE_NAME.marker.json"
+    # Verify marker file was created successfully and is non-empty
+    if [ ! -f "$marker_file" ] || [ ! -s "$marker_file" ]; then
+        print_error "Marker file creation verification failed"
+        return 1
+    fi
+
+    print_success "Marker file created at $marker_file"
 }
 
 track_installation() {
@@ -272,6 +288,7 @@ verify_installation() {
 
     local cmd_count=$(ls -1 "$INSTALL_DIR/commands/$PACKAGE_NAME"/*.md 2>/dev/null | wc -l)
     local agent_count=$(ls -1 "$INSTALL_DIR/agents/$PACKAGE_NAME"/*.md 2>/dev/null | wc -l)
+    local marker_file=$(get_marker_path)
 
     echo "  Commands installed: $cmd_count"
     echo "  Agents installed: $agent_count"
@@ -284,8 +301,8 @@ verify_installation() {
         print_error "No agents installed"
     fi
 
-    # Verify marker file exists (JSON format)
-    if [ ! -f "$INSTALL_DIR/$PACKAGE_NAME.marker.json" ]; then
+    # Verify marker file exists and is non-empty (fail fast)
+    if [ ! -f "$marker_file" ] || [ ! -s "$marker_file" ]; then
         print_error "Marker file not created"
     fi
 
