@@ -55,12 +55,103 @@ check_python_version() {
 
     # Check if python3 is available
     if ! command -v python3 &> /dev/null; then
-        print_error "python3 not found. Please install Python 3.10 or later."
         echo ""
-        echo "Installation instructions:"
-        echo "  macOS:   brew install python@3.10"
-        echo "  Ubuntu:  sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt install python3.10"
-        echo "  Windows: Download from https://www.python.org/downloads/"
+        print_error "════════════════════════════════════════════════════════"
+        print_error "Python 3 not found"
+        print_error "════════════════════════════════════════════════════════"
+        echo ""
+        print_info "Please install Python 3.10 or higher:"
+        echo ""
+
+        # Detect OS and provide specific installation instructions
+        local os_type=$(uname -s)
+        print_info "Installation instructions:"
+        echo ""
+
+        case "$os_type" in
+            Darwin)
+                print_info "macOS - Choose one of the following methods:"
+                echo ""
+                print_info "1. Homebrew (recommended):"
+                print_info "   brew install python@3.13"
+                echo ""
+                print_info "2. Official installer:"
+                print_info "   Download from: https://www.python.org/downloads/"
+                print_info "   Select macOS installer for Python 3.13"
+                echo ""
+                print_info "3. pyenv (for multiple Python versions):"
+                print_info "   brew install pyenv"
+                print_info "   pyenv install 3.13.0"
+                print_info "   pyenv global 3.13.0"
+                ;;
+            Linux)
+                # Detect Linux distribution
+                if [ -f /etc/os-release ]; then
+                    . /etc/os-release
+                    case "$ID" in
+                        ubuntu|debian)
+                            print_info "Ubuntu/Debian:"
+                            print_info "   sudo apt update"
+                            print_info "   sudo apt install python3.13 python3.13-venv python3.13-pip"
+                            echo ""
+                            print_info "If Python 3.13 is not available, add deadsnakes PPA:"
+                            print_info "   sudo add-apt-repository ppa:deadsnakes/ppa"
+                            print_info "   sudo apt update"
+                            print_info "   sudo apt install python3.13 python3.13-venv python3.13-pip"
+                            ;;
+                        fedora|rhel|centos)
+                            print_info "Fedora/RHEL/CentOS:"
+                            print_info "   sudo dnf install python3.13"
+                            echo ""
+                            print_info "Or build from source:"
+                            print_info "   https://www.python.org/downloads/"
+                            ;;
+                        arch)
+                            print_info "Arch Linux:"
+                            print_info "   sudo pacman -S python"
+                            ;;
+                        *)
+                            print_info "Linux (generic):"
+                            print_info "   Download from: https://www.python.org/downloads/"
+                            print_info "   Or use your distribution's package manager"
+                            ;;
+                    esac
+                else
+                    print_info "Linux (generic):"
+                    print_info "   Download from: https://www.python.org/downloads/"
+                    print_info "   Or use your distribution's package manager"
+                fi
+                echo ""
+                print_info "Alternative - pyenv (for multiple Python versions):"
+                print_info "   curl https://pyenv.run | bash"
+                print_info "   pyenv install 3.13.0"
+                print_info "   pyenv global 3.13.0"
+                ;;
+            MINGW*|MSYS*|CYGWIN*)
+                print_info "Windows (Git Bash/MSYS2/Cygwin):"
+                echo ""
+                print_info "1. Official installer (recommended):"
+                print_info "   Download from: https://www.python.org/downloads/"
+                print_info "   Select Windows installer for Python 3.13"
+                print_info "   ⚠ Check 'Add Python to PATH' during installation"
+                echo ""
+                print_info "2. Windows Package Manager (winget):"
+                print_info "   winget install Python.Python.3.13"
+                echo ""
+                print_info "3. Chocolatey:"
+                print_info "   choco install python --version=3.13.0"
+                ;;
+            *)
+                print_info "Generic installation:"
+                print_info "   Download from: https://www.python.org/downloads/"
+                ;;
+        esac
+
+        echo ""
+        print_info "After installation, verify with:"
+        print_info "   python3 --version"
+        echo ""
+        print_error "════════════════════════════════════════════════════════"
         exit 1
     fi
 
@@ -71,14 +162,113 @@ check_python_version() {
 
     # Check version meets minimum requirement
     if ! python3 -c "import sys; exit(0 if sys.version_info >= ($min_major, $min_minor) else 1)" 2>/dev/null; then
-        print_error "Python $min_major.$min_minor or later is required (found $python_version)"
         echo ""
-        print_info "require-kit requires Python 3.10+ to align with taskwright integration"
+        print_error "════════════════════════════════════════════════════════"
+        print_error "Python 3.10+ required"
+        print_error "════════════════════════════════════════════════════════"
         echo ""
-        echo "Upgrade instructions:"
-        echo "  macOS:   brew install python@3.10"
-        echo "  Ubuntu:  sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt install python3.10"
-        echo "  Windows: Download from https://www.python.org/downloads/"
+        print_info "Current version: Python $python_version"
+        print_info "Minimum required: Python 3.10.0"
+        print_info "Recommended version: Python 3.13"
+        echo ""
+        print_warning "Why Python 3.10+?"
+        print_info "  require-kit uses modern type hints (PEP 604) for better"
+        print_info "  code quality and IDE support, aligning with taskwright."
+        print_info "  Python 3.10 has been available since October 2021."
+        echo ""
+
+        # Detect OS and provide specific installation instructions
+        local os_type=$(uname -s)
+        print_info "Installation instructions:"
+        echo ""
+
+        case "$os_type" in
+            Darwin)
+                print_info "macOS - Choose one of the following methods:"
+                echo ""
+                print_info "1. Homebrew (recommended):"
+                print_info "   brew install python@3.13"
+                echo ""
+                print_info "2. Official installer:"
+                print_info "   Download from: https://www.python.org/downloads/"
+                print_info "   Select macOS installer for Python 3.13"
+                echo ""
+                print_info "3. pyenv (for multiple Python versions):"
+                print_info "   brew install pyenv"
+                print_info "   pyenv install 3.13.0"
+                print_info "   pyenv global 3.13.0"
+                ;;
+            Linux)
+                # Detect Linux distribution
+                if [ -f /etc/os-release ]; then
+                    . /etc/os-release
+                    case "$ID" in
+                        ubuntu|debian)
+                            print_info "Ubuntu/Debian:"
+                            print_info "   sudo apt update"
+                            print_info "   sudo apt install python3.13 python3.13-venv python3.13-pip"
+                            echo ""
+                            print_info "If Python 3.13 is not available, add deadsnakes PPA:"
+                            print_info "   sudo add-apt-repository ppa:deadsnakes/ppa"
+                            print_info "   sudo apt update"
+                            print_info "   sudo apt install python3.13 python3.13-venv python3.13-pip"
+                            ;;
+                        fedora|rhel|centos)
+                            print_info "Fedora/RHEL/CentOS:"
+                            print_info "   sudo dnf install python3.13"
+                            echo ""
+                            print_info "Or build from source:"
+                            print_info "   https://www.python.org/downloads/"
+                            ;;
+                        arch)
+                            print_info "Arch Linux:"
+                            print_info "   sudo pacman -S python"
+                            ;;
+                        *)
+                            print_info "Linux (generic):"
+                            print_info "   Download from: https://www.python.org/downloads/"
+                            print_info "   Or use your distribution's package manager"
+                            ;;
+                    esac
+                else
+                    print_info "Linux (generic):"
+                    print_info "   Download from: https://www.python.org/downloads/"
+                    print_info "   Or use your distribution's package manager"
+                fi
+                echo ""
+                print_info "Alternative - pyenv (for multiple Python versions):"
+                print_info "   curl https://pyenv.run | bash"
+                print_info "   pyenv install 3.13.0"
+                print_info "   pyenv global 3.13.0"
+                ;;
+            MINGW*|MSYS*|CYGWIN*)
+                print_info "Windows (Git Bash/MSYS2/Cygwin):"
+                echo ""
+                print_info "1. Official installer (recommended):"
+                print_info "   Download from: https://www.python.org/downloads/"
+                print_info "   Select Windows installer for Python 3.13"
+                print_info "   ⚠ Check 'Add Python to PATH' during installation"
+                echo ""
+                print_info "2. Windows Package Manager (winget):"
+                print_info "   winget install Python.Python.3.13"
+                echo ""
+                print_info "3. Chocolatey:"
+                print_info "   choco install python --version=3.13.0"
+                ;;
+            *)
+                print_info "Generic installation:"
+                print_info "   Download from: https://www.python.org/downloads/"
+                ;;
+        esac
+
+        echo ""
+        print_info "After installation, verify with:"
+        print_info "   python3 --version"
+        echo ""
+        print_info "Need help?"
+        print_info "  https://github.com/requirekit/require-kit/issues"
+        echo ""
+        print_error "════════════════════════════════════════════════════════"
         exit 1
     fi
 
