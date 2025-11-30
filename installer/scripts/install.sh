@@ -323,7 +323,7 @@ except ImportError as e:
     sys.exit(1)
 EOF
     then
-        print_error "Python module validation failed"
+        print_warning "Python module validation failed"
         echo ""
         echo "The feature_detection module could not be imported."
         echo "This indicates an installation problem with the Python library files."
@@ -331,9 +331,13 @@ EOF
         echo "Troubleshooting steps:"
         echo "  1. Check that $INSTALL_DIR/lib/feature_detection.py exists"
         echo "  2. Verify Python 3 is installed: python3 --version"
-        echo "  3. Try reinstalling: bash install.sh"
+        echo "  3. Check the import function name is correct (run test):"
+        echo "     bash installer/tests/test-validation-function-name.sh"
+        echo "  4. Try reinstalling: bash install.sh"
         echo ""
-        exit 1
+        echo "Installation will continue, but some integration features may not work."
+        echo ""
+        return 0
     fi
 
     print_success "Python module validation passed"
