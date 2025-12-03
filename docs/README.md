@@ -11,7 +11,7 @@ The documentation is organized according to the plan in `docs/planning/documenta
 - **User Guides**: Comprehensive guides for using RequireKit
 - **Commands Reference**: Detailed command documentation
 - **MCP Setup**: MCP server configuration guides
-- **Integration**: Integration with taskwright and PM tools
+- **Integration**: Integration with guardkit and PM tools
 - **Quick Reference**: Cheat sheets and quick reference cards
 - **Examples**: Example requirements, features, and BDD scenarios
 - **Developer Docs**: Architecture, ADRs, contributing guides

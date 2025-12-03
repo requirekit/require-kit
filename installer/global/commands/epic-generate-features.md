@@ -2,7 +2,7 @@
 
 Automatically generate feature breakdown from epic business objectives, requirements, and success criteria for seamless transition from requirements gathering to feature specifications.
 
-**Standalone Operation:** This command works independently and creates feature specification files with full requirements traceability. Generated features can be exported to PM tools or used with taskwright for task execution workflow.
+**Standalone Operation:** This command works independently and creates feature specification files with full requirements traceability. Generated features can be exported to PM tools or used with guardkit for task execution workflow.
 
 ## Usage
 ```bash
@@ -571,4 +571,4 @@ Recommendations:
 4. Increase team size or extend timeline
 ```
 
-This command bridges the critical gap between requirements gathering (epic creation) and task definition (feature → task breakdown), ensuring comprehensive feature coverage while maintaining full integration with external PM tools. For task execution, see taskwright.
+This command bridges the critical gap between requirements gathering (epic creation) and task definition (feature → task breakdown), ensuring comprehensive feature coverage while maintaining full integration with external PM tools. For task execution, see guardkit.

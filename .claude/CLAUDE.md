@@ -31,7 +31,7 @@ This is a requirements management toolkit that uses EARS notation for clear requ
 ## Integration
 
 require-kit focuses on requirements management. For task execution and implementation, integrate with:
-- [taskwright](https://github.com/yourusername/taskwright) - Task execution workflow system
+- [guardkit](https://github.com/yourusername/guardkit) - Task execution workflow system
 - Your project management tools (Jira, Linear, GitHub Projects)
 - Your implementation workflows and CI/CD pipelines
 

@@ -26,11 +26,9 @@ The installer creates a complete `~/.agenticflow` structure (matching Product Ow
 
 ```
 ~/.agenticflow/
-├── agents/                 # Global AI agents (4 core agents)
+├── agents/                 # Global AI agents (2 core agents)
 │   ├── requirements-analyst.md
-│   ├── bdd-generator.md
-│   ├── code-reviewer.md
-│   └── test-orchestrator.md
+│   └── bdd-generator.md
 ├── bin/                    # Executable commands
 │   ├── agentic-init       # Primary initialization command
 │   ├── agenticflow        # Main CLI
@@ -127,7 +125,7 @@ When you run `agentic-init [template]` in a project:
 2. **Suggests** matching template or lets you override
 3. **Creates** `.claude/` directory with:
    - Project context (CLAUDE.md)
-   - AI agents (4 core agents)
+   - AI agents (2 core agents: requirements-analyst, bdd-generator)
    - Commands (linked to global)
    - Templates (project-specific)
    - Configuration (settings.json)
@@ -164,7 +162,7 @@ cd ~/Projects/appmilla_github/ai-engineer/installer
 
 ### Missing Agents
 
-The installer now properly installs 4 core agents. If missing:
+The installer now properly installs 2 core agents. If missing:
 
 ```bash
 # Check agent count
@@ -172,10 +170,10 @@ ls -la ~/.agenticflow/agents/
 
 # Should show:
 # - requirements-analyst.md
-# - bdd-generator.md  
-# - code-reviewer.md
-# - test-orchestrator.md
+# - bdd-generator.md
 ```
+
+**Note**: For code review and test orchestration agents, use [GuardKit](https://github.com/guardkit-dev/guardkit).
 
 ## 📊 What's Fixed
 
@@ -184,7 +182,7 @@ This updated installer fixes:
 1. ✅ **Consistent naming** - Uses `~/.agenticflow` throughout
 2. ✅ **Complete directory structure** - All directories Product Owner has
 3. ✅ **Proper commands** - `agentic-init` works correctly
-4. ✅ **Global agents** - 4 core agents installed globally
+4. ✅ **Global agents** - 2 core agents installed globally
 5. ✅ **Version management** - Proper versions directory
 6. ✅ **Cache setup** - Cache directories created
 7. ✅ **Shell completions** - Bash completions installed
@@ -212,4 +210,4 @@ ls -la docs/
 ls .claude/agents/
 ```
 
-You should see 4 agents and complete project structure ready for Claude Code!
+You should see 2 agents (requirements-analyst.md, bdd-generator.md) and complete project structure ready for Claude Code!

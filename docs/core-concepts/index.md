@@ -82,7 +82,7 @@ Build on the basics:
 ### Advanced
 Deep dive into advanced topics:
 
-1. **[Integration with taskwright](../getting-started/integration.md)** - Full workflow
+1. **[Integration with guardkit](../getting-started/integration.md)** - Full workflow
 2. **[PM Tool Export](../integration/pm-tools.md)** - Jira, Linear integration
 3. **[Examples](../examples/index.md)** - Real-world applications
 

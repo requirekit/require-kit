@@ -285,7 +285,7 @@ require-kit uses five patterns for clear requirements:
 
 - **[require-kit User Guide](require_kit_user_guide.md)** - Comprehensive guide to all features
 - **[Command Reference](command_usage_guide.md)** - Complete command documentation
-- **[Integration Guide](../INTEGRATION-GUIDE.md)** - Using with taskwright or PM tools
+- **[Integration Guide](../INTEGRATION-GUIDE.md)** - Using with guardkit or PM tools
 
 ### Common Workflows
 
@@ -354,12 +354,12 @@ Use require-kit for requirements management, export to your preferred PM tool:
 /feature-sync FEAT-001 --github    # Export to GitHub Projects
 ```
 
-#### Full Integration with taskwright
+#### Full Integration with guardkit
 For complete requirements-to-implementation workflow with quality gates:
 
 ```bash
-# Install taskwright
-cd /path/to/taskwright
+# Install guardkit
+cd /path/to/guardkit
 ./installer/scripts/install.sh
 
 # Now use combined workflow:
@@ -367,7 +367,7 @@ cd /path/to/taskwright
 /formalize-ears              # require-kit
 /generate-bdd                # require-kit
 /feature-generate-tasks FEAT-001  # require-kit generates task specs
-/task-work TASK-001          # taskwright executes with context
+/task-work TASK-001          # guardkit executes with context
 
 # See Integration Guide for full details
 ```
@@ -397,7 +397,7 @@ cd /path/to/taskwright
 
 ### Documentation
 - **[User Guide](require_kit_user_guide.md)** - Complete feature documentation
-- **[Integration Guide](../INTEGRATION-GUIDE.md)** - Integration with taskwright
+- **[Integration Guide](../INTEGRATION-GUIDE.md)** - Integration with guardkit
 - **[README](../../README.md)** - Overview and quick reference
 
 ### Support
@@ -425,7 +425,7 @@ Now that you've completed your first requirements session, you can:
 1. **Explore Features**: Read the [User Guide](require_kit_user_guide.md) for advanced capabilities
 2. **Practice**: Create requirements for a real feature in your project
 3. **Export**: Try exporting to your PM tool with `/feature-sync`
-4. **Integrate**: If you need task execution, explore [taskwright integration](../INTEGRATION-GUIDE.md)
+4. **Integrate**: If you need task execution, explore [guardkit integration](../INTEGRATION-GUIDE.md)
 
 ---
 

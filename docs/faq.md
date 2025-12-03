@@ -8,9 +8,9 @@ Common questions about RequireKit.
 
 RequireKit is a requirements management toolkit using EARS notation for clear requirements, BDD/Gherkin for test scenarios, and epic/feature hierarchy for organization.
 
-### Do I need taskwright to use RequireKit?
+### Do I need guardkit to use RequireKit?
 
-No. RequireKit is fully functional standalone. taskwright is optional and adds task execution workflow, quality gates, and automated testing.
+No. RequireKit is fully functional standalone. guardkit is optional and adds task execution workflow, quality gates, and automated testing.
 
 [Learn more about integration →](getting-started/integration.md)
 
@@ -79,9 +79,9 @@ Yes. RequireKit provides structured metadata for PM tool export:
 
 ## Integration Questions
 
-### How does RequireKit integrate with taskwright?
+### How does RequireKit integrate with guardkit?
 
-Both packages detect each other via marker files. When both are installed, RequireKit can generate task specifications, and taskwright can load requirement context during execution.
+Both packages detect each other via marker files. When both are installed, RequireKit can generate task specifications, and guardkit can load requirement context during execution.
 
 [Complete integration guide →](INTEGRATION-GUIDE.md)
 

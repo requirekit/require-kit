@@ -1,6 +1,6 @@
 #!/bin/bash
 # require-kit Installation Script
-# Installs require-kit to namespaced directories for coexistence with taskwright
+# Installs require-kit to namespaced directories for coexistence with guardkit
 
 set -e
 
@@ -172,7 +172,7 @@ check_python_version() {
         echo ""
         print_warning "Why Python 3.10+?"
         print_info "  require-kit uses modern type hints (PEP 604) for better"
-        print_info "  code quality and IDE support, aligning with taskwright."
+        print_info "  code quality and IDE support, aligning with guardkit."
         print_info "  Python 3.10 has been available since October 2021."
         echo ""
 
@@ -470,7 +470,7 @@ create_marker_file() {
     local marker_file=$(get_marker_path)
     local python_version=$(python3 --version 2>&1 | awk '{print $2}')
 
-    # Create marker file with metadata (JSON format to match taskwright)
+    # Create marker file with metadata (JSON format to match guardkit)
     if ! cat > "$marker_file" <<EOF
 {
   "package": "$PACKAGE_NAME",
@@ -480,7 +480,7 @@ create_marker_file() {
   "repo_path": "$repo_root",
   "python_version": ">=3.10",
   "python_detected": "$python_version",
-  "python_alignment": "taskwright_ecosystem",
+  "python_alignment": "guardkit_ecosystem",
   "provides": [
     "requirements_engineering",
     "ears_notation",
@@ -490,7 +490,7 @@ create_marker_file() {
     "requirements_traceability"
   ],
   "requires": [
-    "taskwright"
+    "guardkit"
   ],
   "integration_model": "bidirectional_optional",
   "description": "Requirements engineering and BDD for Agentecflow",
@@ -597,18 +597,18 @@ EOF
 check_integration_opportunities() {
     print_info "Checking for integration opportunities..."
 
-    # Check if taskwright is installed (optional integration)
+    # Check if guardkit is installed (optional integration)
     # Support both legacy .marker and new .marker.json formats
-    if [ ! -f "$INSTALL_DIR/taskwright.marker" ] && [ ! -f "$INSTALL_DIR/taskwright.marker.json" ]; then
+    if [ ! -f "$INSTALL_DIR/guardkit.marker" ] && [ ! -f "$INSTALL_DIR/guardkit.marker.json" ]; then
         echo ""
-        echo -e "${YELLOW}  ℹ️  taskwright not detected${NC}"
+        echo -e "${YELLOW}  ℹ️  guardkit not detected${NC}"
         echo "  require-kit works standalone for requirements management"
         echo ""
         echo "  For full integration (link requirements to tasks):"
-        echo "  Install taskwright from: https://github.com/taskwright-dev/taskwright"
+        echo "  Install guardkit from: https://github.com/guardkit-dev/guardkit"
     else
         echo ""
-        print_success "taskwright detected - full integration available"
+        print_success "guardkit detected - full integration available"
         echo "  Commands can now link requirements to tasks"
         echo "  Use /task-work --mode=bdd for BDD-driven development"
     fi

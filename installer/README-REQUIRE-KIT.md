@@ -1,12 +1,12 @@
 # require-kit Installer
 
-This directory contains the require-kit-specific installer that installs to namespaced directories for bidirectional optional integration with taskwright.
+This directory contains the require-kit-specific installer that installs to namespaced directories for bidirectional optional integration with guardkit.
 
 ## Installation Model
 
 **Bidirectional Optional Integration:**
 - require-kit works standalone (requirements management only)
-- taskwright works standalone (task execution only)
+- guardkit works standalone (task execution only)
 - Both packages detect each other via marker files
 - Enhanced features available when both installed
 - No hard dependencies either way
@@ -18,7 +18,7 @@ Installs require-kit to `~/.agentecflow` using namespaced directories:
 - Commands: `~/.agentecflow/commands/require-kit/`
 - Agents: `~/.agentecflow/agents/require-kit/`
 - Marker: `~/.agentecflow/require-kit.marker`
-- Lib: `~/.agentecflow/lib/` (shared with taskwright)
+- Lib: `~/.agentecflow/lib/` (shared with guardkit)
 
 Creates backwards-compatible symlinks for commands and agents.
 
@@ -38,7 +38,7 @@ Removes require-kit from `~/.agentecflow`:
 - Removes namespaced directories
 - Removes symlinks pointing to require-kit
 - Removes marker file
-- Preserves feature_detection.py if taskwright is installed
+- Preserves feature_detection.py if guardkit is installed
 - Cleans up empty directories
 
 **Usage:**
@@ -67,7 +67,7 @@ cd require-kit
 │   ├── requirements-analyst.md -> require-kit/requirements-analyst.md  # Symlinks
 │   └── ...
 ├── lib/
-│   └── feature_detection.py   # Shared with taskwright
+│   └── feature_detection.py   # Shared with guardkit
 ├── .installed/
 │   ├── require-kit.version
 │   └── require-kit.timestamp
@@ -94,11 +94,11 @@ The installer creates `~/.agentecflow/require-kit.marker`:
 }
 ```
 
-This allows taskwright to detect require-kit and enable extended features.
+This allows guardkit to detect require-kit and enable extended features.
 
 ## Feature Detection
 
-The installer copies `feature_detection.py` to `~/.agentecflow/lib/` for use by both require-kit and taskwright.
+The installer copies `feature_detection.py` to `~/.agentecflow/lib/` for use by both require-kit and guardkit.
 
 **Example usage:**
 ```python
@@ -112,7 +112,7 @@ else:
     print("Install require-kit for BDD mode")
 ```
 
-## Integration with taskwright
+## Integration with guardkit
 
 **When only require-kit is installed:**
 - Requirements engineering (EARS notation)
@@ -140,7 +140,7 @@ The test script verifies all acceptance criteria from REQ-003A:
 - [x] Version tracking works (.installed/)
 - [x] Marker file created (require-kit.marker with JSON metadata)
 - [x] feature_detection.py copied to ~/.agentecflow/lib/
-- [x] Dependency check for taskwright marker file
+- [x] Dependency check for guardkit marker file
 - [x] Standalone installation works
 - [x] Project initialization works
 - [x] Verification tests pass
@@ -157,12 +157,12 @@ The test script verifies all acceptance criteria from REQ-003A:
 **install.sh** (require-kit standalone):
 - Installs only require-kit components
 - Uses namespaced directories in `~/.agentecflow`
-- Allows coexistence with taskwright
+- Allows coexistence with guardkit
 - Used for require-kit as a standalone package
 
-**For taskwright installation:**
-- See [taskwright repository](https://github.com/taskwright-dev/taskwright)
-- taskwright has its own installer for task execution features
+**For guardkit installation:**
+- See [guardkit repository](https://github.com/guardkit-dev/guardkit)
+- guardkit has its own installer for task execution features
 - Both packages can coexist in `~/.agentecflow` using namespaced directories
 
 **Note:** The configuration folder remains `~/.agentecflow` for backwards compatibility and to allow both packages to work together if installed.

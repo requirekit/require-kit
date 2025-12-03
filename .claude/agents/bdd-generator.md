@@ -29,7 +29,7 @@ Converts EARS (Easy Approach to Requirements Syntax) requirements into Gherkin s
 ## Quick Start
 
 **Invoked when**:
-- Task has `--mode=bdd` flag (from TaskWright)
+- Task has `--mode=bdd` flag (from Guardkit)
 - Task frontmatter includes `bdd_scenarios` field
 - RequireKit is installed and detected
 

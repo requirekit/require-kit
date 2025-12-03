@@ -18,7 +18,7 @@ FEAT-001 (Tactical)
 REQ-001 (EARS Specification)
     ↓ verified by
 BDD-001 (Test Scenarios)
-    ↓ executed by (with taskwright)
+    ↓ executed by (with guardkit)
 TASK-001 (Implementation)
 ```
 
@@ -164,7 +164,7 @@ Deployed: v1.2.0
 # Links maintained in frontmatter
 ```
 
-### During Implementation (with taskwright)
+### During Implementation (with guardkit)
 ```bash
 /feature-generate-tasks FEAT-001
 # Tasks include requirement context

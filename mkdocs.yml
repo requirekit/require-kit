@@ -179,7 +179,7 @@ nav:
       - Quickstart: getting-started/quickstart.md
       - Installation: getting-started/installation.md
       - Your First Requirements: getting-started/first-requirements.md
-      - Integration with taskwright: getting-started/integration.md
+      - Integration with guardkit: getting-started/integration.md
 
   - Core Concepts:
       - Overview: core-concepts/index.md
@@ -207,7 +207,7 @@ nav:
       - Zeplin MCP: mcp-setup/zeplin-mcp-setup.md
 
   - Integration:
-      - taskwright Integration: INTEGRATION-GUIDE.md
+      - guardkit Integration: INTEGRATION-GUIDE.md
       - PM Tool Export: integration/pm-tools.md
 
   - Quick Reference:
@@ -310,7 +310,7 @@ docs_dir: docs
 site_dir: site
 
 # Strict mode - fail on warnings
-# Disabled: Allow warnings for excluded internal files (see lessons from taskwright deployment)
+# Disabled: Allow warnings for excluded internal files (see lessons from guardkit deployment)
 strict: false
 
 # Use directory URLs (cleaner URLs without .html)

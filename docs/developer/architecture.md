@@ -28,7 +28,7 @@ RequireKit is a requirements management toolkit using:
 - Hierarchical directory structure
 
 ### 4. Integration Layer
-- Marker file detection for taskwright
+- Marker file detection for guardkit
 - PM tool metadata in frontmatter
 - Bidirectional package detection
 
@@ -43,7 +43,7 @@ Process/Generate
     ↓
 Markdown Files
     ↓
-PM Tools / taskwright
+PM Tools / guardkit
 ```
 
 ## Design Principles
@@ -52,7 +52,7 @@ PM Tools / taskwright
 2. **No Hard Dependencies**: Standalone with optional integration
 3. **Version Control Friendly**: Plain text, Git-compatible
 4. **Human Readable**: Markdown is readable without tools
-5. **Composable**: Works alone or with taskwright
+5. **Composable**: Works alone or with guardkit
 
 ## Key Decisions
 

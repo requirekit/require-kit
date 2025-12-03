@@ -95,7 +95,7 @@ source_install_functions() {
     "requirements_traceability"
   ],
   "requires": [
-    "taskwright"
+    "guardkit"
   ],
   "integration_model": "bidirectional_optional",
   "description": "Requirements engineering and BDD for Agentecflow",

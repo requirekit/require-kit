@@ -1,11 +1,14 @@
 ---
 id: TASK-034
 title: Enhance Phase 2.8 with Business Decision Detection
-status: backlog
+status: archived
 created: 2025-10-28T10:00:00Z
-updated: 2025-10-28T10:00:00Z
+updated: 2025-12-03T17:45:00Z
+archived: 2025-12-03T17:45:00Z
+archived_reason: "Transferred to GuardKit - This task enhances Phase 2.8 workflow checkpoint which is part of the /task-work implementation workflow. This belongs to GuardKit, not RequireKit."
+transferred_to: "guardkit"
 priority: high
-tags: [workflow, phase-2.8, decision-detection, human-in-the-loop, enhancement]
+tags: [workflow, phase-2.8, decision-detection, human-in-the-loop, enhancement, archived]
 epic: null
 feature: null
 requirements: []

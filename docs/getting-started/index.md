@@ -13,8 +13,8 @@ Install RequireKit and set up your environment.
 ### 📝 [Your First Requirements](first-requirements.md)
 Step-by-step walkthrough of gathering and formalizing your first requirements.
 
-### 🔗 [Integration with taskwright](integration.md)
-Learn how RequireKit integrates with taskwright for complete requirements-to-implementation workflow.
+### 🔗 [Integration with guardkit](integration.md)
+Learn how RequireKit integrates with guardkit for complete requirements-to-implementation workflow.
 
 ## What is RequireKit?
 
@@ -56,7 +56,7 @@ RequireKit is a requirements management toolkit that helps you:
 3. Review [Commands Reference](../commands/index.md)
 
 ### Advanced
-1. Configure [Integration with taskwright](integration.md)
+1. Configure [Integration with guardkit](integration.md)
 2. Set up [PM Tool Export](../integration/pm-tools.md)
 3. Explore [Examples](../examples/index.md)
 

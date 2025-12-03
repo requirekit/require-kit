@@ -618,7 +618,7 @@ tasks/backlog/TASK-001.md through TASK-005.md
 
 Next Steps:
 1. Review generated task specifications
-2. For task execution: Install taskwright
+2. For task execution: Install guardkit
 3. See Integration Guide for workflow
 ```
 
@@ -919,10 +919,10 @@ Linear Initiative: PROJECT-456
 
 ## Task Execution (Optional Integration)
 
-For task execution workflow, install [taskwright](https://github.com/taskwright-dev/taskwright).
+For task execution workflow, install [guardkit](https://github.com/guardkit-dev/guardkit).
 
 See [Integration Guide](../INTEGRATION-GUIDE.md) for:
-- Installing taskwright alongside require-kit
+- Installing guardkit alongside require-kit
 - Using `/task-work` for implementation
 - Complete requirements-to-implementation traceability
 - TDD workflow with quality gates
@@ -962,7 +962,7 @@ See [Integration Guide](../INTEGRATION-GUIDE.md) for:
 ### Documentation
 - **[Getting Started](getting_started.md)** - Quick start guide
 - **[User Guide](require_kit_user_guide.md)** - Comprehensive feature documentation
-- **[Integration Guide](../INTEGRATION-GUIDE.md)** - Using with taskwright
+- **[Integration Guide](../INTEGRATION-GUIDE.md)** - Using with guardkit
 - **[README](../../README.md)** - Overview and quick reference
 
 ### Support

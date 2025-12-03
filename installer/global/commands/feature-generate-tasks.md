@@ -2,12 +2,12 @@
 
 Automatically generate task specification files from feature requirements, acceptance criteria, and BDD scenarios. Creates task markdown files with full traceability to requirements and acceptance criteria.
 
-**Standalone Operation:** This command works independently of taskwright. It creates task specification files that can be:
+**Standalone Operation:** This command works independently of guardkit. It creates task specification files that can be:
 - Exported to PM tools (Jira, Linear, GitHub, Azure DevOps) for team collaboration
 - Used as implementation blueprints in any development workflow
-- Executed via taskwright's task workflow system (if installed)
+- Executed via guardkit's task workflow system (if installed)
 
-**For task execution workflow (implementation, testing, quality gates):** Install [taskwright](https://github.com/taskwright-dev/taskwright)
+**For task execution workflow (implementation, testing, quality gates):** Install [guardkit](https://github.com/guardkit-dev/guardkit)
 
 ## Usage
 ```bash
@@ -265,7 +265,7 @@ Task files created in: tasks/backlog/
 
 Next Steps:
 1. Review generated tasks: /feature-status FEAT-001 --tasks
-2. Begin implementation with your workflow or integrate with taskwright
+2. Begin implementation with your workflow or integrate with guardkit
 3. Export to PM tools: /feature-sync FEAT-001 --include-tasks
 4. Track progress: /feature-status FEAT-001
 ```
@@ -627,7 +627,7 @@ Duplicate Tasks Prevented: 3
 /feature-create "User Auth" epic:EPIC-001 requirements:[REQ-001,REQ-002]
 /feature-generate-tasks FEAT-001 --interactive --threshold 6
 /feature-status FEAT-001 --tasks
-# Execute tasks using your workflow or taskwright integration
+# Execute tasks using your workflow or guardkit integration
 ```
 
 ### Cross-Command References
@@ -646,10 +646,10 @@ This command bridges the critical gap between requirements management and task s
 - ✅ Provides complexity analysis and automatic task breakdown
 - ✅ Maintains full traceability from epic → feature → task → requirement
 
-**What Requires taskwright (Optional):**
+**What Requires guardkit (Optional):**
 - ❌ Task execution workflow (`/task-work` command)
 - ❌ Automated testing and quality gates
 - ❌ Kanban state management (in_progress, in_review, completed)
 - ❌ Test-driven development workflow
 
-**Integration:** When both require-kit and taskwright are installed, task specifications created here flow seamlessly into the task execution workflow. Without taskwright, task specifications can still be exported to your PM tools for team collaboration.
+**Integration:** When both require-kit and guardkit are installed, task specifications created here flow seamlessly into the task execution workflow. Without guardkit, task specifications can still be exported to your PM tools for team collaboration.

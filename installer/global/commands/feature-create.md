@@ -282,7 +282,7 @@ Features bridge requirements and implementation:
 # (Checkpoint: Does feature match expectations?)
 
 # Generate task specifications automatically after approval
-/feature-generate-tasks FEAT-001  # Works with or without taskwright
+/feature-generate-tasks FEAT-001  # Works with or without guardkit
 
 # Review generated tasks
 # (Checkpoint: Are tasks appropriate?)
@@ -296,7 +296,7 @@ Features provide the critical connection from requirements to implementation:
 
 1. **Requirements Input**: EARS notation from requirements gathering
 2. **Feature Definition**: Breakdown into implementable units
-3. **Task Generation**: Concrete implementation tasks (optional, via taskwright)
+3. **Task Generation**: Concrete implementation tasks (optional, via guardkit)
 4. **PM Tool Export**: Integration with project management systems
 5. **Implementation**: Tasks ready for execution in any workflow system
 
@@ -351,7 +351,7 @@ Performance Target: <200ms
 
 Next Steps:
 1. Review feature specification
-2. Begin implementation with your workflow or taskwright integration
+2. Begin implementation with your workflow or guardkit integration
 3. Track progress: /feature-status FEAT-042
 4. Sync to PM tools: /feature-sync FEAT-042
 ```
@@ -404,4 +404,4 @@ docs/
 6. **PM Tool Integration**: Export early and sync frequently
 7. **Human Checkpoints**: Review before task generation and implementation
 
-This feature management system provides the critical bridge between business requirements and implementation tasks while maintaining full integration with external PM tools. For task execution, consider integrating with [taskwright](https://github.com/taskwright-dev/taskwright).
+This feature management system provides the critical bridge between business requirements and implementation tasks while maintaining full integration with external PM tools. For task execution, consider integrating with [guardkit](https://github.com/guardkit-dev/guardkit).

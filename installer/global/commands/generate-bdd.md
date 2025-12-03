@@ -134,4 +134,4 @@ def verify_authentication(context):
 After generating BDD scenarios:
 1. Review scenarios with stakeholders
 2. Implement step definitions
-3. Use test automation tools or integrate with [taskwright](https://github.com/taskwright-dev/taskwright) for execution workflows
+3. Use test automation tools or integrate with [guardkit](https://github.com/guardkit-dev/guardkit) for execution workflows

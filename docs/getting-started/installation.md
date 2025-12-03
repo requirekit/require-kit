@@ -92,24 +92,24 @@ RequireKit is **standalone** with no dependencies:
 
 - ✅ Works independently for requirements management
 - ✅ No external packages required
-- ✅ Optional integration with taskwright
+- ✅ Optional integration with guardkit
 - ✅ Bidirectional detection when both installed
 
-## Optional: Install taskwright
+## Optional: Install guardkit
 
 For complete requirements-to-implementation workflow:
 
 ```bash
-# Clone taskwright
-git clone https://github.com/taskwright-dev/taskwright.git
-cd taskwright
+# Clone guardkit
+git clone https://github.com/guardkit-dev/guardkit.git
+cd guardkit
 
 # Run installer
 ./installer/scripts/install.sh
 
 # Verify integration
 ls ~/.agentecflow/*.marker
-# Should show both: require-kit.marker + taskwright.marker
+# Should show both: require-kit.marker + guardkit.marker
 ```
 
 [Learn more about integration →](integration.md)
@@ -179,7 +179,7 @@ rm ~/.agentecflow/require-kit.marker
 rm -f ~/.agentecflow/.installed/require-kit.*
 ```
 
-**If you don't have taskwright or other packages installed**, you can remove the entire directory:
+**If you don't have guardkit or other packages installed**, you can remove the entire directory:
 
 ```bash
 rm -rf ~/.agentecflow

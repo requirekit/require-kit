@@ -45,9 +45,9 @@ Use require-kit when you need:
 
 ### Standalone or Integrated
 
-require-kit is **fully functional standalone** with no dependencies. Optionally integrate with [taskwright](https://github.com/taskwright-dev/taskwright) for task execution workflow.
+require-kit is **fully functional standalone** with no dependencies. Optionally integrate with [guardkit](https://github.com/guardkit-dev/guardkit) for task execution workflow.
 
-See [Integration Guide](../INTEGRATION-GUIDE.md) for details on using require-kit with taskwright.
+See [Integration Guide](../INTEGRATION-GUIDE.md) for details on using require-kit with guardkit.
 
 ---
 
@@ -102,7 +102,7 @@ Every feature should begin with well-understood, clearly documented requirements
                                  ▼
                     ┌────────────────────────┐
                     │  Export/Integration    │
-                    │  (PM Tools/taskwright) │
+                    │  (PM Tools/guardkit) │
                     └────────────────────────┘
 ```
 
@@ -805,7 +805,7 @@ Overall Progress: 65% complete
 # Option A: Export to Jira
 /feature-sync FEAT-004 --jira
 
-# Option B: Generate task specifications for taskwright
+# Option B: Generate task specifications for guardkit
 /feature-generate-tasks FEAT-004
 ```
 
@@ -882,11 +882,11 @@ require-kit works completely standalone:
 - Maintain requirements traceability in markdown files
 - Use outputs with any implementation workflow
 
-### Integration with taskwright
+### Integration with guardkit
 
 For task execution workflow with quality gates:
 
-1. **Install taskwright**: See [taskwright repository](https://github.com/taskwright-dev/taskwright)
+1. **Install guardkit**: See [guardkit repository](https://github.com/guardkit-dev/guardkit)
 2. **Automatic Detection**: Both packages detect each other via marker files
 3. **Enhanced Workflow**: Requirements context flows to task execution
 4. **Full Traceability**: REQ → BDD → FEAT → TASK → Implementation
@@ -985,7 +985,7 @@ require-kit provides a complete requirements management workflow:
 
 **Key Principle**: Start with clear requirements, maintain traceability, and ensure testability.
 
-Use standalone for requirements management, or integrate with taskwright for full requirements-to-implementation workflow.
+Use standalone for requirements management, or integrate with guardkit for full requirements-to-implementation workflow.
 
 ---
 

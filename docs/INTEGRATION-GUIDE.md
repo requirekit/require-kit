@@ -1,4 +1,4 @@
-# Integration Guide: require-kit and taskwright
+# Integration Guide: require-kit and guardkit
 
 **Version**: 1.0.0
 **Last Updated**: 2025-11-03
@@ -6,7 +6,7 @@
 
 ## Prerequisites
 
-- **Python 3.10 or later** (required by both require-kit and taskwright)
+- **Python 3.10 or later** (required by both require-kit and guardkit)
 - pip (Python package installer)
 - git (for repository cloning)
 - bash shell (macOS, Linux, or Windows WSL2)
@@ -44,16 +44,16 @@ Both packages require Python 3.10+ for ecosystem consistency. This ensures compa
 - PM tool export capabilities
 - Requirements-driven development process
 
-### What is taskwright?
+### What is guardkit?
 
-**taskwright** is a standalone task execution workflow system that provides structured implementation, testing, and quality gates:
+**guardkit** is a standalone task execution workflow system that provides structured implementation, testing, and quality gates:
 
 - **Task Execution**: TDD-driven implementation workflow
 - **Quality Gates**: Automated testing, coverage, and code review
 - **Architectural Review**: Pattern compliance and design validation
 - **Test Orchestration**: Comprehensive test execution and reporting
 
-**Use taskwright when you need**:
+**Use guardkit when you need**:
 - Structured implementation workflow
 - Automated quality gates
 - Test-driven development
@@ -66,10 +66,10 @@ Both packages require Python 3.10+ for ecosystem consistency. This ensures compa
 Decision Tree:
 ├── Do you need requirements documentation?
 │   ├── Yes → Start with require-kit
-│   └── No → Consider taskwright only
+│   └── No → Consider guardkit only
 │
 ├── Do you need task execution workflow?
-│   ├── Yes → Use taskwright
+│   ├── Yes → Use guardkit
 │   └── No → require-kit only is sufficient
 │
 └── Do you need full requirements-to-implementation traceability?
@@ -81,8 +81,8 @@ Decision Tree:
 
 Both packages are **fully functional independently** with **no hard dependencies**:
 
-- **require-kit**: Works standalone, optionally enhanced by taskwright
-- **taskwright**: Works standalone, optionally enhanced by require-kit
+- **require-kit**: Works standalone, optionally enhanced by guardkit
+- **guardkit**: Works standalone, optionally enhanced by require-kit
 - **Integration**: Automatic detection via marker files when both installed
 - **No Lock-In**: Install or remove either package without affecting the other
 
@@ -99,7 +99,7 @@ Both packages detect each other automatically using marker files in `~/.agentecf
 ```bash
 ~/.agentecflow/
 ├── require-kit.marker          # Created when require-kit installed
-├── taskwright.marker           # Created when taskwright installed
+├── guardkit.marker           # Created when guardkit installed
 ├── bin/                        # Shared command executables
 └── lib/                        # Shared library code
 ```
@@ -119,8 +119,8 @@ ls ~/.agentecflow/*.marker
 
 # Expected outputs:
 # require-kit only:  require-kit.marker
-# taskwright only:   taskwright.marker
-# Both integrated:   require-kit.marker + taskwright.marker
+# guardkit only:   guardkit.marker
+# Both integrated:   require-kit.marker + guardkit.marker
 ```
 
 ### Dependency Inversion Principle
@@ -133,30 +133,30 @@ High-Level Module: require-kit
     ├── EARS Formalization
     ├── BDD Scenario Generation
     ├── Task Specification Generation
-    └── Outputs → PM Tools, taskwright (when installed)
+    └── Outputs → PM Tools, guardkit (when installed)
 
-Low-Level Module: taskwright
+Low-Level Module: guardkit
     ├── Task Execution
     ├── Quality Gates
     ├── Test Orchestration
     └── Inputs ← Task Specifications (from require-kit or PM tools)
 ```
 
-**Key Principle**: taskwright does NOT look "up" to require-kit. The data flows one direction:
+**Key Principle**: guardkit does NOT look "up" to require-kit. The data flows one direction:
 
 1. **require-kit** generates requirements, BDD scenarios, and task specifications
-2. **taskwright** executes tasks using specifications from any source
-3. **No circular dependency**: taskwright never calls require-kit commands
+2. **guardkit** executes tasks using specifications from any source
+3. **No circular dependency**: guardkit never calls require-kit commands
 
-### Why BDD Mode was Removed from taskwright
+### Why BDD Mode was Removed from guardkit
 
-**Historical Context**: Early versions of taskwright included a "BDD mode" that would call require-kit commands to generate feature files during task execution.
+**Historical Context**: Early versions of guardkit included a "BDD mode" that would call require-kit commands to generate feature files during task execution.
 
-**Problem**: This violated DIP by making the lower-level module (taskwright) depend on the higher-level module (require-kit):
+**Problem**: This violated DIP by making the lower-level module (guardkit) depend on the higher-level module (require-kit):
 
 ```
 VIOLATION (Old Design):
-taskwright → calls → require-kit commands
+guardkit → calls → require-kit commands
 (lower)               (higher)
 ```
 
@@ -164,7 +164,7 @@ taskwright → calls → require-kit commands
 
 ```
 CORRECT (Current Design):
-require-kit → generates → BDD scenarios → consumed by → taskwright tests
+require-kit → generates → BDD scenarios → consumed by → guardkit tests
 (higher)                  (artifact)                     (lower)
 ```
 
@@ -172,8 +172,8 @@ require-kit → generates → BDD scenarios → consumed by → taskwright tests
 
 1. Use `/generate-bdd` in require-kit to create scenarios
 2. Export scenarios to your test framework
-3. Execute tests with `/task-work` in taskwright
-4. taskwright uses the BDD scenarios as acceptance criteria (data flow, not code dependency)
+3. Execute tests with `/task-work` in guardkit
+4. guardkit uses the BDD scenarios as acceptance criteria (data flow, not code dependency)
 
 ### Unidirectional Data Flow
 
@@ -187,7 +187,7 @@ require-kit → generates → BDD scenarios → consumed by → taskwright tests
                              │ (data artifacts)
                              ↓
 ┌─────────────────────────────────────────────────────────┐
-│ taskwright (Task Execution)                             │
+│ guardkit (Task Execution)                             │
 │ ┌─────────────┐   ┌──────────────┐   ┌──────────────┐ │
 │ │Task Work    │──→│ Quality Gates│──→│Completion    │ │
 │ └─────────────┘   └──────────────┘   └──────────────┘ │
@@ -195,7 +195,7 @@ require-kit → generates → BDD scenarios → consumed by → taskwright tests
 
 Alternative Sources:
 ┌─────────────────┐
-│ PM Tools        │──→ Task Specs ──→ taskwright
+│ PM Tools        │──→ Task Specs ──→ guardkit
 │ (Jira, Linear) │
 └─────────────────┘
 ```
@@ -259,26 +259,26 @@ ls ~/.agentecflow/require-kit.marker
 - Test orchestration
 - Code review automation
 
-### Scenario 2: taskwright Only
+### Scenario 2: guardkit Only
 
 **Use Case**: Lean startup, rapid iteration, teams without formal requirements process.
 
 **Installation**:
 
 ```bash
-git clone https://github.com/taskwright-dev/taskwright.git
-cd taskwright
+git clone https://github.com/guardkit-dev/guardkit.git
+cd guardkit
 ./installer/scripts/install.sh
 ```
 
 **Verification**:
 
 ```bash
-ls ~/.agentecflow/taskwright.marker
+ls ~/.agentecflow/guardkit.marker
 # Should exist
 
 /task-work --version
-# Should show taskwright version
+# Should show guardkit version
 ```
 
 **Available Commands**:
@@ -326,18 +326,18 @@ cd require-kit
 ./installer/scripts/install.sh
 
 cd ..
-git clone https://github.com/taskwright-dev/taskwright.git
-cd taskwright
+git clone https://github.com/guardkit-dev/guardkit.git
+cd guardkit
 ./installer/scripts/install.sh
 
-# Option B: Install taskwright first (same result)
+# Option B: Install guardkit first (same result)
 ```
 
 **Verification**:
 
 ```bash
 ls ~/.agentecflow/*.marker
-# Should show: require-kit.marker + taskwright.marker
+# Should show: require-kit.marker + guardkit.marker
 
 /gather-requirements --version
 /task-work --version
@@ -359,7 +359,7 @@ ls ~/.agentecflow/*.marker
 
 ## Feature Availability Matrix
 
-| Feature | require-kit Only | taskwright Only | Both Integrated |
+| Feature | require-kit Only | guardkit Only | Both Integrated |
 |---------|------------------|-----------------|-----------------|
 | **Requirements Management** |
 | EARS Requirements | ✅ Full | ❌ | ✅ Full |
@@ -401,7 +401,7 @@ ls ~/.agentecflow/*.marker
 
 ### Workflow 1: Requirements-Driven Development (Full Integration)
 
-**Prerequisites**: Both require-kit and taskwright installed
+**Prerequisites**: Both require-kit and guardkit installed
 
 **Complete Workflow**:
 
@@ -430,7 +430,7 @@ ls ~/.agentecflow/*.marker
 /feature-generate-tasks FEAT-001
 # Output: tasks/backlog/TASK-001.md (with links to REQ, BDD, FEAT)
 
-# Phase 7: Execute Task (taskwright)
+# Phase 7: Execute Task (guardkit)
 /task-work TASK-001
 # - Loads requirements context from REQ-001
 # - References BDD-001 for acceptance criteria
@@ -438,7 +438,7 @@ ls ~/.agentecflow/*.marker
 # - Runs quality gates
 # Output: Implementation with test coverage
 
-# Phase 8: Complete Task (taskwright)
+# Phase 8: Complete Task (guardkit)
 /task-complete TASK-001
 # - Verifies all tests passing
 # - Confirms coverage ≥80%
@@ -452,9 +452,9 @@ REQ-001 → BDD-001 → FEAT-001 → TASK-001 → Implementation
 (EARS)    (Gherkin) (Feature)  (Task)     (Code + Tests)
 ```
 
-### Workflow 2: Lean Startup (taskwright Only)
+### Workflow 2: Lean Startup (guardkit Only)
 
-**Prerequisites**: taskwright only
+**Prerequisites**: guardkit only
 
 **Rapid Iteration Workflow**:
 
@@ -538,7 +538,7 @@ cd ../require-kit
 # Output: Linear issue with full traceability
 
 # Your team implements in Jira/Linear
-# No need for taskwright if you have existing PM workflow
+# No need for guardkit if you have existing PM workflow
 ```
 
 **Result**: Requirements managed in require-kit, execution in external PM tool.
@@ -563,7 +563,7 @@ ls -la ~/.agentecflow/*.marker
 
 # Should see both:
 # require-kit.marker
-# taskwright.marker
+# guardkit.marker
 ```
 
 2. **Verify marker file format**:
@@ -585,7 +585,7 @@ cat ~/.agentecflow/require-kit.marker
 cd /path/to/require-kit
 ./installer/scripts/install.sh --repair
 
-cd /path/to/taskwright
+cd /path/to/guardkit
 ./installer/scripts/install.sh --repair
 ```
 
@@ -593,7 +593,7 @@ cd /path/to/taskwright
 
 ```bash
 # Only one installation should exist
-find ~ -name "require-kit.marker" -o -name "taskwright.marker"
+find ~ -name "require-kit.marker" -o -name "guardkit.marker"
 
 # If multiple found, uninstall and reinstall
 ```
@@ -640,23 +640,23 @@ exec $SHELL
 
 ### BDD Mode Questions
 
-**Question**: "Why doesn't taskwright have a BDD mode anymore?"
+**Question**: "Why doesn't guardkit have a BDD mode anymore?"
 
 **Answer**: BDD mode was intentionally removed to respect the Dependency Inversion Principle and avoid circular dependencies between packages.
 
 **The Old Design (Violated DIP)**:
 
 ```
-taskwright /task-work --bdd
+guardkit /task-work --bdd
     ↓ (calls)
 require-kit /generate-bdd
     ↓ (generates)
 BDD scenarios
     ↓ (used by)
-taskwright tests
+guardkit tests
 ```
 
-This made taskwright (lower-level) depend on require-kit (higher-level), which is a DIP violation.
+This made guardkit (lower-level) depend on require-kit (higher-level), which is a DIP violation.
 
 **The Correct Design (Current)**:
 
@@ -665,7 +665,7 @@ require-kit /generate-bdd
     ↓ (generates)
 BDD scenarios (artifact)
     ↓ (consumed by)
-taskwright tests (data dependency only)
+guardkit tests (data dependency only)
 ```
 
 **How to Use BDD with Integration**:
@@ -684,11 +684,11 @@ taskwright tests (data dependency only)
 bdd_scenarios: [BDD-001]
 ```
 
-3. **Execute task** (taskwright loads BDD as acceptance criteria):
+3. **Execute task** (guardkit loads BDD as acceptance criteria):
 
 ```bash
 /task-work TASK-001
-# taskwright reads BDD-001.feature for acceptance criteria
+# guardkit reads BDD-001.feature for acceptance criteria
 # implements tests based on scenarios
 # no code dependency on require-kit
 ```
@@ -716,7 +716,7 @@ print(json.dumps(get_available_features(), indent=2))
 # Expected output:
 # {
 #   "require_kit": true,
-#   "taskwright": true,
+#   "guardkit": true,
 #   "integration": true,
 #   "features": {
 #     "requirements": true,
@@ -757,7 +757,7 @@ rm -rf ~/.agentecflow
 
 ### From Monolithic ai-engineer to Split Packages
 
-**Context**: The original `ai-engineer` system was split into `require-kit` and `taskwright` to provide standalone, composable packages.
+**Context**: The original `ai-engineer` system was split into `require-kit` and `guardkit` to provide standalone, composable packages.
 
 **Migration Steps**:
 
@@ -773,7 +773,7 @@ rm -rf ~/.agentecflow
 
 - Requirements + Implementation → Install both packages
 - Requirements only → Install require-kit
-- Implementation only → Install taskwright
+- Implementation only → Install guardkit
 
 3. **Install new packages** (see Installation Scenarios above)
 
@@ -811,10 +811,10 @@ cp -r ~/.ai-engineer/tasks tasks/
 
 **Migration Steps**:
 
-1. **Install taskwright**:
+1. **Install guardkit**:
 
 ```bash
-cd /path/to/taskwright
+cd /path/to/guardkit
 ./installer/scripts/install.sh
 ```
 
@@ -843,7 +843,7 @@ ls ~/.agentecflow/*.marker
 
 **No Breaking Changes**: All existing require-kit commands continue to work identically.
 
-### From taskwright Standalone to Full Integration
+### From guardkit Standalone to Full Integration
 
 **When to Migrate**: When you want to add requirements traceability and BDD scenarios to your task execution workflow.
 
@@ -893,7 +893,7 @@ ls ~/.agentecflow/*.marker
 /task-work TASK-043
 ```
 
-**No Breaking Changes**: All existing taskwright commands continue to work identically. Existing tasks without requirements continue to execute normally.
+**No Breaking Changes**: All existing guardkit commands continue to work identically. Existing tasks without requirements continue to execute normally.
 
 ---
 
@@ -902,18 +902,18 @@ ls ~/.agentecflow/*.marker
 ### Documentation
 
 - **require-kit**: [README.md](../README.md), [CLAUDE.md](../CLAUDE.md)
-- **taskwright**: [taskwright README](https://github.com/taskwright-dev/taskwright)
+- **guardkit**: [guardkit README](https://github.com/guardkit-dev/guardkit)
 - **Architecture**: [docs/architecture/bidirectional-integration.md](architecture/bidirectional-integration.md)
 
 ### Command References
 
 - **require-kit Commands**: See `.claude/commands/` for command specifications
-- **taskwright Commands**: See taskwright repository `.claude/commands/`
+- **guardkit Commands**: See guardkit repository `.claude/commands/`
 
 ### Support
 
 - **GitHub Issues**: [require-kit issues](https://github.com/requirekit/require-kit/issues)
-- **GitHub Issues**: [taskwright issues](https://github.com/taskwright-dev/taskwright/issues)
+- **GitHub Issues**: [guardkit issues](https://github.com/guardkit-dev/guardkit/issues)
 - **Email**: support@yourorganization.com
 
 ---
@@ -922,7 +922,7 @@ ls ~/.agentecflow/*.marker
 
 **Consistent terminology across documentation**:
 
-- **Package names**: require-kit, taskwright (lowercase, hyphenated)
+- **Package names**: require-kit, guardkit (lowercase, hyphenated)
 - **Files**: lowercase-with-hyphens.md
 - **Package**: Use "package" not "tool" or "system"
 - **Integration**: Bidirectional optional integration (not "dependency")
@@ -933,4 +933,4 @@ ls ~/.agentecflow/*.marker
 **Document Version**: 1.0.0
 **Last Updated**: 2025-11-03
 **Authoritative Source**: This guide in require-kit repository
-**taskwright Copy**: Linked from taskwright repository (not duplicated)
+**guardkit Copy**: Linked from guardkit repository (not duplicated)

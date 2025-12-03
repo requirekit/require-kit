@@ -293,7 +293,7 @@ Next Steps:
 🔄 Task execution in progress (54% complete)
 
 🎯 Task Execution Integration
-✅ Tasks ready for assignment (taskwright)
+✅ Tasks ready for assignment (guardkit)
 ✅ PM tools configured for progress tracking
 ✅ Quality gates defined and monitored
 🔄 Execution actively tracked
@@ -307,7 +307,7 @@ Quality Gate Compliance: 85%
 🔄 MCP Integration Status
 ✅ Requirements MCP: Active
 ✅ PM Tools MCP: Connected and syncing
-✅ Task Management MCP: Operational (taskwright)
+✅ Task Management MCP: Operational (guardkit)
 ⏳ Validation MCP: Ready for completion
 
 ✅ Workflow Bridge Healthy
@@ -390,10 +390,10 @@ Feature Progress = Calculated from actual task completion
 
 ### Automatic Sync Triggers
 ```bash
-# Note: The following examples show integration with taskwright
-# See INTEGRATION-GUIDE.md for taskwright setup
+# Note: The following examples show integration with guardkit
+# See INTEGRATION-GUIDE.md for guardkit setup
 
-# Feature sync triggered by task completion (taskwright)
+# Feature sync triggered by task completion (guardkit)
 # /task-complete TASK-043
 # Automatically triggers: /feature-sync FEAT-001 --fields progress
 
@@ -401,7 +401,7 @@ Feature Progress = Calculated from actual task completion
 # /feature-complete FEAT-001
 # Automatically triggers: /epic-sync EPIC-001 --fields progress
 
-# Task creation triggers feature sync (taskwright)
+# Task creation triggers feature sync (guardkit)
 # /task-create "New Task" feature:FEAT-001
 # Automatically triggers: /feature-sync FEAT-001 --fields tasks
 ```
@@ -449,4 +449,4 @@ Features automatically inherit sync configuration from their epic where not spec
 
 This command ensures seamless integration between local feature management and external PM tools while maintaining the complete **Epic → Feature → Task hierarchy** and supporting the requirements management to task specification workflow.
 
-**Standalone:** Works independently for PM tool synchronization. For task execution workflow, install taskwright.
+**Standalone:** Works independently for PM tool synchronization. For task execution workflow, install guardkit.

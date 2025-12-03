@@ -104,7 +104,7 @@ Target Completion: Q1 2024 (on track)
 
 💡 Quick Actions
 ├── View epic details: /epic-status EPIC-002
-├── Task execution: Use your workflow or taskwright integration
+├── Task execution: Use your workflow or guardkit integration
 ├── Sync all external tools: /epic-sync --all
 └── Generate progress report: /hierarchy-view --report
 ```
@@ -497,7 +497,7 @@ Choice [1-5]: 1
 
 # Suggested actions shown:
 💡 Available Actions:
-├── Task execution: Use your workflow or taskwright integration
+├── Task execution: Use your workflow or guardkit integration
 ├── View feature details: /feature-status FEAT-003
 ├── Sync epic progress: /epic-sync EPIC-001
 └── Generate epic report: /epic-status EPIC-001 --report
@@ -527,4 +527,4 @@ Choice [1-5]: 1
 
 This command provides comprehensive project visualization while maintaining seamless integration with the **Epic → Feature → Task hierarchy** and requirements management workflow.
 
-**Standalone:** Works independently to visualize project structure. For task execution workflow, install taskwright.
+**Standalone:** Works independently to visualize project structure. For task execution workflow, install guardkit.

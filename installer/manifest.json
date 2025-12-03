@@ -25,13 +25,13 @@
   ],
   "dependencies": {
     "required": ["bash", "git"],
-    "optional": ["taskwright", "python3"]
+    "optional": ["guardkit", "python3"]
   },
   "compatible_with": {
-    "taskwright": ">=1.0.0"
+    "guardkit": ">=1.0.0"
   },
   "integration": {
-    "taskwright": {
+    "guardkit": {
       "type": "bidirectional-optional",
       "provides": "Requirements can be linked to tasks",
       "description": "When both installed, enable full requirements-to-implementation traceability"

@@ -102,10 +102,11 @@ remove_tracking() {
 }
 
 cleanup_lib() {
-    # Only remove feature_detection.py if taskwright is not installed
-    if [ ! -f "$INSTALL_DIR/taskwright.marker" ] && [ -f "$INSTALL_DIR/lib/feature_detection.py" ]; then
+    # Only remove feature_detection.py if guardkit is not installed
+    if [ ! -f "$INSTALL_DIR/guardkit.marker.json" ] && \
+       [ -f "$INSTALL_DIR/lib/feature_detection.py" ]; then
         print_info "Removing shared library files..."
-        print_warning "taskwright not detected - removing feature_detection.py"
+        print_warning "guardkit not detected - removing feature_detection.py"
         rm -f "$INSTALL_DIR/lib/feature_detection.py"
 
         # Remove lib directory if empty
@@ -114,8 +115,8 @@ cleanup_lib() {
         fi
 
         print_success "Library files removed"
-    elif [ -f "$INSTALL_DIR/taskwright.marker" ]; then
-        print_info "Preserving feature_detection.py (taskwright still installed)"
+    elif [ -f "$INSTALL_DIR/guardkit.marker.json" ]; then
+        print_info "Preserving feature_detection.py (guardkit still installed)"
     fi
 }
 
@@ -144,9 +145,9 @@ print_completion_message() {
     echo "require-kit has been uninstalled from ~/.agentecflow"
     echo ""
 
-    # Check if taskwright is still installed
-    if [ -f "$INSTALL_DIR/taskwright.marker" ]; then
-        print_info "taskwright is still installed and available"
+    # Check if guardkit is still installed
+    if [ -f "$INSTALL_DIR/guardkit.marker.json" ]; then
+        print_info "guardkit is still installed and available"
         echo "  Task execution features remain available"
     fi
     echo ""

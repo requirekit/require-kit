@@ -62,7 +62,7 @@ create_marker_file() {
     "bdd_generation"
   ],
   "requires": [
-    "taskwright"
+    "guardkit"
   ],
   "integration_model": "bidirectional_optional"
 }

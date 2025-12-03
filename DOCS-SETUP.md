@@ -117,7 +117,7 @@ Home
 │   ├── Quickstart
 │   ├── Installation
 │   ├── Your First Requirements
-│   └── Integration with taskwright
+│   └── Integration with guardkit
 ├── Core Concepts
 │   ├── Overview
 │   ├── EARS Notation Patterns

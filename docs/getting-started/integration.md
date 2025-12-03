@@ -1,10 +1,10 @@
-# Integration with taskwright
+# Integration with guardkit
 
-Learn how RequireKit integrates with taskwright for complete requirements-to-implementation workflow.
+Learn how RequireKit integrates with guardkit for complete requirements-to-implementation workflow.
 
 ## Overview
 
-RequireKit is a **standalone requirements management toolkit** that optionally integrates with [taskwright](https://github.com/taskwright-dev/taskwright) for task execution, quality gates, and automated testing.
+RequireKit is a **standalone requirements management toolkit** that optionally integrates with [guardkit](https://github.com/guardkit-dev/guardkit) for task execution, quality gates, and automated testing.
 
 ## Standalone vs Integrated
 
@@ -24,9 +24,9 @@ Use RequireKit alone when you:
 - ✅ Requirements traceability
 - ✅ PM tool metadata export
 
-### RequireKit + taskwright Integration
+### RequireKit + guardkit Integration
 
-Add taskwright when you need:
+Add guardkit when you need:
 - Task execution workflow with quality gates
 - TDD-driven implementation
 - Automated test execution and coverage
@@ -59,19 +59,19 @@ chmod +x installer/scripts/install.sh
 ./installer/scripts/install.sh
 ```
 
-### Add taskwright Integration
+### Add guardkit Integration
 
 **Quick Install:**
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/taskwright-dev/taskwright/main/installer/scripts/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/guardkit-dev/guardkit/main/installer/scripts/install.sh | bash
 ```
 
 **Or Clone Repository:**
 
 ```bash
-git clone https://github.com/taskwright-dev/taskwright.git
-cd taskwright
+git clone https://github.com/guardkit-dev/guardkit.git
+cd guardkit
 chmod +x installer/scripts/install.sh
 ./installer/scripts/install.sh
 ```
@@ -82,7 +82,7 @@ After installing both packages, verify they're both present:
 
 ```bash
 ls ~/.agentecflow/*.marker
-# Should show both: require-kit.marker + taskwright.marker
+# Should show both: require-kit.marker + guardkit.marker
 ```
 
 ## Integrated Workflow
@@ -90,7 +90,7 @@ ls ~/.agentecflow/*.marker
 When both packages are installed:
 
 ```
-RequireKit (Requirements) → taskwright (Execution)
+RequireKit (Requirements) → guardkit (Execution)
      ↓                            ↓
 REQ-001 (EARS)               TASK-001 (Implementation)
      ↓                            ↓
@@ -133,27 +133,27 @@ FEAT-001 (Feature)           Quality Gates
 **Output:**
 - `tasks/backlog/TASK-001.md` (with links to REQ-001, BDD-001, FEAT-001)
 
-### Step 4: Execute Task (taskwright)
+### Step 4: Execute Task (guardkit)
 
 ```bash
 /task-work TASK-001
 ```
 
 !!! note "BDD Mode Temporarily Removed"
-    The `--mode=BDD` option has been temporarily removed from the `/task-work` command to maintain taskwright's independence from require-kit. This will be reintroduced in a future release with proper dependency inversion. For now, BDD scenarios are manually referenced during task execution.
+    The `--mode=BDD` option has been temporarily removed from the `/task-work` command to maintain guardkit's independence from require-kit. This will be reintroduced in a future release with proper dependency inversion. For now, BDD scenarios are manually referenced during task execution.
 
-**taskwright loads:**
+**guardkit loads:**
 - Requirements context from REQ-001
 - BDD scenarios as acceptance criteria from BDD-001
 - Feature specifications from FEAT-001
 
-**taskwright provides:**
+**guardkit provides:**
 - TDD workflow with quality gates
 - Automated testing and coverage
 - Code review for SOLID/DRY principles
 - Plan audit to prevent scope creep
 
-### Step 5: Complete Task (taskwright)
+### Step 5: Complete Task (guardkit)
 
 ```bash
 /task-complete TASK-001
@@ -174,8 +174,8 @@ Both packages detect each other automatically:
 ls ~/.agentecflow/*.marker
 
 # RequireKit only:  require-kit.marker
-# taskwright only:  taskwright.marker
-# Both integrated:  require-kit.marker + taskwright.marker
+# guardkit only:  guardkit.marker
+# Both integrated:  require-kit.marker + guardkit.marker
 ```
 
 **How it works:**
@@ -186,7 +186,7 @@ ls ~/.agentecflow/*.marker
 
 ## Feature Availability
 
-| Feature | RequireKit Only | + taskwright |
+| Feature | RequireKit Only | + guardkit |
 |---------|----------------|--------------|
 | EARS Requirements | ✅ | ✅ |
 | BDD Generation | ✅ | ✅ |
@@ -208,10 +208,10 @@ RequireKit (Higher-level)
     ↓ generates
 Requirements, BDD, Specs
     ↓ consumed by
-taskwright (Lower-level)
+guardkit (Lower-level)
 ```
 
-**Key principle:** taskwright never calls RequireKit commands. Data flows one direction through artifacts (markdown files).
+**Key principle:** guardkit never calls RequireKit commands. Data flows one direction through artifacts (markdown files).
 
 ## PM Tool Integration
 
@@ -252,7 +252,7 @@ Creates Jira ticket with:
 - You export to Jira/Linear for implementation
 - Your team uses different implementation tools
 
-### Use RequireKit + taskwright When:
+### Use RequireKit + guardkit When:
 - You need complete requirements-to-code workflow
 - You want TDD with quality gates
 - You need requirements context during implementation
@@ -263,12 +263,12 @@ Creates Jira ticket with:
 
 ### From RequireKit to Integrated
 
-1. Install taskwright
+1. Install guardkit
 2. Existing requirements/BDD/features remain unchanged
 3. New capabilities available immediately
 4. No breaking changes
 
-### From taskwright to Integrated
+### From guardkit to Integrated
 
 1. Install RequireKit
 2. Add requirements retroactively (optional)
@@ -292,7 +292,7 @@ Covers:
 
 - 📖 [Read the Complete Integration Guide](../INTEGRATION-GUIDE.md)
 - 🔗 [Learn about PM Tool Export](../integration/pm-tools.md)
-- 📚 [Explore taskwright Documentation](https://github.com/taskwright-dev/taskwright)
+- 📚 [Explore guardkit Documentation](https://github.com/guardkit-dev/guardkit)
 
 ---
 

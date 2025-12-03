@@ -151,10 +151,9 @@ Agents that work with ANY technology stack should be added to **ALL templates**.
 **Examples of Global Agents**:
 - `requirements-analyst` - EARS requirements work with any language
 - `bdd-generator` - BDD/Gherkin works with any language
-- `architectural-reviewer` - SOLID/DRY/YAGNI principles apply to all stacks
-- `code-reviewer` - Reviews code in any language
-- `test-orchestrator` - Orchestrates tests for any stack
 - `performance-optimizer` - Performance analysis works across stacks
+
+**Note**: For implementation-focused agents like `architectural-reviewer`, `code-reviewer`, and `test-orchestrator`, see [GuardKit](https://github.com/guardkit-dev/guardkit).
 
 **When to make an agent global**:
 - ✅ Functionality is language/framework-agnostic
@@ -231,9 +230,9 @@ Add your agent to the main documentation in `.claude/CLAUDE.md`:
 
 - **requirements-analyst**: Gathers and formalizes requirements using EARS
 - **bdd-generator**: Converts EARS to BDD/Gherkin scenarios
-- **code-reviewer**: Enforces quality standards
-- **test-orchestrator**: Manages test execution and quality gates
 - **performance-optimizer**: [NEW] Identifies and fixes performance bottlenecks
+
+**Note**: For implementation agents (`code-reviewer`, `test-orchestrator`), use [GuardKit](https://github.com/guardkit-dev/guardkit).
 ```
 
 ### Step 4: Create a Command (Optional)
@@ -465,7 +464,7 @@ cat .claude/CLAUDE.md
 
 ### Naming Conventions
 
-- **Global Agents**: Use kebab-case (e.g., `performance-optimizer.md`, `requirements-analyst.md`, `architectural-reviewer.md`)
+- **Global Agents**: Use kebab-case (e.g., `performance-optimizer.md`, `requirements-analyst.md`, `bdd-generator.md`)
 - **Stack-Specific Agents**: Use `{stack}-{specialization}.md` pattern
   - Python: `python-api-specialist.md`, `python-mcp-specialist.md`
   - React: `react-state-specialist.md`, `react-testing-specialist.md`
@@ -477,11 +476,13 @@ cat .claude/CLAUDE.md
 **Naming Pattern Rationale**:
 The `{stack}-` prefix makes it immediately clear which agents are stack-specific and prevents accidentally copying them to wrong templates.
 
-**Recent Example - architectural-reviewer**:
-- ✅ Global agent (SOLID/DRY/YAGNI principles apply to all stacks)
-- ✅ Added to ALL 7 templates (default, maui, react, python, dotnet-microservice, typescript-api, fullstack)
-- ✅ Integrated into task-work command for all stacks
-- ✅ Language-agnostic architectural review capability
+**Recent Example - bdd-generator**:
+- ✅ Global agent (BDD/Gherkin applies to all stacks)
+- ✅ Added to ALL templates
+- ✅ Integrated into generate-bdd command for all stacks
+- ✅ Language-agnostic BDD scenario generation capability
+
+**Note**: Implementation agents like `architectural-reviewer` are provided by [GuardKit](https://github.com/guardkit-dev/guardkit).
 
 ### Version Control
 

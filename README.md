@@ -3,7 +3,7 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-0366d6)
 ![License](https://img.shields.io/badge/license-MIT-28a745)
 ![Standalone](https://img.shields.io/badge/standalone-no%20dependencies-6f42c1)
-![Optional Integration](https://img.shields.io/badge/integration-taskwright%20optional-ffd33d)
+![Optional Integration](https://img.shields.io/badge/integration-guardkit%20optional-ffd33d)
 ![Bidirectional Detection](https://img.shields.io/badge/detection-automatic-6f42c1)
 [![Documentation](https://img.shields.io/badge/docs-online-blue)](https://requirekit.github.io/require-kit/)
 
@@ -14,7 +14,7 @@
 - **Python 3.10 or later**
 - pip (Python package installer)
 
-**Note**: This version requirement aligns with taskwright for consistent ecosystem experience. Python 3.10 is widely available on modern systems:
+**Note**: This version requirement aligns with guardkit for consistent ecosystem experience. Python 3.10 is widely available on modern systems:
 - macOS 12+: Install via Homebrew (`brew install python@3.10`)
 - Ubuntu 22.04+: Built-in default Python
 - Ubuntu 20.04: Install from deadsnakes PPA
@@ -30,11 +30,11 @@ require-kit is a **standalone requirements management toolkit** with no dependen
 
 - **Fully Functional Independently**: Complete requirements gathering, EARS formalization, BDD generation, and epic/feature hierarchy management
 - **No Required Dependencies**: Works entirely on its own without external packages
-- **Optional Integration**: Can optionally integrate with [taskwright](https://github.com/taskwright-dev/taskwright) for task execution workflow
-- **Bidirectional Detection**: Automatically detects taskwright if installed for enhanced workflow
+- **Optional Integration**: Can optionally integrate with [guardkit](https://github.com/guardkit-dev/guardkit) for task execution workflow
+- **Bidirectional Detection**: Automatically detects guardkit if installed for enhanced workflow
 - **Technology Agnostic**: Outputs work with any implementation system or project management tool
 
-Use require-kit standalone for requirements management, or pair it with taskwright when you need task execution, quality gates, and automated testing workflows.
+Use require-kit standalone for requirements management, or pair it with guardkit when you need task execution, quality gates, and automated testing workflows.
 
 ## Features
 
@@ -266,13 +266,13 @@ require-kit is a **standalone requirements management toolkit** that works indep
 
 ### Optional Integration
 When you need task execution workflow (implementation, testing, quality gates):
-- **Task Execution**: Install [taskwright](https://github.com/taskwright-dev/taskwright) for TDD workflow, automated testing, and quality gates
+- **Task Execution**: Install [guardkit](https://github.com/guardkit-dev/guardkit) for TDD workflow, automated testing, and quality gates
 - **Bidirectional Detection**: Both packages detect each other automatically via marker files
 - **No Hard Dependencies**: Each package works fully independently
 
 ### Integration Flow
 ```
-require-kit (Standalone)          taskwright (Optional)
+require-kit (Standalone)          guardkit (Optional)
 ├── Requirements Gathering
 ├── EARS Formalization
 ├── BDD Scenario Generation
@@ -303,7 +303,7 @@ require-kit (Standalone)          taskwright (Optional)
 
 ## Documentation
 
-- [Integration Guide](docs/INTEGRATION-GUIDE.md) - Using require-kit with taskwright
+- [Integration Guide](docs/INTEGRATION-GUIDE.md) - Using require-kit with guardkit
 - [EARS Notation Guide](docs/guides/ears-notation.md) - Understanding EARS patterns
 - [BDD Scenarios Guide](docs/guides/bdd-scenarios.md) - Writing effective scenarios
 - [Epic/Feature Hierarchy](docs/guides/epic-feature-hierarchy.md) - Project organization

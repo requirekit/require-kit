@@ -45,11 +45,11 @@ All notable changes to the AI-Engineer installation system will be documented in
 ## [1.1.0] - 2024-01-XX
 
 ### Added
-- **AI Agents**: Added 4 core agents to all templates
+- **AI Agents**: Added 2 core agents to all templates
   - `requirements-analyst` - EARS requirements gathering and formalization
   - `bdd-generator` - EARS to BDD/Gherkin conversion
-  - `code-reviewer` - Quality standards enforcement
-  - `test-orchestrator` - Test execution and quality gates management
+
+**Note**: Implementation agents (`code-reviewer`, `test-orchestrator`) are provided by [GuardKit](https://github.com/guardkit-dev/guardkit).
 - **Agent Documentation**: Comprehensive guide for adding new agents
 - **Template Documentation**: Guide for creating new templates
 - **EXTENDING_THE_SYSTEM.md**: Complete documentation for extending the system
@@ -89,13 +89,13 @@ All notable changes to the AI-Engineer installation system will be documented in
 - Development mode examples (Standard, TDD, BDD)
 
 ### MAUI Template [1.1.0]
-- Added 4 core agents
+- Added 2 core agents
 - MVVM + UseCases architecture
 - Functional error handling with Either monad
 - Outside-In TDD approach
 
 ### React Template [1.1.0]
-- Added 4 core agents
+- Added 2 core agents
 - Advanced patterns (error boundaries, SSE hooks)
 - Performance optimization patterns
 - Comprehensive testing setup

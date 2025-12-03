@@ -38,7 +38,7 @@ chmod +x scripts/*.sh
 ├── templates/                      # Project templates
 │   ├── default/                   # Default template
 │   │   ├── CLAUDE.md             # Context file
-│   │   ├── agents/               # AI agents (4 core agents)
+│   │   ├── agents/               # AI agents (2 core agents)
 │   │   └── templates/            # Document templates
 │   ├── react/                    # React template with advanced patterns
 │   │   ├── CLAUDE.md
@@ -104,9 +104,7 @@ my-project/
 │   ├── settings.json              # Project settings
 │   ├── agents/                    # AI agent specifications
 │   │   ├── requirements-analyst.md  # EARS requirements specialist
-│   │   ├── bdd-generator.md        # BDD/Gherkin converter
-│   │   ├── code-reviewer.md        # Quality enforcement
-│   │   └── test-orchestrator.md    # Test execution manager
+│   │   └── bdd-generator.md        # BDD/Gherkin converter
 │   ├── commands/                  # Links to global commands
 │   ├── hooks/                     # Automation hooks
 │   ├── stacks/                    # Technology stack config

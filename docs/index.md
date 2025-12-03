@@ -10,7 +10,7 @@ RequireKit provides a structured approach to capturing, formalizing, and organiz
 - **BDD/Gherkin Generation**: Automatic test scenarios from requirements
 - **Epic/Feature Hierarchy**: Structured organization with full traceability
 - **Technology Agnostic**: Markdown-driven, works with any implementation system
-- **Optional Integration**: Pairs with [taskwright](https://github.com/taskwright-dev/taskwright) for task execution workflow
+- **Optional Integration**: Pairs with [guardkit](https://github.com/guardkit-dev/guardkit) for task execution workflow
 
 ## Quick Start
 
@@ -38,7 +38,7 @@ Detailed documentation for all RequireKit commands: requirements, epics, feature
 Configure MCP servers for Figma and Zeplin integration.
 
 ### 🔗 [Integration](INTEGRATION-GUIDE.md)
-Standalone use or integration with taskwright and PM tools (Jira, Linear, GitHub Projects, Azure DevOps).
+Standalone use or integration with guardkit and PM tools (Jira, Linear, GitHub Projects, Azure DevOps).
 
 ### 📋 [Quick Reference](quick-reference/README.md)
 Cheat sheets and quick reference cards for common workflows.
@@ -90,17 +90,17 @@ RequireKit is a **standalone requirements management toolkit** with no dependenc
 
 - ✅ Fully functional independently
 - ✅ No required dependencies
-- ✅ Optional integration with [taskwright](https://github.com/taskwright-dev/taskwright)
+- ✅ Optional integration with [guardkit](https://github.com/guardkit-dev/guardkit)
 - ✅ Bidirectional detection for enhanced workflows
 - ✅ Technology agnostic outputs
 
-Use RequireKit standalone for requirements management, or pair it with taskwright when you need task execution, quality gates, and automated testing workflows.
+Use RequireKit standalone for requirements management, or pair it with guardkit when you need task execution, quality gates, and automated testing workflows.
 
 ## Links
 
 - [GitHub Repository](https://github.com/yourusername/require-kit)
 - [Report an Issue](https://github.com/yourusername/require-kit/issues)
-- [taskwright](https://github.com/taskwright-dev/taskwright) - Task execution workflow system
+- [guardkit](https://github.com/guardkit-dev/guardkit) - Task execution workflow system
 
 ## What's Next?
 

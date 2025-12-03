@@ -43,20 +43,17 @@ These commands already existed in the installer:
 - `gather-requirements.md` - Interactive requirements gathering
 - `generate-bdd.md` - Generate BDD scenarios from EARS
 
-### 4. Global Agents Added
+### 4. Global Agents
 
 **Path**: `installer/global/agents/`
 
-#### New Agents
-- `task-manager.md` - Manages tasks through kanban workflow with mandatory test verification
-- `test-verifier.md` - Executes and verifies tests for tasks, ensuring quality gates are met
+#### RequireKit Agents
+These agents are included with RequireKit:
+- `requirements-analyst.md` - Gathers and formalizes requirements using EARS notation
+- `bdd-generator.md` - Converts EARS requirements to BDD/Gherkin scenarios
 
-#### Existing Agents
-These agents were already part of the system and support the workflow:
-- Requirements analyst
-- BDD generator
-- Code reviewer
-- Test orchestrator
+#### Implementation Agents (via GuardKit)
+For task workflow agents like `task-manager.md` and `test-verifier.md`, install [GuardKit](https://github.com/guardkit-dev/guardkit).
 
 ## Installation Flow
 
@@ -68,9 +65,11 @@ When a user runs the installation:
 ```
 This installs:
 - Core binaries and CLI tools
-- Global commands including task management
-- Global agents including task-manager and test-verifier
+- Global commands including requirements management
+- Global agents (requirements-analyst and bdd-generator)
 - Templates and configurations
+
+**Note**: For task management agents, install [GuardKit](https://github.com/guardkit-dev/guardkit).
 
 ### 2. Project Initialization
 ```bash
@@ -158,9 +157,8 @@ mkdir -p tasks/{backlog,in_progress,in_testing,in_review,blocked,completed}
 # Copy new commands from global
 cp ~/.agentic-flow/commands/task*.md .claude/commands/
 
-# Copy new agents
-cp ~/.agentic-flow/agents/task-manager.md .claude/agents/
-cp ~/.agentic-flow/agents/test-verifier.md .claude/agents/
+# For task workflow agents, install GuardKit:
+# See https://github.com/guardkit-dev/guardkit
 ```
 
 ## Verification Checklist

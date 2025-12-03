@@ -221,7 +221,7 @@ External Tool Integration: Healthy ✅
 🔄 MCP Integration Status
 ✅ Requirements MCP: Active and synced
 ✅ PM Tools MCP: Connected (Jira, Linear, GitHub)
-⚠️ Execution MCP: Pending configuration (taskwright)
+⚠️ Execution MCP: Pending configuration (guardkit)
 ⏳ Validation MCP: Ready for completion
 ```
 
@@ -304,7 +304,7 @@ Features provide critical metrics for task definition → execution transition:
 - **Task Definition Completeness**: All tasks generated and approved
 - **Human Checkpoint Status**: Approvals and review states
 - **PM Tool Readiness**: External integrations configured
-- **Execution Readiness**: Prerequisites satisfied for task execution (taskwright)
+- **Execution Readiness**: Prerequisites satisfied for task execution (guardkit)
 
 ## Command Variations
 
@@ -342,7 +342,7 @@ Features provide critical metrics for task definition → execution transition:
 # Sync management
 /feature-status FEAT-001 → shows "Run: /feature-sync FEAT-001"
 
-# Note: Task status tracking requires taskwright integration
+# Note: Task status tracking requires guardkit integration
 # See INTEGRATION-GUIDE.md for setup
 ```
 
@@ -385,4 +385,4 @@ Trend: Slightly below target ⚠️
 
 This command provides comprehensive feature tracking while maintaining seamless integration with the task specification workflow and external PM tool ecosystem.
 
-**Standalone:** Works without taskwright. For task execution workflow (TDD, quality gates), install taskwright.
+**Standalone:** Works without guardkit. For task execution workflow (TDD, quality gates), install guardkit.

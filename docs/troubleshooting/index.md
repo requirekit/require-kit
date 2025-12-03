@@ -17,7 +17,7 @@ See [Installation Guide](../getting-started/installation.md#troubleshooting) for
 
 ### Marker File Missing
 
-**Problem**: Integration with taskwright not detected
+**Problem**: Integration with guardkit not detected
 
 **Solution**:
 ```bash
@@ -51,7 +51,7 @@ cd /path/to/require-kit
 
 ## Integration Issues
 
-### taskwright Not Detected
+### guardkit Not Detected
 
 **Problem**: Integration features not available
 
@@ -60,7 +60,7 @@ cd /path/to/require-kit
 # Verify both marker files exist
 ls ~/.agentecflow/*.marker
 
-# Should show: require-kit.marker + taskwright.marker
+# Should show: require-kit.marker + guardkit.marker
 ```
 
 See the [Integration Guide](../INTEGRATION-GUIDE.md#troubleshooting) for detailed troubleshooting.

@@ -36,22 +36,20 @@ agentic-init default                # Language-agnostic
 
 ## 🤖 AI Agents
 
-Each project includes four specialized AI agents that assist throughout the development lifecycle:
+RequireKit includes two specialized AI agents focused on requirements management:
 
 ### Core Agents
 1. **requirements-analyst** - Gathers and formalizes requirements using EARS notation
 2. **bdd-generator** - Converts EARS requirements to BDD/Gherkin scenarios
-3. **code-reviewer** - Enforces quality standards and best practices
-4. **test-orchestrator** - Manages test execution and quality gates
 
 ### Using Agents in Claude
 ```markdown
 # In your IDE with Claude:
 @requirements-analyst help me gather requirements for a login feature
 @bdd-generator convert REQ-001 to Gherkin scenarios
-@code-reviewer check this pull request for quality issues
-@test-orchestrator what tests should run for these changes?
 ```
+
+**Note**: For code review and test orchestration, use [GuardKit](https://github.com/guardkit-dev/guardkit) which provides implementation agents.
 
 ## 📁 Installation Structure
 
@@ -61,26 +59,24 @@ Each project includes four specialized AI agents that assist throughout the deve
 ├── templates/                      # Project templates
 │   ├── default/
 │   │   ├── CLAUDE.md              # Context file
-│   │   ├── agents/                # AI agents (4 core)
+│   │   ├── agents/                # AI agents (2 core)
 │   │   │   ├── requirements-analyst.md
-│   │   │   ├── bdd-generator.md
-│   │   │   ├── code-reviewer.md
-│   │   │   └── test-orchestrator.md
+│   │   │   └── bdd-generator.md
 │   │   └── templates/             # Document templates
 │   ├── maui/                      # .NET MAUI template
 │   │   ├── CLAUDE.md              # MVVM + UseCases context
-│   │   ├── agents/                # Same 4 core agents
+│   │   ├── agents/                # Same 2 core agents
 │   │   └── templates/             # MAUI-specific templates
 │   ├── react/                     # React template
 │   │   ├── CLAUDE.md              # React patterns
-│   │   ├── agents/                # Same 4 core agents
+│   │   ├── agents/                # Same 2 core agents
 │   │   └── PATTERNS.md            # Advanced patterns
 │   ├── python/                    # Python template
 │   │   ├── CLAUDE.md              # FastAPI + LangGraph
-│   │   └── agents/                # Same 4 core agents
+│   │   └── agents/                # Same 2 core agents
 │   └── dotnet-microservice/       # .NET microservice
 │       ├── CLAUDE.md              # FastEndpoints patterns
-│       ├── agents/                # Same 4 core agents
+│       ├── agents/                # Same 2 core agents
 │       └── templates/             # C# templates
 ├── instructions/                   # Core methodology
 │   └── core/
@@ -100,9 +96,7 @@ project/.claude/
 ├── settings.json                  # Configuration
 ├── agents/                        # AI agents (copied from template)
 │   ├── requirements-analyst.md
-│   ├── bdd-generator.md
-│   ├── code-reviewer.md
-│   └── test-orchestrator.md
+│   └── bdd-generator.md
 ├── commands/                      # Command links
 ├── templates/                     # Project templates
 └── hooks/                         # Automation scripts
@@ -192,8 +186,6 @@ See [EXTENDING_THE_SYSTEM.md](EXTENDING_THE_SYSTEM.md) for detailed instructions
 # Direct agent interaction
 @requirements-analyst what questions should I ask stakeholders?
 @bdd-generator create scenarios for REQ-001
-@code-reviewer review src/auth/login.ts
-@test-orchestrator run unit tests for changed files
 ```
 
 ## 🔄 Updating
@@ -227,7 +219,7 @@ ls ~/.claude/templates/*/agents/
 mkdir test-project
 cd test-project
 agentic-init maui
-ls .claude/agents/  # Should show 4 agents
+ls .claude/agents/  # Should show 2 agents
 ```
 
 ## 📖 Documentation
@@ -239,8 +231,6 @@ ls .claude/agents/  # Should show 4 agents
 ### Agent Documentation
 - [Requirements Analyst](.claude/agents/requirements-analyst.md)
 - [BDD Generator](.claude/agents/bdd-generator.md)
-- [Code Reviewer](.claude/agents/code-reviewer.md)
-- [Test Orchestrator](.claude/agents/test-orchestrator.md)
 
 ## 🗑 Uninstallation
 

@@ -279,10 +279,10 @@ docs/
 
 ### Enhanced Task Linking
 ```bash
-# Note: Task execution requires taskwright integration
+# Note: Task execution requires guardkit integration
 # See INTEGRATION-GUIDE.md for setup
 
-# Tasks can link to epics (taskwright)
+# Tasks can link to epics (guardkit)
 # /task-create "Login implementation" epic:EPIC-001
 
 # Epic information flows down to tasks

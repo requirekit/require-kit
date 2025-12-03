@@ -86,7 +86,7 @@
 - `mcp-setup/zeplin-mcp-setup.md` - Zeplin MCP configuration
 
 **Integration Documentation**:
-- `INTEGRATION-GUIDE.md` - Integration with taskwright (927 lines, comprehensive)
+- `INTEGRATION-GUIDE.md` - Integration with guardkit (927 lines, comprehensive)
 
 **Troubleshooting**:
 - `troubleshooting/zeplin-maui-icon-issues.md` - Troubleshooting guide
@@ -162,7 +162,7 @@ nav:
       - Quickstart: getting-started/quickstart.md
       - Installation: getting-started/installation.md
       - Your First Requirements: getting-started/first-requirements.md
-      - Integration with taskwright: getting-started/integration.md
+      - Integration with guardkit: getting-started/integration.md
 
   - Core Concepts:
       - Overview: core-concepts/index.md
@@ -190,7 +190,7 @@ nav:
       - Zeplin MCP: mcp-setup/zeplin-mcp-setup.md
 
   - Integration:
-      - taskwright Integration: INTEGRATION-GUIDE.md
+      - guardkit Integration: INTEGRATION-GUIDE.md
       - PM Tool Export: integration/pm-tools.md
 
   - Quick Reference:
