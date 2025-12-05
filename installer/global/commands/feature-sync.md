@@ -1,5 +1,13 @@
 # Feature Sync - Bidirectional PM Tool Synchronization
 
+> **Status: Specification Only**
+>
+> This document describes the **intended** feature-sync command behavior for PM tool integration.
+> **Actual API integration requires MCP server or custom implementation.**
+>
+> RequireKit provides structured metadata in feature files ready for export.
+> This specification defines how synchronization should work when implemented.
+
 Synchronize feature data between local files and external project management tools with task-level progress rollup and epic integration.
 
 ## Usage

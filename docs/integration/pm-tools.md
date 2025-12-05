@@ -2,25 +2,45 @@
 
 Export RequireKit requirements, features, and epics to project management tools.
 
-## Supported PM Tools
+> **Status: Specification Ready - Implementation Required**
+>
+> The sync commands documented below describe the **intended integration behavior**.
+> RequireKit provides structured metadata ready for export, but **actual API integration
+> requires MCP server or custom implementation**.
+>
+> **What IS provided:**
+> - Structured YAML frontmatter in epic/feature files
+> - Field mappings for Jira, Linear, GitHub Projects, Azure DevOps
+> - Detailed specifications for sync behavior
+>
+> **What IS NOT provided:**
+> - Working `/feature-sync` or `/epic-sync` commands
+> - MCP server for PM tool APIs
+> - Automated synchronization
+
+## Supported PM Tools (Specification)
 
 ### Jira
 ```bash
+# When implemented:
 /feature-sync FEAT-001 --jira
 ```
 
 ### Linear
 ```bash
+# When implemented:
 /feature-sync FEAT-001 --linear
 ```
 
 ### GitHub Projects
 ```bash
+# When implemented:
 /feature-sync FEAT-001 --github
 ```
 
 ### Azure DevOps
 ```bash
+# When implemented:
 /feature-sync FEAT-001 --azure
 ```
 
@@ -36,7 +56,7 @@ Export RequireKit requirements, features, and epics to project management tools.
 
 **Specification Ready**: Epic and feature files include structured metadata for PM tool export.
 
-**API Integration**: Requires MCP server or custom implementation. The structured format makes integration straightforward.
+**API Integration Not Implemented**: Actual API integration requires MCP server or custom implementation. The structured format makes building integrations straightforward, but no working implementation is currently provided.
 
 ## Structured Metadata Example
 

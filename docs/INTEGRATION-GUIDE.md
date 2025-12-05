@@ -239,9 +239,9 @@ ls ~/.agentecflow/require-kit.marker
 /feature-create "Title" epic:EPIC-XXX
 /hierarchy-view EPIC-XXX
 
-# Export
-/feature-sync FEAT-XXX --jira        # Export to Jira
-/feature-sync FEAT-XXX --linear      # Export to Linear
+# Export (Specification Only - requires custom implementation)
+# /feature-sync FEAT-XXX --jira      # See docs/integration/pm-tools.md
+# /feature-sync FEAT-XXX --linear    # Metadata ready, API not implemented
 ```
 
 **Output Artifacts**:
@@ -249,8 +249,7 @@ ls ~/.agentecflow/require-kit.marker
 - `docs/requirements/REQ-XXX.md` - EARS requirements
 - `docs/bdd/BDD-XXX.feature` - Gherkin scenarios
 - `docs/epics/EPIC-XXX.md` - Epic specifications
-- `docs/features/FEAT-XXX.md` - Feature specifications
-- PM tool exports (Jira tickets, Linear issues, etc.)
+- `docs/features/FEAT-XXX.md` - Feature specifications (with PM-ready metadata)
 
 **What's NOT Available**:
 
@@ -386,7 +385,7 @@ ls ~/.agentecflow/*.marker
 | Plan Audit | ❌ | ✅ Scope Creep | ✅ Scope Creep |
 | Complexity Evaluation | ❌ | ✅ 1-10 | ✅ 1-10 |
 | **Integration** |
-| PM Tool Export | ✅ Jira, Linear, GitHub, Azure | ❌ | ✅ Full |
+| PM Tool Export | ⚠️ Metadata Ready (API not implemented) | ❌ | ⚠️ Metadata Ready |
 | Requirements Context | ✅ Local | ❌ | ✅ Injected to Tasks |
 | BDD → Task Link | ⚠️ Manual | ❌ | ✅ Automatic |
 
@@ -499,11 +498,15 @@ cd ../require-kit
 # Continue with full workflow for new features
 ```
 
-### Workflow 3: Requirements Export to PM Tools (require-kit Only)
+### Workflow 3: Requirements with PM-Ready Metadata (require-kit Only)
 
 **Prerequisites**: require-kit only
 
-**PM Tool Integration Workflow**:
+**PM Tool Preparation Workflow**:
+
+> **Note**: The `/feature-sync` command is specification-only. RequireKit provides structured
+> metadata in feature files ready for export, but actual API integration requires MCP server
+> or custom implementation. See [docs/integration/pm-tools.md](integration/pm-tools.md).
 
 ```bash
 # Gather and formalize requirements
@@ -524,24 +527,20 @@ cd ../require-kit
 /feature-generate-tasks FEAT-001
 /feature-generate-tasks FEAT-002
 
-# Export to Jira
-/feature-sync FEAT-001 --jira
-/feature-sync FEAT-002 --jira
-# Output: Jira tickets with:
-# - User story from feature description
-# - Acceptance criteria from BDD scenarios
-# - Linked requirements (REQ-001)
-# - Linked epic (EPIC-001)
+# Feature files now contain PM-ready metadata:
+# - docs/features/FEAT-001.md has YAML frontmatter with:
+#   - pm_metadata.jira (project, issue_type, priority)
+#   - pm_metadata.linear (team, priority)
+# - Structured for easy API integration
+# - See docs/integration/pm-tools.md for field mappings
 
-# Export to Linear
-/feature-sync FEAT-001 --linear
-# Output: Linear issue with full traceability
-
-# Your team implements in Jira/Linear
-# No need for guardkit if you have existing PM workflow
+# To actually export to PM tools:
+# 1. Build custom integration using structured metadata
+# 2. Or implement MCP server for PM tool APIs
+# 3. Or manually create tickets using metadata as reference
 ```
 
-**Result**: Requirements managed in require-kit, execution in external PM tool.
+**Result**: Requirements managed in require-kit with structured metadata ready for PM tool integration.
 
 ---
 
