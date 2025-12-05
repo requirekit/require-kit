@@ -1,15 +1,16 @@
 ---
 id: TASK-8C3E
 title: Clarify PM tool sync commands are specification-only
-status: in_review
+status: completed
 created: 2025-12-05T12:00:00Z
-updated: 2025-12-05T12:15:00Z
-completed: 2025-12-05T12:15:00Z
+updated: 2025-12-05T12:20:00Z
+completed: 2025-12-05T12:20:00Z
 priority: high
 tags: [documentation, pm-tools, feature-sync, epic-sync, clarification]
 task_type: implementation
 complexity: 2
 parent_task: TASK-F92D
+completed_location: tasks/completed/2025-12/TASK-8C3E/
 test_results:
   status: passed
   coverage: null
