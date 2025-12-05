@@ -34,9 +34,6 @@ Comprehensive guides for requirements gathering, EARS formalization, and BDD sce
 ### ⌨️ [Commands Reference](commands/index.md)
 Detailed documentation for all RequireKit commands: requirements, epics, features, and hierarchy.
 
-### 🔌 [MCP Setup](mcp-setup/index.md)
-Configure MCP servers for Figma and Zeplin integration.
-
 ### 🔗 [Integration](INTEGRATION-GUIDE.md)
 Standalone use or integration with guardkit and PM tools (Jira, Linear, GitHub Projects, Azure DevOps).
 

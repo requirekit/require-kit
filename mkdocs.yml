@@ -201,11 +201,6 @@ nav:
       - Feature Commands: commands/features.md
       - Hierarchy Commands: commands/hierarchy.md
 
-  - MCP Setup:
-      - Overview: mcp-setup/index.md
-      - Figma MCP: mcp-setup/figma-mcp-setup.md
-      - Zeplin MCP: mcp-setup/zeplin-mcp-setup.md
-
   - Integration:
       - guardkit Integration: INTEGRATION-GUIDE.md
       - PM Tool Export: integration/pm-tools.md
