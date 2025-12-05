@@ -49,7 +49,7 @@ All notable changes to the AI-Engineer installation system will be documented in
   - `requirements-analyst` - EARS requirements gathering and formalization
   - `bdd-generator` - EARS to BDD/Gherkin conversion
 
-**Note**: Implementation agents (`code-reviewer`, `test-orchestrator`) are provided by [GuardKit](https://github.com/guardkit-dev/guardkit).
+**Note**: Implementation agents (`code-reviewer`, `test-orchestrator`) are provided by [GuardKit](https://github.com/guardkit/guardkit).
 - **Agent Documentation**: Comprehensive guide for adding new agents
 - **Template Documentation**: Guide for creating new templates
 - **EXTENDING_THE_SYSTEM.md**: Complete documentation for extending the system

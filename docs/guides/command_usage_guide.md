@@ -919,7 +919,7 @@ Linear Initiative: PROJECT-456
 
 ## Task Execution (Optional Integration)
 
-For task execution workflow, install [guardkit](https://github.com/guardkit-dev/guardkit).
+For task execution workflow, install [guardkit](https://github.com/guardkit/guardkit).
 
 See [Integration Guide](../INTEGRATION-GUIDE.md) for:
 - Installing guardkit alongside require-kit

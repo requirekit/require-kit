@@ -266,7 +266,7 @@ ls ~/.agentecflow/require-kit.marker
 **Installation**:
 
 ```bash
-git clone https://github.com/guardkit-dev/guardkit.git
+git clone https://github.com/guardkit/guardkit.git
 cd guardkit
 ./installer/scripts/install.sh
 ```
@@ -326,7 +326,7 @@ cd require-kit
 ./installer/scripts/install.sh
 
 cd ..
-git clone https://github.com/guardkit-dev/guardkit.git
+git clone https://github.com/guardkit/guardkit.git
 cd guardkit
 ./installer/scripts/install.sh
 
@@ -902,7 +902,7 @@ ls ~/.agentecflow/*.marker
 ### Documentation
 
 - **require-kit**: [README.md](../README.md), [CLAUDE.md](../CLAUDE.md)
-- **guardkit**: [guardkit README](https://github.com/guardkit-dev/guardkit)
+- **guardkit**: [guardkit README](https://github.com/guardkit/guardkit)
 - **Architecture**: [docs/architecture/bidirectional-integration.md](architecture/bidirectional-integration.md)
 
 ### Command References
@@ -913,7 +913,7 @@ ls ~/.agentecflow/*.marker
 ### Support
 
 - **GitHub Issues**: [require-kit issues](https://github.com/requirekit/require-kit/issues)
-- **GitHub Issues**: [guardkit issues](https://github.com/guardkit-dev/guardkit/issues)
+- **GitHub Issues**: [guardkit issues](https://github.com/guardkit/guardkit/issues)
 - **Email**: support@yourorganization.com
 
 ---

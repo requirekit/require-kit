@@ -53,7 +53,7 @@ These agents are included with RequireKit:
 - `bdd-generator.md` - Converts EARS requirements to BDD/Gherkin scenarios
 
 #### Implementation Agents (via GuardKit)
-For task workflow agents like `task-manager.md` and `test-verifier.md`, install [GuardKit](https://github.com/guardkit-dev/guardkit).
+For task workflow agents like `task-manager.md` and `test-verifier.md`, install [GuardKit](https://github.com/guardkit/guardkit).
 
 ## Installation Flow
 
@@ -69,7 +69,7 @@ This installs:
 - Global agents (requirements-analyst and bdd-generator)
 - Templates and configurations
 
-**Note**: For task management agents, install [GuardKit](https://github.com/guardkit-dev/guardkit).
+**Note**: For task management agents, install [GuardKit](https://github.com/guardkit/guardkit).
 
 ### 2. Project Initialization
 ```bash
@@ -158,7 +158,7 @@ mkdir -p tasks/{backlog,in_progress,in_testing,in_review,blocked,completed}
 cp ~/.agentic-flow/commands/task*.md .claude/commands/
 
 # For task workflow agents, install GuardKit:
-# See https://github.com/guardkit-dev/guardkit
+# See https://github.com/guardkit/guardkit
 ```
 
 ## Verification Checklist

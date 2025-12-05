@@ -101,7 +101,7 @@ For complete requirements-to-implementation workflow:
 
 ```bash
 # Clone guardkit
-git clone https://github.com/guardkit-dev/guardkit.git
+git clone https://github.com/guardkit/guardkit.git
 cd guardkit
 
 # Run installer

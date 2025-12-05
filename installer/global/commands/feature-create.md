@@ -404,4 +404,4 @@ docs/
 6. **PM Tool Integration**: Export early and sync frequently
 7. **Human Checkpoints**: Review before task generation and implementation
 
-This feature management system provides the critical bridge between business requirements and implementation tasks while maintaining full integration with external PM tools. For task execution, consider integrating with [guardkit](https://github.com/guardkit-dev/guardkit).
+This feature management system provides the critical bridge between business requirements and implementation tasks while maintaining full integration with external PM tools. For task execution, consider integrating with [guardkit](https://github.com/guardkit/guardkit).

@@ -335,7 +335,7 @@ Each would:
 - [REQ-003: Shared Installer Strategy](../../tasks/backlog/REQ-003-shared-installer.md)
 - [REQ-003A: require-kit Installer](../../tasks/backlog/REQ-003A-require-kit-installer.md)
 - [feature_detection.py](../../installer/global/lib/feature_detection.py)
-- [guardkit TASK-012](https://github.com/guardkit-dev/guardkit/tasks/TASK-012)
+- [guardkit TASK-012](https://github.com/guardkit/guardkit/tasks/TASK-012)
 
 ## Conclusion
 

@@ -45,7 +45,7 @@ Use require-kit when you need:
 
 ### Standalone or Integrated
 
-require-kit is **fully functional standalone** with no dependencies. Optionally integrate with [guardkit](https://github.com/guardkit-dev/guardkit) for task execution workflow.
+require-kit is **fully functional standalone** with no dependencies. Optionally integrate with [guardkit](https://github.com/guardkit/guardkit) for task execution workflow.
 
 See [Integration Guide](../INTEGRATION-GUIDE.md) for details on using require-kit with guardkit.
 
@@ -886,7 +886,7 @@ require-kit works completely standalone:
 
 For task execution workflow with quality gates:
 
-1. **Install guardkit**: See [guardkit repository](https://github.com/guardkit-dev/guardkit)
+1. **Install guardkit**: See [guardkit repository](https://github.com/guardkit/guardkit)
 2. **Automatic Detection**: Both packages detect each other via marker files
 3. **Enhanced Workflow**: Requirements context flows to task execution
 4. **Full Traceability**: REQ → BDD → FEAT → TASK → Implementation

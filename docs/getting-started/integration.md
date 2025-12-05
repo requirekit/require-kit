@@ -4,7 +4,7 @@ Learn how RequireKit integrates with guardkit for complete requirements-to-imple
 
 ## Overview
 
-RequireKit is a **standalone requirements management toolkit** that optionally integrates with [guardkit](https://github.com/guardkit-dev/guardkit) for task execution, quality gates, and automated testing.
+RequireKit is a **standalone requirements management toolkit** that optionally integrates with [guardkit](https://github.com/guardkit/guardkit) for task execution, quality gates, and automated testing.
 
 ## Standalone vs Integrated
 
@@ -64,13 +64,13 @@ chmod +x installer/scripts/install.sh
 **Quick Install:**
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/guardkit-dev/guardkit/main/installer/scripts/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/guardkit/guardkit/main/installer/scripts/install.sh | bash
 ```
 
 **Or Clone Repository:**
 
 ```bash
-git clone https://github.com/guardkit-dev/guardkit.git
+git clone https://github.com/guardkit/guardkit.git
 cd guardkit
 chmod +x installer/scripts/install.sh
 ./installer/scripts/install.sh
@@ -292,7 +292,7 @@ Covers:
 
 - 📖 [Read the Complete Integration Guide](../INTEGRATION-GUIDE.md)
 - 🔗 [Learn about PM Tool Export](../integration/pm-tools.md)
-- 📚 [Explore guardkit Documentation](https://github.com/guardkit-dev/guardkit)
+- 📚 [Explore guardkit Documentation](https://github.com/guardkit/guardkit)
 
 ---
 

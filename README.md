@@ -30,7 +30,7 @@ require-kit is a **standalone requirements management toolkit** with no dependen
 
 - **Fully Functional Independently**: Complete requirements gathering, EARS formalization, BDD generation, and epic/feature hierarchy management
 - **No Required Dependencies**: Works entirely on its own without external packages
-- **Optional Integration**: Can optionally integrate with [guardkit](https://github.com/guardkit-dev/guardkit) for task execution workflow
+- **Optional Integration**: Can optionally integrate with [guardkit](https://github.com/guardkit/guardkit) for task execution workflow
 - **Bidirectional Detection**: Automatically detects guardkit if installed for enhanced workflow
 - **Technology Agnostic**: Outputs work with any implementation system or project management tool
 
@@ -266,7 +266,7 @@ require-kit is a **standalone requirements management toolkit** that works indep
 
 ### Optional Integration
 When you need task execution workflow (implementation, testing, quality gates):
-- **Task Execution**: Install [guardkit](https://github.com/guardkit-dev/guardkit) for TDD workflow, automated testing, and quality gates
+- **Task Execution**: Install [guardkit](https://github.com/guardkit/guardkit) for TDD workflow, automated testing, and quality gates
 - **Bidirectional Detection**: Both packages detect each other automatically via marker files
 - **No Hard Dependencies**: Each package works fully independently
 

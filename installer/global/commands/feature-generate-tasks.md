@@ -7,7 +7,7 @@ Automatically generate task specification files from feature requirements, accep
 - Used as implementation blueprints in any development workflow
 - Executed via guardkit's task workflow system (if installed)
 
-**For task execution workflow (implementation, testing, quality gates):** Install [guardkit](https://github.com/guardkit-dev/guardkit)
+**For task execution workflow (implementation, testing, quality gates):** Install [guardkit](https://github.com/guardkit/guardkit)
 
 ## Usage
 ```bash

@@ -605,7 +605,7 @@ check_integration_opportunities() {
         echo "  require-kit works standalone for requirements management"
         echo ""
         echo "  For full integration (link requirements to tasks):"
-        echo "  Install guardkit from: https://github.com/guardkit-dev/guardkit"
+        echo "  Install guardkit from: https://github.com/guardkit/guardkit"
     else
         echo ""
         print_success "guardkit detected - full integration available"

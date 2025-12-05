@@ -161,7 +161,7 @@ The test script verifies all acceptance criteria from REQ-003A:
 - Used for require-kit as a standalone package
 
 **For guardkit installation:**
-- See [guardkit repository](https://github.com/guardkit-dev/guardkit)
+- See [guardkit repository](https://github.com/guardkit/guardkit)
 - guardkit has its own installer for task execution features
 - Both packages can coexist in `~/.agentecflow` using namespaced directories
 

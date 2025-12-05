@@ -49,7 +49,7 @@ RequireKit includes two specialized AI agents focused on requirements management
 @bdd-generator convert REQ-001 to Gherkin scenarios
 ```
 
-**Note**: For code review and test orchestration, use [GuardKit](https://github.com/guardkit-dev/guardkit) which provides implementation agents.
+**Note**: For code review and test orchestration, use [GuardKit](https://github.com/guardkit/guardkit) which provides implementation agents.
 
 ## 📁 Installation Structure
 

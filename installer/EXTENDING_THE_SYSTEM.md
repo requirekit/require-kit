@@ -153,7 +153,7 @@ Agents that work with ANY technology stack should be added to **ALL templates**.
 - `bdd-generator` - BDD/Gherkin works with any language
 - `performance-optimizer` - Performance analysis works across stacks
 
-**Note**: For implementation-focused agents like `architectural-reviewer`, `code-reviewer`, and `test-orchestrator`, see [GuardKit](https://github.com/guardkit-dev/guardkit).
+**Note**: For implementation-focused agents like `architectural-reviewer`, `code-reviewer`, and `test-orchestrator`, see [GuardKit](https://github.com/guardkit/guardkit).
 
 **When to make an agent global**:
 - ✅ Functionality is language/framework-agnostic
@@ -232,7 +232,7 @@ Add your agent to the main documentation in `.claude/CLAUDE.md`:
 - **bdd-generator**: Converts EARS to BDD/Gherkin scenarios
 - **performance-optimizer**: [NEW] Identifies and fixes performance bottlenecks
 
-**Note**: For implementation agents (`code-reviewer`, `test-orchestrator`), use [GuardKit](https://github.com/guardkit-dev/guardkit).
+**Note**: For implementation agents (`code-reviewer`, `test-orchestrator`), use [GuardKit](https://github.com/guardkit/guardkit).
 ```
 
 ### Step 4: Create a Command (Optional)
@@ -482,7 +482,7 @@ The `{stack}-` prefix makes it immediately clear which agents are stack-specific
 - ✅ Integrated into generate-bdd command for all stacks
 - ✅ Language-agnostic BDD scenario generation capability
 
-**Note**: Implementation agents like `architectural-reviewer` are provided by [GuardKit](https://github.com/guardkit-dev/guardkit).
+**Note**: Implementation agents like `architectural-reviewer` are provided by [GuardKit](https://github.com/guardkit/guardkit).
 
 ### Version Control
 

@@ -10,7 +10,7 @@ RequireKit provides a structured approach to capturing, formalizing, and organiz
 - **BDD/Gherkin Generation**: Automatic test scenarios from requirements
 - **Epic/Feature Hierarchy**: Structured organization with full traceability
 - **Technology Agnostic**: Markdown-driven, works with any implementation system
-- **Optional Integration**: Pairs with [guardkit](https://github.com/guardkit-dev/guardkit) for task execution workflow
+- **Optional Integration**: Pairs with [guardkit](https://github.com/guardkit/guardkit) for task execution workflow
 
 ## Quick Start
 
@@ -90,7 +90,7 @@ RequireKit is a **standalone requirements management toolkit** with no dependenc
 
 - ✅ Fully functional independently
 - ✅ No required dependencies
-- ✅ Optional integration with [guardkit](https://github.com/guardkit-dev/guardkit)
+- ✅ Optional integration with [guardkit](https://github.com/guardkit/guardkit)
 - ✅ Bidirectional detection for enhanced workflows
 - ✅ Technology agnostic outputs
 
@@ -100,7 +100,7 @@ Use RequireKit standalone for requirements management, or pair it with guardkit 
 
 - [GitHub Repository](https://github.com/yourusername/require-kit)
 - [Report an Issue](https://github.com/yourusername/require-kit/issues)
-- [guardkit](https://github.com/guardkit-dev/guardkit) - Task execution workflow system
+- [guardkit](https://github.com/guardkit/guardkit) - Task execution workflow system
 
 ## What's Next?
 

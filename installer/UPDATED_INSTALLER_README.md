@@ -173,7 +173,7 @@ ls -la ~/.agenticflow/agents/
 # - bdd-generator.md
 ```
 
-**Note**: For code review and test orchestration agents, use [GuardKit](https://github.com/guardkit-dev/guardkit).
+**Note**: For code review and test orchestration agents, use [GuardKit](https://github.com/guardkit/guardkit).
 
 ## 📊 What's Fixed
 
