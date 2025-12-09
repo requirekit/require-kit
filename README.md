@@ -45,6 +45,13 @@ Use require-kit standalone for requirements management, or pair it with guardkit
 - **Requirements Traceability**: Clear links from epics to features to requirements
 - **Technology Agnostic**: Works with any implementation system or project management tool
 
+### Efficient Context Management
+
+RequireKit uses progressive disclosure to keep context lean:
+- Core agent content always loaded (~30% of original)
+- Extended examples available on-demand
+- Framework-specific step definitions in extended files
+
 ### PM Tool Integration Status
 
 **Specification Ready**: Epic and feature files include structured frontmatter with metadata fields for PM tool integration (Jira, Linear, GitHub Projects, Azure DevOps). Command specifications define the integration patterns. Actual API integration requires:

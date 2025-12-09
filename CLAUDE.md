@@ -107,6 +107,43 @@ Use require-kit standalone for requirements management, or pair it with guardkit
 4. **Organize**: Structure into epics/features using epic/feature commands
 5. **Export**: Provide requirements to implementation systems
 
+## Progressive Disclosure
+
+RequireKit uses progressive disclosure to optimize context window usage while maintaining comprehensive documentation.
+
+### How It Works
+
+Agent files are split into:
+1. **Core files** (`{name}.md`): Essential content always loaded
+   - Quick Start examples
+   - Boundaries (ALWAYS/NEVER/ASK)
+   - EARS patterns
+   - Core capabilities
+
+2. **Extended files** (`{name}-ext.md`): Detailed reference loaded on-demand
+   - Framework-specific examples
+   - Domain patterns
+   - Advanced techniques
+   - Troubleshooting
+
+### Loading Extended Content
+
+When implementing detailed code or needing framework-specific guidance:
+
+```bash
+# For BDD generator extended content
+cat installer/global/agents/bdd-generator-ext.md
+
+# For requirements analyst extended content
+cat installer/global/agents/requirements-analyst-ext.md
+```
+
+### Benefits
+
+- **30%+ token reduction** in typical tasks
+- **Faster responses** from reduced context
+- **Same comprehensive content** available when needed
+
 ## Getting Started
 
 Run `/gather-requirements` to begin gathering requirements for a new feature or epic. The system will guide you through interactive questions to capture complete requirements, which can then be formalized into EARS notation and BDD scenarios.

@@ -1,9 +1,10 @@
 ---
 id: TASK-PD-RK07
 title: Update RequireKit documentation
-status: backlog
+status: completed
 created: 2025-12-09T11:00:00Z
-updated: 2025-12-09T11:00:00Z
+updated: 2025-12-09T22:30:00Z
+completed: 2025-12-09T22:30:00Z
 priority: medium
 tags: [progressive-disclosure, documentation, wave-4]
 task_type: implementation
@@ -101,12 +102,12 @@ The installer distributes both core and extended agent files:
 
 ## Acceptance Criteria
 
-- [ ] CLAUDE.md updated with progressive disclosure section
-- [ ] README.md updated with feature mention
-- [ ] installer/README.md updated with agent file list
-- [ ] Documentation is consistent across all files
-- [ ] No broken links or references
-- [ ] Aligns with GuardKit's progressive disclosure documentation style
+- [x] CLAUDE.md updated with progressive disclosure section
+- [x] README.md updated with feature mention
+- [x] installer/README.md updated with agent file list
+- [x] Documentation is consistent across all files
+- [x] No broken links or references
+- [x] Aligns with GuardKit's progressive disclosure documentation style
 
 ## Implementation Steps
 

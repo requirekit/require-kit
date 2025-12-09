@@ -42,6 +42,14 @@ RequireKit includes two specialized AI agents focused on requirements management
 1. **requirements-analyst** - Gathers and formalizes requirements using EARS notation
 2. **bdd-generator** - Converts EARS requirements to BDD/Gherkin scenarios
 
+### Agent Files
+
+The installer distributes both core and extended agent files:
+- `bdd-generator.md` - Core BDD generation (always loaded)
+- `bdd-generator-ext.md` - Extended examples (on-demand)
+- `requirements-analyst.md` - Core EARS formalization (always loaded)
+- `requirements-analyst-ext.md` - Extended gathering processes (on-demand)
+
 ### Using Agents in Claude
 ```markdown
 # In your IDE with Claude:

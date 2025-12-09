@@ -28,6 +28,14 @@ This is a requirements management toolkit that uses EARS notation for clear requ
 4. **Organize**: Structure into epics/features using epic/feature commands
 5. **Export**: Provide requirements to implementation systems
 
+## Progressive Disclosure
+
+Agent files are split into core (always loaded) and extended (on-demand) files:
+- Core files (`{name}.md`): Quick Start, boundaries, EARS patterns
+- Extended files (`{name}-ext.md`): Framework examples, domain patterns, advanced techniques
+
+Load extended content when needed: `cat installer/global/agents/{name}-ext.md`
+
 ## Integration
 
 require-kit focuses on requirements management. For task execution and implementation, integrate with:
