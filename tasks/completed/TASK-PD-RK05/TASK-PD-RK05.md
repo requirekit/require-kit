@@ -1,9 +1,10 @@
 ---
 id: TASK-PD-RK05
 title: Test /generate-bdd with split files
-status: backlog
+status: completed
 created: 2025-12-09T11:00:00Z
-updated: 2025-12-09T11:00:00Z
+updated: 2025-12-09T21:25:00Z
+completed: 2025-12-09T21:25:00Z
 priority: medium
 tags: [progressive-disclosure, testing, wave-3]
 task_type: implementation
@@ -85,21 +86,21 @@ WHERE two-factor authentication is enabled, system SHALL require verification co
 
 ## Acceptance Criteria
 
-- [ ] Simple EARS-to-Gherkin conversion works correctly
-- [ ] Error handling scenarios generated properly
-- [ ] Optional feature scenarios use Scenario Outline
-- [ ] Extended content loads when explicitly needed
-- [ ] No quality regression compared to pre-split output
-- [ ] Loading instruction in core file is clear and actionable
+- [x] Simple EARS-to-Gherkin conversion works correctly
+- [x] Error handling scenarios generated properly
+- [x] Optional feature scenarios use Scenario Outline
+- [x] Extended content loads when explicitly needed
+- [x] No quality regression compared to pre-split output
+- [x] Loading instruction in core file is clear and actionable
 
 ## Validation Checklist
 
 After running each test:
-- [ ] Gherkin syntax is valid
-- [ ] Tags are appropriate
-- [ ] Requirement links are maintained
-- [ ] Business language used (no implementation details)
-- [ ] Scenarios are independent
+- [x] Gherkin syntax is valid
+- [x] Tags are appropriate
+- [x] Requirement links are maintained
+- [x] Business language used (no implementation details)
+- [x] Scenarios are independent
 
 ## Files to Verify
 
