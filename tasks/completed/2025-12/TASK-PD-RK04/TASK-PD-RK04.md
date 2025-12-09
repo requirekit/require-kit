@@ -1,9 +1,11 @@
 ---
 id: TASK-PD-RK04
 title: Split requirements-analyst.md into core + extended
-status: backlog
+status: completed
 created: 2025-12-09T11:00:00Z
-updated: 2025-12-09T11:00:00Z
+updated: 2025-12-09T21:12:12Z
+completed: 2025-12-09T21:12:12Z
+completed_location: tasks/completed/2025-12/TASK-PD-RK04/
 priority: high
 tags: [progressive-disclosure, agent-split, wave-2]
 task_type: implementation
@@ -15,6 +17,9 @@ parallel: true
 blocking: false
 parent_review: TASK-REV-PD01
 depends_on: [TASK-PD-RK01, TASK-PD-RK02]
+organized_files:
+  - TASK-PD-RK04.md
+  - completion-report.md
 ---
 
 # Task: Split requirements-analyst.md into core + extended
