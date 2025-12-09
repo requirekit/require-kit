@@ -17,6 +17,7 @@ Both packages require Python 3.10+ for ecosystem consistency. This ensures compa
 
 - [Prerequisites](#prerequisites)
 - [Overview](#overview)
+- [Feature Planning vs Task Generation](#feature-planning-vs-task-generation)
 - [Integration Architecture](#integration-architecture)
 - [Installation Scenarios](#installation-scenarios)
 - [Feature Availability Matrix](#feature-availability-matrix)
@@ -87,6 +88,125 @@ Both packages are **fully functional independently** with **no hard dependencies
 - **No Lock-In**: Install or remove either package without affecting the other
 
 This architecture provides maximum flexibility for teams to adopt the workflow that fits their needs.
+
+---
+
+## Feature Planning vs Task Generation
+
+RequireKit and GuardKit provide complementary commands for different stages of feature development. Understanding when to use each command prevents confusion and ensures optimal workflow.
+
+### When to Use `/feature-plan` (guardkit)
+
+The `/feature-plan` command is for **planning and evaluation** of new features:
+
+- Planning new features from scratch with natural language descriptions
+- Evaluating technical approaches and trade-offs before commitment
+- Quick feature exploration to understand complexity and effort
+- Getting effort estimates before starting implementation
+- Making architectural decisions (e.g., "Should we use WebSockets or SSE?")
+
+**Input**: Natural language description (e.g., `"implement dark mode"`)
+
+**Output**: Technical analysis, decision checkpoint (A/R/I/C), optional subtask generation
+
+**Example**:
+```bash
+/feature-plan "add real-time notifications with WebSocket support"
+# Analyzes technical options, estimates effort, presents decision checkpoint
+```
+
+### When to Use `/feature-generate-tasks` (require-kit)
+
+The `/feature-generate-tasks` command is for **transforming structured specifications into tasks**:
+
+- You have a structured feature specification (FEAT-XXX) with requirements
+- You need tasks exported to PM tools (Jira, Linear, GitHub, Azure DevOps)
+- You need hierarchical task IDs for tracking (TASK-001.2.01 format)
+- You want tasks derived from EARS requirements and BDD scenarios
+- You need traceability from requirements to implementation tasks
+
+**Input**: Feature ID with linked requirements and BDD scenarios (e.g., `FEAT-001`)
+
+**Output**: Multiple task markdown files ready for PM tool export
+
+**Example**:
+```bash
+/feature-generate-tasks FEAT-001
+# Generates TASK-001.1.01, TASK-001.1.02, etc. with full traceability
+```
+
+### Typical Combined Workflow
+
+When using both packages together, the commands complement each other at different stages:
+
+```bash
+# Stage 1: Quick Planning (guardkit)
+/feature-plan "implement user authentication"
+# → Technical analysis, approach decision, effort estimate
+
+# Stage 2: Formal Requirements (require-kit) - if needed
+/gather-requirements
+/formalize-ears
+# → docs/requirements/REQ-001.md (EARS notation)
+
+# Stage 3: Feature Specification (require-kit)
+/feature-create "User Authentication" epic:EPIC-001
+# → docs/features/FEAT-001.md (structured spec)
+
+# Stage 4: BDD Scenarios (require-kit)
+/generate-bdd FEAT-001
+# → docs/bdd/BDD-001.feature (Gherkin scenarios)
+
+# Stage 5: Task Generation (require-kit)
+/feature-generate-tasks FEAT-001
+# → tasks/backlog/TASK-001.1.01.md, TASK-001.1.02.md, etc.
+# → PM tool export ready
+
+# Stage 6: Implementation (guardkit)
+/task-work TASK-001.1.01
+# → Implementation with quality gates
+```
+
+### Comparison Matrix
+
+| Aspect | `/feature-plan` | `/feature-generate-tasks` |
+|--------|-----------------|--------------------------|
+| **Purpose** | Planning & evaluation | Task generation |
+| **Input** | Natural language description | Structured feature spec (FEAT-XXX) |
+| **Output** | Analysis + decision checkpoint | Exportable task files |
+| **PM Tool Export** | No | Yes (Jira, Linear, GitHub, Azure DevOps) |
+| **Traceability** | No | Yes (REQ → Feature → Task) |
+| **Hierarchical IDs** | No | Yes (TASK-001.2.01 format) |
+| **Requirements Linking** | No | Yes (links to REQ-XXX, BDD-XXX) |
+| **Best For** | Early planning, approach decisions | Structured task breakdown |
+
+### Decision Tree
+
+```
+Do you have a structured feature specification (FEAT-XXX)?
+├── Yes → Use /feature-generate-tasks FEAT-XXX
+│         (Generates PM-exportable tasks with traceability)
+│
+└── No → Do you need to evaluate approaches first?
+         ├── Yes → Use /feature-plan "description"
+         │         (Technical analysis, effort estimation)
+         │
+         └── No → Do you need formal requirements?
+                  ├── Yes → Start with /gather-requirements
+                  │         (Then /feature-create, then /feature-generate-tasks)
+                  │
+                  └── No → Use /task-create directly (guardkit)
+                           (Skip to implementation)
+```
+
+### Key Insight
+
+These commands are **NOT redundant** - they serve different workflow stages:
+
+- **`/feature-plan`** answers: "What approach should we take? How complex will this be?"
+- **`/feature-generate-tasks`** answers: "What specific tasks are needed? How do they link to requirements?"
+
+Use `/feature-plan` for exploration and decisions, then `/feature-generate-tasks` when you have structured specifications ready for implementation.
 
 ---
 

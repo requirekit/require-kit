@@ -1,10 +1,12 @@
 ---
 id: TASK-DOC-026
 title: Document when to use /feature-generate-tasks vs /feature-plan
-status: backlog
+status: completed
 task_type: implementation
 created: 2025-12-09T14:05:00Z
-updated: 2025-12-09T14:05:00Z
+updated: 2025-12-09T14:35:00Z
+completed: 2025-12-09T14:35:00Z
+completed_location: tasks/completed/TASK-DOC-026/
 priority: normal
 tags: [documentation, command-clarification, integration-guide]
 epic: null
@@ -85,10 +87,10 @@ RequireKit and GuardKit provide complementary commands for different stages of f
 
 ## Acceptance Criteria
 
-- [ ] Documentation added to `docs/INTEGRATION-GUIDE.md`
-- [ ] Clear guidance on when to use each command
-- [ ] Workflow example showing both commands in sequence
-- [ ] Comparison matrix for quick reference
+- [x] Documentation added to `docs/INTEGRATION-GUIDE.md`
+- [x] Clear guidance on when to use each command
+- [x] Workflow example showing both commands in sequence
+- [x] Comparison matrix for quick reference
 
 ## Estimated Effort
 

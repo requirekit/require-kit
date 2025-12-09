@@ -1,9 +1,10 @@
 ---
 id: TASK-PD-RK02
 title: Copy reusable scripts from GuardKit
-status: backlog
+status: completed
 created: 2025-12-09T11:00:00Z
-updated: 2025-12-09T11:00:00Z
+updated: 2025-12-09T21:10:00Z
+completed: 2025-12-09T21:10:00Z
 priority: high
 tags: [progressive-disclosure, setup, wave-1]
 task_type: implementation
@@ -54,14 +55,14 @@ require-kit/installer/global/lib/
 
 ## Acceptance Criteria
 
-- [ ] Create directory structure `installer/global/lib/agent_enhancement/`
-- [ ] Create directory structure `installer/global/lib/utils/`
-- [ ] Copy `models.py` without modifications
-- [ ] Copy `boundary_utils.py` without modifications
-- [ ] Copy `file_io.py` without modifications
-- [ ] Copy `applier.py` with path modifications
-- [ ] Create `__init__.py` files for Python packages
-- [ ] Verify imports work correctly
+- [x] Create directory structure `installer/global/lib/agent_enhancement/`
+- [x] Create directory structure `installer/global/lib/utils/`
+- [x] Copy `models.py` without modifications
+- [x] Copy `boundary_utils.py` without modifications
+- [x] Copy `file_io.py` without modifications
+- [x] Copy `applier.py` with path modifications
+- [x] Create `__init__.py` files for Python packages
+- [x] Verify imports work correctly
 
 ## Implementation Steps
 
