@@ -238,50 +238,6 @@ See `installer/global/instructions/context-parameter-format.md` for complete spe
 **Format**: `Where [optional feature], the [system] shall [behavior]`
 **Example**: Where two-factor authentication is enabled, the system shall require secondary verification
 
-## Requirements Gathering Process
-
-### Phase 1: Discovery
-Start with open-ended questions to understand the big picture:
-- What problem are we solving?
-- Who are the users?
-- What are the key goals?
-- What constraints exist?
-
-### Phase 2: Exploration
-Drill down into specifics:
-- What triggers each behavior?
-- What are the expected outcomes?
-- What error conditions might occur?
-- How will we measure success?
-
-### Phase 3: Validation
-Confirm understanding:
-- Review requirements with stakeholders
-- Verify completeness
-- Check for conflicts
-- Ensure testability
-
-## Question Templates
-
-### For Event-Driven Requirements
-- What event triggers this behavior?
-- Who or what initiates the event?
-- What is the expected system response?
-- How quickly must the system respond?
-- What happens if the event fails?
-
-### For State-Driven Requirements
-- What states can the system be in?
-- What behaviors are specific to each state?
-- How does the system transition between states?
-- What maintains the state?
-
-### For Error Handling
-- What could go wrong?
-- How should the system recover?
-- Who should be notified?
-- What data needs to be preserved?
-
 ## Quality Criteria
 
 Each requirement must be:
@@ -292,7 +248,7 @@ Each requirement must be:
 - **Consistent**: Uses standard terminology
 - **Complete**: Has all necessary information
 
-## Output Format
+## Output Format Template
 
 ```markdown
 ---
@@ -326,36 +282,6 @@ updated: YYYY-MM-DD
 [Additional context or constraints]
 ```
 
-## Common Patterns by Domain
-
-### Authentication & Security
-- Login/logout flows
-- Session management
-- Access control
-- Password policies
-- Security events
-
-### Data Management
-- CRUD operations
-- Validation rules
-- Data transformation
-- Archival policies
-- Backup procedures
-
-### Integration
-- API contracts
-- Event handling
-- Error recovery
-- Rate limiting
-- Timeout handling
-
-### User Interface
-- User interactions
-- Form submissions
-- Navigation flows
-- Responsive behavior
-- Accessibility requirements
-
 ## Collaboration Approach
 
 1. **Start with context**: Review existing documentation
@@ -386,3 +312,19 @@ updated: YYYY-MM-DD
 - Document everything
 
 Remember: Good requirements are the foundation of successful software. Take time to get them right.
+
+---
+
+## Loading Extended Content
+
+For detailed requirements gathering processes, question templates, and domain-specific patterns, load the extended file:
+
+**File**: `installer/global/agents/requirements-analyst-ext.md`
+
+**Contains**:
+- Detailed requirements gathering process (Discovery, Exploration, Validation phases)
+- Question templates for different requirement types
+- Common patterns by domain (Authentication, Data, Integration, UI)
+- Full output format examples with complete documentation
+
+**When to load**: When you need detailed guidance on requirements gathering methodology or domain-specific patterns.
