@@ -3,8 +3,10 @@ id: TASK-PD-RK05
 title: Test /generate-bdd with split files
 status: completed
 created: 2025-12-09T11:00:00Z
-updated: 2025-12-09T21:25:00Z
-completed: 2025-12-09T21:25:00Z
+updated: 2025-12-09T21:42:00Z
+completed: 2025-12-09T21:30:00Z
+completed_location: tasks/completed/TASK-PD-RK05/
+organized_files: [TASK-PD-RK05.md]
 priority: medium
 tags: [progressive-disclosure, testing, wave-3]
 task_type: implementation
