@@ -48,9 +48,18 @@ Use require-kit standalone for requirements management, or pair it with guardkit
 ### Efficient Context Management
 
 RequireKit uses progressive disclosure to keep context lean:
-- Core agent content always loaded (~30% of original)
+- Core agent files contain essential content only
 - Extended examples available on-demand
 - Framework-specific step definitions in extended files
+
+**Loading Extended Content**:
+```bash
+# For BDD generator examples
+cat installer/global/agents/bdd-generator-ext.md
+
+# For requirements analyst examples
+cat installer/global/agents/requirements-analyst-ext.md
+```
 
 ### PM Tool Integration Status
 

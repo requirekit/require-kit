@@ -122,6 +122,47 @@ After formalizing to EARS:
 2. Run `/generate-bdd` to create test scenarios
 3. Begin implementation with clear specifications
 
+## Clarifying Questions (Interactive Mode)
+
+When formalizing requirements interactively, these questions help ensure proper EARS patterns:
+
+### 1. EARS Pattern Selection
+```
+What type of requirement is this?
+
+Options:
+- Ubiquitous (always active): "The system shall..."
+- Event-driven (triggered): "When X, the system shall..."
+- State-driven (conditional): "While X, the system shall..."
+- Unwanted behavior (error): "If X, then the system shall..."
+- Optional feature: "Where X, the system shall..."
+```
+
+### 2. Trigger/Condition Clarity
+```
+What triggers this requirement or under what conditions does it apply?
+[Be specific about the event, state, or condition]
+```
+
+### 3. Measurable Outcomes
+```
+How will we know this requirement is met?
+[Provide specific, measurable acceptance criteria]
+```
+
+### Skipping Clarification
+
+```bash
+# With explicit pattern (skips pattern question)
+/formalize-ears "Users login" --pattern event-driven
+
+# Auto-detect pattern
+/formalize-ears "Users login" --auto
+
+# Quick mode (minimal questions)
+/formalize-ears "Users login" --quick
+```
+
 ## Usage
 
 ```bash

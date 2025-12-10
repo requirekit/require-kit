@@ -269,11 +269,13 @@ Remember: BDD scenarios are executable specifications. They must be clear to hum
 
 ---
 
-## Need More Details?
+## Loading Extended Content
 
-For framework-specific step definitions, LangGraph integration examples, common scenario patterns, advanced techniques (data tables, backgrounds, scenario outlines), and test automation integration, load the extended documentation:
+For framework-specific step definitions, LangGraph integration examples, common scenario patterns, advanced techniques (data tables, backgrounds, scenario outlines), and test automation integration, load the extended file:
 
-**Command**: Read file `installer/global/agents/bdd-generator-ext.md`
+```bash
+cat installer/global/agents/bdd-generator-ext.md
+```
 
 The extended file includes:
 - Python (pytest-bdd), .NET (SpecFlow), TypeScript (Cucumber.js) step definitions

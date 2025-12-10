@@ -30,6 +30,12 @@ This is a requirements management toolkit using EARS notation for requirements, 
 /hierarchy-view EPIC-XXX                    # View hierarchy
 ```
 
+## Interactive Clarification
+
+Commands `/epic-create`, `/feature-create`, and `/formalize-ears` include optional clarifying questions to improve specifications. Use `--quick` flag to skip questions when parameters are provided directly.
+
+See `docs/INTEGRATION-GUIDE.md` for clarification philosophy details.
+
 ## EARS Notation Patterns
 
 1. **Ubiquitous**: `The [system] shall [behavior]`
@@ -140,8 +146,8 @@ cat installer/global/agents/requirements-analyst-ext.md
 
 ### Benefits
 
-- **30%+ token reduction** in typical tasks
-- **Faster responses** from reduced context
+- **Reduced context size** - Core files contain essential content only
+- **On-demand detail** - Extended content loaded when needed
 - **Same comprehensive content** available when needed
 
 ## Getting Started

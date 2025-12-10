@@ -319,7 +319,9 @@ Remember: Good requirements are the foundation of successful software. Take time
 
 For detailed requirements gathering processes, question templates, and domain-specific patterns, load the extended file:
 
-**File**: `installer/global/agents/requirements-analyst-ext.md`
+```bash
+cat installer/global/agents/requirements-analyst-ext.md
+```
 
 **Contains**:
 - Detailed requirements gathering process (Discovery, Exploration, Validation phases)
