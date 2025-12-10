@@ -22,6 +22,103 @@ Create a business epic with requirements and export it to external project manag
 /epic-create "Mobile App Redesign" requirements:[REQ-001,REQ-002] export:github
 ```
 
+## Clarifying Questions (Interactive Mode)
+
+When creating an epic interactively, the following questions help ensure a well-scoped epic:
+
+### 1. Scope Boundary
+```
+What is explicitly OUT OF SCOPE for this epic?
+[Helps prevent scope creep and sets clear boundaries]
+
+Examples:
+- "Mobile app support (web only for now)"
+- "Third-party integrations"
+- "Advanced analytics"
+```
+
+### 2. Success Criteria
+```
+What measurable outcomes define success for this epic?
+[Provide 2-3 specific, measurable criteria]
+
+Examples:
+- "User registration rate increases by 20%"
+- "Page load time under 2 seconds"
+- "Zero critical security vulnerabilities"
+```
+
+### 3. Stakeholders
+```
+Who are the key stakeholders for this epic?
+
+- Product Owner: [Name or role]
+- Engineering Lead: [Name or role]
+- Design Lead: [Name or role]
+- Other: [Name/role if applicable]
+```
+
+### 4. Timeline Constraints
+```
+Are there timeline constraints or dependencies?
+
+Options:
+- Quarter target (e.g., "Q1-2024")
+- Specific deadline (e.g., "2024-03-15")
+- Dependency (e.g., "After EPIC-002 completes")
+- Flexible (no hard constraints)
+```
+
+### 5. PM Tool Export (Optional)
+```
+Should this epic sync to external PM tools?
+
+Options:
+- Jira (project key: ___)
+- Linear (team: ___)
+- GitHub Projects (repo: ___)
+- Azure DevOps (project: ___)
+- None (local only)
+```
+
+### Skipping Clarification
+
+For quick epic creation without clarification:
+```bash
+# Direct creation with all parameters
+/epic-create "Title" priority:high quarter:Q1-2024 stakeholder:"Team Lead"
+
+# Or use --quick flag to skip questions
+/epic-create "Title" --quick
+```
+
+### Clarification Output
+
+Answers are stored in the epic frontmatter:
+```yaml
+clarification:
+  out_of_scope: ["Mobile support", "Third-party integrations"]
+  success_criteria:
+    - "User registration +20%"
+    - "Page load <2s"
+  stakeholders:
+    product_owner: "Sarah Chen"
+    engineering_lead: "Mike Johnson"
+  timeline: "Q1-2024"
+  pm_tools: ["jira"]
+```
+
+## Process
+
+When creating an epic:
+
+1. **Clarification** (interactive mode): Answer scoping questions to define boundaries, success criteria, stakeholders, and timeline
+2. **Validation**: Verify epic structure, check for duplicates, and validate PM tool credentials
+3. **Creation**: Generate epic file with frontmatter and structured content
+4. **Export** (optional): Sync to configured PM tools with bidirectional linking
+
+For quick creation without clarification, use the `--quick` flag or provide all parameters directly.
+
 ## Epic Structure (Optimized for PM Tool Export)
 
 Creates a lightweight epic definition designed for external tool integration:
