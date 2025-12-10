@@ -25,6 +25,92 @@ Create features that decompose epics into implementable units with EARS requirem
 /feature-create "User Authentication" epic:EPIC-001 requirements:[REQ-001,REQ-002] auto-tasks:true
 ```
 
+## Clarifying Questions (Interactive Mode)
+
+When creating a feature interactively, the following questions ensure a well-defined feature:
+
+### 1. Scope Within Epic
+```
+What specific part of [EPIC-XXX] does this feature address?
+[Be specific about what this feature does and doesn't include]
+
+Example for Epic "User Management System":
+- "This feature covers user authentication only"
+- "Profile management is a separate feature"
+- "Does NOT include admin user management"
+```
+
+### 2. Requirements Traceability
+```
+Which requirements does this feature implement?
+[Link to existing EARS requirements if available]
+
+Options:
+- Link to requirements: REQ-001, REQ-002, REQ-003
+- No formal requirements yet (will gather)
+- Requirements TBD
+```
+
+### 3. Acceptance Criteria
+```
+What are 3-5 testable acceptance criteria for this feature?
+[Must be specific and measurable]
+
+Examples:
+- "User can log in with email and password"
+- "Invalid credentials show error message within 1 second"
+- "Session expires after 24 hours of inactivity"
+- "Password reset email sent within 30 seconds"
+```
+
+### 4. Complexity Estimate
+```
+What is the estimated complexity?
+
+Options:
+- Simple: 1-3 days, 1-3 tasks
+- Medium: 1-2 weeks, 4-8 tasks
+- Complex: 2+ weeks, 9+ tasks
+```
+
+### 5. Dependencies
+```
+Does this feature depend on other features?
+[List any features that must be completed first]
+
+Options:
+- No dependencies
+- Depends on: FEAT-XXX, FEAT-YYY
+- Blocked by external: [describe]
+```
+
+### Skipping Clarification
+
+For quick feature creation without clarification:
+```bash
+# Direct creation with parameters
+/feature-create "User Authentication" epic:EPIC-001 priority:high requirements:[REQ-001,REQ-002]
+
+# Or use --quick flag
+/feature-create "User Authentication" epic:EPIC-001 --quick
+```
+
+### Clarification Output
+
+Answers are stored in the feature frontmatter:
+```yaml
+clarification:
+  scope_description: "User authentication only, excludes profile management"
+  out_of_scope: ["Profile management", "Admin users"]
+  requirements_linked: ["REQ-001", "REQ-002"]
+  acceptance_criteria:
+    - "User can log in with email/password"
+    - "Invalid credentials show error within 1s"
+    - "Session expires after 24h inactivity"
+  complexity: "medium"
+  dependencies: []
+```
+
 ## Feature Structure
 
 Creates a comprehensive feature definition optimized for requirements management and external PM tool integration:
@@ -293,6 +379,16 @@ Features bridge requirements and implementation:
 
 ### Requirements to Implementation Bridge
 Features provide the critical connection from requirements to implementation:
+
+## Process
+
+1. **Validation**: Verify epic exists and is active
+2. **Clarification** (interactive mode): Answer scoping questions
+3. **Creation**: Generate feature file with traceability
+4. **Linking**: Connect to epic and requirements
+5. **Export** (optional): Sync to PM tools
+
+### Implementation Flow
 
 1. **Requirements Input**: EARS notation from requirements gathering
 2. **Feature Definition**: Breakdown into implementable units
