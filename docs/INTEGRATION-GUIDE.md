@@ -17,6 +17,7 @@ Both packages require Python 3.10+ for ecosystem consistency. This ensures compa
 
 - [Prerequisites](#prerequisites)
 - [Overview](#overview)
+- [Clarification Philosophy](#clarification-philosophy)
 - [Feature Planning vs Task Generation](#feature-planning-vs-task-generation)
 - [Integration Architecture](#integration-architecture)
 - [Installation Scenarios](#installation-scenarios)
@@ -88,6 +89,102 @@ Both packages are **fully functional independently** with **no hard dependencies
 - **No Lock-In**: Install or remove either package without affecting the other
 
 This architecture provides maximum flexibility for teams to adopt the workflow that fits their needs.
+
+---
+
+## Clarification Philosophy
+
+RequireKit asks clarifying questions to improve **requirement specifications**, not to make implementation decisions. This is a key distinction from implementation-focused systems.
+
+### When RequireKit Asks Questions
+
+| Command | Has Clarification | Purpose |
+|---------|-------------------|---------|
+| `/gather-requirements` | Yes (3-phase) | Comprehensive requirements discovery |
+| `/epic-create` | Yes | Scope, success criteria, stakeholders |
+| `/feature-create` | Yes | Scope, acceptance criteria, dependencies |
+| `/formalize-ears` | Yes | EARS pattern selection, completeness |
+| `/generate-bdd` | No | Deterministic transformation |
+| `/epic-generate-features` | No | Systematic analysis |
+| `/feature-generate-tasks` | No | Rule-based generation |
+
+### Question Types by Domain
+
+**RequireKit Questions (Technology-Agnostic)**:
+- "What is explicitly OUT OF SCOPE?"
+- "What measurable outcomes define success?"
+- "Which requirements does this implement?"
+- "What are the testable acceptance criteria?"
+- "Is this triggered by an event or always active?"
+
+**NOT RequireKit Questions (Technology-Specific)**:
+- "JWT or server-side sessions?" → GuardKit/Implementation
+- "Redux, Zustand, or Context API?" → GuardKit/Implementation
+- "REST or GraphQL?" → GuardKit/Implementation
+- "PostgreSQL or MongoDB?" → GuardKit/Implementation
+
+### Why This Matters
+
+RequireKit outputs must be **technology-agnostic** so they can:
+1. Work with any implementation system
+2. Be consumed by GuardKit or other task execution systems
+3. Remain valid regardless of technology choices
+4. Be understood by non-technical stakeholders
+
+### Clarification at Specification vs Implementation
+
+```
+                    SPECIFICATION                     IMPLEMENTATION
+                    (RequireKit)                      (GuardKit/Other)
+                         │                                  │
+    ┌────────────────────┼──────────────────────────────────┼─────────────────┐
+    │                    │                                  │                 │
+    │  "What problem?"   │  "What capability?"   "How to build?"  "What tech?" │
+    │  "Who uses it?"    │  "What acceptance?"   "What pattern?"  "What lib?"  │
+    │  "Why needed?"     │  "What success?"      "What arch?"     "What DB?"   │
+    │                    │                                  │                 │
+    └────────────────────┼──────────────────────────────────┼─────────────────┘
+                         │                                  │
+                    TECHNOLOGY-AGNOSTIC              TECHNOLOGY-SPECIFIC
+```
+
+### Integration with GuardKit
+
+When using RequireKit with GuardKit:
+
+1. **RequireKit handles specification clarification**:
+   - Epic scope and success criteria
+   - Feature acceptance criteria
+   - EARS pattern selection
+   - BDD scenario completeness
+
+2. **GuardKit handles implementation clarification**:
+   - Technology choices
+   - Architecture patterns
+   - Error handling approaches
+   - Performance trade-offs
+
+This separation ensures:
+- No duplicate questions
+- Clear responsibility boundaries
+- Optimal user experience
+- Technology decisions deferred to implementation time
+
+### Skipping Clarification
+
+All RequireKit clarifications are **optional**. Users can:
+- Use `--quick` flag to skip questions
+- Provide parameters directly in the command
+- Let AI auto-detect patterns (with `--auto` flag)
+
+Example:
+```bash
+# With clarification (interactive)
+/epic-create "User Management"
+
+# Without clarification (direct)
+/epic-create "User Management" priority:high quarter:Q1-2024 --quick
+```
 
 ---
 
