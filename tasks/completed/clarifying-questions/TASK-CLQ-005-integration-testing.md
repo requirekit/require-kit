@@ -1,11 +1,12 @@
 ---
 id: TASK-CLQ-005
 title: Integration Testing for Clarifying Questions
-status: backlog
+status: completed
 type: testing
 priority: medium
 complexity: 5
 created: 2025-12-09T11:00:00Z
+completed: 2025-12-10T00:00:00Z
 wave: 3
 parallel_safe: false
 execution_method: task-work
@@ -13,7 +14,8 @@ estimated_effort: 0.5 day
 parent_review: TASK-REV-025
 depends_on: [TASK-CLQ-001, TASK-CLQ-002, TASK-CLQ-003, TASK-CLQ-004]
 tags: [clarifying-questions, testing, wave-3, sequential]
-files_modified: []
+files_modified:
+  - docs/INTEGRATION-GUIDE.md
 ---
 
 # Integration Testing for Clarifying Questions

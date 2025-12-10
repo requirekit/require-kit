@@ -1,11 +1,12 @@
 ---
 id: TASK-CLQ-003
 title: Add Pattern Clarification to /formalize-ears Command
-status: backlog
+status: completed
 type: enhancement
 priority: medium
 complexity: 4
 created: 2025-12-09T11:00:00Z
+completed: 2025-12-10T00:00:00Z
 wave: 1
 parallel_safe: true
 execution_method: direct-claude-code

@@ -16,8 +16,8 @@ Both packages require Python 3.10+ for ecosystem consistency. This ensures compa
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
-- [Overview](#overview)
 - [Clarification Philosophy](#clarification-philosophy)
+- [Overview](#overview)
 - [Feature Planning vs Task Generation](#feature-planning-vs-task-generation)
 - [Integration Architecture](#integration-architecture)
 - [Installation Scenarios](#installation-scenarios)
@@ -25,70 +25,6 @@ Both packages require Python 3.10+ for ecosystem consistency. This ensures compa
 - [Common Workflows](#common-workflows)
 - [Troubleshooting](#troubleshooting)
 - [Migration Guides](#migration-guides)
-
----
-
-## Overview
-
-### What is require-kit?
-
-**require-kit** is a standalone requirements management toolkit that helps teams capture, formalize, and organize software requirements using industry-proven methodologies:
-
-- **EARS Notation**: Clear, unambiguous requirements specification
-- **BDD/Gherkin Scenarios**: Testable acceptance criteria
-- **Epic/Feature Hierarchy**: Structured project organization
-- **Technology Agnostic**: Works with any implementation system or PM tool
-
-**Use require-kit when you need**:
-- Clear requirements documentation
-- Requirements traceability
-- BDD scenario generation
-- PM tool export capabilities
-- Requirements-driven development process
-
-### What is guardkit?
-
-**guardkit** is a standalone task execution workflow system that provides structured implementation, testing, and quality gates:
-
-- **Task Execution**: TDD-driven implementation workflow
-- **Quality Gates**: Automated testing, coverage, and code review
-- **Architectural Review**: Pattern compliance and design validation
-- **Test Orchestration**: Comprehensive test execution and reporting
-
-**Use guardkit when you need**:
-- Structured implementation workflow
-- Automated quality gates
-- Test-driven development
-- Code review and architectural compliance
-- Rapid task execution
-
-### When to Use Which?
-
-```
-Decision Tree:
-├── Do you need requirements documentation?
-│   ├── Yes → Start with require-kit
-│   └── No → Consider guardkit only
-│
-├── Do you need task execution workflow?
-│   ├── Yes → Use guardkit
-│   └── No → require-kit only is sufficient
-│
-└── Do you need full requirements-to-implementation traceability?
-    ├── Yes → Use both (full integration)
-    └── No → Use standalone package(s)
-```
-
-### Bidirectional Optional Integration
-
-Both packages are **fully functional independently** with **no hard dependencies**:
-
-- **require-kit**: Works standalone, optionally enhanced by guardkit
-- **guardkit**: Works standalone, optionally enhanced by require-kit
-- **Integration**: Automatic detection via marker files when both installed
-- **No Lock-In**: Install or remove either package without affecting the other
-
-This architecture provides maximum flexibility for teams to adopt the workflow that fits their needs.
 
 ---
 
@@ -177,14 +113,84 @@ All RequireKit clarifications are **optional**. Users can:
 - Provide parameters directly in the command
 - Let AI auto-detect patterns (with `--auto` flag)
 
-Example:
+Examples:
 ```bash
 # With clarification (interactive)
 /epic-create "User Management"
 
 # Without clarification (direct)
 /epic-create "User Management" priority:high quarter:Q1-2024 --quick
+
+# EARS with explicit pattern (skip pattern questions)
+/formalize-ears "Users login" --pattern event-driven
+
+# EARS auto-detect (skip clarification)
+/formalize-ears "Users login" --auto
 ```
+
+---
+
+## Overview
+
+### What is require-kit?
+
+**require-kit** is a standalone requirements management toolkit that helps teams capture, formalize, and organize software requirements using industry-proven methodologies:
+
+- **EARS Notation**: Clear, unambiguous requirements specification
+- **BDD/Gherkin Scenarios**: Testable acceptance criteria
+- **Epic/Feature Hierarchy**: Structured project organization
+- **Technology Agnostic**: Works with any implementation system or PM tool
+
+**Use require-kit when you need**:
+- Clear requirements documentation
+- Requirements traceability
+- BDD scenario generation
+- PM tool export capabilities
+- Requirements-driven development process
+
+### What is guardkit?
+
+**guardkit** is a standalone task execution workflow system that provides structured implementation, testing, and quality gates:
+
+- **Task Execution**: TDD-driven implementation workflow
+- **Quality Gates**: Automated testing, coverage, and code review
+- **Architectural Review**: Pattern compliance and design validation
+- **Test Orchestration**: Comprehensive test execution and reporting
+
+**Use guardkit when you need**:
+- Structured implementation workflow
+- Automated quality gates
+- Test-driven development
+- Code review and architectural compliance
+- Rapid task execution
+
+### When to Use Which?
+
+```
+Decision Tree:
+├── Do you need requirements documentation?
+│   ├── Yes → Start with require-kit
+│   └── No → Consider guardkit only
+│
+├── Do you need task execution workflow?
+│   ├── Yes → Use guardkit
+│   └── No → require-kit only is sufficient
+│
+└── Do you need full requirements-to-implementation traceability?
+    ├── Yes → Use both (full integration)
+    └── No → Use standalone package(s)
+```
+
+### Bidirectional Optional Integration
+
+Both packages are **fully functional independently** with **no hard dependencies**:
+
+- **require-kit**: Works standalone, optionally enhanced by guardkit
+- **guardkit**: Works standalone, optionally enhanced by require-kit
+- **Integration**: Automatic detection via marker files when both installed
+- **No Lock-In**: Install or remove either package without affecting the other
+
+This architecture provides maximum flexibility for teams to adopt the workflow that fits their needs.
 
 ---
 

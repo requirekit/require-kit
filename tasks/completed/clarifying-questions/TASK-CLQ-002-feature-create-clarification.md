@@ -1,11 +1,12 @@
 ---
 id: TASK-CLQ-002
 title: Add Clarifying Questions to /feature-create Command
-status: backlog
+status: completed
 type: enhancement
 priority: high
 complexity: 3
 created: 2025-12-09T11:00:00Z
+completed: 2025-12-10T00:00:00Z
 wave: 1
 parallel_safe: true
 execution_method: direct-claude-code
