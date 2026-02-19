@@ -448,6 +448,16 @@ Conflict Resolution: 95% automatic, 5% manual
 
 # View by priority
 /hierarchy-view --priority high
+
+# Filter by organisation pattern
+/hierarchy-view --pattern direct
+/hierarchy-view --pattern features
+/hierarchy-view --pattern mixed
+
+# Filter by Graphiti sync status
+/hierarchy-view --graphiti-status synced
+/hierarchy-view --graphiti-status pending
+/hierarchy-view --graphiti-status error
 ```
 
 ### Display Options
