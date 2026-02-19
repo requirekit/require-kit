@@ -1,16 +1,23 @@
 ---
-id: TASK-RK01-012
-title: "Update hierarchy docs with optional feature layer patterns"
-task_type: documentation
-parent_review: TASK-REV-RK01
-feature_id: FEAT-RK-001
-wave: 4
-implementation_mode: task-work
 complexity: 4
-dependencies: [TASK-RK01-002, TASK-RK01-007, TASK-RK01-008]
-status: pending
+dependencies:
+- TASK-RK01-002
+- TASK-RK01-007
+- TASK-RK01-008
+feature_id: FEAT-RK-001
+id: TASK-RK01-012
+implementation_mode: task-work
+parent_review: TASK-REV-RK01
 priority: normal
-tags: [documentation, hierarchy, organisation-pattern, core-concepts]
+status: design_approved
+tags:
+- documentation
+- hierarchy
+- organisation-pattern
+- core-concepts
+task_type: documentation
+title: Update hierarchy docs with optional feature layer patterns
+wave: 4
 ---
 
 # Task: Update Hierarchy Docs with Optional Feature Layer Patterns

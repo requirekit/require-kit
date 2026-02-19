@@ -11,18 +11,23 @@ Complete reference for all RequireKit commands.
 
 ### Epic Commands
 - [`/epic-create`](epics.md#epic-create) - Create new epic
+- [`/epic-refine`](epics.md#epic-refine) - Interactively refine an epic
 - [`/epic-status`](epics.md#epic-status) - View epic progress
 - [`/epic-generate-features`](epics.md#epic-generate-features) - Generate features
 - [`/epic-sync`](epics.md#epic-sync) - Sync with PM tools
 
 ### Feature Commands
 - [`/feature-create`](features.md#feature-create) - Create new feature
+- [`/feature-refine`](features.md#feature-refine) - Interactively refine a feature
 - [`/feature-status`](features.md#feature-status) - View feature progress
 - [`/feature-generate-tasks`](features.md#feature-generate-tasks) - Generate task specifications
 - [`/feature-sync`](features.md#feature-sync) - Sync with PM tools
 
 ### Hierarchy Commands
 - [`/hierarchy-view`](hierarchy.md#hierarchy-view) - View epic/feature hierarchy
+
+### Sync Commands
+- [`/requirekit-sync`](sync.md#requirekit-sync) - Sync markdown files to Graphiti knowledge graph
 
 ## Command Categories
 
@@ -38,6 +43,9 @@ Create and manage implementation units.
 ### [Hierarchy Commands](hierarchy.md)
 Visualize and navigate requirement hierarchies.
 
+### [Sync Commands](sync.md)
+Sync markdown files to the Graphiti knowledge graph.
+
 ## Common Workflows
 
 ### Basic Workflow
@@ -47,12 +55,14 @@ Visualize and navigate requirement hierarchies.
 /generate-bdd
 ```
 
-### Full Workflow
+### Full Workflow with Refinement
 ```bash
 /gather-requirements
 /formalize-ears
 /epic-create "Title"
+/epic-refine EPIC-001
 /feature-create "Title" epic:EPIC-001
+/feature-refine FEAT-001
 /generate-bdd
 /hierarchy-view EPIC-001
 ```

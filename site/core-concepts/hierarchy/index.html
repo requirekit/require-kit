@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -328,28 +328,6 @@
     
   
   Commands Reference
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../mcp-setup/" class="md-tabs__link">
-          
-  
-  
-    
-  
-  MCP Setup
 
         </a>
       </li>
@@ -722,7 +700,7 @@
   <span class="md-ellipsis">
     
   
-    Integration with taskwright
+    Integration with guardkit
   
 
     
@@ -946,13 +924,80 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#hierarchy-structure" class="md-nav__link">
+  <a href="#organisation-patterns" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Hierarchy Structure
+        Organisation Patterns
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Organisation Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standard-pattern-epic-feature-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard Pattern (Epic → Feature → Task)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direct-pattern-epic-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Direct Pattern (Epic → Task)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mixed-pattern-epic-feature-task" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixed Pattern (Epic → Feature + Task)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pm-tool-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PM Tool Mapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PM Tool Mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-specific-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern-Specific Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1002,10 +1047,21 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#forward-traceability" class="md-nav__link">
+  <a href="#forward-traceability-standard-pattern" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Forward Traceability
+        Forward Traceability (Standard Pattern)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#forward-traceability-direct-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forward Traceability (Direct Pattern)
       
     </span>
   </a>
@@ -1029,10 +1085,60 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#real-world-example" class="md-nav__link">
+  <a href="#real-world-examples" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Real-World Example
+        Real-World Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Real-World Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#large-epic-with-standard-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Large Epic with Standard Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#small-epic-with-direct-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Small Epic with Direct Pattern
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mixed-pattern-transitional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixed Pattern (Transitional)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migrating-between-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Migrating Between Patterns
       
     </span>
   </a>
@@ -1047,6 +1153,34 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Best Practices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pattern-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pattern Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#general-guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General Guidelines
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1314,6 +1448,8 @@
       
         
       
+        
+      
     
     
     
@@ -1482,6 +1618,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../commands/sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sync Commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1497,10 +1661,6 @@
   
     
     
-      
-        
-          
-        
       
         
       
@@ -1524,139 +1684,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../../mcp-setup/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    MCP Setup
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    MCP Setup
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../mcp-setup/figma-mcp-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Figma MCP
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../mcp-setup/zeplin-mcp-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Zeplin MCP
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   
@@ -1674,8 +1702,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1699,7 +1727,7 @@
   <span class="md-ellipsis">
     
   
-    taskwright Integration
+    guardkit Integration
   
 
     
@@ -1784,7 +1812,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1806,14 +1834,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1978,7 +2006,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2000,14 +2028,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2146,7 +2174,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2168,14 +2196,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2336,7 +2364,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2358,14 +2386,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_11">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2433,8 +2461,37 @@
 
 
 <h1 id="epicfeature-hierarchy">Epic/Feature Hierarchy<a class="headerlink" href="#epicfeature-hierarchy" title="Link to this section">&para;</a></h1>
-<p>Organize requirements using Epic → Feature → Requirement hierarchy for clear traceability.</p>
-<h2 id="hierarchy-structure">Hierarchy Structure<a class="headerlink" href="#hierarchy-structure" title="Link to this section">&para;</a></h2>
+<p>Organize requirements using a flexible hierarchy that adapts to your project's needs. RequireKit supports three organisation patterns so you can choose the right level of structure for each epic.</p>
+<h2 id="organisation-patterns">Organisation Patterns<a class="headerlink" href="#organisation-patterns" title="Link to this section">&para;</a></h2>
+<p>RequireKit offers three ways to organise work within an epic:</p>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Structure</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Standard</strong></td>
+<td>Epic → Feature → Task</td>
+<td>Large epics with 8+ tasks across distinct capabilities</td>
+</tr>
+<tr>
+<td><strong>Direct</strong></td>
+<td>Epic → Task</td>
+<td>Small, focused epics with 3-5 closely related tasks</td>
+</tr>
+<tr>
+<td><strong>Mixed</strong></td>
+<td>Epic → Feature + Task</td>
+<td>Transitional epics migrating between patterns</td>
+</tr>
+</tbody>
+</table>
+<h3 id="standard-pattern-epic-feature-task">Standard Pattern (Epic → Feature → Task)<a class="headerlink" href="#standard-pattern-epic-feature-task" title="Link to this section">&para;</a></h3>
+<p>The default pattern groups tasks under features for maximum organisation.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>EPIC (Strategic Business Objective)
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── FEATURE (Implementation Unit)
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   ├── REQ-001 (EARS Requirement)
@@ -2444,90 +2501,309 @@
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── REQ-003 (EARS Requirement)
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   └── BDD-002 (Gherkin Scenarios)
 </span></code></pre></div>
+<p><strong>When to use:</strong></p>
+<ul>
+<li>Epic spans multiple distinct capabilities (authentication, notifications, reporting)</li>
+<li>More than 8 tasks expected</li>
+<li>Multiple team members working on different areas</li>
+<li>You need feature-level progress tracking</li>
+</ul>
+<h3 id="direct-pattern-epic-task">Direct Pattern (Epic → Task)<a class="headerlink" href="#direct-pattern-epic-task" title="Link to this section">&para;</a></h3>
+<p>Skip the feature layer for small, focused epics where features add unnecessary overhead.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>EPIC (Focused Business Objective)
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── TASK-001 (Implementation)
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── TASK-002 (Implementation)
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├── TASK-003 (Implementation)
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├── REQ-001 (EARS Requirement)
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>└── BDD-001 (Gherkin Scenarios)
+</span></code></pre></div>
+<p><strong>When to use:</strong></p>
+<ul>
+<li>Epic has 3-5 closely related tasks</li>
+<li>All tasks serve a single capability</li>
+<li>Single developer or small team</li>
+<li>Quick iteration is more important than detailed hierarchy</li>
+</ul>
+<h3 id="mixed-pattern-epic-feature-task">Mixed Pattern (Epic → Feature + Task)<a class="headerlink" href="#mixed-pattern-epic-feature-task" title="Link to this section">&para;</a></h3>
+<p>Combine features and direct tasks in one epic. Useful during transitions but avoid as a permanent structure.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>EPIC (Business Objective)
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── FEATURE (Grouped Capability)
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│   ├── TASK-001 (Implementation)
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│   └── TASK-002 (Implementation)
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>├── TASK-003 (Direct Task - ungrouped)
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>└── TASK-004 (Direct Task - ungrouped)
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Use Mixed Pattern Sparingly</p>
+<p>The mixed pattern works during migration between direct and standard patterns, but permanent mixed structures make tracking and reporting harder. Prefer committing to either standard or direct.</p>
+</div>
+<p><strong>When to use:</strong></p>
+<ul>
+<li>Transitioning from direct to standard (grouping related tasks into features)</li>
+<li>Transitioning from standard to direct (dissolving unnecessary features)</li>
+<li>Temporary state during epic restructuring</li>
+</ul>
+<h2 id="pm-tool-mapping">PM Tool Mapping<a class="headerlink" href="#pm-tool-mapping" title="Link to this section">&para;</a></h2>
+<p>Each organisation pattern maps to common project management tools:</p>
+<table>
+<thead>
+<tr>
+<th>RequireKit</th>
+<th>Jira</th>
+<th>Linear</th>
+<th>GitHub Projects</th>
+<th>Azure DevOps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Epic</strong></td>
+<td>Epic</td>
+<td>Project</td>
+<td>Project</td>
+<td>Epic</td>
+</tr>
+<tr>
+<td><strong>Feature</strong></td>
+<td>Story / Feature</td>
+<td>Sub-project</td>
+<td>Milestone</td>
+<td>Feature</td>
+</tr>
+<tr>
+<td><strong>Task</strong></td>
+<td>Task / Sub-task</td>
+<td>Issue</td>
+<td>Issue</td>
+<td>Work Item</td>
+</tr>
+<tr>
+<td><strong>Requirement</strong></td>
+<td>Acceptance Criteria</td>
+<td>Issue description</td>
+<td>Issue body</td>
+<td>Requirement</td>
+</tr>
+<tr>
+<td><strong>BDD Scenario</strong></td>
+<td>Test Case</td>
+<td>—</td>
+<td>—</td>
+<td>Test Case</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pattern-specific-mapping">Pattern-Specific Mapping<a class="headerlink" href="#pattern-specific-mapping" title="Link to this section">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Standard Pattern</label><label for="__tabbed_1_2">Direct Pattern</label><label for="__tabbed_1_3">Mixed Pattern</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Jira:    Epic → Story → Sub-task
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Linear:  Project → Sub-project → Issue
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>GitHub:  Project → Milestone → Issue
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Jira:    Epic → Task (no Story layer)
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Linear:  Project → Issue (no Sub-project)
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>GitHub:  Project → Issue (no Milestone)
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Jira:    Epic → Story + Task (mixed children)
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Linear:  Project → Sub-project + Issue (mixed children)
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>GitHub:  Project → Milestone + Issue (mixed children)
+</span></code></pre></div>
+</div>
+</div>
+</div>
 <h2 id="epics">Epics<a class="headerlink" href="#epics" title="Link to this section">&para;</a></h2>
 <p><strong>Definition</strong>: Strategic business objective or large body of work.</p>
-<p><strong>Examples:</strong>
-- User Management System
-- E-Commerce Platform
-- Mobile Application
-- API Integration Layer</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>User Management System</li>
+<li>E-Commerce Platform</li>
+<li>Mobile Application</li>
+<li>API Integration Layer</li>
+</ul>
 <p><strong>Commands:</strong>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/epic-create<span class="w"> </span><span class="s2">&quot;User Management System&quot;</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>/epic-status<span class="w"> </span>EPIC-001
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>/epic-generate-features<span class="w"> </span>EPIC-001
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>/epic-create<span class="w"> </span><span class="s2">&quot;User Management System&quot;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>/epic-create<span class="w"> </span><span class="s2">&quot;Config Refactor&quot;</span><span class="w"> </span>--pattern<span class="w"> </span>direct<span class="w">    </span><span class="c1"># Use direct pattern</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>/epic-status<span class="w"> </span>EPIC-001
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>/epic-generate-features<span class="w"> </span>EPIC-001
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>/epic-refine<span class="w"> </span>EPIC-001<span class="w">                              </span><span class="c1"># Iteratively improve epic</span>
 </span></code></pre></div></p>
 <h2 id="features">Features<a class="headerlink" href="#features" title="Link to this section">&para;</a></h2>
-<p><strong>Definition</strong>: Specific capability or behavior that delivers value.</p>
-<p><strong>Examples:</strong>
-- User Authentication
-- Shopping Cart
-- Payment Processing
-- Email Notifications</p>
+<p><strong>Definition</strong>: Specific capability or behavior that delivers value. Used in the standard and mixed patterns.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>User Authentication</li>
+<li>Shopping Cart</li>
+<li>Payment Processing</li>
+<li>Email Notifications</li>
+</ul>
 <p><strong>Commands:</strong>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>/feature-create<span class="w"> </span><span class="s2">&quot;User Authentication&quot;</span><span class="w"> </span>epic:EPIC-001
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>/feature-status<span class="w"> </span>FEAT-001
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>/feature-generate-tasks<span class="w"> </span>FEAT-001
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>/feature-create<span class="w"> </span><span class="s2">&quot;User Authentication&quot;</span><span class="w"> </span>epic:EPIC-001
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>/feature-status<span class="w"> </span>FEAT-001
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>/feature-generate-tasks<span class="w"> </span>FEAT-001
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>/feature-refine<span class="w"> </span>FEAT-001<span class="w">                           </span><span class="c1"># Iteratively improve feature</span>
 </span></code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Features Are Optional</p>
+<p>In the direct pattern, tasks attach directly to epics without a feature layer. Features are only required in the standard pattern.</p>
+</div>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Link to this section">&para;</a></h2>
 <p><strong>Definition</strong>: EARS-formatted requirement specifying precise behavior.</p>
-<p><strong>Link to:</strong> Features (one requirement can belong to multiple features)</p>
+<p><strong>Link to:</strong> Features (standard pattern) or Epics (direct pattern). One requirement can belong to multiple features or epics.</p>
 <h2 id="traceability">Traceability<a class="headerlink" href="#traceability" title="Link to this section">&para;</a></h2>
-<h3 id="forward-traceability">Forward Traceability<a class="headerlink" href="#forward-traceability" title="Link to this section">&para;</a></h3>
+<h3 id="forward-traceability-standard-pattern">Forward Traceability (Standard Pattern)<a class="headerlink" href="#forward-traceability-standard-pattern" title="Link to this section">&para;</a></h3>
 <p>Track from strategic goals to implementation:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>EPIC-001 (Business Goal)
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  → FEAT-001 (Capability)
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    → REQ-001 (Requirement)
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>      → BDD-001 (Test Specification)
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        → TASK-001 (Implementation)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>EPIC-001 (Business Goal)
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  → FEAT-001 (Capability)
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>    → REQ-001 (Requirement)
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>      → BDD-001 (Test Specification)
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>        → TASK-001 (Implementation)
+</span></code></pre></div></p>
+<h3 id="forward-traceability-direct-pattern">Forward Traceability (Direct Pattern)<a class="headerlink" href="#forward-traceability-direct-pattern" title="Link to this section">&para;</a></h3>
+<p>Track from strategic goals directly to implementation:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>EPIC-001 (Business Goal)
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>  → REQ-001 (Requirement)
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    → BDD-001 (Test Specification)
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>      → TASK-001 (Implementation)
 </span></code></pre></div></p>
 <h3 id="backward-traceability">Backward Traceability<a class="headerlink" href="#backward-traceability" title="Link to this section">&para;</a></h3>
-<p>Track from implementation back to business goals:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>TASK-001 (Code) → BDD-001 → REQ-001 → FEAT-001 → EPIC-001
-</span></code></pre></div></p>
-<h2 id="real-world-example">Real-World Example<a class="headerlink" href="#real-world-example" title="Link to this section">&para;</a></h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>EPIC-001: E-Commerce Platform
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>├── FEAT-001: Product Catalog
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>│   ├── REQ-001: Product search functionality
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>│   ├── REQ-002: Product filtering
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>│   ├── REQ-003: Product sorting
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>│   └── BDD-001: Product browsing scenarios
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>├── FEAT-002: Shopping Cart
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>│   ├── REQ-004: Add items to cart
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>│   ├── REQ-005: Remove items from cart
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>│   ├── REQ-006: Update quantities
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>│   └── BDD-002: Shopping cart scenarios
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>└── FEAT-003: Checkout Process
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    ├── REQ-007: Payment processing
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    ├── REQ-008: Order confirmation
-</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>    └── BDD-003: Checkout scenarios
+<p>Track from implementation back to business goals:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Standard Pattern</label><label for="__tabbed_2_2">Direct Pattern</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>TASK-001 (Code) → BDD-001 → REQ-001 → FEAT-001 → EPIC-001
 </span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>TASK-001 (Code) → BDD-001 → REQ-001 → EPIC-001
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="real-world-examples">Real-World Examples<a class="headerlink" href="#real-world-examples" title="Link to this section">&para;</a></h2>
+<h3 id="large-epic-with-standard-pattern">Large Epic with Standard Pattern<a class="headerlink" href="#large-epic-with-standard-pattern" title="Link to this section">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>EPIC-001: E-Commerce Platform          [pattern: standard]
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>├── FEAT-001: Product Catalog
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>│   ├── REQ-001: Product search functionality
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>│   ├── REQ-002: Product filtering
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>│   ├── REQ-003: Product sorting
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>│   └── BDD-001: Product browsing scenarios
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>├── FEAT-002: Shopping Cart
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>│   ├── REQ-004: Add items to cart
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>│   ├── REQ-005: Remove items from cart
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>│   ├── REQ-006: Update quantities
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>│   └── BDD-002: Shopping cart scenarios
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>└── FEAT-003: Checkout Process
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>    ├── REQ-007: Payment processing
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>    ├── REQ-008: Order confirmation
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>    └── BDD-003: Checkout scenarios
+</span></code></pre></div>
+<h3 id="small-epic-with-direct-pattern">Small Epic with Direct Pattern<a class="headerlink" href="#small-epic-with-direct-pattern" title="Link to this section">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>EPIC-002: Configuration Refactor       [pattern: direct]
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>├── TASK-001: Extract config from hardcoded values
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>├── TASK-002: Add environment variable support
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>├── TASK-003: Add config validation on startup
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>├── REQ-001: The system shall load configuration from environment variables
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>└── BDD-001: Configuration loading scenarios
+</span></code></pre></div>
+<h3 id="mixed-pattern-transitional">Mixed Pattern (Transitional)<a class="headerlink" href="#mixed-pattern-transitional" title="Link to this section">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This example shows a transitional state. The direct tasks (TASK-004, TASK-005) should eventually be grouped into a feature or the features should be dissolved.</p>
+</div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>EPIC-003: API Integration Layer        [pattern: mixed]
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>├── FEAT-001: REST Client
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>│   ├── TASK-001: HTTP client wrapper
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>│   ├── TASK-002: Retry logic
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>│   └── TASK-003: Response parsing
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>├── TASK-004: API key management       (direct, ungrouped)
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>└── TASK-005: Rate limiting setup      (direct, ungrouped)
+</span></code></pre></div>
+<h2 id="migrating-between-patterns">Migrating Between Patterns<a class="headerlink" href="#migrating-between-patterns" title="Link to this section">&para;</a></h2>
+<p>Use <code>/epic-refine</code> to change an epic's organisation pattern:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Promote direct → standard (group tasks into features)</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>/epic-refine<span class="w"> </span>EPIC-002<span class="w"> </span>--pattern<span class="w"> </span>standard
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># Simplify standard → direct (dissolve features)</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>/epic-refine<span class="w"> </span>EPIC-001<span class="w"> </span>--pattern<span class="w"> </span>direct
+</span></code></pre></div>
+<p><strong>Migration guidelines:</strong></p>
+<ul>
+<li><strong>Direct → Standard</strong>: When an epic grows beyond 5 tasks, group related tasks into features</li>
+<li><strong>Standard → Direct</strong>: When features have only 1-2 tasks each, dissolve features and attach tasks directly</li>
+<li><strong>Mixed → Standard or Direct</strong>: Resolve the mixed state by committing to one pattern</li>
+</ul>
 <h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Link to this section">&para;</a></h2>
-<p>✅ <strong>Epics should be strategic</strong>: Business objectives, not technical tasks
-✅ <strong>Features should be independently deliverable</strong>: Each provides value alone
-✅ <strong>Requirements should be atomic</strong>: One behavior per requirement
-✅ <strong>Maintain links</strong>: Always connect requirements to features and epics</p>
+<h3 id="pattern-selection">Pattern Selection<a class="headerlink" href="#pattern-selection" title="Link to this section">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Epic Size</th>
+<th>Recommended Pattern</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3-5 tasks</td>
+<td>Direct</td>
+<td>Features add overhead without value</td>
+</tr>
+<tr>
+<td>6-7 tasks</td>
+<td>Either</td>
+<td>Use judgement based on task relatedness</td>
+</tr>
+<tr>
+<td>8+ tasks</td>
+<td>Standard</td>
+<td>Features provide necessary organisation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="general-guidelines">General Guidelines<a class="headerlink" href="#general-guidelines" title="Link to this section">&para;</a></h3>
+<ul>
+<li><strong>Epics should be strategic</strong>: Business objectives, not technical tasks</li>
+<li><strong>Features should be independently deliverable</strong>: Each provides value alone</li>
+<li><strong>Requirements should be atomic</strong>: One behavior per requirement</li>
+<li><strong>Maintain links</strong>: Always connect requirements to features or epics</li>
+<li><strong>Avoid mixed unless transitioning</strong>: Commit to standard or direct</li>
+<li><strong>Refine iteratively</strong>: Use <code>/epic-refine</code> and <code>/feature-refine</code> to improve hierarchy over time</li>
+</ul>
 <h2 id="benefits">Benefits<a class="headerlink" href="#benefits" title="Link to this section">&para;</a></h2>
 <ul>
 <li><strong>Clear organization</strong>: Hierarchical structure is easy to understand</li>
+<li><strong>Flexible patterns</strong>: Choose the right level of structure for each epic</li>
 <li><strong>Impact analysis</strong>: Quickly assess effect of changes</li>
 <li><strong>Progress tracking</strong>: Monitor completion at epic, feature, and requirement levels</li>
 <li><strong>Stakeholder communication</strong>: Discuss at appropriate abstraction level</li>
 </ul>
 <h2 id="commands">Commands<a class="headerlink" href="#commands" title="Link to this section">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># View hierarchy</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>/hierarchy-view<span class="w"> </span>EPIC-001
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Generate features from epic</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>/epic-generate-features<span class="w"> </span>EPIC-001
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Generate tasks from feature</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>/feature-generate-tasks<span class="w"> </span>FEAT-001
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># View hierarchy</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>/hierarchy-view<span class="w"> </span>EPIC-001
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1"># Generate features from epic</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>/epic-generate-features<span class="w"> </span>EPIC-001
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1"># Generate tasks from feature</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>/feature-generate-tasks<span class="w"> </span>FEAT-001
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="c1"># Refine existing epic (change pattern, improve structure)</span>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>/epic-refine<span class="w"> </span>EPIC-001
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>/epic-refine<span class="w"> </span>EPIC-001<span class="w"> </span>--pattern<span class="w"> </span>standard
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="c1"># Refine existing feature</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>/feature-refine<span class="w"> </span>FEAT-001
 </span></code></pre></div>
 <h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Link to this section">&para;</a></h2>
 <ul>
-<li>🔍 <a href="../traceability/">Learn about Requirements Traceability</a></li>
-<li>📝 <a href="../../getting-started/first-requirements/">Try creating your first epic</a></li>
-<li>💡 <a href="../../examples/features/">See hierarchy examples</a></li>
+<li><a href="../traceability/">Learn about Requirements Traceability</a></li>
+<li><a href="../../getting-started/first-requirements/">Try creating your first epic</a></li>
+<li><a href="../../examples/features/">See hierarchy examples</a></li>
 </ul>
 
 
@@ -2603,10 +2879,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "search.share", "header.autohide", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "search.share", "header.autohide", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "toc.follow", "toc.integrate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

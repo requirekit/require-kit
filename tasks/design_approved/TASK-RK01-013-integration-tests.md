@@ -1,16 +1,27 @@
 ---
-id: TASK-RK01-013
-title: "Create integration tests for refinement flows and Graphiti sync"
-task_type: testing
-parent_review: TASK-REV-RK01
-feature_id: FEAT-RK-001
-wave: 5
-implementation_mode: task-work
 complexity: 7
-dependencies: [TASK-RK01-004, TASK-RK01-005, TASK-RK01-006, TASK-RK01-007, TASK-RK01-008, TASK-RK01-009]
-status: pending
+dependencies:
+- TASK-RK01-004
+- TASK-RK01-005
+- TASK-RK01-006
+- TASK-RK01-007
+- TASK-RK01-008
+- TASK-RK01-009
+feature_id: FEAT-RK-001
+id: TASK-RK01-013
+implementation_mode: task-work
+parent_review: TASK-REV-RK01
 priority: high
-tags: [testing, integration, refinement, graphiti, technology-seams]
+status: design_approved
+tags:
+- testing
+- integration
+- refinement
+- graphiti
+- technology-seams
+task_type: testing
+title: Create integration tests for refinement flows and Graphiti sync
+wave: 5
 ---
 
 # Task: Create Integration Tests for Refinement Flows and Graphiti Sync

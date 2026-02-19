@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://requirekit.github.io/require-kit/INTEGRATION-GUIDE/">
       
       
-        <link rel="prev" href="../mcp-setup/zeplin-mcp-setup/">
+        <link rel="prev" href="../commands/sync/">
       
       
         <link rel="next" href="../integration/pm-tools/">
@@ -25,15 +25,15 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>taskwright Integration - RequireKit</title>
+        <title>guardkit Integration - RequireKit</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#integration-guide-require-kit-and-taskwright" class="md-skip">
+        <a href="#integration-guide-require-kit-and-guardkit" class="md-skip">
           Skip to content
         </a>
       
@@ -120,7 +120,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              taskwright Integration
+              guardkit Integration
             
           </span>
         </div>
@@ -326,28 +326,6 @@
     
   
   Commands Reference
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../mcp-setup/" class="md-tabs__link">
-          
-  
-  
-    
-  
-  MCP Setup
 
         </a>
       </li>
@@ -722,7 +700,7 @@
   <span class="md-ellipsis">
     
   
-    Integration with taskwright
+    Integration with guardkit
   
 
     
@@ -1126,6 +1104,8 @@
       
         
       
+        
+      
     
     
     
@@ -1294,86 +1274,6 @@
 
               
             
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-          
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../mcp-setup/" class="md-nav__link ">
-              
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    MCP Setup
-  
-
-    
-  </span>
-  
-  
-
-            </a>
-            
-              
-              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
-                <span class="md-nav__icon md-icon"></span>
-              </label>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    MCP Setup
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
               
                 
   
@@ -1381,42 +1281,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../mcp-setup/figma-mcp-setup/" class="md-nav__link">
+      <a href="../commands/sync/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Figma MCP
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../mcp-setup/zeplin-mcp-setup/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Zeplin MCP
+    Sync Commands
   
 
     
@@ -1468,10 +1340,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
         
           
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
             
   
   
@@ -1489,8 +1361,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_7">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1523,7 +1395,7 @@
   <span class="md-ellipsis">
     
   
-    taskwright Integration
+    guardkit Integration
   
 
     
@@ -1541,7 +1413,7 @@
   <span class="md-ellipsis">
     
   
-    taskwright Integration
+    guardkit Integration
   
 
     
@@ -1567,6 +1439,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#table-of-contents" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1574,6 +1457,89 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clarification-philosophy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clarification Philosophy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Clarification Philosophy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-requirekit-asks-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When RequireKit Asks Questions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#question-types-by-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Question Types by Domain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-this-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why This Matters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clarification-at-specification-vs-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Clarification at Specification vs Implementation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-with-guardkit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration with GuardKit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skipping-clarification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skipping Clarification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1601,10 +1567,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#what-is-taskwright" class="md-nav__link">
+  <a href="#what-is-guardkit" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What is taskwright?
+        What is guardkit?
       
     </span>
   </a>
@@ -1627,6 +1593,89 @@
     <span class="md-ellipsis">
       
         Bidirectional Optional Integration
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-planning-vs-task-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feature Planning vs Task Generation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Planning vs Task Generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-feature-plan-guardkit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use /feature-plan (guardkit)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-to-use-feature-generate-tasks-require-kit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Use /feature-generate-tasks (require-kit)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typical-combined-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical Combined Workflow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparison-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparison Matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision Tree
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Insight
       
     </span>
   </a>
@@ -1673,10 +1722,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#why-bdd-mode-was-removed-from-taskwright" class="md-nav__link">
+  <a href="#why-bdd-mode-was-removed-from-guardkit" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Why BDD Mode was Removed from taskwright
+        Why BDD Mode was Removed from guardkit
       
     </span>
   </a>
@@ -1723,10 +1772,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#scenario-2-taskwright-only" class="md-nav__link">
+  <a href="#scenario-2-guardkit-only" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Scenario 2: taskwright Only
+        Scenario 2: guardkit Only
       
     </span>
   </a>
@@ -1784,10 +1833,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#workflow-2-lean-startup-taskwright-only" class="md-nav__link">
+  <a href="#workflow-2-lean-startup-guardkit-only" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Workflow 2: Lean Startup (taskwright Only)
+        Workflow 2: Lean Startup (guardkit Only)
       
     </span>
   </a>
@@ -1795,10 +1844,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#workflow-3-requirements-export-to-pm-tools-require-kit-only" class="md-nav__link">
+  <a href="#workflow-3-requirements-with-pm-ready-metadata-require-kit-only" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Workflow 3: Requirements Export to PM Tools (require-kit Only)
+        Workflow 3: Requirements with PM-Ready Metadata (require-kit Only)
       
     </span>
   </a>
@@ -1906,10 +1955,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#from-taskwright-standalone-to-full-integration" class="md-nav__link">
+  <a href="#from-guardkit-standalone-to-full-integration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        From taskwright Standalone to Full Integration
+        From guardkit Standalone to Full Integration
       
     </span>
   </a>
@@ -2062,7 +2111,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2084,14 +2133,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_8">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2256,7 +2305,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2278,14 +2327,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_9">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2424,7 +2473,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2446,14 +2495,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_10">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2614,7 +2663,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_10" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -2636,14 +2685,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_11">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2710,13 +2759,24 @@
   
 
 
-<h1 id="integration-guide-require-kit-and-taskwright">Integration Guide: require-kit and taskwright<a class="headerlink" href="#integration-guide-require-kit-and-taskwright" title="Link to this section">&para;</a></h1>
+<h1 id="integration-guide-require-kit-and-guardkit">Integration Guide: require-kit and guardkit<a class="headerlink" href="#integration-guide-require-kit-and-guardkit" title="Link to this section">&para;</a></h1>
 <p><strong>Version</strong>: 1.0.0
 <strong>Last Updated</strong>: 2025-11-03
 <strong>Status</strong>: Production</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this section">&para;</a></h2>
+<ul>
+<li><strong>Python 3.10 or later</strong> (required by both require-kit and guardkit)</li>
+<li>pip (Python package installer)</li>
+<li>git (for repository cloning)</li>
+<li>bash shell (macOS, Linux, or Windows WSL2)</li>
+</ul>
+<p>Both packages require Python 3.10+ for ecosystem consistency. This ensures compatibility with modern Python features (PEP 604 union types) and alignment with AI/ML tooling standards.</p>
 <h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Link to this section">&para;</a></h2>
 <ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#clarification-philosophy">Clarification Philosophy</a></li>
 <li><a href="#overview">Overview</a></li>
+<li><a href="#feature-planning-vs-task-generation">Feature Planning vs Task Generation</a></li>
 <li><a href="#integration-architecture">Integration Architecture</a></li>
 <li><a href="#installation-scenarios">Installation Scenarios</a></li>
 <li><a href="#feature-availability-matrix">Feature Availability Matrix</a></li>
@@ -2724,6 +2784,129 @@
 <li><a href="#troubleshooting">Troubleshooting</a></li>
 <li><a href="#migration-guides">Migration Guides</a></li>
 </ul>
+<hr />
+<h2 id="clarification-philosophy">Clarification Philosophy<a class="headerlink" href="#clarification-philosophy" title="Link to this section">&para;</a></h2>
+<p>RequireKit asks clarifying questions to improve <strong>requirement specifications</strong>, not to make implementation decisions. This is a key distinction from implementation-focused systems.</p>
+<h3 id="when-requirekit-asks-questions">When RequireKit Asks Questions<a class="headerlink" href="#when-requirekit-asks-questions" title="Link to this section">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Has Clarification</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/gather-requirements</code></td>
+<td>Yes (3-phase)</td>
+<td>Comprehensive requirements discovery</td>
+</tr>
+<tr>
+<td><code>/epic-create</code></td>
+<td>Yes</td>
+<td>Scope, success criteria, stakeholders</td>
+</tr>
+<tr>
+<td><code>/feature-create</code></td>
+<td>Yes</td>
+<td>Scope, acceptance criteria, dependencies</td>
+</tr>
+<tr>
+<td><code>/formalize-ears</code></td>
+<td>Yes</td>
+<td>EARS pattern selection, completeness</td>
+</tr>
+<tr>
+<td><code>/generate-bdd</code></td>
+<td>No</td>
+<td>Deterministic transformation</td>
+</tr>
+<tr>
+<td><code>/epic-generate-features</code></td>
+<td>No</td>
+<td>Systematic analysis</td>
+</tr>
+<tr>
+<td><code>/feature-generate-tasks</code></td>
+<td>No</td>
+<td>Rule-based generation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="question-types-by-domain">Question Types by Domain<a class="headerlink" href="#question-types-by-domain" title="Link to this section">&para;</a></h3>
+<p><strong>RequireKit Questions (Technology-Agnostic)</strong>:
+- "What is explicitly OUT OF SCOPE?"
+- "What measurable outcomes define success?"
+- "Which requirements does this implement?"
+- "What are the testable acceptance criteria?"
+- "Is this triggered by an event or always active?"</p>
+<p><strong>NOT RequireKit Questions (Technology-Specific)</strong>:
+- "JWT or server-side sessions?" → GuardKit/Implementation
+- "Redux, Zustand, or Context API?" → GuardKit/Implementation
+- "REST or GraphQL?" → GuardKit/Implementation
+- "PostgreSQL or MongoDB?" → GuardKit/Implementation</p>
+<h3 id="why-this-matters">Why This Matters<a class="headerlink" href="#why-this-matters" title="Link to this section">&para;</a></h3>
+<p>RequireKit outputs must be <strong>technology-agnostic</strong> so they can:
+1. Work with any implementation system
+2. Be consumed by GuardKit or other task execution systems
+3. Remain valid regardless of technology choices
+4. Be understood by non-technical stakeholders</p>
+<h3 id="clarification-at-specification-vs-implementation">Clarification at Specification vs Implementation<a class="headerlink" href="#clarification-at-specification-vs-implementation" title="Link to this section">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                    SPECIFICATION                     IMPLEMENTATION
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                    (RequireKit)                      (GuardKit/Other)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                         │                                  │
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    ┌────────────────────┼──────────────────────────────────┼─────────────────┐
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    │                    │                                  │                 │
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    │  &quot;What problem?&quot;   │  &quot;What capability?&quot;   &quot;How to build?&quot;  &quot;What tech?&quot; │
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    │  &quot;Who uses it?&quot;    │  &quot;What acceptance?&quot;   &quot;What pattern?&quot;  &quot;What lib?&quot;  │
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    │  &quot;Why needed?&quot;     │  &quot;What success?&quot;      &quot;What arch?&quot;     &quot;What DB?&quot;   │
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    │                    │                                  │                 │
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    └────────────────────┼──────────────────────────────────┼─────────────────┘
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                         │                                  │
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>                    TECHNOLOGY-AGNOSTIC              TECHNOLOGY-SPECIFIC
+</span></code></pre></div>
+<h3 id="integration-with-guardkit">Integration with GuardKit<a class="headerlink" href="#integration-with-guardkit" title="Link to this section">&para;</a></h3>
+<p>When using RequireKit with GuardKit:</p>
+<ol>
+<li><strong>RequireKit handles specification clarification</strong>:</li>
+<li>Epic scope and success criteria</li>
+<li>Feature acceptance criteria</li>
+<li>EARS pattern selection</li>
+<li>
+<p>BDD scenario completeness</p>
+</li>
+<li>
+<p><strong>GuardKit handles implementation clarification</strong>:</p>
+</li>
+<li>Technology choices</li>
+<li>Architecture patterns</li>
+<li>Error handling approaches</li>
+<li>Performance trade-offs</li>
+</ol>
+<p>This separation ensures:
+- No duplicate questions
+- Clear responsibility boundaries
+- Optimal user experience
+- Technology decisions deferred to implementation time</p>
+<h3 id="skipping-clarification">Skipping Clarification<a class="headerlink" href="#skipping-clarification" title="Link to this section">&para;</a></h3>
+<p>All RequireKit clarifications are <strong>optional</strong>. Users can:
+- Use <code>--quick</code> flag to skip questions
+- Provide parameters directly in the command
+- Let AI auto-detect patterns (with <code>--auto</code> flag)</p>
+<p>Examples:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># With clarification (interactive)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>/epic-create<span class="w"> </span><span class="s2">&quot;User Management&quot;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Without clarification (direct)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>/epic-create<span class="w"> </span><span class="s2">&quot;User Management&quot;</span><span class="w"> </span>priority:high<span class="w"> </span>quarter:Q1-2024<span class="w"> </span>--quick
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># EARS with explicit pattern (skip pattern questions)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>/formalize-ears<span class="w"> </span><span class="s2">&quot;Users login&quot;</span><span class="w"> </span>--pattern<span class="w"> </span>event-driven
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># EARS auto-detect (skip clarification)</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>/formalize-ears<span class="w"> </span><span class="s2">&quot;Users login&quot;</span><span class="w"> </span>--auto
+</span></code></pre></div></p>
 <hr />
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Link to this section">&para;</a></h2>
 <h3 id="what-is-require-kit">What is require-kit?<a class="headerlink" href="#what-is-require-kit" title="Link to this section">&para;</a></h3>
@@ -2740,52 +2923,188 @@
 - BDD scenario generation
 - PM tool export capabilities
 - Requirements-driven development process</p>
-<h3 id="what-is-taskwright">What is taskwright?<a class="headerlink" href="#what-is-taskwright" title="Link to this section">&para;</a></h3>
-<p><strong>taskwright</strong> is a standalone task execution workflow system that provides structured implementation, testing, and quality gates:</p>
+<h3 id="what-is-guardkit">What is guardkit?<a class="headerlink" href="#what-is-guardkit" title="Link to this section">&para;</a></h3>
+<p><strong>guardkit</strong> is a standalone task execution workflow system that provides structured implementation, testing, and quality gates:</p>
 <ul>
 <li><strong>Task Execution</strong>: TDD-driven implementation workflow</li>
 <li><strong>Quality Gates</strong>: Automated testing, coverage, and code review</li>
 <li><strong>Architectural Review</strong>: Pattern compliance and design validation</li>
 <li><strong>Test Orchestration</strong>: Comprehensive test execution and reporting</li>
 </ul>
-<p><strong>Use taskwright when you need</strong>:
+<p><strong>Use guardkit when you need</strong>:
 - Structured implementation workflow
 - Automated quality gates
 - Test-driven development
 - Code review and architectural compliance
 - Rapid task execution</p>
 <h3 id="when-to-use-which">When to Use Which?<a class="headerlink" href="#when-to-use-which" title="Link to this section">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Decision Tree:
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── Do you need requirements documentation?
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   ├── Yes → Start with require-kit
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   └── No → Consider taskwright only
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── Do you need task execution workflow?
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── Yes → Use taskwright
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   └── No → require-kit only is sufficient
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>└── Do you need full requirements-to-implementation traceability?
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    ├── Yes → Use both (full integration)
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    └── No → Use standalone package(s)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Decision Tree:
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── Do you need requirements documentation?
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│   ├── Yes → Start with require-kit
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│   └── No → Consider guardkit only
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>├── Do you need task execution workflow?
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│   ├── Yes → Use guardkit
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│   └── No → require-kit only is sufficient
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>└── Do you need full requirements-to-implementation traceability?
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>    ├── Yes → Use both (full integration)
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    └── No → Use standalone package(s)
 </span></code></pre></div>
 <h3 id="bidirectional-optional-integration">Bidirectional Optional Integration<a class="headerlink" href="#bidirectional-optional-integration" title="Link to this section">&para;</a></h3>
 <p>Both packages are <strong>fully functional independently</strong> with <strong>no hard dependencies</strong>:</p>
 <ul>
-<li><strong>require-kit</strong>: Works standalone, optionally enhanced by taskwright</li>
-<li><strong>taskwright</strong>: Works standalone, optionally enhanced by require-kit</li>
+<li><strong>require-kit</strong>: Works standalone, optionally enhanced by guardkit</li>
+<li><strong>guardkit</strong>: Works standalone, optionally enhanced by require-kit</li>
 <li><strong>Integration</strong>: Automatic detection via marker files when both installed</li>
 <li><strong>No Lock-In</strong>: Install or remove either package without affecting the other</li>
 </ul>
 <p>This architecture provides maximum flexibility for teams to adopt the workflow that fits their needs.</p>
 <hr />
+<h2 id="feature-planning-vs-task-generation">Feature Planning vs Task Generation<a class="headerlink" href="#feature-planning-vs-task-generation" title="Link to this section">&para;</a></h2>
+<p>RequireKit and GuardKit provide complementary commands for different stages of feature development. Understanding when to use each command prevents confusion and ensures optimal workflow.</p>
+<h3 id="when-to-use-feature-plan-guardkit">When to Use <code>/feature-plan</code> (guardkit)<a class="headerlink" href="#when-to-use-feature-plan-guardkit" title="Link to this section">&para;</a></h3>
+<p>The <code>/feature-plan</code> command is for <strong>planning and evaluation</strong> of new features:</p>
+<ul>
+<li>Planning new features from scratch with natural language descriptions</li>
+<li>Evaluating technical approaches and trade-offs before commitment</li>
+<li>Quick feature exploration to understand complexity and effort</li>
+<li>Getting effort estimates before starting implementation</li>
+<li>Making architectural decisions (e.g., "Should we use WebSockets or SSE?")</li>
+</ul>
+<p><strong>Input</strong>: Natural language description (e.g., <code>"implement dark mode"</code>)</p>
+<p><strong>Output</strong>: Technical analysis, decision checkpoint (A/R/I/C), optional subtask generation</p>
+<p><strong>Example</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>/feature-plan<span class="w"> </span><span class="s2">&quot;add real-time notifications with WebSocket support&quot;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1"># Analyzes technical options, estimates effort, presents decision checkpoint</span>
+</span></code></pre></div></p>
+<h3 id="when-to-use-feature-generate-tasks-require-kit">When to Use <code>/feature-generate-tasks</code> (require-kit)<a class="headerlink" href="#when-to-use-feature-generate-tasks-require-kit" title="Link to this section">&para;</a></h3>
+<p>The <code>/feature-generate-tasks</code> command is for <strong>transforming structured specifications into tasks</strong>:</p>
+<ul>
+<li>You have a structured feature specification (FEAT-XXX) with requirements</li>
+<li>You need tasks exported to PM tools (Jira, Linear, GitHub, Azure DevOps)</li>
+<li>You need hierarchical task IDs for tracking (TASK-001.2.01 format)</li>
+<li>You want tasks derived from EARS requirements and BDD scenarios</li>
+<li>You need traceability from requirements to implementation tasks</li>
+</ul>
+<p><strong>Input</strong>: Feature ID with linked requirements and BDD scenarios (e.g., <code>FEAT-001</code>)</p>
+<p><strong>Output</strong>: Multiple task markdown files ready for PM tool export</p>
+<p><strong>Example</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>/feature-generate-tasks<span class="w"> </span>FEAT-001
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># Generates TASK-001.1.01, TASK-001.1.02, etc. with full traceability</span>
+</span></code></pre></div></p>
+<h3 id="typical-combined-workflow">Typical Combined Workflow<a class="headerlink" href="#typical-combined-workflow" title="Link to this section">&para;</a></h3>
+<p>When using both packages together, the commands complement each other at different stages:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Stage 1: Quick Planning (guardkit)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>/feature-plan<span class="w"> </span><span class="s2">&quot;implement user authentication&quot;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># → Technical analysis, approach decision, effort estimate</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># Stage 2: Formal Requirements (require-kit) - if needed</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>/gather-requirements
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>/formalize-ears
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="c1"># → docs/requirements/REQ-001.md (EARS notation)</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># Stage 3: Feature Specification (require-kit)</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>/feature-create<span class="w"> </span><span class="s2">&quot;User Authentication&quot;</span><span class="w"> </span>epic:EPIC-001
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="c1"># → docs/features/FEAT-001.md (structured spec)</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="c1"># Stage 4: BDD Scenarios (require-kit)</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>/generate-bdd<span class="w"> </span>FEAT-001
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="c1"># → docs/bdd/BDD-001.feature (Gherkin scenarios)</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="c1"># Stage 5: Task Generation (require-kit)</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>/feature-generate-tasks<span class="w"> </span>FEAT-001
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="c1"># → tasks/backlog/TASK-001.1.01.md, TASK-001.1.02.md, etc.</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="c1"># → PM tool export ready</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="c1"># Stage 6: Implementation (guardkit)</span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>/task-work<span class="w"> </span>TASK-001.1.01
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="c1"># → Implementation with quality gates</span>
+</span></code></pre></div>
+<h3 id="comparison-matrix">Comparison Matrix<a class="headerlink" href="#comparison-matrix" title="Link to this section">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th><code>/feature-plan</code></th>
+<th><code>/feature-generate-tasks</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Purpose</strong></td>
+<td>Planning &amp; evaluation</td>
+<td>Task generation</td>
+</tr>
+<tr>
+<td><strong>Input</strong></td>
+<td>Natural language description</td>
+<td>Structured feature spec (FEAT-XXX)</td>
+</tr>
+<tr>
+<td><strong>Output</strong></td>
+<td>Analysis + decision checkpoint</td>
+<td>Exportable task files</td>
+</tr>
+<tr>
+<td><strong>PM Tool Export</strong></td>
+<td>No</td>
+<td>Yes (Jira, Linear, GitHub, Azure DevOps)</td>
+</tr>
+<tr>
+<td><strong>Traceability</strong></td>
+<td>No</td>
+<td>Yes (REQ → Feature → Task)</td>
+</tr>
+<tr>
+<td><strong>Hierarchical IDs</strong></td>
+<td>No</td>
+<td>Yes (TASK-001.2.01 format)</td>
+</tr>
+<tr>
+<td><strong>Requirements Linking</strong></td>
+<td>No</td>
+<td>Yes (links to REQ-XXX, BDD-XXX)</td>
+</tr>
+<tr>
+<td><strong>Best For</strong></td>
+<td>Early planning, approach decisions</td>
+<td>Structured task breakdown</td>
+</tr>
+</tbody>
+</table>
+<h3 id="decision-tree">Decision Tree<a class="headerlink" href="#decision-tree" title="Link to this section">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Do you have a structured feature specification (FEAT-XXX)?
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>├── Yes → Use /feature-generate-tasks FEAT-XXX
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>│         (Generates PM-exportable tasks with traceability)
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>│
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>└── No → Do you need to evaluate approaches first?
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>         ├── Yes → Use /feature-plan &quot;description&quot;
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>         │         (Technical analysis, effort estimation)
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>         │
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>         └── No → Do you need formal requirements?
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>                  ├── Yes → Start with /gather-requirements
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>                  │         (Then /feature-create, then /feature-generate-tasks)
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>                  │
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>                  └── No → Use /task-create directly (guardkit)
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>                           (Skip to implementation)
+</span></code></pre></div>
+<h3 id="key-insight">Key Insight<a class="headerlink" href="#key-insight" title="Link to this section">&para;</a></h3>
+<p>These commands are <strong>NOT redundant</strong> - they serve different workflow stages:</p>
+<ul>
+<li><strong><code>/feature-plan</code></strong> answers: "What approach should we take? How complex will this be?"</li>
+<li><strong><code>/feature-generate-tasks</code></strong> answers: "What specific tasks are needed? How do they link to requirements?"</li>
+</ul>
+<p>Use <code>/feature-plan</code> for exploration and decisions, then <code>/feature-generate-tasks</code> when you have structured specifications ready for implementation.</p>
+<hr />
 <h2 id="integration-architecture">Integration Architecture<a class="headerlink" href="#integration-architecture" title="Link to this section">&para;</a></h2>
 <h3 id="marker-file-detection">Marker File Detection<a class="headerlink" href="#marker-file-detection" title="Link to this section">&para;</a></h3>
 <p>Both packages detect each other automatically using marker files in <code>~/.agentecflow/</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>~/.agentecflow/
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├──<span class="w"> </span>require-kit.marker<span class="w">          </span><span class="c1"># Created when require-kit installed</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├──<span class="w"> </span>taskwright.marker<span class="w">           </span><span class="c1"># Created when taskwright installed</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>├──<span class="w"> </span>bin/<span class="w">                        </span><span class="c1"># Shared command executables</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>└──<span class="w"> </span>lib/<span class="w">                        </span><span class="c1"># Shared library code</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>~/.agentecflow/
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>├──<span class="w"> </span>require-kit.marker<span class="w">          </span><span class="c1"># Created when require-kit installed</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>├──<span class="w"> </span>guardkit.marker<span class="w">           </span><span class="c1"># Created when guardkit installed</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>├──<span class="w"> </span>bin/<span class="w">                        </span><span class="c1"># Shared command executables</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>└──<span class="w"> </span>lib/<span class="w">                        </span><span class="c1"># Shared library code</span>
 </span></code></pre></div>
 <p><strong>How it works</strong>:</p>
 <ol>
@@ -2795,114 +3114,113 @@
 <li><strong>Graceful Degradation</strong>: Missing marker = standalone mode, no errors</li>
 </ol>
 <p><strong>Check your installation</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># List installed packages</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>ls<span class="w"> </span>~/.agentecflow/*.marker
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Expected outputs:</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># require-kit only:  require-kit.marker</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># taskwright only:   taskwright.marker</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Both integrated:   require-kit.marker + taskwright.marker</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># List installed packages</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>ls<span class="w"> </span>~/.agentecflow/*.marker
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Expected outputs:</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># require-kit only:  require-kit.marker</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1"># guardkit only:   guardkit.marker</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="c1"># Both integrated:   require-kit.marker + guardkit.marker</span>
 </span></code></pre></div>
 <h3 id="dependency-inversion-principle">Dependency Inversion Principle<a class="headerlink" href="#dependency-inversion-principle" title="Link to this section">&para;</a></h3>
 <p>The integration follows the Dependency Inversion Principle (DIP) to avoid circular dependencies:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>High-Level Module: require-kit
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    ├── Requirements Gathering
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    ├── EARS Formalization
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    ├── BDD Scenario Generation
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    ├── Task Specification Generation
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    └── Outputs → PM Tools, taskwright (when installed)
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>Low-Level Module: taskwright
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    ├── Task Execution
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    ├── Quality Gates
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    ├── Test Orchestration
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    └── Inputs ← Task Specifications (from require-kit or PM tools)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>High-Level Module: require-kit
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    ├── Requirements Gathering
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    ├── EARS Formalization
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    ├── BDD Scenario Generation
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    ├── Task Specification Generation
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>    └── Outputs → PM Tools, guardkit (when installed)
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>Low-Level Module: guardkit
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>    ├── Task Execution
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>    ├── Quality Gates
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>    ├── Test Orchestration
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>    └── Inputs ← Task Specifications (from require-kit or PM tools)
 </span></code></pre></div>
-<p><strong>Key Principle</strong>: taskwright does NOT look "up" to require-kit. The data flows one direction:</p>
+<p><strong>Key Principle</strong>: guardkit does NOT look "up" to require-kit. The data flows one direction:</p>
 <ol>
 <li><strong>require-kit</strong> generates requirements, BDD scenarios, and task specifications</li>
-<li><strong>taskwright</strong> executes tasks using specifications from any source</li>
-<li><strong>No circular dependency</strong>: taskwright never calls require-kit commands</li>
+<li><strong>guardkit</strong> executes tasks using specifications from any source</li>
+<li><strong>No circular dependency</strong>: guardkit never calls require-kit commands</li>
 </ol>
-<h3 id="why-bdd-mode-was-removed-from-taskwright">Why BDD Mode was Removed from taskwright<a class="headerlink" href="#why-bdd-mode-was-removed-from-taskwright" title="Link to this section">&para;</a></h3>
-<p><strong>Historical Context</strong>: Early versions of taskwright included a "BDD mode" that would call require-kit commands to generate feature files during task execution.</p>
-<p><strong>Problem</strong>: This violated DIP by making the lower-level module (taskwright) depend on the higher-level module (require-kit):</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>VIOLATION (Old Design):
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>taskwright → calls → require-kit commands
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>(lower)               (higher)
+<h3 id="why-bdd-mode-was-removed-from-guardkit">Why BDD Mode was Removed from guardkit<a class="headerlink" href="#why-bdd-mode-was-removed-from-guardkit" title="Link to this section">&para;</a></h3>
+<p><strong>Historical Context</strong>: Early versions of guardkit included a "BDD mode" that would call require-kit commands to generate feature files during task execution.</p>
+<p><strong>Problem</strong>: This violated DIP by making the lower-level module (guardkit) depend on the higher-level module (require-kit):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>VIOLATION (Old Design):
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>guardkit → calls → require-kit commands
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>(lower)               (higher)
 </span></code></pre></div>
 <p><strong>Solution</strong>: BDD mode was removed. The correct flow is:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>CORRECT (Current Design):
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>require-kit → generates → BDD scenarios → consumed by → taskwright tests
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>(higher)                  (artifact)                     (lower)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>CORRECT (Current Design):
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>require-kit → generates → BDD scenarios → consumed by → guardkit tests
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>(higher)                  (artifact)                     (lower)
 </span></code></pre></div>
 <p><strong>For Users</strong>: If you need BDD-driven workflows:</p>
 <ol>
 <li>Use <code>/generate-bdd</code> in require-kit to create scenarios</li>
 <li>Export scenarios to your test framework</li>
-<li>Execute tests with <code>/task-work</code> in taskwright</li>
-<li>taskwright uses the BDD scenarios as acceptance criteria (data flow, not code dependency)</li>
+<li>Execute tests with <code>/task-work</code> in guardkit</li>
+<li>guardkit uses the BDD scenarios as acceptance criteria (data flow, not code dependency)</li>
 </ol>
 <h3 id="unidirectional-data-flow">Unidirectional Data Flow<a class="headerlink" href="#unidirectional-data-flow" title="Link to this section">&para;</a></h3>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>┌─────────────────────────────────────────────────────────┐
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>│ require-kit (Requirements Management)                   │
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>│ ┌─────────────┐   ┌──────────────┐   ┌──────────────┐ │
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>│ │Requirements │──→│ BDD Scenarios│──→│Task Specs    │ │
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>│ └─────────────┘   └──────────────┘   └──────────────┘ │
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>└────────────────────────────┬────────────────────────────┘
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>                             │ (data artifacts)
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>                             ↓
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>┌─────────────────────────────────────────────────────────┐
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>│ taskwright (Task Execution)                             │
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>│ ┌─────────────┐   ┌──────────────┐   ┌──────────────┐ │
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>│ │Task Work    │──→│ Quality Gates│──→│Completion    │ │
-</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>│ └─────────────┘   └──────────────┘   └──────────────┘ │
-</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>└─────────────────────────────────────────────────────────┘
-</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>Alternative Sources:
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>┌─────────────────┐
-</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a>│ PM Tools        │──→ Task Specs ──→ taskwright
-</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>│ (Jira, Linear) │
-</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a>└─────────────────┘
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>┌─────────────────────────────────────────────────────────┐
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>│ require-kit (Requirements Management)                   │
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>│ ┌─────────────┐   ┌──────────────┐   ┌──────────────┐ │
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>│ │Requirements │──→│ BDD Scenarios│──→│Task Specs    │ │
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>│ └─────────────┘   └──────────────┘   └──────────────┘ │
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>└────────────────────────────┬────────────────────────────┘
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>                             │ (data artifacts)
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>                             ↓
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>┌─────────────────────────────────────────────────────────┐
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>│ guardkit (Task Execution)                             │
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>│ ┌─────────────┐   ┌──────────────┐   ┌──────────────┐ │
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>│ │Task Work    │──→│ Quality Gates│──→│Completion    │ │
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>│ └─────────────┘   └──────────────┘   └──────────────┘ │
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>└─────────────────────────────────────────────────────────┘
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>Alternative Sources:
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>┌─────────────────┐
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>│ PM Tools        │──→ Task Specs ──→ guardkit
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>│ (Jira, Linear) │
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>└─────────────────┘
 </span></code></pre></div>
 <hr />
 <h2 id="installation-scenarios">Installation Scenarios<a class="headerlink" href="#installation-scenarios" title="Link to this section">&para;</a></h2>
 <h3 id="scenario-1-require-kit-only">Scenario 1: require-kit Only<a class="headerlink" href="#scenario-1-require-kit-only" title="Link to this section">&para;</a></h3>
 <p><strong>Use Case</strong>: Requirements team without implementation workflow, or teams using external PM tools for task execution.</p>
 <p><strong>Installation</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/requirekit/require-kit.git
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nb">cd</span><span class="w"> </span>require-kit
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>./installer/scripts/install.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/requirekit/require-kit.git
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">cd</span><span class="w"> </span>require-kit
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>./installer/scripts/install.sh
 </span></code></pre></div>
 <p><strong>Verification</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ls<span class="w"> </span>~/.agentecflow/require-kit.marker
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1"># Should exist</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>/gather-requirements<span class="w"> </span>--version
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="c1"># Should show require-kit version</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>ls<span class="w"> </span>~/.agentecflow/require-kit.marker
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="c1"># Should exist</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>/gather-requirements<span class="w"> </span>--version
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="c1"># Should show require-kit version</span>
 </span></code></pre></div>
 <p><strong>Available Commands</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Requirements Management</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>/gather-requirements<span class="w">          </span><span class="c1"># Interactive Q&amp;A</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>/formalize-ears<span class="w">              </span><span class="c1"># Convert to EARS notation</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>/generate-bdd<span class="w">                </span><span class="c1"># Generate Gherkin scenarios</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1"># Epic/Feature Management</span>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>/epic-create<span class="w"> </span><span class="s2">&quot;Title&quot;</span>
-</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>/feature-create<span class="w"> </span><span class="s2">&quot;Title&quot;</span><span class="w"> </span>epic:EPIC-XXX
-</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>/hierarchy-view<span class="w"> </span>EPIC-XXX
-</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>
-</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="c1"># Export</span>
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>/feature-sync<span class="w"> </span>FEAT-XXX<span class="w"> </span>--jira<span class="w">        </span><span class="c1"># Export to Jira</span>
-</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>/feature-sync<span class="w"> </span>FEAT-XXX<span class="w"> </span>--linear<span class="w">      </span><span class="c1"># Export to Linear</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Requirements Management</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>/gather-requirements<span class="w">          </span><span class="c1"># Interactive Q&amp;A</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>/formalize-ears<span class="w">              </span><span class="c1"># Convert to EARS notation</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>/generate-bdd<span class="w">                </span><span class="c1"># Generate Gherkin scenarios</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="c1"># Epic/Feature Management</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>/epic-create<span class="w"> </span><span class="s2">&quot;Title&quot;</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>/feature-create<span class="w"> </span><span class="s2">&quot;Title&quot;</span><span class="w"> </span>epic:EPIC-XXX
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>/hierarchy-view<span class="w"> </span>EPIC-XXX
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="c1"># Export (Specification Only - requires custom implementation)</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="c1"># /feature-sync FEAT-XXX --jira      # See docs/integration/pm-tools.md</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="c1"># /feature-sync FEAT-XXX --linear    # Metadata ready, API not implemented</span>
 </span></code></pre></div>
 <p><strong>Output Artifacts</strong>:</p>
 <ul>
 <li><code>docs/requirements/REQ-XXX.md</code> - EARS requirements</li>
 <li><code>docs/bdd/BDD-XXX.feature</code> - Gherkin scenarios</li>
 <li><code>docs/epics/EPIC-XXX.md</code> - Epic specifications</li>
-<li><code>docs/features/FEAT-XXX.md</code> - Feature specifications</li>
-<li>PM tool exports (Jira tickets, Linear issues, etc.)</li>
+<li><code>docs/features/FEAT-XXX.md</code> - Feature specifications (with PM-ready metadata)</li>
 </ul>
 <p><strong>What's NOT Available</strong>:</p>
 <ul>
@@ -2911,32 +3229,32 @@
 <li>Test orchestration</li>
 <li>Code review automation</li>
 </ul>
-<h3 id="scenario-2-taskwright-only">Scenario 2: taskwright Only<a class="headerlink" href="#scenario-2-taskwright-only" title="Link to this section">&para;</a></h3>
+<h3 id="scenario-2-guardkit-only">Scenario 2: guardkit Only<a class="headerlink" href="#scenario-2-guardkit-only" title="Link to this section">&para;</a></h3>
 <p><strong>Use Case</strong>: Lean startup, rapid iteration, teams without formal requirements process.</p>
 <p><strong>Installation</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/taskwright-dev/taskwright.git
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">cd</span><span class="w"> </span>taskwright
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>./installer/scripts/install.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/guardkit/guardkit.git
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nb">cd</span><span class="w"> </span>guardkit
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>./installer/scripts/install.sh
 </span></code></pre></div>
 <p><strong>Verification</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ls<span class="w"> </span>~/.agentecflow/taskwright.marker
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1"># Should exist</span>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>/task-work<span class="w"> </span>--version
-</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1"># Should show taskwright version</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>ls<span class="w"> </span>~/.agentecflow/guardkit.marker
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1"># Should exist</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>/task-work<span class="w"> </span>--version
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="c1"># Should show guardkit version</span>
 </span></code></pre></div>
 <p><strong>Available Commands</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Task Management</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>/task-create<span class="w"> </span><span class="s2">&quot;Title&quot;</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>/task-work<span class="w"> </span>TASK-XXX
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>/task-work<span class="w"> </span>TASK-XXX<span class="w"> </span>--micro<span class="w">          </span><span class="c1"># Micro-task workflow</span>
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>/task-complete<span class="w"> </span>TASK-XXX
-</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
-</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="c1"># Task States</span>
-</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>/task-status<span class="w">                         </span><span class="c1"># Show all tasks</span>
-</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>/task-status<span class="w"> </span>TASK-XXX<span class="w">               </span><span class="c1"># Show specific task</span>
-</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>/task-block<span class="w"> </span>TASK-XXX<span class="w"> </span><span class="s2">&quot;reason&quot;</span><span class="w">       </span><span class="c1"># Block task</span>
-</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>/task-unblock<span class="w"> </span>TASK-XXX<span class="w">              </span><span class="c1"># Unblock task</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Task Management</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>/task-create<span class="w"> </span><span class="s2">&quot;Title&quot;</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>/task-work<span class="w"> </span>TASK-XXX
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>/task-work<span class="w"> </span>TASK-XXX<span class="w"> </span>--micro<span class="w">          </span><span class="c1"># Micro-task workflow</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>/task-complete<span class="w"> </span>TASK-XXX
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="c1"># Task States</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>/task-status<span class="w">                         </span><span class="c1"># Show all tasks</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>/task-status<span class="w"> </span>TASK-XXX<span class="w">               </span><span class="c1"># Show specific task</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>/task-block<span class="w"> </span>TASK-XXX<span class="w"> </span><span class="s2">&quot;reason&quot;</span><span class="w">       </span><span class="c1"># Block task</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>/task-unblock<span class="w"> </span>TASK-XXX<span class="w">              </span><span class="c1"># Unblock task</span>
 </span></code></pre></div>
 <p><strong>Output Artifacts</strong>:</p>
 <ul>
@@ -2957,25 +3275,25 @@
 <h3 id="scenario-3-full-integration">Scenario 3: Full Integration<a class="headerlink" href="#scenario-3-full-integration" title="Link to this section">&para;</a></h3>
 <p><strong>Use Case</strong>: Enterprise teams needing complete requirements-to-implementation traceability.</p>
 <p><strong>Installation (Either Order)</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Option A: Install require-kit first</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/requirekit/require-kit.git
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nb">cd</span><span class="w"> </span>require-kit
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>./installer/scripts/install.sh
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
-</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="nb">cd</span><span class="w"> </span>..
-</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/taskwright-dev/taskwright.git
-</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="nb">cd</span><span class="w"> </span>taskwright
-</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>./installer/scripts/install.sh
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
-</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="c1"># Option B: Install taskwright first (same result)</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Option A: Install require-kit first</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/requirekit/require-kit.git
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nb">cd</span><span class="w"> </span>require-kit
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>./installer/scripts/install.sh
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="nb">cd</span><span class="w"> </span>..
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/guardkit/guardkit.git
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="nb">cd</span><span class="w"> </span>guardkit
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>./installer/scripts/install.sh
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="c1"># Option B: Install guardkit first (same result)</span>
 </span></code></pre></div>
 <p><strong>Verification</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>ls<span class="w"> </span>~/.agentecflow/*.marker
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="c1"># Should show: require-kit.marker + taskwright.marker</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>/gather-requirements<span class="w"> </span>--version
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>/task-work<span class="w"> </span>--version
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="c1"># Both should respond</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ls<span class="w"> </span>~/.agentecflow/*.marker
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="c1"># Should show: require-kit.marker + guardkit.marker</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>/gather-requirements<span class="w"> </span>--version
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>/task-work<span class="w"> </span>--version
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="c1"># Both should respond</span>
 </span></code></pre></div>
 <p><strong>Available Commands</strong>: ALL commands from both packages</p>
 <p><strong>Enhanced Features</strong>:</p>
@@ -2993,7 +3311,7 @@
 <tr>
 <th>Feature</th>
 <th>require-kit Only</th>
-<th>taskwright Only</th>
+<th>guardkit Only</th>
 <th>Both Integrated</th>
 </tr>
 </thead>
@@ -3150,9 +3468,9 @@
 </tr>
 <tr>
 <td>PM Tool Export</td>
-<td>✅ Jira, Linear, GitHub, Azure</td>
+<td>⚠️ Metadata Ready (API not implemented)</td>
 <td>❌</td>
-<td>✅ Full</td>
+<td>⚠️ Metadata Ready</td>
 </tr>
 <tr>
 <td>Requirements Context</td>
@@ -3175,127 +3493,128 @@
 <hr />
 <h2 id="common-workflows">Common Workflows<a class="headerlink" href="#common-workflows" title="Link to this section">&para;</a></h2>
 <h3 id="workflow-1-requirements-driven-development-full-integration">Workflow 1: Requirements-Driven Development (Full Integration)<a class="headerlink" href="#workflow-1-requirements-driven-development-full-integration" title="Link to this section">&para;</a></h3>
-<p><strong>Prerequisites</strong>: Both require-kit and taskwright installed</p>
+<p><strong>Prerequisites</strong>: Both require-kit and guardkit installed</p>
 <p><strong>Complete Workflow</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Phase 1: Requirements Gathering (require-kit)</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>/gather-requirements
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="c1"># Interactive Q&amp;A captures complete requirements</span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="c1"># Phase 2: Formalize Requirements (require-kit)</span>
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>/formalize-ears
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="c1"># Output: docs/requirements/REQ-001.md (EARS notation)</span>
-</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>
-</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="c1"># Phase 3: Create Epic (require-kit)</span>
-</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>/epic-create<span class="w"> </span><span class="s2">&quot;User Authentication System&quot;</span>
-</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="c1"># Output: docs/epics/EPIC-001.md</span>
-</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>
-</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="c1"># Phase 4: Create Feature (require-kit)</span>
-</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>/feature-create<span class="w"> </span><span class="s2">&quot;Login Functionality&quot;</span><span class="w"> </span>epic:EPIC-001
-</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="c1"># Output: docs/features/FEAT-001.md</span>
-</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a>
-</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="c1"># Phase 5: Generate BDD Scenarios (require-kit)</span>
-</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a>/generate-bdd<span class="w"> </span>FEAT-001
-</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="c1"># Output: docs/bdd/BDD-001.feature (Gherkin scenarios)</span>
-</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a>
-</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="c1"># Phase 6: Generate Task Specifications (require-kit)</span>
-</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>/feature-generate-tasks<span class="w"> </span>FEAT-001
-</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="c1"># Output: tasks/backlog/TASK-001.md (with links to REQ, BDD, FEAT)</span>
-</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>
-</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="c1"># Phase 7: Execute Task (taskwright)</span>
-</span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a>/task-work<span class="w"> </span>TASK-001
-</span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a><span class="c1"># - Loads requirements context from REQ-001</span>
-</span><span id="__span-15-28"><a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a><span class="c1"># - References BDD-001 for acceptance criteria</span>
-</span><span id="__span-15-29"><a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a><span class="c1"># - Implements with TDD workflow</span>
-</span><span id="__span-15-30"><a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a><span class="c1"># - Runs quality gates</span>
-</span><span id="__span-15-31"><a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a><span class="c1"># Output: Implementation with test coverage</span>
-</span><span id="__span-15-32"><a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a>
-</span><span id="__span-15-33"><a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a><span class="c1"># Phase 8: Complete Task (taskwright)</span>
-</span><span id="__span-15-34"><a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a>/task-complete<span class="w"> </span>TASK-001
-</span><span id="__span-15-35"><a id="__codelineno-15-35" name="__codelineno-15-35" href="#__codelineno-15-35"></a><span class="c1"># - Verifies all tests passing</span>
-</span><span id="__span-15-36"><a id="__codelineno-15-36" name="__codelineno-15-36" href="#__codelineno-15-36"></a><span class="c1"># - Confirms coverage ≥80%</span>
-</span><span id="__span-15-37"><a id="__codelineno-15-37" name="__codelineno-15-37" href="#__codelineno-15-37"></a><span class="c1"># - Archives with full traceability</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Phase 1: Requirements Gathering (require-kit)</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>/gather-requirements
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="c1"># Interactive Q&amp;A captures complete requirements</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="c1"># Phase 2: Formalize Requirements (require-kit)</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>/formalize-ears
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="c1"># Output: docs/requirements/REQ-001.md (EARS notation)</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="c1"># Phase 3: Create Epic (require-kit)</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>/epic-create<span class="w"> </span><span class="s2">&quot;User Authentication System&quot;</span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="c1"># Output: docs/epics/EPIC-001.md</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="c1"># Phase 4: Create Feature (require-kit)</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>/feature-create<span class="w"> </span><span class="s2">&quot;Login Functionality&quot;</span><span class="w"> </span>epic:EPIC-001
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="c1"># Output: docs/features/FEAT-001.md</span>
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="c1"># Phase 5: Generate BDD Scenarios (require-kit)</span>
+</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>/generate-bdd<span class="w"> </span>FEAT-001
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="c1"># Output: docs/bdd/BDD-001.feature (Gherkin scenarios)</span>
+</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>
+</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="c1"># Phase 6: Generate Task Specifications (require-kit)</span>
+</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>/feature-generate-tasks<span class="w"> </span>FEAT-001
+</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a><span class="c1"># Output: tasks/backlog/TASK-001.md (with links to REQ, BDD, FEAT)</span>
+</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>
+</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a><span class="c1"># Phase 7: Execute Task (guardkit)</span>
+</span><span id="__span-21-26"><a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>/task-work<span class="w"> </span>TASK-001
+</span><span id="__span-21-27"><a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a><span class="c1"># - Loads requirements context from REQ-001</span>
+</span><span id="__span-21-28"><a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a><span class="c1"># - References BDD-001 for acceptance criteria</span>
+</span><span id="__span-21-29"><a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a><span class="c1"># - Implements with TDD workflow</span>
+</span><span id="__span-21-30"><a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a><span class="c1"># - Runs quality gates</span>
+</span><span id="__span-21-31"><a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a><span class="c1"># Output: Implementation with test coverage</span>
+</span><span id="__span-21-32"><a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a>
+</span><span id="__span-21-33"><a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a><span class="c1"># Phase 8: Complete Task (guardkit)</span>
+</span><span id="__span-21-34"><a id="__codelineno-21-34" name="__codelineno-21-34" href="#__codelineno-21-34"></a>/task-complete<span class="w"> </span>TASK-001
+</span><span id="__span-21-35"><a id="__codelineno-21-35" name="__codelineno-21-35" href="#__codelineno-21-35"></a><span class="c1"># - Verifies all tests passing</span>
+</span><span id="__span-21-36"><a id="__codelineno-21-36" name="__codelineno-21-36" href="#__codelineno-21-36"></a><span class="c1"># - Confirms coverage ≥80%</span>
+</span><span id="__span-21-37"><a id="__codelineno-21-37" name="__codelineno-21-37" href="#__codelineno-21-37"></a><span class="c1"># - Archives with full traceability</span>
 </span></code></pre></div>
 <p><strong>Result</strong>: Complete traceability chain:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>REQ-001 → BDD-001 → FEAT-001 → TASK-001 → Implementation
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>(EARS)    (Gherkin) (Feature)  (Task)     (Code + Tests)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>REQ-001 → BDD-001 → FEAT-001 → TASK-001 → Implementation
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>(EARS)    (Gherkin) (Feature)  (Task)     (Code + Tests)
 </span></code></pre></div>
-<h3 id="workflow-2-lean-startup-taskwright-only">Workflow 2: Lean Startup (taskwright Only)<a class="headerlink" href="#workflow-2-lean-startup-taskwright-only" title="Link to this section">&para;</a></h3>
-<p><strong>Prerequisites</strong>: taskwright only</p>
+<h3 id="workflow-2-lean-startup-guardkit-only">Workflow 2: Lean Startup (guardkit Only)<a class="headerlink" href="#workflow-2-lean-startup-guardkit-only" title="Link to this section">&para;</a></h3>
+<p><strong>Prerequisites</strong>: guardkit only</p>
 <p><strong>Rapid Iteration Workflow</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Create task from user story or issue</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>/task-create<span class="w"> </span><span class="s2">&quot;Add email validation to signup form&quot;</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="c1"># Output: tasks/backlog/TASK-042.md</span>
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="c1"># Execute immediately</span>
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>/task-work<span class="w"> </span>TASK-042
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="c1"># - TDD implementation</span>
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="c1"># - Quality gates (tests, coverage)</span>
-</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="c1"># - No requirements overhead</span>
-</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>
-</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="c1"># Complete quickly</span>
-</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>/task-complete<span class="w"> </span>TASK-042
-</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="c1"># Output: Working feature with tests</span>
-</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>
-</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="c1"># Iterate fast</span>
-</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>/task-create<span class="w"> </span><span class="s2">&quot;Improve validation error messages&quot;</span>
-</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>/task-work<span class="w"> </span>TASK-043
-</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>/task-complete<span class="w"> </span>TASK-043
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Create task from user story or issue</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>/task-create<span class="w"> </span><span class="s2">&quot;Add email validation to signup form&quot;</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="c1"># Output: tasks/backlog/TASK-042.md</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="c1"># Execute immediately</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>/task-work<span class="w"> </span>TASK-042
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="c1"># - TDD implementation</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="c1"># - Quality gates (tests, coverage)</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="c1"># - No requirements overhead</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="c1"># Complete quickly</span>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>/task-complete<span class="w"> </span>TASK-042
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="c1"># Output: Working feature with tests</span>
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a>
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a><span class="c1"># Iterate fast</span>
+</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a>/task-create<span class="w"> </span><span class="s2">&quot;Improve validation error messages&quot;</span>
+</span><span id="__span-23-17"><a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a>/task-work<span class="w"> </span>TASK-043
+</span><span id="__span-23-18"><a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a>/task-complete<span class="w"> </span>TASK-043
 </span></code></pre></div>
 <p><strong>When to Add require-kit</strong>: When you need to scale, add compliance, or require traceability:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1"># Install require-kit</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="nb">cd</span><span class="w"> </span>../require-kit
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>./installer/scripts/install.sh
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="c1"># Now add requirements retroactively</span>
-</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>/gather-requirements<span class="w">  </span><span class="c1"># Document existing features</span>
-</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>/formalize-ears<span class="w">      </span><span class="c1"># Create EARS requirements</span>
-</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>/epic-create<span class="w"> </span><span class="s2">&quot;User Management&quot;</span>
-</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>/feature-create<span class="w"> </span><span class="s2">&quot;Signup Validation&quot;</span><span class="w"> </span>epic:EPIC-001
-</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>
-</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="c1"># Link existing tasks to features</span>
-</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="c1"># Edit tasks/completed/TASK-042.md frontmatter:</span>
-</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="c1"># feature: FEAT-001</span>
-</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>
-</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="c1"># Continue with full workflow for new features</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Install require-kit</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nb">cd</span><span class="w"> </span>../require-kit
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>./installer/scripts/install.sh
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="c1"># Now add requirements retroactively</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>/gather-requirements<span class="w">  </span><span class="c1"># Document existing features</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>/formalize-ears<span class="w">      </span><span class="c1"># Create EARS requirements</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>/epic-create<span class="w"> </span><span class="s2">&quot;User Management&quot;</span>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>/feature-create<span class="w"> </span><span class="s2">&quot;Signup Validation&quot;</span><span class="w"> </span>epic:EPIC-001
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="c1"># Link existing tasks to features</span>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="c1"># Edit tasks/completed/TASK-042.md frontmatter:</span>
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="c1"># feature: FEAT-001</span>
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a>
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="c1"># Continue with full workflow for new features</span>
 </span></code></pre></div>
-<h3 id="workflow-3-requirements-export-to-pm-tools-require-kit-only">Workflow 3: Requirements Export to PM Tools (require-kit Only)<a class="headerlink" href="#workflow-3-requirements-export-to-pm-tools-require-kit-only" title="Link to this section">&para;</a></h3>
+<h3 id="workflow-3-requirements-with-pm-ready-metadata-require-kit-only">Workflow 3: Requirements with PM-Ready Metadata (require-kit Only)<a class="headerlink" href="#workflow-3-requirements-with-pm-ready-metadata-require-kit-only" title="Link to this section">&para;</a></h3>
 <p><strong>Prerequisites</strong>: require-kit only</p>
-<p><strong>PM Tool Integration Workflow</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># Gather and formalize requirements</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>/gather-requirements
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>/formalize-ears
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1"># Output: docs/requirements/REQ-001.md</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="c1"># Create epic and features</span>
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>/epic-create<span class="w"> </span><span class="s2">&quot;E-Commerce Platform&quot;</span>
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>/feature-create<span class="w"> </span><span class="s2">&quot;Shopping Cart&quot;</span><span class="w"> </span>epic:EPIC-001
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>/feature-create<span class="w"> </span><span class="s2">&quot;Checkout Process&quot;</span><span class="w"> </span>epic:EPIC-001
-</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
-</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="c1"># Generate BDD acceptance criteria</span>
-</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>/generate-bdd<span class="w"> </span>FEAT-001
-</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>/generate-bdd<span class="w"> </span>FEAT-002
-</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>
-</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="c1"># Generate task specifications</span>
-</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>/feature-generate-tasks<span class="w"> </span>FEAT-001
-</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>/feature-generate-tasks<span class="w"> </span>FEAT-002
-</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>
-</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="c1"># Export to Jira</span>
-</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>/feature-sync<span class="w"> </span>FEAT-001<span class="w"> </span>--jira
-</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>/feature-sync<span class="w"> </span>FEAT-002<span class="w"> </span>--jira
-</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a><span class="c1"># Output: Jira tickets with:</span>
-</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a><span class="c1"># - User story from feature description</span>
-</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a><span class="c1"># - Acceptance criteria from BDD scenarios</span>
-</span><span id="__span-19-25"><a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a><span class="c1"># - Linked requirements (REQ-001)</span>
-</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a><span class="c1"># - Linked epic (EPIC-001)</span>
-</span><span id="__span-19-27"><a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>
-</span><span id="__span-19-28"><a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a><span class="c1"># Export to Linear</span>
-</span><span id="__span-19-29"><a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a>/feature-sync<span class="w"> </span>FEAT-001<span class="w"> </span>--linear
-</span><span id="__span-19-30"><a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a><span class="c1"># Output: Linear issue with full traceability</span>
-</span><span id="__span-19-31"><a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>
-</span><span id="__span-19-32"><a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a><span class="c1"># Your team implements in Jira/Linear</span>
-</span><span id="__span-19-33"><a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a><span class="c1"># No need for taskwright if you have existing PM workflow</span>
+<p><strong>PM Tool Preparation Workflow</strong>:</p>
+<blockquote>
+<p><strong>Note</strong>: The <code>/feature-sync</code> command is specification-only. RequireKit provides structured
+metadata in feature files ready for export, but actual API integration requires MCP server
+or custom implementation. See <a href="../integration/pm-tools/">docs/integration/pm-tools.md</a>.</p>
+</blockquote>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Gather and formalize requirements</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>/gather-requirements
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>/formalize-ears
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1"># Output: docs/requirements/REQ-001.md</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="c1"># Create epic and features</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>/epic-create<span class="w"> </span><span class="s2">&quot;E-Commerce Platform&quot;</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>/feature-create<span class="w"> </span><span class="s2">&quot;Shopping Cart&quot;</span><span class="w"> </span>epic:EPIC-001
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>/feature-create<span class="w"> </span><span class="s2">&quot;Checkout Process&quot;</span><span class="w"> </span>epic:EPIC-001
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="c1"># Generate BDD acceptance criteria</span>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>/generate-bdd<span class="w"> </span>FEAT-001
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>/generate-bdd<span class="w"> </span>FEAT-002
+</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>
+</span><span id="__span-25-15"><a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="c1"># Generate task specifications</span>
+</span><span id="__span-25-16"><a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a>/feature-generate-tasks<span class="w"> </span>FEAT-001
+</span><span id="__span-25-17"><a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>/feature-generate-tasks<span class="w"> </span>FEAT-002
+</span><span id="__span-25-18"><a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a>
+</span><span id="__span-25-19"><a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a><span class="c1"># Feature files now contain PM-ready metadata:</span>
+</span><span id="__span-25-20"><a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a><span class="c1"># - docs/features/FEAT-001.md has YAML frontmatter with:</span>
+</span><span id="__span-25-21"><a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a><span class="c1">#   - pm_metadata.jira (project, issue_type, priority)</span>
+</span><span id="__span-25-22"><a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a><span class="c1">#   - pm_metadata.linear (team, priority)</span>
+</span><span id="__span-25-23"><a id="__codelineno-25-23" name="__codelineno-25-23" href="#__codelineno-25-23"></a><span class="c1"># - Structured for easy API integration</span>
+</span><span id="__span-25-24"><a id="__codelineno-25-24" name="__codelineno-25-24" href="#__codelineno-25-24"></a><span class="c1"># - See docs/integration/pm-tools.md for field mappings</span>
+</span><span id="__span-25-25"><a id="__codelineno-25-25" name="__codelineno-25-25" href="#__codelineno-25-25"></a>
+</span><span id="__span-25-26"><a id="__codelineno-25-26" name="__codelineno-25-26" href="#__codelineno-25-26"></a><span class="c1"># To actually export to PM tools:</span>
+</span><span id="__span-25-27"><a id="__codelineno-25-27" name="__codelineno-25-27" href="#__codelineno-25-27"></a><span class="c1"># 1. Build custom integration using structured metadata</span>
+</span><span id="__span-25-28"><a id="__codelineno-25-28" name="__codelineno-25-28" href="#__codelineno-25-28"></a><span class="c1"># 2. Or implement MCP server for PM tool APIs</span>
+</span><span id="__span-25-29"><a id="__codelineno-25-29" name="__codelineno-25-29" href="#__codelineno-25-29"></a><span class="c1"># 3. Or manually create tickets using metadata as reference</span>
 </span></code></pre></div>
-<p><strong>Result</strong>: Requirements managed in require-kit, execution in external PM tool.</p>
+<p><strong>Result</strong>: Requirements managed in require-kit with structured metadata ready for PM tool integration.</p>
 <hr />
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this section">&para;</a></h2>
 <h3 id="integration-not-detected">Integration Not Detected<a class="headerlink" href="#integration-not-detected" title="Link to this section">&para;</a></h3>
@@ -3307,40 +3626,40 @@
 <ol>
 <li><strong>Check marker files exist</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>ls<span class="w"> </span>-la<span class="w"> </span>~/.agentecflow/*.marker
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="c1"># Should see both:</span>
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># require-kit.marker</span>
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="c1"># taskwright.marker</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>ls<span class="w"> </span>-la<span class="w"> </span>~/.agentecflow/*.marker
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="c1"># Should see both:</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="c1"># require-kit.marker</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="c1"># guardkit.marker</span>
 </span></code></pre></div>
 <ol>
 <li><strong>Verify marker file format</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>cat<span class="w"> </span>~/.agentecflow/require-kit.marker
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="c1"># Expected content:</span>
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># {</span>
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="c1">#   &quot;package&quot;: &quot;require-kit&quot;,</span>
-</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="c1">#   &quot;version&quot;: &quot;1.0.0&quot;,</span>
-</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="c1">#   &quot;installed_at&quot;: &quot;2025-11-03T10:00:00Z&quot;</span>
-</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="c1"># }</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>cat<span class="w"> </span>~/.agentecflow/require-kit.marker
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="c1"># Expected content:</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="c1"># {</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="c1">#   &quot;package&quot;: &quot;require-kit&quot;,</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="c1">#   &quot;version&quot;: &quot;1.0.0&quot;,</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="c1">#   &quot;installed_at&quot;: &quot;2025-11-03T10:00:00Z&quot;</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="c1"># }</span>
 </span></code></pre></div>
 <ol>
 <li><strong>Re-run installers if marker files missing</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">cd</span><span class="w"> </span>/path/to/require-kit
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>./installer/scripts/install.sh<span class="w"> </span>--repair
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="nb">cd</span><span class="w"> </span>/path/to/taskwright
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>./installer/scripts/install.sh<span class="w"> </span>--repair
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nb">cd</span><span class="w"> </span>/path/to/require-kit
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>./installer/scripts/install.sh<span class="w"> </span>--repair
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="nb">cd</span><span class="w"> </span>/path/to/guardkit
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>./installer/scripts/install.sh<span class="w"> </span>--repair
 </span></code></pre></div>
 <ol>
 <li><strong>Check for conflicting installations</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1"># Only one installation should exist</span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>find<span class="w"> </span>~<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;require-kit.marker&quot;</span><span class="w"> </span>-o<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;taskwright.marker&quot;</span>
-</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
-</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="c1"># If multiple found, uninstall and reinstall</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1"># Only one installation should exist</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>find<span class="w"> </span>~<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;require-kit.marker&quot;</span><span class="w"> </span>-o<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;guardkit.marker&quot;</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="c1"># If multiple found, uninstall and reinstall</span>
 </span></code></pre></div>
 <h3 id="commands-not-available">Commands Not Available<a class="headerlink" href="#commands-not-available" title="Link to this section">&para;</a></h3>
 <p><strong>Symptoms</strong>:
@@ -3350,71 +3669,71 @@
 <ol>
 <li><strong>Verify PATH includes agentecflow bin</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>agentecflow
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
-</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="c1"># Should show: ...:/Users/yourusername/.agentecflow/bin:...</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>agentecflow
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="c1"># Should show: ...:/Users/yourusername/.agentecflow/bin:...</span>
 </span></code></pre></div>
 <ol>
 <li><strong>Add to PATH if missing</strong> (add to <code>~/.bashrc</code> or <code>~/.zshrc</code>):</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.agentecflow/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
-</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
-</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="c1"># Reload shell</span>
-</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc<span class="w">  </span><span class="c1"># or source ~/.zshrc</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.agentecflow/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="c1"># Reload shell</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="nb">source</span><span class="w"> </span>~/.bashrc<span class="w">  </span><span class="c1"># or source ~/.zshrc</span>
 </span></code></pre></div>
 <ol>
 <li><strong>Check command executables exist</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>ls<span class="w"> </span>-la<span class="w"> </span>~/.agentecflow/bin/
-</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
-</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="c1"># Should show command wrappers for both packages</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>ls<span class="w"> </span>-la<span class="w"> </span>~/.agentecflow/bin/
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="c1"># Should show command wrappers for both packages</span>
 </span></code></pre></div>
 <ol>
 <li><strong>Restart shell/terminal</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># Sometimes needed for PATH changes</span>
-</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="nb">exec</span><span class="w"> </span><span class="nv">$SHELL</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="c1"># Sometimes needed for PATH changes</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="nb">exec</span><span class="w"> </span><span class="nv">$SHELL</span>
 </span></code></pre></div>
 <h3 id="bdd-mode-questions">BDD Mode Questions<a class="headerlink" href="#bdd-mode-questions" title="Link to this section">&para;</a></h3>
-<p><strong>Question</strong>: "Why doesn't taskwright have a BDD mode anymore?"</p>
+<p><strong>Question</strong>: "Why doesn't guardkit have a BDD mode anymore?"</p>
 <p><strong>Answer</strong>: BDD mode was intentionally removed to respect the Dependency Inversion Principle and avoid circular dependencies between packages.</p>
 <p><strong>The Old Design (Violated DIP)</strong>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>taskwright /task-work --bdd
-</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>    ↓ (calls)
-</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>require-kit /generate-bdd
-</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>    ↓ (generates)
-</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>BDD scenarios
-</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>    ↓ (used by)
-</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>taskwright tests
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>guardkit /task-work --bdd
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>    ↓ (calls)
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>require-kit /generate-bdd
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>    ↓ (generates)
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>BDD scenarios
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>    ↓ (used by)
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>guardkit tests
 </span></code></pre></div>
-<p>This made taskwright (lower-level) depend on require-kit (higher-level), which is a DIP violation.</p>
+<p>This made guardkit (lower-level) depend on require-kit (higher-level), which is a DIP violation.</p>
 <p><strong>The Correct Design (Current)</strong>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>require-kit /generate-bdd
-</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>    ↓ (generates)
-</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>BDD scenarios (artifact)
-</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>    ↓ (consumed by)
-</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>taskwright tests (data dependency only)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>require-kit /generate-bdd
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>    ↓ (generates)
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>BDD scenarios (artifact)
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>    ↓ (consumed by)
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>guardkit tests (data dependency only)
 </span></code></pre></div>
 <p><strong>How to Use BDD with Integration</strong>:</p>
 <ol>
 <li><strong>Generate BDD scenarios first</strong> (require-kit):</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>/generate-bdd<span class="w"> </span>FEAT-001
-</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="c1"># Output: docs/bdd/BDD-001.feature</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>/generate-bdd<span class="w"> </span>FEAT-001
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="c1"># Output: docs/bdd/BDD-001.feature</span>
 </span></code></pre></div>
 <ol>
 <li><strong>Reference in task specifications</strong>:</li>
 </ol>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1"># tasks/backlog/TASK-001.md frontmatter</span>
-</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="nt">bdd_scenarios</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">BDD-001</span><span class="p p-Indicator">]</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="c1"># tasks/backlog/TASK-001.md frontmatter</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="nt">bdd_scenarios</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">BDD-001</span><span class="p p-Indicator">]</span>
 </span></code></pre></div>
 <ol>
-<li><strong>Execute task</strong> (taskwright loads BDD as acceptance criteria):</li>
+<li><strong>Execute task</strong> (guardkit loads BDD as acceptance criteria):</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>/task-work<span class="w"> </span>TASK-001
-</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="c1"># taskwright reads BDD-001.feature for acceptance criteria</span>
-</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="c1"># implements tests based on scenarios</span>
-</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="c1"># no code dependency on require-kit</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>/task-work<span class="w"> </span>TASK-001
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="c1"># guardkit reads BDD-001.feature for acceptance criteria</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="c1"># implements tests based on scenarios</span>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="c1"># no code dependency on require-kit</span>
 </span></code></pre></div>
 <p><strong>Restoration Documentation</strong>: If your team requires the old BDD mode behavior (accepting the DIP violation tradeoff), see <code>docs/architecture/bdd-mode-restoration.md</code> (coming in future release).</p>
 <h3 id="feature-detection-issues">Feature Detection Issues<a class="headerlink" href="#feature-detection-issues" title="Link to this section">&para;</a></h3>
@@ -3422,59 +3741,59 @@
 - Feature matrix shows incorrect availability
 - Commands behave unexpectedly</p>
 <p><strong>Diagnostic Commands</strong>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="c1"># Check feature detection</span>
-</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
-</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="s2">import sys</span>
-</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="s2">sys.path.insert(0, &#39;</span><span class="nv">$HOME</span><span class="s2">/.agentecflow/lib&#39;)</span>
-</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="s2">from feature_detection import get_available_features</span>
-</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="s2">import json</span>
-</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="s2">print(json.dumps(get_available_features(), indent=2))</span>
-</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="s2">&quot;</span>
-</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a>
-</span><span id="__span-33-10"><a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="c1"># Expected output:</span>
-</span><span id="__span-33-11"><a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="c1"># {</span>
-</span><span id="__span-33-12"><a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a><span class="c1">#   &quot;require_kit&quot;: true,</span>
-</span><span id="__span-33-13"><a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a><span class="c1">#   &quot;taskwright&quot;: true,</span>
-</span><span id="__span-33-14"><a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a><span class="c1">#   &quot;integration&quot;: true,</span>
-</span><span id="__span-33-15"><a id="__codelineno-33-15" name="__codelineno-33-15" href="#__codelineno-33-15"></a><span class="c1">#   &quot;features&quot;: {</span>
-</span><span id="__span-33-16"><a id="__codelineno-33-16" name="__codelineno-33-16" href="#__codelineno-33-16"></a><span class="c1">#     &quot;requirements&quot;: true,</span>
-</span><span id="__span-33-17"><a id="__codelineno-33-17" name="__codelineno-33-17" href="#__codelineno-33-17"></a><span class="c1">#     &quot;bdd&quot;: true,</span>
-</span><span id="__span-33-18"><a id="__codelineno-33-18" name="__codelineno-33-18" href="#__codelineno-33-18"></a><span class="c1">#     &quot;task_execution&quot;: true,</span>
-</span><span id="__span-33-19"><a id="__codelineno-33-19" name="__codelineno-33-19" href="#__codelineno-33-19"></a><span class="c1">#     ...</span>
-</span><span id="__span-33-20"><a id="__codelineno-33-20" name="__codelineno-33-20" href="#__codelineno-33-20"></a><span class="c1">#   }</span>
-</span><span id="__span-33-21"><a id="__codelineno-33-21" name="__codelineno-33-21" href="#__codelineno-33-21"></a><span class="c1"># }</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="c1"># Check feature detection</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="s2">import sys</span>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="s2">sys.path.insert(0, &#39;</span><span class="nv">$HOME</span><span class="s2">/.agentecflow/lib&#39;)</span>
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="s2">from feature_detection import get_available_features</span>
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="s2">import json</span>
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="s2">print(json.dumps(get_available_features(), indent=2))</span>
+</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a><span class="s2">&quot;</span>
+</span><span id="__span-39-9"><a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a>
+</span><span id="__span-39-10"><a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a><span class="c1"># Expected output:</span>
+</span><span id="__span-39-11"><a id="__codelineno-39-11" name="__codelineno-39-11" href="#__codelineno-39-11"></a><span class="c1"># {</span>
+</span><span id="__span-39-12"><a id="__codelineno-39-12" name="__codelineno-39-12" href="#__codelineno-39-12"></a><span class="c1">#   &quot;require_kit&quot;: true,</span>
+</span><span id="__span-39-13"><a id="__codelineno-39-13" name="__codelineno-39-13" href="#__codelineno-39-13"></a><span class="c1">#   &quot;guardkit&quot;: true,</span>
+</span><span id="__span-39-14"><a id="__codelineno-39-14" name="__codelineno-39-14" href="#__codelineno-39-14"></a><span class="c1">#   &quot;integration&quot;: true,</span>
+</span><span id="__span-39-15"><a id="__codelineno-39-15" name="__codelineno-39-15" href="#__codelineno-39-15"></a><span class="c1">#   &quot;features&quot;: {</span>
+</span><span id="__span-39-16"><a id="__codelineno-39-16" name="__codelineno-39-16" href="#__codelineno-39-16"></a><span class="c1">#     &quot;requirements&quot;: true,</span>
+</span><span id="__span-39-17"><a id="__codelineno-39-17" name="__codelineno-39-17" href="#__codelineno-39-17"></a><span class="c1">#     &quot;bdd&quot;: true,</span>
+</span><span id="__span-39-18"><a id="__codelineno-39-18" name="__codelineno-39-18" href="#__codelineno-39-18"></a><span class="c1">#     &quot;task_execution&quot;: true,</span>
+</span><span id="__span-39-19"><a id="__codelineno-39-19" name="__codelineno-39-19" href="#__codelineno-39-19"></a><span class="c1">#     ...</span>
+</span><span id="__span-39-20"><a id="__codelineno-39-20" name="__codelineno-39-20" href="#__codelineno-39-20"></a><span class="c1">#   }</span>
+</span><span id="__span-39-21"><a id="__codelineno-39-21" name="__codelineno-39-21" href="#__codelineno-39-21"></a><span class="c1"># }</span>
 </span></code></pre></div>
 <p><strong>Solutions</strong>:</p>
 <ol>
 <li><strong>If feature detection fails</strong>, verify Python path:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>ls<span class="w"> </span>~/.agentecflow/lib/feature_detection.py
-</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="c1"># Should exist</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>ls<span class="w"> </span>~/.agentecflow/lib/feature_detection.py
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="c1"># Should exist</span>
 </span></code></pre></div>
 <ol>
 <li><strong>Check for multiple installations</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>find<span class="w"> </span>~<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;.agentecflow&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null
-</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>
-</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="c1"># Should only find one: ~/.agentecflow</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>find<span class="w"> </span>~<span class="w"> </span>-type<span class="w"> </span>d<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;.agentecflow&quot;</span><span class="w"> </span><span class="m">2</span>&gt;/dev/null
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="c1"># Should only find one: ~/.agentecflow</span>
 </span></code></pre></div>
 <ol>
 <li><strong>Clear and reinstall</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>rm<span class="w"> </span>-rf<span class="w"> </span>~/.agentecflow
-</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="c1"># Reinstall both packages</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>rm<span class="w"> </span>-rf<span class="w"> </span>~/.agentecflow
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="c1"># Reinstall both packages</span>
 </span></code></pre></div>
 <hr />
 <h2 id="migration-guides">Migration Guides<a class="headerlink" href="#migration-guides" title="Link to this section">&para;</a></h2>
 <h3 id="from-monolithic-ai-engineer-to-split-packages">From Monolithic ai-engineer to Split Packages<a class="headerlink" href="#from-monolithic-ai-engineer-to-split-packages" title="Link to this section">&para;</a></h3>
-<p><strong>Context</strong>: The original <code>ai-engineer</code> system was split into <code>require-kit</code> and <code>taskwright</code> to provide standalone, composable packages.</p>
+<p><strong>Context</strong>: The original <code>ai-engineer</code> system was split into <code>require-kit</code> and <code>guardkit</code> to provide standalone, composable packages.</p>
 <p><strong>Migration Steps</strong>:</p>
 <ol>
 <li><strong>Uninstall old system</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="c1"># If you have old ai-engineer installed</span>
-</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>~/.agentecflow
-</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="c1"># or use uninstaller if provided</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="c1"># If you have old ai-engineer installed</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>~/.agentecflow
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="c1"># or use uninstaller if provided</span>
 </span></code></pre></div>
 <ol>
 <li>
@@ -3485,7 +3804,7 @@
 </li>
 <li>Requirements only → Install require-kit</li>
 <li>
-<p>Implementation only → Install taskwright</p>
+<p>Implementation only → Install guardkit</p>
 </li>
 <li>
 <p><strong>Install new packages</strong> (see Installation Scenarios above)</p>
@@ -3494,42 +3813,42 @@
 <p><strong>Migrate existing files</strong>:</p>
 </li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="c1"># Old structure:</span>
-</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="c1"># .ai-engineer/requirements/</span>
-</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="c1"># .ai-engineer/bdd/</span>
-</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="c1"># .ai-engineer/tasks/</span>
-</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>
-</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a><span class="c1"># New structure:</span>
-</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a><span class="c1"># docs/requirements/</span>
-</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a><span class="c1"># docs/bdd/</span>
-</span><span id="__span-38-9"><a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a><span class="c1"># tasks/</span>
-</span><span id="__span-38-10"><a id="__codelineno-38-10" name="__codelineno-38-10" href="#__codelineno-38-10"></a>
-</span><span id="__span-38-11"><a id="__codelineno-38-11" name="__codelineno-38-11" href="#__codelineno-38-11"></a><span class="c1"># Copy files if needed</span>
-</span><span id="__span-38-12"><a id="__codelineno-38-12" name="__codelineno-38-12" href="#__codelineno-38-12"></a>cp<span class="w"> </span>-r<span class="w"> </span>~/.ai-engineer/requirements<span class="w"> </span>docs/
-</span><span id="__span-38-13"><a id="__codelineno-38-13" name="__codelineno-38-13" href="#__codelineno-38-13"></a>cp<span class="w"> </span>-r<span class="w"> </span>~/.ai-engineer/bdd<span class="w"> </span>docs/
-</span><span id="__span-38-14"><a id="__codelineno-38-14" name="__codelineno-38-14" href="#__codelineno-38-14"></a>cp<span class="w"> </span>-r<span class="w"> </span>~/.ai-engineer/tasks<span class="w"> </span>tasks/
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="c1"># Old structure:</span>
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="c1"># .ai-engineer/requirements/</span>
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="c1"># .ai-engineer/bdd/</span>
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="c1"># .ai-engineer/tasks/</span>
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5" href="#__codelineno-44-5"></a>
+</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6" href="#__codelineno-44-6"></a><span class="c1"># New structure:</span>
+</span><span id="__span-44-7"><a id="__codelineno-44-7" name="__codelineno-44-7" href="#__codelineno-44-7"></a><span class="c1"># docs/requirements/</span>
+</span><span id="__span-44-8"><a id="__codelineno-44-8" name="__codelineno-44-8" href="#__codelineno-44-8"></a><span class="c1"># docs/bdd/</span>
+</span><span id="__span-44-9"><a id="__codelineno-44-9" name="__codelineno-44-9" href="#__codelineno-44-9"></a><span class="c1"># tasks/</span>
+</span><span id="__span-44-10"><a id="__codelineno-44-10" name="__codelineno-44-10" href="#__codelineno-44-10"></a>
+</span><span id="__span-44-11"><a id="__codelineno-44-11" name="__codelineno-44-11" href="#__codelineno-44-11"></a><span class="c1"># Copy files if needed</span>
+</span><span id="__span-44-12"><a id="__codelineno-44-12" name="__codelineno-44-12" href="#__codelineno-44-12"></a>cp<span class="w"> </span>-r<span class="w"> </span>~/.ai-engineer/requirements<span class="w"> </span>docs/
+</span><span id="__span-44-13"><a id="__codelineno-44-13" name="__codelineno-44-13" href="#__codelineno-44-13"></a>cp<span class="w"> </span>-r<span class="w"> </span>~/.ai-engineer/bdd<span class="w"> </span>docs/
+</span><span id="__span-44-14"><a id="__codelineno-44-14" name="__codelineno-44-14" href="#__codelineno-44-14"></a>cp<span class="w"> </span>-r<span class="w"> </span>~/.ai-engineer/tasks<span class="w"> </span>tasks/
 </span></code></pre></div>
 <ol>
 <li><strong>Verify commands work</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>/gather-requirements<span class="w"> </span>--version
-</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>/task-work<span class="w"> </span>--version
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>/gather-requirements<span class="w"> </span>--version
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>/task-work<span class="w"> </span>--version
 </span></code></pre></div>
 <p><strong>Backward Compatibility</strong>: Old marker files and command names are NOT compatible. Clean installation required.</p>
 <h3 id="from-require-kit-standalone-to-full-integration">From require-kit Standalone to Full Integration<a class="headerlink" href="#from-require-kit-standalone-to-full-integration" title="Link to this section">&para;</a></h3>
 <p><strong>When to Migrate</strong>: When you want to add implementation workflow and quality gates to your requirements process.</p>
 <p><strong>Migration Steps</strong>:</p>
 <ol>
-<li><strong>Install taskwright</strong>:</li>
+<li><strong>Install guardkit</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="nb">cd</span><span class="w"> </span>/path/to/taskwright
-</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>./installer/scripts/install.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="nb">cd</span><span class="w"> </span>/path/to/guardkit
+</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>./installer/scripts/install.sh
 </span></code></pre></div>
 <ol>
 <li><strong>Verify integration</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>ls<span class="w"> </span>~/.agentecflow/*.marker
-</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="c1"># Should show both markers</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>ls<span class="w"> </span>~/.agentecflow/*.marker
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a><span class="c1"># Should show both markers</span>
 </span></code></pre></div>
 <ol>
 <li>
@@ -3539,86 +3858,86 @@
 <p><strong>New capabilities available immediately</strong>:</p>
 </li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="c1"># Tasks now link to requirements</span>
-</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a>/feature-generate-tasks<span class="w"> </span>FEAT-001
-</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="c1"># Output: tasks with requirements context</span>
-</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a>
-</span><span id="__span-42-5"><a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="c1"># Execute with full context</span>
-</span><span id="__span-42-6"><a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a>/task-work<span class="w"> </span>TASK-001
-</span><span id="__span-42-7"><a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a><span class="c1"># Loads REQ-001 and BDD-001 automatically</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="c1"># Tasks now link to requirements</span>
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>/feature-generate-tasks<span class="w"> </span>FEAT-001
+</span><span id="__span-48-3"><a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a><span class="c1"># Output: tasks with requirements context</span>
+</span><span id="__span-48-4"><a id="__codelineno-48-4" name="__codelineno-48-4" href="#__codelineno-48-4"></a>
+</span><span id="__span-48-5"><a id="__codelineno-48-5" name="__codelineno-48-5" href="#__codelineno-48-5"></a><span class="c1"># Execute with full context</span>
+</span><span id="__span-48-6"><a id="__codelineno-48-6" name="__codelineno-48-6" href="#__codelineno-48-6"></a>/task-work<span class="w"> </span>TASK-001
+</span><span id="__span-48-7"><a id="__codelineno-48-7" name="__codelineno-48-7" href="#__codelineno-48-7"></a><span class="c1"># Loads REQ-001 and BDD-001 automatically</span>
 </span></code></pre></div>
 <ol>
 <li><strong>Update workflows</strong>: Start using combined workflow (see Workflow 1 above).</li>
 </ol>
 <p><strong>No Breaking Changes</strong>: All existing require-kit commands continue to work identically.</p>
-<h3 id="from-taskwright-standalone-to-full-integration">From taskwright Standalone to Full Integration<a class="headerlink" href="#from-taskwright-standalone-to-full-integration" title="Link to this section">&para;</a></h3>
+<h3 id="from-guardkit-standalone-to-full-integration">From guardkit Standalone to Full Integration<a class="headerlink" href="#from-guardkit-standalone-to-full-integration" title="Link to this section">&para;</a></h3>
 <p><strong>When to Migrate</strong>: When you want to add requirements traceability and BDD scenarios to your task execution workflow.</p>
 <p><strong>Migration Steps</strong>:</p>
 <ol>
 <li><strong>Install require-kit</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="nb">cd</span><span class="w"> </span>/path/to/require-kit
-</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>./installer/scripts/install.sh
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="nb">cd</span><span class="w"> </span>/path/to/require-kit
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a>./installer/scripts/install.sh
 </span></code></pre></div>
 <ol>
 <li><strong>Verify integration</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>ls<span class="w"> </span>~/.agentecflow/*.marker
-</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="c1"># Should show both markers</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>ls<span class="w"> </span>~/.agentecflow/*.marker
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="c1"># Should show both markers</span>
 </span></code></pre></div>
 <ol>
 <li><strong>Optionally add requirements to existing tasks</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="c1"># For critical/completed tasks, add requirements retroactively</span>
-</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a>/gather-requirements
-</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="c1"># Answer questions about existing feature</span>
-</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a>
-</span><span id="__span-45-5"><a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a>/formalize-ears
-</span><span id="__span-45-6"><a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a><span class="c1"># Output: docs/requirements/REQ-010.md</span>
-</span><span id="__span-45-7"><a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a>
-</span><span id="__span-45-8"><a id="__codelineno-45-8" name="__codelineno-45-8" href="#__codelineno-45-8"></a><span class="c1"># Edit completed task frontmatter</span>
-</span><span id="__span-45-9"><a id="__codelineno-45-9" name="__codelineno-45-9" href="#__codelineno-45-9"></a><span class="c1"># tasks/completed/TASK-042.md:</span>
-</span><span id="__span-45-10"><a id="__codelineno-45-10" name="__codelineno-45-10" href="#__codelineno-45-10"></a><span class="c1"># requirements: [REQ-010]</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="c1"># For critical/completed tasks, add requirements retroactively</span>
+</span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>/gather-requirements
+</span><span id="__span-51-3"><a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="c1"># Answer questions about existing feature</span>
+</span><span id="__span-51-4"><a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a>
+</span><span id="__span-51-5"><a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a>/formalize-ears
+</span><span id="__span-51-6"><a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a><span class="c1"># Output: docs/requirements/REQ-010.md</span>
+</span><span id="__span-51-7"><a id="__codelineno-51-7" name="__codelineno-51-7" href="#__codelineno-51-7"></a>
+</span><span id="__span-51-8"><a id="__codelineno-51-8" name="__codelineno-51-8" href="#__codelineno-51-8"></a><span class="c1"># Edit completed task frontmatter</span>
+</span><span id="__span-51-9"><a id="__codelineno-51-9" name="__codelineno-51-9" href="#__codelineno-51-9"></a><span class="c1"># tasks/completed/TASK-042.md:</span>
+</span><span id="__span-51-10"><a id="__codelineno-51-10" name="__codelineno-51-10" href="#__codelineno-51-10"></a><span class="c1"># requirements: [REQ-010]</span>
 </span></code></pre></div>
 <ol>
 <li><strong>Use full workflow for new features</strong>:</li>
 </ol>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="c1"># New features start with requirements</span>
-</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a>/gather-requirements
-</span><span id="__span-46-3"><a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a>/formalize-ears
-</span><span id="__span-46-4"><a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a>/epic-create<span class="w"> </span><span class="s2">&quot;Feature Area&quot;</span>
-</span><span id="__span-46-5"><a id="__codelineno-46-5" name="__codelineno-46-5" href="#__codelineno-46-5"></a>/feature-create<span class="w"> </span><span class="s2">&quot;New Feature&quot;</span><span class="w"> </span>epic:EPIC-001
-</span><span id="__span-46-6"><a id="__codelineno-46-6" name="__codelineno-46-6" href="#__codelineno-46-6"></a>/generate-bdd<span class="w"> </span>FEAT-001
-</span><span id="__span-46-7"><a id="__codelineno-46-7" name="__codelineno-46-7" href="#__codelineno-46-7"></a>/feature-generate-tasks<span class="w"> </span>FEAT-001
-</span><span id="__span-46-8"><a id="__codelineno-46-8" name="__codelineno-46-8" href="#__codelineno-46-8"></a>
-</span><span id="__span-46-9"><a id="__codelineno-46-9" name="__codelineno-46-9" href="#__codelineno-46-9"></a><span class="c1"># Execute as before, now with context</span>
-</span><span id="__span-46-10"><a id="__codelineno-46-10" name="__codelineno-46-10" href="#__codelineno-46-10"></a>/task-work<span class="w"> </span>TASK-043
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="c1"># New features start with requirements</span>
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>/gather-requirements
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>/formalize-ears
+</span><span id="__span-52-4"><a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a>/epic-create<span class="w"> </span><span class="s2">&quot;Feature Area&quot;</span>
+</span><span id="__span-52-5"><a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a>/feature-create<span class="w"> </span><span class="s2">&quot;New Feature&quot;</span><span class="w"> </span>epic:EPIC-001
+</span><span id="__span-52-6"><a id="__codelineno-52-6" name="__codelineno-52-6" href="#__codelineno-52-6"></a>/generate-bdd<span class="w"> </span>FEAT-001
+</span><span id="__span-52-7"><a id="__codelineno-52-7" name="__codelineno-52-7" href="#__codelineno-52-7"></a>/feature-generate-tasks<span class="w"> </span>FEAT-001
+</span><span id="__span-52-8"><a id="__codelineno-52-8" name="__codelineno-52-8" href="#__codelineno-52-8"></a>
+</span><span id="__span-52-9"><a id="__codelineno-52-9" name="__codelineno-52-9" href="#__codelineno-52-9"></a><span class="c1"># Execute as before, now with context</span>
+</span><span id="__span-52-10"><a id="__codelineno-52-10" name="__codelineno-52-10" href="#__codelineno-52-10"></a>/task-work<span class="w"> </span>TASK-043
 </span></code></pre></div>
-<p><strong>No Breaking Changes</strong>: All existing taskwright commands continue to work identically. Existing tasks without requirements continue to execute normally.</p>
+<p><strong>No Breaking Changes</strong>: All existing guardkit commands continue to work identically. Existing tasks without requirements continue to execute normally.</p>
 <hr />
 <h2 id="additional-resources">Additional Resources<a class="headerlink" href="#additional-resources" title="Link to this section">&para;</a></h2>
 <h3 id="documentation">Documentation<a class="headerlink" href="#documentation" title="Link to this section">&para;</a></h3>
 <ul>
 <li><strong>require-kit</strong>: <a href="../README.md">README.md</a>, <a href="../CLAUDE.md">CLAUDE.md</a></li>
-<li><strong>taskwright</strong>: <a href="https://github.com/taskwright-dev/taskwright">taskwright README</a></li>
+<li><strong>guardkit</strong>: <a href="https://github.com/guardkit/guardkit">guardkit README</a></li>
 <li><strong>Architecture</strong>: <a href="../architecture/bidirectional-integration/">docs/architecture/bidirectional-integration.md</a></li>
 </ul>
 <h3 id="command-references">Command References<a class="headerlink" href="#command-references" title="Link to this section">&para;</a></h3>
 <ul>
 <li><strong>require-kit Commands</strong>: See <code>.claude/commands/</code> for command specifications</li>
-<li><strong>taskwright Commands</strong>: See taskwright repository <code>.claude/commands/</code></li>
+<li><strong>guardkit Commands</strong>: See guardkit repository <code>.claude/commands/</code></li>
 </ul>
 <h3 id="support">Support<a class="headerlink" href="#support" title="Link to this section">&para;</a></h3>
 <ul>
 <li><strong>GitHub Issues</strong>: <a href="https://github.com/requirekit/require-kit/issues">require-kit issues</a></li>
-<li><strong>GitHub Issues</strong>: <a href="https://github.com/taskwright-dev/taskwright/issues">taskwright issues</a></li>
+<li><strong>GitHub Issues</strong>: <a href="https://github.com/guardkit/guardkit/issues">guardkit issues</a></li>
 <li><strong>Email</strong>: support@yourorganization.com</li>
 </ul>
 <hr />
 <h2 id="terminology">Terminology<a class="headerlink" href="#terminology" title="Link to this section">&para;</a></h2>
 <p><strong>Consistent terminology across documentation</strong>:</p>
 <ul>
-<li><strong>Package names</strong>: require-kit, taskwright (lowercase, hyphenated)</li>
+<li><strong>Package names</strong>: require-kit, guardkit (lowercase, hyphenated)</li>
 <li><strong>Files</strong>: lowercase-with-hyphens.md</li>
 <li><strong>Package</strong>: Use "package" not "tool" or "system"</li>
 <li><strong>Integration</strong>: Bidirectional optional integration (not "dependency")</li>
@@ -3628,7 +3947,7 @@
 <p><strong>Document Version</strong>: 1.0.0
 <strong>Last Updated</strong>: 2025-11-03
 <strong>Authoritative Source</strong>: This guide in require-kit repository
-<strong>taskwright Copy</strong>: Linked from taskwright repository (not duplicated)</p>
+<strong>guardkit Copy</strong>: Linked from guardkit repository (not duplicated)</p>
 
 
 
@@ -3703,10 +4022,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "search.share", "header.autohide", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "toc.follow", "toc.integrate"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "search.share", "header.autohide", "content.code.copy", "content.code.annotate", "content.tabs.link", "content.tooltips", "toc.follow", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>

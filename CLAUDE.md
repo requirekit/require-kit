@@ -26,8 +26,16 @@ This is a requirements management toolkit using EARS notation for requirements, 
 ### Epic/Feature Management
 ```bash
 /epic-create "Title"                        # Create an epic
+/epic-create "Title" --pattern direct       # Create with direct pattern
 /feature-create "Title" epic:EPIC-XXX       # Create a feature
 /hierarchy-view EPIC-XXX                    # View hierarchy
+```
+
+### Requirements Refinement
+```bash
+/epic-refine EPIC-XXX                       # Iteratively improve epic
+/feature-refine FEAT-XXX                    # Iteratively improve feature
+/requirekit-sync                            # Sync to Graphiti knowledge graph
 ```
 
 ## Interactive Clarification
@@ -48,8 +56,8 @@ See `docs/INTEGRATION-GUIDE.md` for clarification philosophy details.
 
 ```
 docs/                       # Documentation
-├── epics/                 # Epic specifications
-├── features/              # Feature specifications
+├── epics/                 # Epic specifications (support 3 org patterns)
+├── features/              # Feature specifications (optional layer)
 ├── requirements/          # EARS requirements
 ├── bdd/                   # BDD/Gherkin scenarios
 └── guides/                # User guides
@@ -58,6 +66,8 @@ docs/                       # Documentation
 ├── agents/                # Specialized AI agents
 └── commands/              # Command specifications
 ```
+
+**Organisation Patterns**: Epics support three patterns — Standard (Epic → Feature → Task), Direct (Epic → Task), and Mixed (Epic → Feature + Task). See `docs/core-concepts/hierarchy.md` for details.
 
 ## Core AI Agents
 
@@ -110,8 +120,9 @@ Use require-kit standalone for requirements management, or pair it with guardkit
 1. **Gather Requirements**: Interactive Q&A sessions using `/gather-requirements`
 2. **Formalize with EARS**: Convert to structured notation using `/formalize-ears`
 3. **Generate BDD**: Create testable scenarios using `/generate-bdd`
-4. **Organize**: Structure into epics/features using epic/feature commands
-5. **Export**: Provide requirements to implementation systems
+4. **Refine**: Iteratively improve epics and features using `/epic-refine` and `/feature-refine`
+5. **Organize**: Structure into epics/features using epic/feature commands
+6. **Export**: Provide requirements to implementation systems
 
 ## Progressive Disclosure
 
