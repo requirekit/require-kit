@@ -1,0 +1,80 @@
+{
+  "completion_promises": [
+    {
+      "criterion_id": "AC-001",
+      "criterion_text": "Epic frontmatter template includes organisation_pattern, direct_tasks, graphiti_synced fields",
+      "status": "complete",
+      "evidence": "Added organisation_pattern: features, direct_tasks: [], graphiti_synced: false, last_graphiti_sync: null, and completeness_score: 0 fields to the epic frontmatter template in epic-create.md (lines 158-162). Validated by TestFrontmatterFields (6 tests: test_organisation_pattern_field_in_frontmatter, test_direct_tasks_field_in_frontmatter, test_graphiti_synced_field_in_frontmatter, test_last_graphiti_sync_field_in_frontmatter, test_completeness_score_field_in_frontmatter, test_frontmatter_is_valid_yaml).",
+      "test_file": "tests/test_epic_create_org_pattern.py",
+      "implementation_files": ["installer/global/commands/epic-create.md"]
+    },
+    {
+      "criterion_id": "AC-002",
+      "criterion_text": "Default organisation_pattern is features (backward compatible)",
+      "status": "complete",
+      "evidence": "Set organisation_pattern: features in the frontmatter template (line 158). This is the default value for new epics ensuring backward compatibility. Validated by TestDefaultPattern::test_default_pattern_is_features which parses the YAML and asserts the value equals 'features'.",
+      "test_file": "tests/test_epic_create_org_pattern.py",
+      "implementation_files": ["installer/global/commands/epic-create.md"]
+    },
+    {
+      "criterion_id": "AC-003",
+      "criterion_text": "Three patterns documented with when-to-use guidance",
+      "status": "complete",
+      "evidence": "Added comprehensive Organisation Patterns section (lines 215-351) documenting all three patterns: 'direct' (EPIC → TASK, for 3-5 tasks/bug fixes/tech debt), 'features' (EPIC → FEATURE → TASK, for 10+ tasks/complex/team coordination), and 'mixed' (both, for evolving epics). Each pattern includes When to use list, hierarchy example, and creation command. Added Pattern Selection Guidance comparison table. Validated by TestPatternDocumentation (6 tests) and TestAllPatternsComplete (3 tests).",
+      "test_file": "tests/test_epic_create_org_pattern.py",
+      "implementation_files": ["installer/global/commands/epic-create.md"]
+    },
+    {
+      "criterion_id": "AC-004",
+      "criterion_text": "Validation rejects invalid pattern values",
+      "status": "complete",
+      "evidence": "Added validation rule in Validation section (line 522): 'Valid organisation_pattern must be one of: direct, features, mixed'. Also documented in Process step 3 (line 126) that validation includes organisation_pattern value checking. Validated by TestValidationRules (2 tests: test_valid_patterns_specified, test_validation_section_exists).",
+      "test_file": "tests/test_epic_create_org_pattern.py",
+      "implementation_files": ["installer/global/commands/epic-create.md"]
+    },
+    {
+      "criterion_id": "AC-005",
+      "criterion_text": "Mixed pattern produces a warning",
+      "status": "complete",
+      "evidence": "Added warning documentation in mixed pattern section (line 278) with ⚠️ emoji and explicit warning text. Also added validation rule (line 523): 'Mixed pattern selection produces a warning suggesting consistent organisation'. Validated by TestMixedPatternWarning::test_mixed_pattern_warning_documented.",
+      "test_file": "tests/test_epic_create_org_pattern.py",
+      "implementation_files": ["installer/global/commands/epic-create.md"]
+    },
+    {
+      "criterion_id": "AC-006",
+      "criterion_text": "Graphiti push step documented with graceful degradation",
+      "status": "complete",
+      "evidence": "Added Graphiti Push as step 5 in Process section (line 128): 'Push epic episode to Graphiti knowledge graph. This step uses graceful degradation — if Graphiti is unavailable or not configured, the epic markdown is still saved and creation succeeds.' Also added graphiti_synced, last_graphiti_sync fields to frontmatter and Graphiti Sync status to output format (lines 470-471). Validated by TestGraphitiPushStep (2 tests: test_graphiti_push_step_present, test_graphiti_graceful_degradation).",
+      "test_file": "tests/test_epic_create_org_pattern.py",
+      "implementation_files": ["installer/global/commands/epic-create.md"]
+    },
+    {
+      "criterion_id": "AC-007",
+      "criterion_text": "Examples section includes --pattern usage",
+      "status": "complete",
+      "evidence": "Added three --pattern examples to the Examples section (lines 24-31): '--pattern direct', '--pattern features', and '--pattern mixed'. Also added --pattern options to Options section (lines 410-413). Validated by TestPatternExamples (3 tests: test_pattern_flag_in_examples, test_pattern_direct_example, test_epic_create_with_pattern_example).",
+      "test_file": "tests/test_epic_create_org_pattern.py",
+      "implementation_files": ["installer/global/commands/epic-create.md"]
+    }
+  ],
+  "task_id": "TASK-RK01-002",
+  "turn": 1,
+  "files_modified": ["installer/global/commands/epic-create.md"],
+  "files_created": ["tests/test_epic_create_org_pattern.py"],
+  "tests_written": ["tests/test_epic_create_org_pattern.py"],
+  "tests_run": true,
+  "tests_passed": true,
+  "test_output_summary": "26 tests passed, 0 tests failed. Coverage: 94% on test file. All YAML blocks validated as parseable. Frontmatter fields verified present and correctly valued. All three patterns documented with when-to-use guidance confirmed. Validation rules, mixed pattern warning, Graphiti graceful degradation, and --pattern examples all verified.",
+  "implementation_notes": "Updated epic-create.md command specification to support the optional feature layer (REQ-004). Added organisation_pattern, direct_tasks, graphiti_synced, last_graphiti_sync, and completeness_score fields to the frontmatter template with 'features' as the backward-compatible default. Created a comprehensive Organisation Patterns section documenting all three patterns (direct, features, mixed) with when-to-use guidance, hierarchy examples, and PM tool mapping per pattern. Added Graphiti push step to the creation process with graceful degradation. Updated validation rules and output format. Used TDD approach: wrote 26 failing tests first, then updated the specification to pass all tests.",
+  "concerns": [],
+  "requirements_addressed": [
+    "Epic frontmatter template includes organisation_pattern, direct_tasks, graphiti_synced fields",
+    "Default organisation_pattern is features (backward compatible)",
+    "Three patterns documented with when-to-use guidance",
+    "Validation rejects invalid pattern values",
+    "Mixed pattern produces a warning",
+    "Graphiti push step documented with graceful degradation",
+    "Examples section includes --pattern usage"
+  ],
+  "requirements_remaining": []
+}

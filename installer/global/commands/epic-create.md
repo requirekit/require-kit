@@ -212,6 +212,144 @@ completeness_score: 0
 [Technical considerations or architecture decisions]
 ```
 
+## Organisation Patterns
+
+Epics support three organisation patterns that control how work is structured beneath them. The pattern is set at creation time via the `--pattern` flag and stored in the `organisation_pattern` frontmatter field.
+
+### Pattern: `direct` — EPIC → TASK
+
+Use the direct pattern for small epics with 3-5 tasks where an intermediate feature layer adds unnecessary ceremony.
+
+**When to use**:
+- Small epics with 3-5 tasks
+- Bug fix epics grouping related fixes
+- Technical debt or cleanup work
+- Research spikes and investigative work
+- Infrastructure and deployment tasks
+- Solo developer workflows
+
+**Example**:
+```
+EPIC-002: Fix Auth Bugs
+  └── TASK-004: Debug session timeout
+  └── TASK-005: Fix password reset
+  └── TASK-006: Update tests
+```
+
+**Creation**:
+```bash
+/epic-create "Fix Auth Bugs" --pattern direct
+```
+
+### Pattern: `features` (Default) — EPIC → FEATURE → TASK
+
+The features pattern is the default and provides backward compatible behaviour. Use it for large epics requiring team coordination and requirements traceability.
+
+**When to use**:
+- Large epics with 10+ tasks
+- Customer-facing capabilities
+- Natural groupings with clear feature boundaries
+- Team coordination with 3+ developers
+- Requirements traceability to EARS requirements
+- Multi-sprint initiatives
+- PM tool reporting at feature level
+
+**Example**:
+```
+EPIC-001: User Management
+  └── FEAT-001: Authentication
+        └── TASK-001: Implement login
+        └── TASK-002: Add session handling
+  └── FEAT-002: Profile Management
+        └── TASK-003: Create profile form
+        └── TASK-004: Add avatar upload
+```
+
+**Creation**:
+```bash
+/epic-create "User Management System"  # defaults to features
+/epic-create "User Management System" --pattern features
+```
+
+### Pattern: `mixed` — Both Features and Direct Tasks
+
+The mixed pattern allows an epic to contain both features and direct tasks. This suits evolving epics where structured feature work coexists with miscellaneous tasks (documentation, deployment, testing).
+
+⚠️ **Warning**: Selecting the mixed pattern produces a warning encouraging consistency. Consider whether all tasks should be grouped under features or whether the epic should use the direct pattern instead.
+
+**When to use**:
+- Epic has structured features for main work plus miscellaneous tasks
+- Evolving epics transitioning between patterns
+- Epics where some work doesn't fit neatly into a feature
+
+**Example**:
+```
+EPIC-003: Platform Upgrade
+├── FEAT-001: UI Redesign
+│   ├── TASK-001: Update components
+│   └── TASK-002: Redesign dashboard
+├── FEAT-002: API Modernization
+│   ├── TASK-003: Migrate to GraphQL
+│   └── TASK-004: Add rate limiting
+└── [Direct Tasks]
+    ├── TASK-005: Update documentation
+    └── TASK-006: Deploy to staging
+```
+
+**Creation**:
+```bash
+/epic-create "Platform Upgrade" --pattern mixed
+```
+
+### Pattern Selection Guidance
+
+| Criteria | `direct` | `features` | `mixed` |
+|---|---|---|---|
+| Task count | 3-5 tasks | 10+ tasks | Varies |
+| Team size | Solo / small | 3+ developers | Any |
+| Epic type | Bug fixes, tech debt, spikes | Customer-facing, complex | Evolving |
+| Traceability | Task → Epic | Task → Feature → Epic | Both paths |
+| PM tool mapping | Epic → Story | Epic → Story → Sub-task | Both mappings |
+
+### PM Tool Mapping by Pattern
+
+#### Direct Pattern (EPIC → TASK)
+```yaml
+# Jira: Epic → Story (task promoted to story level)
+# Linear: Initiative → Issue
+# GitHub: Milestone → Issue
+direct_pattern_mapping:
+  jira:
+    epic: Epic
+    task: Story
+  linear:
+    epic: Initiative
+    task: Issue
+  github:
+    epic: Milestone
+    task: Issue
+```
+
+#### Features Pattern (EPIC → FEATURE → TASK)
+```yaml
+# Jira: Epic → Story (feature) → Sub-task (task)
+# Linear: Initiative → Feature → Issue
+# GitHub: Milestone → Issue (feature) → Linked Issue (task)
+features_pattern_mapping:
+  jira:
+    epic: Epic
+    feature: Story
+    task: Sub-task
+  linear:
+    epic: Initiative
+    feature: Feature
+    task: Issue
+  github:
+    epic: Milestone
+    feature: Issue
+    task: Linked Issue
+```
+
 ## Export Integration Options
 
 ### Target PM Tools
@@ -269,6 +407,11 @@ epic_mapping:
 
 ## Options
 
+### Organisation Pattern
+- `--pattern direct` - Epic → Task (small epics, 3-5 tasks)
+- `--pattern features` - Epic → Feature → Task (default, large epics)
+- `--pattern mixed` - Both features and direct tasks (evolving epics)
+
 ### Priority Levels (PM Tool Compatible)
 - `critical` - P0/Highest (maps to tool equivalents)
 - `high` - P1/High
@@ -322,6 +465,10 @@ Title: User Management System
 Priority: high
 Quarter: Q1-2024
 Estimated Duration: 6 weeks
+Organisation Pattern: features
+
+🧠 Graphiti Sync
+Status: ✅ Synced (or ⚠️ Skipped — Graphiti not configured)
 
 🔗 External Integration
 Target Tools: Jira, Linear
@@ -372,6 +519,8 @@ Epics are validated before creation:
 - ✅ PM tool credentials (if exporting)
 - ✅ Timeline format validation
 - ✅ Linked requirements must exist
+- ✅ Valid organisation_pattern must be one of: `direct`, `features`, `mixed`
+- ⚠️ Mixed pattern selection produces a warning suggesting consistent organisation
 
 ## File Organization
 

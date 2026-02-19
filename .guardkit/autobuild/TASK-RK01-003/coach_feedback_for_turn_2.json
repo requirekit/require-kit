@@ -1,0 +1,9 @@
+{
+  "turn": 2,
+  "feedback_from_turn": 1,
+  "feedback_summary": "- Not all acceptance criteria met:\n  \u2022 Config file exists at `installer/global/config/graphiti.yaml`\n  \u2022 Default is `enabled: false` (standalone mode)\n  \u2022 All fields documented with comments\n  \u2022 Group ID pattern uses `{project}__requirements` convention from FEAT-RK-001 spec",
+  "must_fix": [],
+  "should_fix": [],
+  "validation_results": {},
+  "raw_feedback": "- Not all acceptance criteria met:\n  \u2022 Config file exists at `installer/global/config/graphiti.yaml`\n  \u2022 Default is `enabled: false` (standalone mode)\n  \u2022 All fields documented with comments\n  \u2022 Group ID pattern uses `{project}__requirements` convention from FEAT-RK-001 spec"
+}
