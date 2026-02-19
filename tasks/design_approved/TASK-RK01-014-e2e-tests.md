@@ -1,16 +1,25 @@
 ---
-id: TASK-RK01-014
-title: "Create E2E tests for complete command pipelines"
-task_type: testing
-parent_review: TASK-REV-RK01
-feature_id: FEAT-RK-001
-wave: 5
-implementation_mode: task-work
 complexity: 6
-dependencies: [TASK-RK01-004, TASK-RK01-005, TASK-RK01-006, TASK-RK01-011, TASK-RK01-012]
-status: pending
+dependencies:
+- TASK-RK01-004
+- TASK-RK01-005
+- TASK-RK01-006
+- TASK-RK01-011
+- TASK-RK01-012
+feature_id: FEAT-RK-001
+id: TASK-RK01-014
+implementation_mode: task-work
+parent_review: TASK-REV-RK01
 priority: high
-tags: [testing, e2e, pipeline, commands]
+status: design_approved
+tags:
+- testing
+- e2e
+- pipeline
+- commands
+task_type: testing
+title: Create E2E tests for complete command pipelines
+wave: 5
 ---
 
 # Task: Create E2E Tests for Complete Command Pipelines
