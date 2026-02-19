@@ -109,10 +109,10 @@ class TestDirectPatternTasks:
         self, hierarchy_view_content: str
     ) -> None:
         """Direct pattern epic must NOT have FEAT entries under it."""
-        # Extract the direct pattern block: from the direct pattern epic line
-        # until the next epic or end of block
+        # Extract the direct pattern block: from the direct-pattern epic line
+        # until the next EPIC line or closing code fence
         direct_block_match = re.search(
-            r"(EPIC-\d+:.*?\(direct\s+pattern\).*?)(?=EPIC-\d+:|```)",
+            r"(EPIC-\d+:[^\n]*\(direct\s+pattern\)[^\n]*\n.*?)(?=\n📈\s+EPIC-\d+:|```)",
             hierarchy_view_content,
             re.IGNORECASE | re.DOTALL,
         )

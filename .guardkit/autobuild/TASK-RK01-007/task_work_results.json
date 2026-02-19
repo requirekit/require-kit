@@ -1,0 +1,110 @@
+{
+  "task_id": "TASK-RK01-007",
+  "timestamp": "2026-02-19T19:52:02.512583",
+  "completed": true,
+  "phases": {
+    "phase_3": {
+      "detected": true,
+      "text": "using TDD mode.",
+      "completed": true
+    }
+  },
+  "quality_gates": {
+    "tests_passing": true,
+    "tests_passed": 35,
+    "tests_failed": 0,
+    "coverage": 99.0,
+    "coverage_met": true,
+    "all_passed": true
+  },
+  "files_modified": [
+    ".coverage",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/installer/global/commands/epic-status.md",
+    "coverage.json",
+    "tests/test_hierarchy_view_org_patterns.py"
+  ],
+  "files_created": [
+    ".guardkit/autobuild/TASK-RK01-007/player_turn_1.json",
+    ".guardkit/autobuild/TASK-RK01-007/task_work_results.json",
+    ".guardkit/autobuild/TASK-RK01-010/checkpoints.json",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/.guardkit/autobuild/TASK-RK01-007/player_turn_1.json",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/tests/test_epic_status_org_patterns.py",
+    "installer/global/commands/epic-refine.md"
+  ],
+  "tests_written": [
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/tests/test_epic_status_org_patterns.py"
+  ],
+  "summary": "35 tests passed, 99.0% coverage, all quality gates passed",
+  "completion_promises": [
+    {
+      "criterion_id": "AC-001",
+      "criterion_text": "Portfolio view shows pattern column for all epics",
+      "status": "complete",
+      "evidence": "Updated the All Epics Overview portfolio table to include a 'Pattern' column showing organisation_pattern values (features, direct, mixed) for each epic. Table now shows 5 epics with task count for direct-pattern, feature count for features-pattern, and combined count for mixed-pattern in the 'Items' column.",
+      "test_file": "tests/test_epic_status_org_patterns.py",
+      "implementation_files": [
+        "installer/global/commands/epic-status.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-002",
+      "criterion_text": "Direct-pattern epics show task list instead of feature list",
+      "status": "complete",
+      "evidence": "Added 'Single Epic Detailed View (direct pattern)' section showing EPIC-002 with Pattern: direct, Direct Tasks (3) section listing TASK-004/005/006 with status indicators [in_progress]/[backlog] and emoji icons. Format matches task specification exactly.",
+      "test_file": "tests/test_epic_status_org_patterns.py",
+      "implementation_files": [
+        "installer/global/commands/epic-status.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-003",
+      "criterion_text": "Mixed-pattern epics show both with warning",
+      "status": "complete",
+      "evidence": "Added 'Single Epic Detailed View (mixed pattern)' section showing EPIC-003 with Pattern: mixed, warning message '\u26a0\ufe0f Mixed organisation \u2014 consider grouping tasks into features', Features (1) section, and Direct Tasks (1) section. Both sections appear together after the mixed pattern indicator.",
+      "test_file": "tests/test_epic_status_org_patterns.py",
+      "implementation_files": [
+        "installer/global/commands/epic-status.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-004",
+      "criterion_text": "Progress calculated correctly for all three patterns",
+      "status": "complete",
+      "evidence": "Updated Progress Calculation section with three separate formulas: Direct pattern uses completed tasks / total tasks, Features pattern uses feature completion rollup (existing behaviour preserved), Mixed pattern uses weighted combination of feature and direct task progress. All three patterns documented with explicit formulas.",
+      "test_file": "tests/test_epic_status_org_patterns.py",
+      "implementation_files": [
+        "installer/global/commands/epic-status.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-005",
+      "criterion_text": "Graphiti sync status displayed when enabled",
+      "status": "complete",
+      "evidence": "Added Graphiti Sync status indicator to all three detailed view examples: features pattern shows 'Graphiti Sync: \u2705 Synced' with Last Graphiti Sync time and Entity ID; direct pattern shows 'Graphiti Sync: \u26a0\ufe0f Pending'; mixed pattern shows 'Graphiti Sync: \u2705 Synced'. Graphiti sync appears alongside PM tool integration status.",
+      "test_file": "tests/test_epic_status_org_patterns.py",
+      "implementation_files": [
+        "installer/global/commands/epic-status.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-006",
+      "criterion_text": "Completeness score shown in detailed view",
+      "status": "complete",
+      "evidence": "Added '\ud83d\udccf Completeness Score: N%' to all three detailed view examples: features pattern shows 78%, direct pattern shows 65%, mixed pattern shows 52%. Each has a numeric percentage value.",
+      "test_file": "tests/test_epic_status_org_patterns.py",
+      "implementation_files": [
+        "installer/global/commands/epic-status.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-007",
+      "criterion_text": "Backward compatible (existing features-pattern epics display unchanged)",
+      "status": "complete",
+      "evidence": "The original features-pattern detailed view (EPIC-001) is preserved with all existing sections: Feature Breakdown with FEAT-001/002/003, status icons (\u2705, \ud83d\udd04, \u23f3), FEAT-XXX IDs, Feature Details navigation, Sprint Focus, Burndown Trend, and Documentation sections. Organisation Pattern line added after Priority without disturbing existing structure. Portfolio table maintains Epic Portfolio Status header.",
+      "test_file": "tests/test_epic_status_org_patterns.py",
+      "implementation_files": [
+        "installer/global/commands/epic-status.md"
+      ]
+    }
+  ]
+}
