@@ -1,6 +1,22 @@
 {
   "task_id": "TASK-RK01-002",
-  "turn": 1,
+  "timestamp": "2026-02-19T16:12:07.731958",
+  "completed": true,
+  "phases": {
+    "phase_3": {
+      "detected": true,
+      "text": "TDD.",
+      "completed": true
+    }
+  },
+  "quality_gates": {
+    "tests_passing": true,
+    "tests_passed": 26,
+    "tests_failed": 0,
+    "coverage": 94.0,
+    "coverage_met": true,
+    "all_passed": true
+  },
   "files_modified": [
     ".guardkit/autobuild/TASK-RK01-003/checkpoints.json",
     ".guardkit/autobuild/TASK-RK01-003/turn_context.json",
@@ -14,22 +30,7 @@
   "tests_written": [
     "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/tests/test_epic_create_org_pattern.py"
   ],
-  "tests_run": true,
-  "tests_passed": true,
-  "test_output_summary": "",
-  "implementation_notes": "Implementation via task-work delegation",
-  "concerns": [],
-  "requirements_addressed": [
-    "Epic frontmatter template includes organisation_pattern, direct_tasks, graphiti_synced fields",
-    "Default organisation_pattern is features (backward compatible)",
-    "Three patterns documented with when-to-use guidance",
-    "Validation rejects invalid pattern values",
-    "Mixed pattern produces a warning",
-    "Graphiti push step documented with graceful degradation",
-    "Examples section includes --pattern usage"
-  ],
-  "requirements_remaining": [],
-  "tests_passed_count": 26,
+  "summary": "26 tests passed, 94.0% coverage, all quality gates passed",
   "completion_promises": [
     {
       "criterion_id": "AC-001",
