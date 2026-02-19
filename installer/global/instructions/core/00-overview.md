@@ -33,7 +33,13 @@ The system combines:
 - **Output**: Test results and coverage reports
 - **Command**: `/execute-tests`
 
-### 4. State Management
+### 4. Requirements Refinement
+- **Purpose**: Iterative improvement of requirements through guided feedback
+- **Method**: Completeness scoring with targeted questions
+- **Output**: Refined epics/features with tracked history and scores
+- **Commands**: `/epic-refine`, `/feature-refine`
+
+### 5. State Management
 - **Purpose**: Track progress transparently
 - **Method**: Markdown-based state files
 - **Output**: Sprint progress and velocity metrics
@@ -43,6 +49,8 @@ The system combines:
 
 ```
 Requirements Gathering (Interactive Q&A)
+        ↓
+    Refinement (Completeness scoring & targeted questions)
         ↓
     EARS Formalization (Structured notation)
         ↓
@@ -55,6 +63,9 @@ Requirements Gathering (Interactive Q&A)
     Quality Gates (Enforcement checkpoints)
         ↓
     State Update (Progress tracking)
+
+Parallel:
+    Graphiti Sync (Optional knowledge graph integration)
 ```
 
 ## Quality Gates
@@ -80,20 +91,55 @@ Requirements Gathering (Interactive Q&A)
 
 ## Project Hierarchy
 
+### Three Organisation Patterns
+
+RequireKit supports three organization patterns based on project complexity:
+
+#### 1. Direct Pattern (3-5 Tasks)
+Simple epics with tasks directly attached, no intermediate features.
+
 ```
-Product
-  └── Epic (High-level features)
-      └── Feature (User-facing capabilities)
-          └── Task (Implementation units)
-              └── Requirement (EARS statements)
-                  └── Scenario (BDD tests)
+Epic (Small scope)
+  └── Task (Implementation units)
+      └── Requirement (EARS statements)
+          └── Scenario (BDD tests)
 ```
+
+**When to use**: Small epics with 3-5 focused tasks
+
+#### 2. Features Pattern (10+ Tasks)
+Complex epics organized through features for better structure.
+
+```
+Epic (Large scope)
+  └── Feature (User-facing capabilities)
+      └── Task (Implementation units)
+          └── Requirement (EARS statements)
+              └── Scenario (BDD tests)
+```
+
+**When to use**: Large epics requiring logical grouping (default)
+
+#### 3. Mixed Pattern (Evolving)
+Combination of direct tasks and features within one epic.
+
+```
+Epic (Mixed complexity)
+  ├── Task (Direct implementation)
+  └── Feature (Grouped capabilities)
+      └── Task (Feature-specific work)
+          └── Requirement (EARS statements)
+              └── Scenario (BDD tests)
+```
+
+**When to use**: Evolving epics transitioning between patterns (use with caution)
 
 Each level maintains:
 - Unique identifier
 - Traceability links
 - Progress metrics
 - Quality indicators
+- Organisation pattern metadata
 
 ## Key Principles
 
@@ -112,17 +158,25 @@ Every requirement must trace to tests and code
 ### 5. Transparent Progress
 All stakeholders can see real-time progress
 
+### 6. Iterative Refinement
+Requirements improve through structured feedback and completeness scoring
+
 ## Available Commands
 
 ### Requirements Commands
 - `/gather-requirements` - Interactive requirements elicitation
 - `/formalize-ears` - Convert to EARS notation
 - `/validate-requirements` - Check requirement quality
+- `/epic-refine` - Refine existing epics with completeness scoring
+- `/feature-refine` - Refine existing features with targeted questions
 
 ### Testing Commands
 - `/generate-bdd` - Create Gherkin scenarios
 - `/execute-tests` - Run test suite with gates
 - `/coverage-report` - Generate coverage analysis
+
+### Integration Commands
+- `/requirekit-sync` - Sync epics/features to Graphiti knowledge graph
 
 ### Management Commands
 - `/update-state` - Update sprint progress

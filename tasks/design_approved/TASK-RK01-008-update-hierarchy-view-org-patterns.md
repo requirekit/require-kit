@@ -1,16 +1,20 @@
 ---
-id: TASK-RK01-008
-title: "Update hierarchy-view to render all organisation patterns"
-task_type: feature
-parent_review: TASK-REV-RK01
-feature_id: FEAT-RK-001
-wave: 3
-implementation_mode: task-work
 complexity: 6
-dependencies: [TASK-RK01-002]
-status: pending
+dependencies:
+- TASK-RK01-002
+feature_id: FEAT-RK-001
+id: TASK-RK01-008
+implementation_mode: task-work
+parent_review: TASK-REV-RK01
 priority: high
-tags: [hierarchy-view, organisation-pattern, tree-view]
+status: design_approved
+tags:
+- hierarchy-view
+- organisation-pattern
+- tree-view
+task_type: feature
+title: Update hierarchy-view to render all organisation patterns
+wave: 3
 ---
 
 # Task: Update Hierarchy View to Render All Organisation Patterns

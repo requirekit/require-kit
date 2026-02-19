@@ -1,16 +1,20 @@
 ---
-id: TASK-RK01-005
-title: "Create /feature-refine command"
-task_type: feature
-parent_review: TASK-REV-RK01
-feature_id: FEAT-RK-001
-wave: 2
-implementation_mode: task-work
 complexity: 6
-dependencies: [TASK-RK01-001]
-status: pending
+dependencies:
+- TASK-RK01-001
+feature_id: FEAT-RK-001
+id: TASK-RK01-005
+implementation_mode: task-work
+parent_review: TASK-REV-RK01
 priority: high
-tags: [feature-refine, refinement, command]
+status: design_approved
+tags:
+- feature-refine
+- refinement
+- command
+task_type: feature
+title: Create /feature-refine command
+wave: 2
 ---
 
 # Task: Create /feature-refine Command

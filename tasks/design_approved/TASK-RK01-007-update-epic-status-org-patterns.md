@@ -1,16 +1,20 @@
 ---
-id: TASK-RK01-007
-title: "Update epic-status to display organisation patterns"
-task_type: feature
-parent_review: TASK-REV-RK01
-feature_id: FEAT-RK-001
-wave: 3
-implementation_mode: task-work
 complexity: 5
-dependencies: [TASK-RK01-002]
-status: pending
+dependencies:
+- TASK-RK01-002
+feature_id: FEAT-RK-001
+id: TASK-RK01-007
+implementation_mode: task-work
+parent_review: TASK-REV-RK01
 priority: high
-tags: [epic-status, organisation-pattern, display]
+status: design_approved
+tags:
+- epic-status
+- organisation-pattern
+- display
+task_type: feature
+title: Update epic-status to display organisation patterns
+wave: 3
 ---
 
 # Task: Update Epic Status to Display Organisation Patterns

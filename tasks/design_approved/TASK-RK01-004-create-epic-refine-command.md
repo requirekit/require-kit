@@ -1,16 +1,21 @@
 ---
-id: TASK-RK01-004
-title: "Create /epic-refine command"
-task_type: feature
-parent_review: TASK-REV-RK01
-feature_id: FEAT-RK-001
-wave: 2
-implementation_mode: task-work
 complexity: 7
-dependencies: [TASK-RK01-001, TASK-RK01-002]
-status: pending
+dependencies:
+- TASK-RK01-001
+- TASK-RK01-002
+feature_id: FEAT-RK-001
+id: TASK-RK01-004
+implementation_mode: task-work
+parent_review: TASK-REV-RK01
 priority: high
-tags: [epic-refine, refinement, command]
+status: design_approved
+tags:
+- epic-refine
+- refinement
+- command
+task_type: feature
+title: Create /epic-refine command
+wave: 2
 ---
 
 # Task: Create /epic-refine Command

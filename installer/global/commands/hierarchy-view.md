@@ -37,15 +37,18 @@ Comprehensive visualization of the Epic → Feature → Task hierarchy with prog
 ## Visualization Formats
 
 ### Complete Hierarchy View (Default)
+
+The default tree view renders all three organisation patterns: **features**, **direct**, and **mixed**. Each epic displays its pattern label so the structure is immediately clear.
+
 ```
 📊 Project Hierarchy Overview
 
-🏗️ Epic → Feature → Task Structure
+🏗️ Multi-Pattern Epic → Feature → Task Structure
 ┌─────────────────────────────────────────────────────────────────────────────────┐
-│                          PROJECT PORTFOLIO (67% Complete)                      │
+│                          PROJECT PORTFOLIO (55% Complete)                      │
 └─────────────────────────────────────────────────────────────────────────────────┘
 
-📈 EPIC-001: User Management System (78% Complete) ✅ On Track
+📈 EPIC-001: User Management System (features pattern) ✅ 78% Complete
 ├── 🎯 FEAT-001: User Registration (100% Complete) ✅
 │   ├── ✅ TASK-001: Design registration form (Sarah, 2 days)
 │   ├── ✅ TASK-002: Implement registration API (Mike, 3 days)
@@ -66,40 +69,37 @@ Comprehensive visualization of the Epic → Feature → Task hierarchy with prog
     ├── ⏳ TASK-013: Admin dashboard (Alex, 3 days)
     └── ⏳ TASK-014: Permission tests (Mike, 2 days)
 
-📈 EPIC-002: Payment System (34% Complete) ⚠️ At Risk
-├── 🎯 FEAT-004: Payment Gateway (60% Complete) 🔄
-│   ├── ✅ TASK-015: Payment provider integration (Sarah, 4 days)
-│   ├── ✅ TASK-016: Payment API design (Mike, 2 days)
-│   ├── 🔄 TASK-017: Payment processing logic (Alex, 3 days) - 70% complete
-│   └── ⏳ TASK-018: Payment error handling (Lisa, 2 days)
-│
-└── 🎯 FEAT-005: Billing Management (8% Complete) ⏳
-    ├── 🔄 TASK-019: Billing data model (Sarah, 2 days) - 40% complete
-    ├── ⏳ TASK-020: Invoice generation (Mike, 3 days)
-    ├── ⏳ TASK-021: Payment history UI (Lisa, 2 days)
-    └── ⏳ TASK-022: Billing reports (Alex, 2 days)
+📈 EPIC-002: Fix Auth Bugs (direct pattern) 🔄 40% Complete
+├── ✅ TASK-015: Debug session timeout (Sarah, 1 day)
+├── 🔄 TASK-016: Fix password reset flow (Mike, 2 days) - 60% complete
+├── ⏳ TASK-017: Patch token refresh logic (Alex, 1 day)
+└── ⏳ TASK-018: Update auth integration tests (Lisa, 2 days)
 
-📈 EPIC-003: Mobile Platform (15% Complete) ⏳ Planning
-└── 🎯 FEAT-006: Mobile App Foundation (15% Complete) ⏳
-    ├── 🔄 TASK-023: Mobile architecture design (Mike, 3 days) - 60% complete
-    ├── ⏳ TASK-024: React Native setup (Sarah, 2 days)
-    ├── ⏳ TASK-025: Mobile UI framework (Lisa, 4 days)
-    └── ⏳ TASK-026: Mobile testing strategy (Alex, 2 days)
+📈 EPIC-003: Platform Upgrade (mixed pattern) ⏳ 20% Complete
+├── 🎯 FEAT-004: UI Redesign (30% Complete) 🔄
+│   ├── 🔄 TASK-019: Update component library (Mike, 3 days) - 60% complete
+│   ├── ⏳ TASK-020: Redesign navigation (Lisa, 2 days)
+│   └── ⏳ TASK-021: Accessibility audit (Alex, 1 day)
+│
+└── 📦 [Direct Tasks]
+    ├── ⏳ TASK-022: Upgrade dependencies (Sarah, 1 day)
+    ├── ⏳ TASK-023: Update CI pipeline (Mike, 1 day)
+    └── ⏳ TASK-024: Migrate build tooling (Alex, 2 days)
 
 🔗 External Tool Integration
-┌─────────────┬──────────────┬────────────────┬─────────────────┐
-│ Epic        │ Jira         │ Linear         │ GitHub          │
-├─────────────┼──────────────┼────────────────┼─────────────────┤
-│ EPIC-001    │ PROJ-123 ✅  │ PROJECT-456 ✅ │ Milestone-1 ✅  │
-│ EPIC-002    │ PROJ-124 ⚠️  │ PROJECT-457 ✅ │ Milestone-2 ✅  │
-│ EPIC-003    │ PROJ-125 ✅  │ PROJECT-458 ⏳ │ Milestone-3 ⏳  │
-└─────────────┴──────────────┴────────────────┴─────────────────┘
+┌─────────────┬────────────────┬──────────────┬────────────────┬─────────────────┐
+│ Epic        │ Pattern        │ Jira         │ Linear         │ GitHub          │
+├─────────────┼────────────────┼──────────────┼────────────────┼─────────────────┤
+│ EPIC-001    │ features       │ PROJ-123 ✅  │ PROJECT-456 ✅ │ Milestone-1 ✅  │
+│ EPIC-002    │ direct         │ PROJ-124 ⚠️  │ PROJECT-457 ✅ │ Milestone-2 ✅  │
+│ EPIC-003    │ mixed          │ PROJ-125 ✅  │ PROJECT-458 ⏳ │ Milestone-3 ⏳  │
+└─────────────┴────────────────┴──────────────┴────────────────┴─────────────────┘
 
 📊 Portfolio Summary
-Total Epics: 3 (1 on track, 1 at risk, 1 planning)
-Total Features: 6 (2 complete, 3 in progress, 1 planning)
-Total Tasks: 26 (12 complete, 6 in progress, 8 planned)
-Overall Progress: 67% (17.4/26 tasks weighted)
+Total Epics: 3 (1 features pattern, 1 direct pattern, 1 mixed pattern)
+Total Features: 4 (1 complete, 2 in progress, 1 planning)
+Total Tasks: 24 (6 complete, 4 in progress, 14 planned)
+Overall Progress: 55% weighted
 Target Completion: Q1 2024 (on track)
 
 💡 Quick Actions
@@ -168,24 +168,36 @@ Based on current velocity:
 │ Total Duration: 12 weeks | Critical Tasks: 8 | Risk Level: Medium              │
 └─────────────────────────────────────────────────────────────────────────────────┘
 
-🔗 Inter-Epic Dependencies
-EPIC-001 (User Management) → Blocks → EPIC-002 (Payment System)
-├── Authentication required for payment processing
-├── User sessions needed for payment security
-└── Permission system required for payment admin
+🔗 Cross-Epic Dependencies (all patterns)
+EPIC-001 (features pattern) → Blocks → EPIC-002 (direct pattern)
+├── Authentication required before bug-fix tasks can be verified
+├── User sessions needed for auth bug testing
+└── Permission system required for admin auth fixes
 
-EPIC-002 (Payment System) → Blocks → EPIC-003 (Mobile Platform)
-├── Payment API must be ready for mobile integration
-└── Billing system required for mobile monetization
+EPIC-002 (direct pattern) → Blocks → EPIC-003 (mixed pattern)
+├── Auth bug fixes must land before platform upgrade
+└── Test suite must pass before dependency upgrades
 
-🔗 Feature Dependencies
-FEAT-002 (Authentication) → Blocks → FEAT-004 (Payment Gateway)
-├── TASK-007 (Session management) → TASK-017 (Payment processing)
-└── TASK-009 (Auth tests) → TASK-018 (Payment error handling)
-
-FEAT-001 (User Registration) → Enables → FEAT-003 (User Permissions)
+🔗 Feature Dependencies (features-pattern epics)
+FEAT-001 (Registration) → Enables → FEAT-003 (Permissions)
 ├── User model required for permission assignment
 └── Registration flow needed for initial role setup
+
+🔗 Direct-Pattern Dependencies (task-to-task, no feature layer)
+EPIC-002 direct task dependencies:
+├── TASK-015 (Debug session timeout) → TASK-016 (Fix password reset)
+│   Session fix must land before password reset can be verified
+├── TASK-016 (Fix password reset) → TASK-017 (Patch token refresh)
+│   Password reset fix informs token refresh approach
+└── TASK-017 (Patch token refresh) → TASK-018 (Update auth tests)
+    All fixes must land before integration test update
+
+🔗 Mixed-Pattern Dependencies (features + direct tasks)
+EPIC-003 mixed dependencies:
+├── FEAT-004 (UI Redesign) → [Direct] TASK-022 (Upgrade dependencies)
+│   UI component library must be chosen before upgrading deps
+└── [Direct] TASK-023 (Update CI pipeline) → [Direct] TASK-024 (Migrate build)
+    CI must be updated before build tooling migration
 
 🔗 Current Blockers
 ❌ TASK-017 (Payment processing) waiting for TASK-007 completion
@@ -287,11 +299,25 @@ EPIC-003: Task Definition → Execution (15% in execution, 0% completion-ready)
 ⚠️ Testing MCP: Rate limited (recoverable)
 ✅ Deployment MCP: Active (AWS, Docker)
 
+🧠 Graphiti Knowledge Graph Health
+Connection: ✅ Healthy (last sync: 3 minutes ago)
+Group ID: myproject__requirements
+├── Graphiti health status: Active
+├── Episode coverage by entity type:
+│   ├── Epics: 3/3 (100%) — completeness score: 95%
+│   ├── Features: 4/4 (100%) — completeness score: 88%
+│   ├── Requirements: 18/20 (90%) — completeness score: 82%
+│   └── Tasks: 20/24 (83%) — completeness score: 78%
+├── Total episodes synced: 45
+├── Last sync: 3 minutes ago
+└── Overall completeness score: 86%
+
 💡 Workflow Optimization Recommendations
 1. Address Linear sync issue to reach 100% Stage 2 completion
-2. Focus on payment provider integration to unblock EPIC-002
+2. Focus on auth bug fixes in EPIC-002 to unblock platform upgrade
 3. Prepare Stage 4 infrastructure for EPIC-001 completion
 4. Schedule human checkpoints for pending Stage 3 reviews
+5. Sync remaining 4 tasks to Graphiti to reach full episode coverage
 ```
 
 ### External Tools Integration View
@@ -355,6 +381,21 @@ Connection: ⏳ Not configured
 Status: Available for setup
 Estimated setup time: 2 hours
 Recommended for: Enterprise compliance requirements
+
+🧠 Graphiti Integration (Knowledge Graph)
+Connection: ✅ Healthy (last sync: 3 minutes ago)
+Group ID: myproject__requirements
+├── Episodes synced: 45 (epics: 3, features: 4, requirements: 18, tasks: 20)
+├── Episode coverage: 90% of entities
+├── Sync frequency: Every 5 minutes
+├── Last conflict: None (12 hours)
+└── API health: 100% (no rate limits)
+
+Entity Mapping:
+├── Epics → Graphiti episodes (type: epic)
+├── Features → Graphiti episodes (type: feature)
+├── Requirements → Graphiti episodes (type: requirement)
+└── Tasks → Graphiti episodes (type: task)
 
 📊 Sync Performance Metrics
 Average Sync Time: 3.2 seconds per hierarchy level
