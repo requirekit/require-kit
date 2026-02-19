@@ -20,6 +20,15 @@ Create a business epic with requirements and export it to external project manag
 
 # Link to project requirements
 /epic-create "Mobile App Redesign" requirements:[REQ-001,REQ-002] export:github
+
+# Create epic with direct task pattern (no intermediate features)
+/epic-create "Fix Auth Bugs" --pattern direct
+
+# Create epic with explicit features pattern (default)
+/epic-create "User Management System" --pattern features priority:high
+
+# Create epic with mixed pattern (features + direct tasks)
+/epic-create "Platform Upgrade" --pattern mixed
 ```
 
 ## Clarifying Questions (Interactive Mode)
@@ -113,9 +122,11 @@ clarification:
 When creating an epic:
 
 1. **Clarification** (interactive mode): Answer scoping questions to define boundaries, success criteria, stakeholders, and timeline
-2. **Validation**: Verify epic structure, check for duplicates, and validate PM tool credentials
-3. **Creation**: Generate epic file with frontmatter and structured content
-4. **Export** (optional): Sync to configured PM tools with bidirectional linking
+2. **Pattern Selection**: Determine organisation pattern (`direct`, `features`, or `mixed`). Defaults to `features` if not specified
+3. **Validation**: Verify epic structure, check for duplicates, validate PM tool credentials, and validate organisation_pattern value
+4. **Creation**: Generate epic file with frontmatter and structured content (markdown always saved regardless of downstream steps)
+5. **Graphiti Push** (if enabled): Push epic episode to Graphiti knowledge graph. This step uses graceful degradation — if Graphiti is unavailable or not configured, the epic markdown is still saved and creation succeeds. Sync status is displayed in output
+6. **Export** (optional): Sync to configured PM tools with bidirectional linking
 
 For quick creation without clarification, use the `--quick` flag or provide all parameters directly.
 
@@ -144,6 +155,11 @@ external_ids:
   linear: null    # Populated after export
   github: null    # Populated after export
 requirements: [REQ-001, REQ-002]
+organisation_pattern: features
+direct_tasks: []
+graphiti_synced: false
+last_graphiti_sync: null
+completeness_score: 0
 ---
 
 # Epic: User Management System

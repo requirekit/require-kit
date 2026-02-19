@@ -1,0 +1,53 @@
+# RequireKit Graphiti Integration Configuration
+# Set enabled: true when Graphiti/Neo4j is available
+#
+# Fields:
+#   enabled           - Whether Graphiti integration is active.
+#                       Valid values: true | false
+#                       Default: false (standalone mode)
+#
+#   endpoint          - The Bolt URI for your Neo4j/Graphiti instance.
+#                       Valid values: any valid bolt:// or bolt+s:// URI
+#                       Example: "bolt://localhost:7687"
+#
+#   project_namespace - A short identifier for your project used to scope
+#                       all Graphiti entities. Use lowercase letters, digits,
+#                       and underscores only.
+#                       Example: "my_project"
+#
+#   group_id_pattern  - Template for the Graphiti group ID that contains all
+#                       RequireKit entities (epics, features, requirements, BDD
+#                       scenarios). Uses {project} as a placeholder which will
+#                       be replaced by the project_namespace value at runtime.
+#                       Convention: "{project}__requirements"
+#
+#   sync_on_create    - Automatically push new entities to Graphiti when
+#                       /epic-create or /feature-create is run.
+#                       Valid values: true | false
+#
+#   sync_on_refine    - Automatically push updated entities to Graphiti after
+#                       /epic-refine or /feature-refine completes.
+#                       Valid values: true | false
+#
+# To enable Graphiti integration:
+#   1. Ensure Neo4j (or a Graphiti-compatible graph database) is running.
+#   2. Set enabled: true below.
+#   3. Update endpoint to point to your running instance.
+#   4. Set project_namespace to a short identifier for your project.
+#
+# Standalone mode:
+#   When enabled is false, RequireKit operates in standalone mode.
+#   All commands (/epic-create, /feature-create, /epic-refine,
+#   /feature-refine, /gather-requirements, /formalize-ears, /generate-bdd)
+#   work normally using markdown files only.  No Graphiti reads or writes
+#   are performed.
+#
+# Tip: Enable Graphiti integration for queryable requirements in GuardKit.
+
+graphiti:
+  enabled: false  # Default: off (standalone mode)
+  endpoint: "bolt://localhost:7687"
+  project_namespace: "my_project"
+  group_id_pattern: "{project}__requirements"
+  sync_on_create: true   # Auto-push on /epic-create and /feature-create
+  sync_on_refine: true   # Auto-push after /epic-refine and /feature-refine
