@@ -1,0 +1,69 @@
+{
+  "task_id": "TASK-RK01-009",
+  "turn": 1,
+  "files_modified": [
+    "installer/global/commands/feature-create.md"
+  ],
+  "files_created": [
+    "tests/test_feature_create_graphiti.py"
+  ],
+  "tests_written": [
+    "tests/test_feature_create_graphiti.py"
+  ],
+  "tests_run": true,
+  "tests_passed": true,
+  "test_output_summary": "All 21 tests passed successfully in 0.04s. Tests validate frontmatter fields (5 tests), process documentation (5 tests), output format (4 tests), validation rules (4 tests), and integration consistency (3 tests).",
+  "implementation_notes": "Updated installer/global/commands/feature-create.md to add Graphiti integration support with three new frontmatter fields (graphiti_synced, last_graphiti_sync, completeness_score). Added Graphiti Push step to the Process section with graceful degradation documentation. Updated Output Format section to display Graphiti status and completeness score. Enhanced Validation section to explicitly document that features always belong to epics (REQ-004) and epic parameter is required. All changes follow the same pattern established in epic-create.md (TASK-RK01-002).",
+  "concerns": [],
+  "requirements_addressed": [
+    "Add graphiti_synced, last_graphiti_sync, and completeness_score fields to frontmatter template",
+    "Add Graphiti Push step to process section with graceful degradation",
+    "Update output format to show Graphiti status and completeness score",
+    "Document validation rules for epic association (REQ-004)"
+  ],
+  "requirements_remaining": [],
+  "implementation_mode": "direct",
+  "completion_promises": [
+    {
+      "criterion_id": "AC-001",
+      "criterion_text": "Frontmatter template includes graphiti_synced, last_graphiti_sync, completeness_score",
+      "status": "complete",
+      "evidence": "Added three fields to the frontmatter template in the Feature Structure section: graphiti_synced: false, last_graphiti_sync: null, completeness_score: 0. These fields appear after the export_config section and before the closing frontmatter delimiter.",
+      "test_file": "tests/test_feature_create_graphiti.py",
+      "implementation_files": [
+        "installer/global/commands/feature-create.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-002",
+      "criterion_text": "Process section includes Graphiti push step with graceful degradation",
+      "status": "complete",
+      "evidence": "Added step 5 'Graphiti Push (if enabled)' to the Process section. Documentation includes: (1) conditional execution (if enabled), (2) graceful degradation language explaining that if Graphiti is unavailable or not configured, the feature markdown is still saved and creation succeeds, (3) sync status display in output. Also updated step 3 'Creation' to clarify that markdown is always saved regardless of downstream steps.",
+      "test_file": "tests/test_feature_create_graphiti.py",
+      "implementation_files": [
+        "installer/global/commands/feature-create.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-003",
+      "criterion_text": "Output format shows Graphiti status",
+      "status": "complete",
+      "evidence": "Added '\ud83d\udd2e Graphiti Status' section to the 'Success with Auto-Tasks' output format example, showing sync status and initial completeness score. Also added '\ud83d\udd2e Graphiti Integration' section to the 'Integration Example' output format, displaying the same information. Both examples show completeness score at 0% (initial).",
+      "test_file": "tests/test_feature_create_graphiti.py",
+      "implementation_files": [
+        "installer/global/commands/feature-create.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-004",
+      "criterion_text": "Validation rules documented for epic association",
+      "status": "complete",
+      "evidence": "Updated the Validation section to explicitly document that: (1) 'Epic must exist and be active (features always belong to epics - REQ-004)' and (2) 'Epic parameter required (cannot create feature without epic association)'. This clarifies that features cannot be created without epic association and references the requirement REQ-004.",
+      "test_file": "tests/test_feature_create_graphiti.py",
+      "implementation_files": [
+        "installer/global/commands/feature-create.md"
+      ]
+    }
+  ],
+  "success": true
+}

@@ -2,190 +2,182 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://requirekit.github.io/require-kit/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/INTEGRATION-GUIDE/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/faq/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/commands/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/commands/epics/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/commands/features/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/commands/hierarchy/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/commands/requirements/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
+    </url>
+    <url>
+         <loc>https://requirekit.github.io/require-kit/commands/sync/</loc>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/core-concepts/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/core-concepts/bdd-scenarios/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/core-concepts/ears-notation/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/core-concepts/hierarchy/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/core-concepts/traceability/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/developer/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/developer/adr/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/developer/architecture/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/developer/contributing/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/developer/templates/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/examples/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/examples/bdd/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/examples/features/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/examples/requirements/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/getting-started/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/getting-started/first-requirements/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/getting-started/installation/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/getting-started/integration/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/getting-started/quickstart/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/guides/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/guides/command_usage_guide/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/guides/documentation_update_summary/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/guides/getting_started/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/guides/guide_audit_report_task_041/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/guides/require_kit_user_guide/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/integration/pm-tools/</loc>
-         <lastmod>2025-11-27</lastmod>
-    </url>
-    <url>
-         <loc>https://requirekit.github.io/require-kit/mcp-setup/</loc>
-         <lastmod>2025-11-27</lastmod>
-    </url>
-    <url>
-         <loc>https://requirekit.github.io/require-kit/mcp-setup/figma-mcp-setup/</loc>
-         <lastmod>2025-11-27</lastmod>
-    </url>
-    <url>
-         <loc>https://requirekit.github.io/require-kit/mcp-setup/zeplin-mcp-setup/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/quick-reference/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/quick-reference/complexity-guide/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/quick-reference/design-first-workflow-card/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/quick-reference/quality-gates-card/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/quick-reference/task-work-cheat-sheet/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/shared/common-thresholds/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/shared/design-to-code-common/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/shared/maui-template-architecture/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/troubleshooting/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
     <url>
          <loc>https://requirekit.github.io/require-kit/troubleshooting/zeplin-maui-icon-issues/</loc>
-         <lastmod>2025-11-27</lastmod>
+         <lastmod>2026-02-19</lastmod>
     </url>
 </urlset>

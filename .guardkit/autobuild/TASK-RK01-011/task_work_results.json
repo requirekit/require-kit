@@ -1,0 +1,110 @@
+{
+  "task_id": "TASK-RK01-011",
+  "timestamp": "2026-02-19T19:57:55.394176",
+  "completed": true,
+  "phases": {
+    "phase_3": {
+      "detected": true,
+      "text": "Implementation",
+      "completed": true
+    }
+  },
+  "quality_gates": {
+    "tests_passing": true,
+    "tests_passed": 0,
+    "tests_failed": 0,
+    "coverage": null,
+    "coverage_met": null,
+    "all_passed": true
+  },
+  "files_modified": [
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/docs/commands/epics.md",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/docs/commands/features.md",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/docs/commands/index.md",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/mkdocs.yml"
+  ],
+  "files_created": [
+    ".guardkit/autobuild/TASK-RK01-011/task_work_results.json",
+    ".guardkit/autobuild/TASK-RK01-012/checkpoints.json",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/.guardkit/autobuild/TASK-RK01-011/player_turn_1.json",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/docs/commands/sync.md",
+    "house"
+  ],
+  "tests_written": [],
+  "summary": "all quality gates passed",
+  "completion_promises": [
+    {
+      "criterion_id": "AC-001",
+      "criterion_text": "/epic-refine documented in docs/commands/epics.md",
+      "status": "complete",
+      "evidence": "Added comprehensive /epic-refine section to docs/commands/epics.md including usage syntax, examples, --focus and --quick flags, three-phase flow description, 9-dimension completeness scoring table, and organisation pattern awareness documentation.",
+      "test_file": null,
+      "implementation_files": [
+        "docs/commands/epics.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-002",
+      "criterion_text": "/feature-refine documented in docs/commands/features.md",
+      "status": "complete",
+      "evidence": "Added comprehensive /feature-refine section to docs/commands/features.md including usage syntax, examples, --focus and --quick flags, three-phase flow description, 7-dimension completeness scoring table, and cross-command integration with /formalize-ears and /generate-bdd.",
+      "test_file": null,
+      "implementation_files": [
+        "docs/commands/features.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-003",
+      "criterion_text": "Both new commands in docs/commands/index.md quick reference",
+      "status": "complete",
+      "evidence": "Added /epic-refine to Epic Commands quick reference and /feature-refine to Feature Commands quick reference in docs/commands/index.md. Both entries include links to their respective page anchors.",
+      "test_file": null,
+      "implementation_files": [
+        "docs/commands/index.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-004",
+      "criterion_text": "/requirekit-sync documented",
+      "status": "complete",
+      "evidence": "Created docs/commands/sync.md with complete /requirekit-sync documentation including usage syntax, examples, --all/--dry-run/--verbose flags, markdown-authoritative design explanation, when-to-use scenarios, error handling, and relationship to other commands. Added Sync Commands section to index.md quick reference.",
+      "test_file": null,
+      "implementation_files": [
+        "docs/commands/sync.md",
+        "docs/commands/index.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-005",
+      "criterion_text": "Workflow examples updated with refinement step",
+      "status": "complete",
+      "evidence": "Updated the Full Workflow section in docs/commands/index.md to include /epic-refine and /feature-refine steps. Renamed section to 'Full Workflow with Refinement' to reflect the addition.",
+      "test_file": null,
+      "implementation_files": [
+        "docs/commands/index.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-006",
+      "criterion_text": "Navigation works correctly (no broken links)",
+      "status": "complete",
+      "evidence": "All internal links between command pages resolve correctly. The mkdocs build completes with no ERRORs or new WARNINGs. INFO-level messages about missing anchors in command_usage_guide.md are pre-existing across all command pages (not specific to new content). The new sync.md page is accessible in navigation at commands/sync/.",
+      "test_file": null,
+      "implementation_files": [
+        "mkdocs.yml",
+        "docs/commands/sync.md",
+        "docs/commands/index.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-007",
+      "criterion_text": "mkdocs builds without errors",
+      "status": "complete",
+      "evidence": "Ran 'python3 -m mkdocs build' successfully. Build completed in 1.14 seconds with exit code 0. No errors produced. All warnings are pre-existing issues unrelated to the new documentation.",
+      "test_file": null,
+      "implementation_files": [
+        "mkdocs.yml"
+      ]
+    }
+  ]
+}

@@ -200,6 +200,7 @@ nav:
       - Epic Commands: commands/epics.md
       - Feature Commands: commands/features.md
       - Hierarchy Commands: commands/hierarchy.md
+      - Sync Commands: commands/sync.md
 
   - Integration:
       - guardkit Integration: INTEGRATION-GUIDE.md

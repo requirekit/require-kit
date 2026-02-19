@@ -1,0 +1,116 @@
+{
+  "task_id": "TASK-RK01-005",
+  "timestamp": "2026-02-19T19:52:46.424606",
+  "completed": true,
+  "phases": {
+    "phase_3": {
+      "detected": true,
+      "text": "Implementation",
+      "completed": false
+    }
+  },
+  "quality_gates": {
+    "tests_passing": true,
+    "tests_passed": 52,
+    "tests_failed": 0,
+    "coverage": null,
+    "coverage_met": null,
+    "all_passed": true
+  },
+  "files_modified": [],
+  "files_created": [
+    ".guardkit/autobuild/TASK-RK01-005/player_turn_1.json",
+    ".guardkit/autobuild/TASK-RK01-005/task_work_results.json",
+    ".guardkit/autobuild/TASK-RK01-006/player_turn_1.json",
+    ".guardkit/autobuild/TASK-RK01-007/checkpoints.json",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/.guardkit/autobuild/TASK-RK01-005/player_turn_1.json",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/installer/global/commands/feature-refine.md",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/tests/test_feature_refine_command.py"
+  ],
+  "tests_written": [
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/tests/test_feature_refine_command.py"
+  ],
+  "summary": "52 tests passed, all quality gates passed",
+  "completion_promises": [
+    {
+      "criterion_id": "AC-001",
+      "criterion_text": "Command file follows established pattern",
+      "status": "complete",
+      "evidence": "Created installer/global/commands/feature-refine.md following established command pattern with Usage, Examples, Process, Output Format, Validation, File Organization, and Best Practices sections. Structure matches epic-create.md and feature-create.md patterns.",
+      "test_file": "tests/test_feature_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/feature-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-002",
+      "criterion_text": "Three-phase flow with feature-specific questions",
+      "status": "complete",
+      "evidence": "Implemented three-phase flow: Phase 1 (Current State Display - load, parse, score, show epic context), Phase 2 (Targeted Questions - 6 feature-specific categories with detailed question templates), Phase 3 (Change Summary and Commit - before/after scores, apply options, refinement_history). Tests verify all three phases exist with 8 specific assertions.",
+      "test_file": "tests/test_feature_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/feature-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-003",
+      "criterion_text": "6 question categories matching FEAT-RK-001 spec",
+      "status": "complete",
+      "evidence": "All 6 categories implemented with full question templates: (1) Acceptance Criteria - specificity/measurability, (2) Requirements Traceability - EARS requirement links, (3) BDD Coverage - Gherkin scenarios, (4) Technical Considerations - API/performance/dependencies, (5) Dependencies - feature dependencies, (6) Scope Within Epic - differentiation. Each category includes When Asked triggers, example good answers, and skip/done options. Tests verify all 6 categories present.",
+      "test_file": "tests/test_feature_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/feature-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-004",
+      "criterion_text": "Feature completeness score (7 dimensions) calculated",
+      "status": "complete",
+      "evidence": "Documented 7-dimension completeness model with exact weights matching requirements-analyst agent spec: Scope Within Epic (10%), Acceptance Criteria (25%), Requirements Traceability (20%), BDD Coverage (15%), Technical Considerations (15%), Dependencies (10%), Test Strategy (5%). Total 100%. Includes scoring guidance, score interpretation table, and calculation formula. Tests verify all 7 dimensions and weight percentages.",
+      "test_file": "tests/test_feature_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/feature-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-005",
+      "criterion_text": "--focus flag restricts to single category",
+      "status": "complete",
+      "evidence": "Documented --focus flag with all 6 category values: acceptance, traceability, bdd, technical, dependencies, scope. Examples section shows all --focus variations. Options section explicitly states '--focus flag restricts questions to a single category only, skipping all other categories'. Validation section lists valid --focus values. Tests verify --focus documentation, examples, and restriction behavior.",
+      "test_file": "tests/test_feature_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/feature-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-006",
+      "criterion_text": "Cross-command suggestions for /formalize-ears and /generate-bdd",
+      "status": "complete",
+      "evidence": "Dedicated Cross-Command Integration section documents: (1) /formalize-ears suggestion when Requirements Traceability is low, (2) /generate-bdd suggestion when BDD Coverage is low, (3) Parent epic completeness display for context. Integration examples show concrete suggestion output format. Phase 1 output example also shows recommendations referencing both commands. Tests verify all three cross-command references.",
+      "test_file": "tests/test_feature_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/feature-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-007",
+      "criterion_text": "Graphiti push with feature episode schema",
+      "status": "complete",
+      "evidence": "Dedicated Graphiti Integration section with: (1) Feature Episode Schema showing full Python dict structure with entity_type, feature_id, epic_id, completeness_score, and all metadata fields matching requirements-analyst-ext.md patterns, (2) Graceful degradation behavior documented - available/not configured/push fails scenarios, (3) Feature refinement never fails due to Graphiti errors. Tests verify Graphiti push documentation, episode schema reference, and graceful degradation.",
+      "test_file": "tests/test_feature_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/feature-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-008",
+      "criterion_text": "Same UX patterns as epic-refine ([REFINE] prefix, one-at-a-time, skip/done)",
+      "status": "complete",
+      "evidence": "Dedicated UX Design section documents: (1) [REFINE] prefix on all prompts and outputs, (2) Visual separators using \u2550\u2550\u2550 characters, (3) One at a time question presentation, (4) Skip option for every question, (5) Done option to end session, (6) Natural language answer acceptance, (7) Confirm capture after each answer, (8) Before/after score display. All output examples use [REFINE] prefix and visual separators consistently. Tests verify all UX patterns.",
+      "test_file": "tests/test_feature_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/feature-refine.md"
+      ]
+    }
+  ]
+}

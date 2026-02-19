@@ -1,0 +1,9 @@
+{
+  "task_id": "TASK-RK01-014",
+  "turn": 1,
+  "max_turns": 10,
+  "turns_remaining": 9,
+  "approaching_limit": false,
+  "escape_hatch_active": false,
+  "instructions": "If approaching_limit is true and you cannot complete the task, include a 'blocked_report' field in your player report JSON. See autobuild-player.md for the blocked_report schema."
+}

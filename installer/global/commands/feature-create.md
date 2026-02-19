@@ -148,6 +148,9 @@ export_config:
   target_tools: [jira, linear]
   auto_task_creation: true
   sync_enabled: true
+graphiti_synced: false
+last_graphiti_sync: null
+completeness_score: 0
 ---
 
 # Feature: User Authentication
@@ -384,9 +387,10 @@ Features provide the critical connection from requirements to implementation:
 
 1. **Validation**: Verify epic exists and is active
 2. **Clarification** (interactive mode): Answer scoping questions
-3. **Creation**: Generate feature file with traceability
+3. **Creation**: Generate feature file with traceability (markdown always saved regardless of downstream steps)
 4. **Linking**: Connect to epic and requirements
-5. **Export** (optional): Sync to PM tools
+5. **Graphiti Push** (if enabled): Push feature episode to Graphiti knowledge graph. This step uses graceful degradation — if Graphiti is unavailable or not configured, the feature markdown is still saved and creation succeeds. Sync status is displayed in output
+6. **Export** (optional): Sync to PM tools
 
 ### Implementation Flow
 
@@ -400,7 +404,8 @@ Features provide the critical connection from requirements to implementation:
 
 Features are validated before creation:
 - ✅ Title must be 10-80 characters
-- ✅ Epic must exist and be active
+- ✅ Epic must exist and be active (features always belong to epics - REQ-004)
+- ✅ Epic parameter required (cannot create feature without epic association)
 - ✅ No duplicate feature titles within epic
 - ✅ Linked requirements must exist
 - ✅ Linked BDD scenarios must exist
@@ -440,6 +445,10 @@ Linear Initiative: PROJECT-456
 📁 File Location
 docs/features/FEAT-042-user-authentication.md
 
+🔮 Graphiti Status
+✅ Feature episode synced to knowledge graph
+Completeness Score: 0% (initial)
+
 📊 Progress Dashboard
 Tasks: 0/5 completed (0%)
 Target Coverage: 85%
@@ -462,6 +471,10 @@ Next Steps:
 ✅ Acceptance criteria defined
 ✅ BDD scenarios linked
 ✅ Implementation tasks generated
+
+🔮 Graphiti Integration
+✅ Feature episode synced to knowledge graph
+Completeness Score: 0% (initial)
 
 🔗 External Tool Sync
 ✅ Jira: Feature story PROJ-124 created

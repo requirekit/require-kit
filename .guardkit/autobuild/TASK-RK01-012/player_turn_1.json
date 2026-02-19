@@ -1,0 +1,178 @@
+{
+  "task_id": "TASK-RK01-012",
+  "turn": 1,
+  "files_modified": [
+    "**",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/CLAUDE.md",
+    "CLAUDE.md",
+    "docs/commands/epics.md",
+    "docs/commands/features.md",
+    "docs/commands/index.md",
+    "docs/core-concepts/hierarchy.md",
+    "mkdocs.yml",
+    "site/404.html",
+    "site/INTEGRATION-GUIDE/index.html",
+    "site/assets/javascripts/bundle.e71a0d61.min.js",
+    "site/assets/javascripts/bundle.e71a0d61.min.js.map",
+    "site/assets/javascripts/workers/search.7a47a382.min.js",
+    "site/assets/javascripts/workers/search.7a47a382.min.js.map",
+    "site/assets/stylesheets/main.618322db.min.css",
+    "site/assets/stylesheets/main.618322db.min.css.map",
+    "site/commands/epics/index.html",
+    "site/commands/features/index.html",
+    "site/commands/hierarchy/index.html",
+    "site/commands/index.html",
+    "site/commands/requirements/index.html",
+    "site/core-concepts/bdd-scenarios/index.html",
+    "site/core-concepts/ears-notation/index.html",
+    "site/core-concepts/hierarchy/index.html",
+    "site/core-concepts/index.html",
+    "site/core-concepts/traceability/index.html",
+    "site/developer/adr/index.html",
+    "site/developer/architecture/index.html",
+    "site/developer/contributing/index.html",
+    "site/developer/index.html",
+    "site/developer/templates/index.html",
+    "site/examples/bdd/index.html",
+    "site/examples/features/index.html",
+    "site/examples/index.html",
+    "site/examples/requirements/index.html",
+    "site/faq/index.html",
+    "site/getting-started/first-requirements/index.html",
+    "site/getting-started/index.html",
+    "site/getting-started/installation/index.html",
+    "site/getting-started/integration/index.html",
+    "site/getting-started/quickstart/index.html",
+    "site/guides/command_usage_guide/index.html",
+    "site/guides/documentation_update_summary/index.html",
+    "site/guides/getting_started/index.html",
+    "site/guides/guide_audit_report_task_041/index.html",
+    "site/guides/index.html",
+    "site/guides/require_kit_user_guide/index.html",
+    "site/index.html",
+    "site/integration/features.json",
+    "site/integration/pm-tools/index.html",
+    "site/quick-reference/complexity-guide/index.html",
+    "site/quick-reference/design-first-workflow-card/index.html",
+    "site/quick-reference/index.html",
+    "site/quick-reference/quality-gates-card/index.html",
+    "site/quick-reference/task-work-cheat-sheet/index.html",
+    "site/search/search_index.json",
+    "site/shared/common-thresholds/index.html",
+    "site/shared/design-to-code-common/index.html",
+    "site/shared/maui-template-architecture/index.html",
+    "site/sitemap.xml",
+    "site/sitemap.xml.gz",
+    "site/troubleshooting/index.html",
+    "site/troubleshooting/zeplin-maui-icon-issues/index.html",
+    "tasks/backlog/TASK-RK01-011-update-docs-site-commands.md",
+    "tasks/backlog/TASK-RK01-012-update-docs-hierarchy-concepts.md",
+    "tasks/backlog/TASK-RK01-013-integration-tests.md"
+  ],
+  "files_created": [
+    "**",
+    ".guardkit/autobuild/TASK-RK01-008/checkpoints.json",
+    ".guardkit/autobuild/TASK-RK01-011/player_turn_1.json",
+    ".guardkit/autobuild/TASK-RK01-011/turn_context.json",
+    ".guardkit/autobuild/TASK-RK01-012/player_turn_1.json",
+    ".guardkit/autobuild/TASK-RK01-012/task_work_results.json",
+    ".guardkit/autobuild/TASK-RK01-012/turn_context.json",
+    ".guardkit/autobuild/TASK-RK01-013/turn_context.json",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/.guardkit/autobuild/TASK-RK01-012/player_turn_1.json",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/docs/core-concepts/hierarchy.md",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/tests/test_hierarchy_docs_update.py",
+    "docs/commands/sync.md",
+    "site/assets/javascripts/bundle.79ae519e.min.js",
+    "site/assets/javascripts/bundle.79ae519e.min.js.map",
+    "site/assets/javascripts/workers/search.2c215733.min.js",
+    "site/assets/javascripts/workers/search.2c215733.min.js.map",
+    "site/assets/stylesheets/main.484c7ddc.min.css",
+    "site/assets/stylesheets/main.484c7ddc.min.css.map",
+    "site/commands/sync/index.html",
+    "tasks/design_approved/TASK-RK01-011-update-docs-site-commands.md",
+    "tasks/design_approved/TASK-RK01-012-update-docs-hierarchy-concepts.md",
+    "tasks/design_approved/TASK-RK01-013-integration-tests.md",
+    "tests/integration/conftest.py",
+    "tests/test_hierarchy_docs_update.py"
+  ],
+  "tests_written": [
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/tests/test_hierarchy_docs_update.py"
+  ],
+  "tests_run": true,
+  "tests_passed": true,
+  "test_output_summary": "",
+  "implementation_notes": "Implementation via task-work delegation",
+  "concerns": [],
+  "requirements_addressed": [
+    "hierarchy.md shows all three organisation patterns with diagrams",
+    "PM tool mapping table for all patterns",
+    "Traceability updated for direct-pattern epics",
+    "Best practices include pattern selection guidance",
+    "CLAUDE.md includes refinement commands",
+    "CLAUDE.md workflow updated with refinement step"
+  ],
+  "requirements_remaining": [],
+  "tests_passed_count": 32,
+  "completion_promises": [
+    {
+      "criterion_id": "AC-001",
+      "criterion_text": "hierarchy.md shows all three organisation patterns with diagrams",
+      "status": "complete",
+      "evidence": "Rewrote hierarchy.md with Organisation Patterns section containing Standard (Epic \u2192 Feature \u2192 Task), Direct (Epic \u2192 Task), and Mixed (Epic \u2192 Feature + Task) patterns. Each pattern has an ASCII tree diagram, 'When to use' guidance, and a summary table. Tests TestHierarchyMdOrganisationPatterns (7 tests) verify all patterns and diagrams are present.",
+      "test_file": "tests/test_hierarchy_docs_update.py",
+      "implementation_files": [
+        "docs/core-concepts/hierarchy.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-002",
+      "criterion_text": "PM tool mapping table for all patterns",
+      "status": "complete",
+      "evidence": "Added PM Tool Mapping section with a comprehensive table mapping RequireKit concepts (Epic, Feature, Task, Requirement, BDD Scenario) to Jira, Linear, GitHub Projects, and Azure DevOps. Added pattern-specific mapping subsection using Material content tabs for Standard, Direct, and Mixed patterns. Tests TestHierarchyMdPmToolMapping (6 tests) verify all PM tools and pattern mappings.",
+      "test_file": "tests/test_hierarchy_docs_update.py",
+      "implementation_files": [
+        "docs/core-concepts/hierarchy.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-003",
+      "criterion_text": "Traceability updated for direct-pattern epics",
+      "status": "complete",
+      "evidence": "Traceability section now has Forward Traceability (Standard Pattern) and Forward Traceability (Direct Pattern) subsections showing the shorter chain (Epic \u2192 REQ \u2192 BDD \u2192 Task) for direct pattern. Backward Traceability uses content tabs to show both patterns. Tests TestHierarchyMdTraceability (3 tests) verify both forward traceability patterns and backward traceability.",
+      "test_file": "tests/test_hierarchy_docs_update.py",
+      "implementation_files": [
+        "docs/core-concepts/hierarchy.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-004",
+      "criterion_text": "Best practices include pattern selection guidance",
+      "status": "complete",
+      "evidence": "Added Pattern Selection subsection with table: 3-5 tasks \u2192 Direct, 6-7 \u2192 Either, 8+ \u2192 Standard. General Guidelines include 'Avoid mixed unless transitioning' and 'Refine iteratively' guidance. Tests TestHierarchyMdBestPractices (4 tests) verify pattern selection, size recommendations, and mixed-avoidance guidance.",
+      "test_file": "tests/test_hierarchy_docs_update.py",
+      "implementation_files": [
+        "docs/core-concepts/hierarchy.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-005",
+      "criterion_text": "CLAUDE.md includes refinement commands",
+      "status": "complete",
+      "evidence": "Added '### Requirements Refinement' section to CLAUDE.md Essential Commands with /epic-refine, /feature-refine, and /requirekit-sync commands. Also added --pattern flag example to epic-create. Tests TestClaudeMdRefinementCommands (4 tests) verify the section and all three commands are present.",
+      "test_file": "tests/test_hierarchy_docs_update.py",
+      "implementation_files": [
+        "CLAUDE.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-006",
+      "criterion_text": "CLAUDE.md workflow updated with refinement step",
+      "status": "complete",
+      "evidence": "Added step 4 'Refine' to the Workflow Overview between 'Generate BDD' and 'Organize', mentioning /epic-refine and /feature-refine. Renumbered subsequent steps (5-6). Also added Organisation Patterns note under Project Structure section. Tests TestClaudeMdWorkflowUpdated (4 tests) verify the refine step exists, references correct commands, and is in correct order.",
+      "test_file": "tests/test_hierarchy_docs_update.py",
+      "implementation_files": [
+        "CLAUDE.md"
+      ]
+    }
+  ]
+}

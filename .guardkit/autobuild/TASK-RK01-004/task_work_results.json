@@ -1,0 +1,154 @@
+{
+  "task_id": "TASK-RK01-004",
+  "timestamp": "2026-02-19T19:53:11.747701",
+  "completed": true,
+  "phases": {
+    "phase_3": {
+      "detected": true,
+      "text": "Implementation (TDD Mode)",
+      "completed": false
+    },
+    "phase_4": {
+      "detected": true,
+      "completed": true
+    }
+  },
+  "quality_gates": {
+    "tests_passing": true,
+    "tests_passed": 49,
+    "tests_failed": 0,
+    "coverage": 99.0,
+    "coverage_met": true,
+    "all_passed": true
+  },
+  "files_modified": [],
+  "files_created": [
+    ".guardkit/autobuild/TASK-RK01-004/task_work_results.json",
+    ".guardkit/autobuild/TASK-RK01-006/checkpoints.json",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/.guardkit/autobuild/TASK-RK01-004/player_turn_1.json",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/installer/global/commands/epic-refine.md",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/tests/test_epic_refine_command.py"
+  ],
+  "tests_written": [
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/tests/test_epic_refine_command.py"
+  ],
+  "summary": "49 tests passed, 99.0% coverage, all quality gates passed",
+  "code_review": {
+    "score": 95,
+    "solid": 95,
+    "dry": 95,
+    "yagni": 95
+  },
+  "completion_promises": [
+    {
+      "criterion_id": "AC-001",
+      "criterion_text": "Command file follows established pattern (usage, examples, process, output format)",
+      "status": "complete",
+      "evidence": "epic-refine.md includes ## Usage, ## Examples, ## Process, and ## Output Format sections following the same structure as epic-create.md. Tests TestCommandStructure verify all four required sections exist plus correct /epic-refine <epic-id> syntax.",
+      "test_file": "tests/test_epic_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/epic-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-002",
+      "criterion_text": "Three-phase flow implemented (display \u2192 questions \u2192 summary)",
+      "status": "complete",
+      "evidence": "Process section documents three phases: Phase 1 (Current State Display with completeness scoring), Phase 2 (Targeted Questions with categories), Phase 3 (Change Summary and Commit with apply options). Each phase has its own dedicated section with full detail. Tests TestThreePhaseFlow verify all three phases are documented in order.",
+      "test_file": "tests/test_epic_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/epic-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-003",
+      "criterion_text": "Questions presented one at a time with skip/done options",
+      "status": "complete",
+      "evidence": "Question UX Design section explicitly states 'One question at a time: Questions are never presented as a list' and 'Skip and Done always available: Every question prompt includes reminder: (Type skip to skip, done to finish)'. Output format examples show single question presentation pattern. Tests TestQuestionPresentation verify one-at-a-time, skip, done, and example answers.",
+      "test_file": "tests/test_epic_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/epic-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-004",
+      "criterion_text": "--focus flag restricts questions to a single category",
+      "status": "complete",
+      "evidence": "Dedicated --focus Flag section with table mapping all 7 focus values to categories. Documentation states '--focus flag restricts questions to a single category'. Examples show --focus scope, --focus criteria, --focus risks, --focus dependencies, --focus constraints, --focus organisation. Tests TestFocusFlag and TestFocusFlagCategories verify all focus values.",
+      "test_file": "tests/test_epic_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/epic-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-005",
+      "criterion_text": "--quick flag skips prompts and applies AI-suggested improvements",
+      "status": "complete",
+      "evidence": "Dedicated --quick Flag section describes non-interactive mode: analyses current content, identifies gaps, generates AI-suggested improvements, applies automatically. Quick Mode Output section shows example output. Options section documents the flag. Tests TestQuickFlag verify documentation and skip/automatic behavior.",
+      "test_file": "tests/test_epic_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/epic-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-006",
+      "criterion_text": "Completeness score calculated before and after refinement",
+      "status": "complete",
+      "evidence": "Phase 1 documents completeness calculation with 9-dimension model table (Business Objective 15%, Scope 15%, Success Criteria 20%, etc.). Phase 3 shows before/after comparison in change summary. Output format examples show 'Before Completeness: 45% \u2192 After Completeness: 72%'. Tests TestCompletenessScoring verify score, before/after, 9-dimension model, and visual indicators.",
+      "test_file": "tests/test_epic_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/epic-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-007",
+      "criterion_text": "refinement_history appended to frontmatter",
+      "status": "complete",
+      "evidence": "Dedicated Refinement History Schema section with YAML example showing date, changes array, completeness_before, and completeness_after fields. Markdown Update section states 'Append a new entry to refinement_history in frontmatter'. Tests TestRefinementHistory verify all schema fields and YAML structure.",
+      "test_file": "tests/test_epic_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/epic-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-008",
+      "criterion_text": "Graphiti push after markdown update (graceful degradation)",
+      "status": "complete",
+      "evidence": "Dedicated Graphiti Push section documenting sync after markdown update with graceful degradation: 'If Graphiti is unavailable or not configured: Log a warning, save the markdown update, and continue. The refinement succeeds regardless of Graphiti status.' Output format shows Graphiti sync status indicators. Tests TestGraphitiPush verify both push documentation and graceful degradation.",
+      "test_file": "tests/test_epic_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/epic-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-009",
+      "criterion_text": "[REFINE] prefix and visual separators for mode clarity",
+      "status": "complete",
+      "evidence": "Question UX Design section documents '[REFINE] prefix: Every question prompt is prefixed with [REFINE] for clear mode indication' and 'Visual separators: Horizontal rules separate each question/answer cycle'. Output format examples show [REFINE] prefix on all prompts and separator lines. Tests TestModeClarity verify both prefix and separator documentation.",
+      "test_file": "tests/test_epic_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/epic-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-010",
+      "criterion_text": "Works in both Claude Code and Claude Desktop",
+      "status": "complete",
+      "evidence": "Dedicated Platform Compatibility section documenting both environments: 'Claude Code: Full interactive experience with terminal prompts' and 'Claude Desktop: Conversational interaction \u2014 questions presented as chat messages'. Tests TestPlatformCompatibility verify both platforms mentioned.",
+      "test_file": "tests/test_epic_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/epic-refine.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-011",
+      "criterion_text": "Organisation pattern assessment included in question categories",
+      "status": "complete",
+      "evidence": "Organisation is category 7 in the question categories with dedicated question template. Organisation Awareness section documents structural pattern detection: large direct-pattern (8+ tasks) suggests adding features, single-feature epics suggest flattening, mixed pattern suggests consolidation. Tests TestOrganisationAssessment verify all three detection patterns.",
+      "test_file": "tests/test_epic_refine_command.py",
+      "implementation_files": [
+        "installer/global/commands/epic-refine.md"
+      ]
+    }
+  ]
+}

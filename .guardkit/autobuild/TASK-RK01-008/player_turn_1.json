@@ -1,0 +1,117 @@
+{
+  "task_id": "TASK-RK01-008",
+  "turn": 1,
+  "files_modified": [
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/installer/global/commands/hierarchy-view.md",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/tests/test_hierarchy_view_org_patterns.py"
+  ],
+  "files_created": [
+    ".guardkit/autobuild/TASK-RK01-004/checkpoints.json",
+    ".guardkit/autobuild/TASK-RK01-008/player_turn_1.json",
+    ".guardkit/autobuild/TASK-RK01-008/task_work_results.json",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/.guardkit/autobuild/TASK-RK01-008/player_turn_1.json",
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/tests/test_hierarchy_view_org_patterns.py"
+  ],
+  "tests_written": [
+    "/Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F/tests/test_hierarchy_view_org_patterns.py"
+  ],
+  "tests_run": true,
+  "tests_passed": true,
+  "test_output_summary": "",
+  "implementation_notes": "Implementation via task-work delegation",
+  "concerns": [],
+  "requirements_addressed": [
+    "Tree view renders all three organisation patterns correctly",
+    "Direct-pattern epics show tasks directly under epic",
+    "Mixed-pattern epics show [Direct Tasks] group with visual separation",
+    "Pattern label shown next to each epic",
+    "Graphiti integration section in external tools view",
+    "--pattern filter works correctly",
+    "Dependency mapping handles all patterns",
+    "Backward compatible with existing features-pattern epics"
+  ],
+  "requirements_remaining": [],
+  "tests_passed_count": 30,
+  "completion_promises": [
+    {
+      "criterion_id": "AC-001",
+      "criterion_text": "Tree view renders all three organisation patterns correctly",
+      "status": "complete",
+      "evidence": "Updated Complete Hierarchy View (Default) section to show three epics: EPIC-001 with (features pattern), EPIC-002 with (direct pattern), and EPIC-003 with (mixed pattern). Each uses the correct hierarchy structure. Tests TestTreeViewAllPatterns verify all three patterns are present with 4 passing tests.",
+      "test_file": "tests/test_hierarchy_view_org_patterns.py",
+      "implementation_files": [
+        "installer/global/commands/hierarchy-view.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-002",
+      "criterion_text": "Direct-pattern epics show tasks directly under epic",
+      "status": "complete",
+      "evidence": "EPIC-002 in the tree view shows TASK-015 through TASK-018 directly under the epic with no FEAT entries. Tests TestDirectPatternTasks verify tasks appear directly and no FEAT entries exist within the direct pattern block (2 passing tests).",
+      "test_file": "tests/test_hierarchy_view_org_patterns.py",
+      "implementation_files": [
+        "installer/global/commands/hierarchy-view.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-003",
+      "criterion_text": "Mixed-pattern epics show \"[Direct Tasks]\" group with visual separation",
+      "status": "complete",
+      "evidence": "EPIC-003 in the tree view shows FEAT-004 (UI Redesign) as a feature entry and a [Direct Tasks] group containing TASK-022 through TASK-024. Tests TestMixedPatternDirectTasksGroup verify [Direct Tasks] label presence, placement under mixed epic, and co-existence with FEAT entries (3 passing tests).",
+      "test_file": "tests/test_hierarchy_view_org_patterns.py",
+      "implementation_files": [
+        "installer/global/commands/hierarchy-view.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-004",
+      "criterion_text": "Pattern label shown next to each epic",
+      "status": "complete",
+      "evidence": "Each epic in the default tree view shows its pattern label: '(features pattern)', '(direct pattern)', '(mixed pattern)'. The external tool integration table also shows a Pattern column. Tests TestPatternLabels verify all three labels are present with EPIC-XXX format (3 passing tests).",
+      "test_file": "tests/test_hierarchy_view_org_patterns.py",
+      "implementation_files": [
+        "installer/global/commands/hierarchy-view.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-005",
+      "criterion_text": "Graphiti integration section in external tools view",
+      "status": "complete",
+      "evidence": "Added Graphiti Integration (Knowledge Graph) section in External Tools view with connection status, episodes synced (45), episode coverage (90%), sync frequency, group ID (myproject__requirements), and entity mapping. Also added Graphiti Knowledge Graph Health section in Workflow view with episode coverage per entity type and completeness scores. Tests TestGraphitiIntegration verify all Graphiti aspects (8 passing tests).",
+      "test_file": "tests/test_hierarchy_view_org_patterns.py",
+      "implementation_files": [
+        "installer/global/commands/hierarchy-view.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-006",
+      "criterion_text": "--pattern filter works correctly",
+      "status": "complete",
+      "evidence": "Added --pattern direct, --pattern features, --pattern mixed filter examples in Scope Filtering section. Also added --graphiti-status filter with synced/pending/error values. Tests TestPatternFilter verify --pattern option, filter values, and --graphiti-status are all documented (3 passing tests).",
+      "test_file": "tests/test_hierarchy_view_org_patterns.py",
+      "implementation_files": [
+        "installer/global/commands/hierarchy-view.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-007",
+      "criterion_text": "Dependency mapping handles all patterns",
+      "status": "complete",
+      "evidence": "Rewrote dependency mapping to include: Cross-Epic Dependencies showing pattern labels, Feature Dependencies for features-pattern epics, Direct-Pattern Dependencies showing task-to-task chains (no feature layer), and Mixed-Pattern Dependencies showing feature-to-direct-task and direct-task-to-direct-task relationships. Tests TestDependencyMappingPatterns verify direct pattern dependency handling and cross-epic dependencies (2 passing tests).",
+      "test_file": "tests/test_hierarchy_view_org_patterns.py",
+      "implementation_files": [
+        "installer/global/commands/hierarchy-view.md"
+      ]
+    },
+    {
+      "criterion_id": "AC-008",
+      "criterion_text": "Backward compatible with existing features-pattern epics",
+      "status": "complete",
+      "evidence": "EPIC-001 retains its full features-pattern hierarchy (FEAT-001, FEAT-002, FEAT-003 with all tasks). All original features preserved: Jira/Linear/GitHub in external tools, --portfolio, --timeline, --dependencies options. Tests TestBackwardCompatibility verify features pattern hierarchy, external tools presence, and all existing view options (5 passing tests).",
+      "test_file": "tests/test_hierarchy_view_org_patterns.py",
+      "implementation_files": [
+        "installer/global/commands/hierarchy-view.md"
+      ]
+    }
+  ]
+}

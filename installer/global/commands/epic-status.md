@@ -37,39 +37,44 @@ Display epic status, progress, and synchronization status with external project 
 ```
 📊 Epic Portfolio Status
 
-🏃 Active Epics (3)
-┌─────────────┬──────────────────────┬──────────┬─────────────┬──────────────┬─────────────┐
-│ Epic ID     │ Title                │ Priority │ Progress    │ Features     │ External     │ Sync Status │
-├─────────────┼──────────────────────┼──────────┼─────────────┼─────────────┼──────────────┼─────────────┤
-│ EPIC-001    │ User Management      │ High     │ 67% (2/3)   │ 3 features  │ Jira, Linear│ ✅ Synced   │
-│ EPIC-002    │ Payment System       │ Critical │ 25% (1/4)   │ 2 features  │ Linear       │ ⚠️  Pending  │
-│ EPIC-003    │ Mobile Redesign      │ Normal   │ 0% (0/3)    │ 3 features  │ GitHub       │ ❌ Failed   │
-└─────────────┴──────────────────────┴──────────┴─────────────┴──────────────┴─────────────┘
+🏃 Active Epics (5)
+┌─────────────┬──────────────────────┬──────────┬──────────┬─────────────┬─────────────┬──────────────┬─────────────┐
+│ Epic ID     │ Title                │ Priority │ Pattern  │ Progress    │ Items       │ External     │ Sync Status │
+├─────────────┼──────────────────────┼──────────┼──────────┼─────────────┼─────────────┼──────────────┼─────────────┤
+│ EPIC-001    │ User Management      │ High     │ features │ 67% (2/3)   │ 3 features  │ Jira, Linear │ ✅ Synced   │
+│ EPIC-002    │ Fix Auth Bugs        │ High     │ direct   │ 33% (1/3)   │ 3 tasks     │ Linear       │ ✅ Synced   │
+│ EPIC-003    │ Platform Upgrade     │ Normal   │ mixed    │ 40%         │ 1 feat/1 task│ GitHub      │ ⚠️  Pending  │
+│ EPIC-004    │ Payment System       │ Critical │ features │ 25% (1/4)   │ 2 features  │ Linear       │ ⚠️  Pending  │
+│ EPIC-005    │ Mobile Redesign      │ Normal   │ features │ 0% (0/3)    │ 3 features  │ GitHub       │ ❌ Failed   │
+└─────────────┴──────────────────────┴──────────┴──────────┴─────────────┴─────────────┴──────────────┴─────────────┘
 
 📅 By Quarter
-Q1-2024: 2 epics (1 on track, 1 at risk)
-Q2-2024: 1 epic (planning phase)
+Q1-2024: 3 epics (1 on track, 2 at risk)
+Q2-2024: 2 epics (planning phase)
 
 🔗 External Tool Summary
 ✅ Jira: 1 epic synced
-⚠️ Linear: 2 epics (1 sync pending)
+⚠️ Linear: 3 epics (1 sync pending)
 ❌ GitHub: 1 epic (sync failed)
 
 📈 Overall Progress: 19% (4/22 features complete)
 ```
 
-### Single Epic Detailed View
+### Single Epic Detailed View (features pattern)
 ```
 📋 Epic Details: EPIC-001
 
 🎯 User Management System
 Priority: High | Quarter: Q1-2024 | Status: In Progress
+Organisation Pattern: features
 
 📊 Progress Overview
 ┌─────────────────────────────────────────────────────────────┐
 │ ████████████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░  │
 │ 67% Complete (2/3 features, 7/10 tasks)                    │
 └─────────────────────────────────────────────────────────────┘
+
+📏 Completeness Score: 78%
 
 🎯 Success Criteria
 ✅ User registration flow completed
@@ -100,6 +105,10 @@ Linear Initiative: PROJECT-456
   Last Sync: 5 minutes ago ✅
   Status: In Progress
 
+Graphiti Sync: ✅ Synced
+  Last Graphiti Sync: 10 minutes ago
+  Entity ID: my_project__EPIC-001
+
 📋 Feature Breakdown
 ✅ FEAT-001: User Registration (100% - 4/4 tasks)
 ✅ FEAT-002: Basic Authentication (100% - 3/3 tasks)
@@ -127,6 +136,44 @@ Epic File: docs/epics/EPIC-001-user-management.md
 Features: 3 features (2 complete, 1 in progress)
 Requirements: REQ-001, REQ-002, REQ-003
 BDD Scenarios: 15 scenarios (12 passing, 3 pending)
+```
+
+### Single Epic Detailed View (direct pattern)
+```
+📋 Epic: EPIC-002 — Fix Auth Bugs
+Status: in_progress | Priority: high | Pattern: direct
+
+📏 Completeness Score: 65%
+
+Graphiti Sync: ⚠️ Pending
+  Last Graphiti Sync: 1 hour ago
+
+Direct Tasks (3):
+  🔄 TASK-004: Debug session timeout [in_progress]
+  ⏳ TASK-005: Fix password reset [backlog]
+  ⏳ TASK-006: Update tests [backlog]
+
+Progress: 33% (1/3 tasks in progress)
+```
+
+### Single Epic Detailed View (mixed pattern)
+```
+📋 Epic: EPIC-003 — Platform Upgrade
+Status: in_progress | Pattern: mixed
+⚠️ Mixed organisation — consider grouping tasks into features
+
+📏 Completeness Score: 52%
+
+Graphiti Sync: ✅ Synced
+  Last Graphiti Sync: 30 minutes ago
+
+Features (1):
+  🔄 FEAT-002: UI Redesign (1 task)
+
+Direct Tasks (1):
+  ⏳ TASK-008: Upgrade dependencies [backlog]
+
+Progress: 40% (weighted combination of feature and task completion)
 ```
 
 ### Epic Hierarchy View
@@ -300,10 +347,26 @@ Azure DevOps: Not configured
 - Status synchronization indicators
 
 ### Progress Calculation
+
+Progress formulas vary by organisation pattern:
+
+**Direct pattern** — count completed tasks / total tasks:
 ```
-Epic Progress = (Completed Features / Total Features) × 100
+Direct Epic Progress = (Completed Tasks / Total Tasks) × 100
+```
+
+**Features pattern** — feature completion rollup (current behaviour):
+```
 Feature Progress = (Completed Tasks / Total Tasks) × 100
+Epic Progress = (Completed Features / Total Features) × 100
 Rollup Progress = Weighted average based on feature complexity
+```
+
+**Mixed pattern** — weighted combination of feature and direct task progress:
+```
+Feature Component = (Completed Features / Total Features) × Feature Weight
+Task Component = (Completed Direct Tasks / Total Direct Tasks) × Task Weight
+Mixed Epic Progress = Feature Component + Task Component
 ```
 
 ### Smart Notifications
