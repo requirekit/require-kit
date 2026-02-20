@@ -1,7 +1,7 @@
 # require-kit User Guide
 
-**Version**: 1.0.0
-**Last Updated**: 2025-11-03
+**Version**: 2.0.0
+**Last Updated**: 2026-02-20
 
 ## Table of Contents
 
@@ -12,10 +12,12 @@
 5. [EARS Notation](#ears-notation)
 6. [BDD Scenario Generation](#bdd-scenario-generation)
 7. [Epic/Feature Hierarchy](#epicfeature-hierarchy)
-8. [Command Reference](#command-reference)
-9. [Workflow Examples](#workflow-examples)
-10. [Integration](#integration)
-11. [Best Practices](#best-practices)
+8. [Iterative Refinement](#iterative-refinement)
+9. [Knowledge Graph Integration](#knowledge-graph-integration)
+10. [Command Reference](#command-reference)
+11. [Workflow Examples](#workflow-examples)
+12. [Integration](#integration)
+13. [Best Practices](#best-practices)
 
 ---
 
@@ -30,7 +32,9 @@ require-kit is a standalone requirements management toolkit that provides struct
 - **Interactive Requirements Gathering**: Conversational Q&A approach to capture complete requirements
 - **EARS Notation Formalization**: Convert natural language to structured, unambiguous requirements
 - **BDD/Gherkin Scenario Generation**: Create testable scenarios from requirements
-- **Epic/Feature Hierarchy Management**: Organize requirements into logical project structures
+- **Epic/Feature Hierarchy Management**: Organize requirements into logical project structures with three organisation patterns
+- **Iterative Refinement**: Completeness scoring with targeted improvement suggestions for epics and features
+- **Knowledge Graph**: Optional Graphiti integration for a queryable index of requirements
 - **Requirements Traceability**: Clear links from epics to features to requirements
 - **Technology Agnostic**: Works with any implementation system or project management tool
 
@@ -591,7 +595,19 @@ Feature: User Authentication System
 
 ### Project Organization
 
-require-kit organizes requirements hierarchically:
+require-kit organizes requirements hierarchically and supports three organisation patterns so you can choose the right level of structure for each epic.
+
+### Organisation Patterns
+
+| Pattern | Structure | Best For |
+|---------|-----------|----------|
+| **Standard** | Epic → Feature → Task | Large epics with 8+ tasks across distinct capabilities |
+| **Direct** | Epic → Task | Small, focused epics with 3-5 closely related tasks |
+| **Mixed** | Epic → Feature + Task | Transitional epics migrating between patterns |
+
+#### Standard Pattern (Epic → Feature → Task)
+
+The default pattern groups tasks under features for maximum organisation.
 
 ```
 Epic (Strategic Initiative)
@@ -605,6 +621,63 @@ Epic (Strategic Initiative)
 └── Feature
 ```
 
+**When to use:** Epic spans multiple distinct capabilities, more than 8 tasks expected, multiple team members, or feature-level progress tracking is needed.
+
+#### Direct Pattern (Epic → Task)
+
+Skip the feature layer for small, focused epics where features add unnecessary overhead.
+
+```
+Epic (Focused Business Objective)
+├── Requirement (EARS Specification)
+├── BDD Scenario (Acceptance Criteria)
+├── Task (Implementation)
+├── Task (Implementation)
+└── Task (Implementation)
+```
+
+**When to use:** Epic has 3-5 closely related tasks, all tasks serve a single capability, or quick iteration matters more than detailed hierarchy.
+
+```bash
+# Create epic using direct pattern
+/epic-create "Config Refactor" --pattern direct
+```
+
+#### Mixed Pattern (Epic → Feature + Task)
+
+Combine features and direct tasks in one epic. Use during transitions but avoid as a permanent structure.
+
+```
+Epic (Business Objective)
+├── Feature (Grouped Capability)
+│   ├── Task (Implementation)
+│   └── Task (Implementation)
+├── Task (Direct — ungrouped)
+└── Task (Direct — ungrouped)
+```
+
+**When to use:** Transitioning between direct and standard patterns during epic restructuring.
+
+#### Pattern Selection Guide
+
+| Epic Size | Recommended Pattern | Rationale |
+|-----------|---------------------|-----------|
+| 3-5 tasks | Direct | Features add overhead without value |
+| 6-7 tasks | Either | Use judgement based on task relatedness |
+| 8+ tasks | Standard | Features provide necessary organisation |
+
+#### Migrating Between Patterns
+
+Use `/epic-refine` to change an epic's organisation pattern:
+
+```bash
+# Promote direct → standard (group tasks into features)
+/epic-refine EPIC-002 --pattern standard
+
+# Simplify standard → direct (dissolve features)
+/epic-refine EPIC-001 --pattern direct
+```
+
 ### Creating Epics
 
 #### Basic Epic Creation
@@ -613,9 +686,13 @@ Epic (Strategic Initiative)
 /epic-create "User Management System"
 ```
 
-#### With Metadata
+#### With Pattern Flag
 
 ```bash
+# Create with direct pattern (no feature layer)
+/epic-create "Config Refactor" --pattern direct
+
+# Create with metadata
 /epic-create "User Management System" \
   priority:high \
   business_value:8 \
@@ -639,6 +716,7 @@ docs/epics/EPIC-001-user-management-system.md
 Next Steps:
 1. Create features: /feature-create "Feature Name" epic:EPIC-001
 2. Monitor progress: /epic-status EPIC-001
+3. Refine and improve: /epic-refine EPIC-001
 ```
 
 ### Creating Features
@@ -678,6 +756,7 @@ docs/features/FEAT-001-login-functionality.md
 Next Steps:
 1. Generate BDD: /generate-bdd FEAT-001
 2. View hierarchy: /hierarchy-view EPIC-001
+3. Refine and improve: /feature-refine FEAT-001
 ```
 
 ### Viewing Hierarchy
@@ -730,6 +809,218 @@ Overall Progress: 65% complete
 
 ---
 
+## Iterative Refinement
+
+### Why Iterative Refinement Matters
+
+Well-structured requirements rarely emerge fully formed. require-kit's refinement commands help you improve epics and features through scored assessments, targeted questions, and a structured change review — so your requirements become clearer over time rather than remaining as first drafts.
+
+### /epic-refine
+
+Interactively refine an existing epic through completeness scoring, targeted questions, and change summaries.
+
+#### Usage
+
+```bash
+/epic-refine EPIC-001
+/epic-refine EPIC-001 --focus scope
+/epic-refine EPIC-001 --focus risks
+/epic-refine EPIC-001 --quick
+```
+
+#### Example Session
+
+```
+📊 Epic Completeness: EPIC-001 — User Management System
+
+Overall Score: 62%
+
+Dimensions:
+  ✅ Business Objective  15/15 (100%)
+  ✅ Scope               12/15 (80%)
+  ⚠️  Success Criteria    8/20 (40%)   ← weakest
+  ⚠️  Acceptance Criteria  6/15 (40%)
+  ✅ Risk                 8/10 (80%)
+  ✅ Constraints          8/10 (80%)
+  ✅ Dependencies         4/5  (80%)
+  ⚠️  Stakeholders        2/5  (40%)
+  ✅ Organisation         5/5  (100%)
+
+Q1 (Success Criteria): What measurable outcomes would indicate this epic is complete?
+> Users can register, login, and manage their profiles with < 1s response times.
+
+Q2 (Acceptance Criteria): What are the minimum conditions for a stakeholder to accept delivery?
+> All authentication flows pass UAT; admin panel accessible to admin users only.
+
+Changes to apply:
++ Added 2 success criteria items
++ Added stakeholder acceptance conditions
+
+Apply changes? [Y]es / [N]o / [E]dit: Y
+
+✅ Epic updated. New score: 84%
+```
+
+#### Completeness Dimensions (Epic)
+
+| Dimension | Weight |
+|-----------|--------|
+| Business Objective | 15% |
+| Scope | 15% |
+| Success Criteria | 20% |
+| Acceptance Criteria | 15% |
+| Risk | 10% |
+| Constraints | 10% |
+| Dependencies | 5% |
+| Stakeholders | 5% |
+| Organisation | 5% |
+
+#### Score Thresholds
+
+| Score | Status |
+|-------|--------|
+| 80%+ | Good — ready for feature breakdown |
+| 60–79% | Needs work — run another refinement cycle |
+| Below 60% | Incomplete — significant gaps remain |
+
+### /feature-refine
+
+Interactively refine an existing feature specification with focus on acceptance criteria specificity, requirements traceability, and BDD scenario coverage.
+
+#### Usage
+
+```bash
+/feature-refine FEAT-001
+/feature-refine FEAT-001 --focus acceptance
+/feature-refine FEAT-001 --focus bdd
+/feature-refine FEAT-001 --focus traceability
+/feature-refine FEAT-001 --quick
+```
+
+#### Example Session
+
+```
+📊 Feature Completeness: FEAT-001 — Login Functionality
+
+Overall Score: 71%
+
+Dimensions:
+  ✅ Scope Within Epic       8/10 (80%)
+  ⚠️  Acceptance Criteria   14/25 (56%)   ← weakest
+  ✅ Requirements Traceability 16/20 (80%)
+  ⚠️  BDD Coverage           9/15 (60%)
+  ✅ Technical Considerations 12/15 (80%)
+  ✅ Dependencies             9/10 (90%)
+  ✅ Test Strategy             4/5 (80%)
+
+Q1 (Acceptance Criteria): What specific conditions must be met for login to be considered working?
+> Sessions must persist across page refreshes; HTTPS required; errors shown inline.
+
+Q2 (BDD Coverage): Are edge cases like locked accounts and expired sessions covered in scenarios?
+> Yes — locked accounts and session expiry both need explicit BDD scenarios.
+
+Suggestions:
+  → Run /formalize-ears to add missing EARS requirements
+  → Run /generate-bdd to improve BDD coverage
+
+Changes to apply:
++ Strengthened acceptance criteria (3 items)
++ Noted BDD gap for locked accounts and session expiry
+
+Apply changes? [Y]es / [N]o / [E]dit: Y
+
+✅ Feature updated. New score: 88%
+```
+
+#### Completeness Dimensions (Feature)
+
+| Dimension | Weight |
+|-----------|--------|
+| Scope Within Epic | 10% |
+| Acceptance Criteria | 25% |
+| Requirements Traceability | 20% |
+| BDD Coverage | 15% |
+| Technical Considerations | 15% |
+| Dependencies | 10% |
+| Test Strategy | 5% |
+
+### Three-Phase Refinement Flow
+
+Both `/epic-refine` and `/feature-refine` follow the same three-phase flow:
+
+1. **Current State Display** — Loads the spec, calculates a completeness score, and displays the assessment with visual indicators showing which dimensions need attention.
+2. **Targeted Questions** — Presents questions one at a time starting from the weakest categories, with options to skip or finish early.
+3. **Change Summary and Commit** — Displays proposed changes, offers apply options (Yes / No / Edit), updates the markdown file, and appends a `refinement_history` entry to the frontmatter.
+
+### How Refinement Integrates with Other Commands
+
+`/feature-refine` suggests related commands when gaps are detected:
+- Suggests `/formalize-ears` when linked EARS requirements are missing
+- Suggests `/generate-bdd` when BDD scenario coverage is low
+
+`/epic-refine` detects organisation pattern issues and suggests improvements:
+- Large direct-pattern epics (8+ tasks without features) — suggests grouping tasks into features
+- Single-feature epics — suggests flattening to simplify hierarchy
+
+---
+
+## Knowledge Graph Integration
+
+### What Graphiti Provides
+
+Graphiti is an optional integration that creates a queryable index of your requirements. Rather than searching markdown files, you can query the knowledge graph to find related epics, trace requirements, or ask questions about your project structure.
+
+Markdown files remain the **authoritative source of truth** — Graphiti is a derived index that you can rebuild at any time from your markdown files.
+
+### Standalone vs Connected Modes
+
+| Mode | How it works |
+|------|-------------|
+| **Standalone** | All requirements live as markdown files. No external dependencies. Full functionality without Graphiti. |
+| **Connected** | Graphiti runs alongside require-kit. `/requirekit-sync` pushes markdown state to Graphiti for querying. Auto-sync available on create/refine. |
+
+### /requirekit-sync
+
+Re-read markdown files and push current state to Graphiti.
+
+#### Usage
+
+```bash
+/requirekit-sync EPIC-001          # Sync a single epic
+/requirekit-sync FEAT-002          # Sync a single feature
+/requirekit-sync --all             # Sync everything
+/requirekit-sync --all --dry-run   # Preview without writing
+/requirekit-sync --all --verbose   # Show detailed output
+```
+
+#### How It Works
+
+1. Checks that Graphiti is enabled in configuration
+2. Scans `docs/epics/` and `docs/features/` for markdown files
+3. Parses frontmatter and content from each file
+4. Upserts episodes to Graphiti using the configured group ID
+5. Displays a summary with sync results
+
+#### Markdown-Authoritative Design
+
+- **One-way sync** from markdown to Graphiti (markdown always wins)
+- No conflict detection or bidirectional merge
+- Graphiti serves as a queryable index rebuilt from markdown
+- Run `/requirekit-sync --all` to fully rebuild after data loss
+
+### Auto-Sync on Create/Refine
+
+When Graphiti is configured with `sync_on_create: true` or `sync_on_refine: true`, the following commands auto-sync without any extra steps:
+
+- `/epic-create` — auto-syncs if `sync_on_create: true`
+- `/feature-create` — auto-syncs if `sync_on_create: true`
+- `/epic-refine` — auto-syncs if `sync_on_refine: true`
+- `/feature-refine` — auto-syncs if `sync_on_refine: true`
+
+Use `/requirekit-sync` explicitly for manual or full-rebuild sync operations.
+
+---
+
 ## Command Reference
 
 ### Requirements Commands
@@ -745,7 +1036,9 @@ Overall Progress: 65% complete
 | Command | Purpose | Example |
 |---------|---------|---------|
 | `/epic-create` | Create new epic | `/epic-create "User Management"` |
+| `/epic-create` (direct pattern) | Create epic without feature layer | `/epic-create "Config Refactor" --pattern direct` |
 | `/epic-status` | View epic progress | `/epic-status EPIC-001` |
+| `/epic-refine` | Iteratively refine epic | `/epic-refine EPIC-001` |
 | `/epic-sync` | Sync with PM tools | `/epic-sync EPIC-001 --jira` |
 
 ### Feature Commands
@@ -754,6 +1047,7 @@ Overall Progress: 65% complete
 |---------|---------|---------|
 | `/feature-create` | Create new feature | `/feature-create "Login" epic:EPIC-001` |
 | `/feature-status` | View feature progress | `/feature-status FEAT-001` |
+| `/feature-refine` | Iteratively refine feature | `/feature-refine FEAT-001` |
 | `/feature-sync` | Sync with PM tools | `/feature-sync FEAT-001 --linear` |
 | `/feature-generate-tasks` | Generate task specs | `/feature-generate-tasks FEAT-001` |
 
@@ -762,6 +1056,12 @@ Overall Progress: 65% complete
 | Command | Purpose | Example |
 |---------|---------|---------|
 | `/hierarchy-view` | View project structure | `/hierarchy-view EPIC-001` |
+
+### Sync Commands
+
+| Command | Purpose | Example |
+|---------|---------|---------|
+| `/requirekit-sync` | Sync to Graphiti knowledge graph | `/requirekit-sync --all` |
 
 ---
 
@@ -836,7 +1136,45 @@ Overall Progress: 65% complete
 # Edit feature file to add implementation references
 ```
 
-### Example 3: Requirements Review Cycle
+### Example 3: Iterative Requirements Development
+
+```bash
+# Step 1: Gather requirements
+/gather-requirements user-notifications
+
+# Step 2: Formalize with EARS
+/formalize-ears
+# Output: REQ-050 through REQ-056
+
+# Step 3: Create epic
+/epic-create "Notification System"
+# Output: docs/epics/EPIC-004.md
+
+# Step 4: Check epic completeness and refine
+/epic-refine EPIC-004
+# → Score: 58% — answer targeted questions to improve
+# → Score after refinement: 82% — ready to proceed
+
+# Step 5: Create feature
+/feature-create "Email Notifications" epic:EPIC-004 requirements:[REQ-050,REQ-051]
+# Output: docs/features/FEAT-006.md
+
+# Step 6: Check feature completeness and refine
+/feature-refine FEAT-006
+# → Score: 65% — acceptance criteria need strengthening
+# → Suggests: /generate-bdd to improve BDD coverage
+# → Score after refinement: 90%
+
+# Step 7: Generate BDD scenarios
+/generate-bdd FEAT-006
+# Output: docs/bdd/BDD-006-email-notifications.feature
+
+# Step 8: Review complete hierarchy with traceability
+/hierarchy-view EPIC-004
+# See: Epic → Feature → Requirements → BDD
+```
+
+### Example 4: Requirements Review Cycle
 
 ```bash
 # Step 1: Draft requirements
@@ -892,6 +1230,17 @@ For task execution workflow with quality gates:
 4. **Full Traceability**: REQ → BDD → FEAT → TASK → Implementation
 
 See [Integration Guide](../INTEGRATION-GUIDE.md) for complete details.
+
+### Integration with Graphiti (Knowledge Graph)
+
+For a queryable index of your requirements:
+
+1. **Optional**: require-kit works fully without Graphiti
+2. **Sync**: Run `/requirekit-sync --all` to populate Graphiti from your markdown files
+3. **Auto-sync**: Configure `sync_on_create` and `sync_on_refine` for automatic updates
+4. **Markdown wins**: Graphiti is derived from markdown — never edit it directly
+
+See [Knowledge Graph Integration](#knowledge-graph-integration) for complete details.
 
 ### PM Tool Export
 
