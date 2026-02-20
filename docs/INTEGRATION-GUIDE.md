@@ -23,6 +23,7 @@ Both packages require Python 3.10+ for ecosystem consistency. This ensures compa
 - [Installation Scenarios](#installation-scenarios)
 - [Feature Availability Matrix](#feature-availability-matrix)
 - [Common Workflows](#common-workflows)
+- [Graphiti Knowledge Graph Integration](#graphiti-knowledge-graph-integration)
 - [Troubleshooting](#troubleshooting)
 - [Migration Guides](#migration-guides)
 
@@ -644,15 +645,20 @@ ls ~/.agentecflow/*.marker
 /feature-create "Login Functionality" epic:EPIC-001
 # Output: docs/features/FEAT-001.md
 
-# Phase 5: Generate BDD Scenarios (require-kit)
+# Phase 5: Refine Iteratively (require-kit)
+/epic-refine EPIC-001
+/feature-refine FEAT-001
+# Improve scope, acceptance criteria, and structure iteratively
+
+# Phase 6: Generate BDD Scenarios (require-kit)
 /generate-bdd FEAT-001
 # Output: docs/bdd/BDD-001.feature (Gherkin scenarios)
 
-# Phase 6: Generate Task Specifications (require-kit)
+# Phase 7: Generate Task Specifications (require-kit)
 /feature-generate-tasks FEAT-001
 # Output: tasks/backlog/TASK-001.md (with links to REQ, BDD, FEAT)
 
-# Phase 7: Execute Task (guardkit)
+# Phase 8: Execute Task (guardkit)
 /task-work TASK-001
 # - Loads requirements context from REQ-001
 # - References BDD-001 for acceptance criteria
@@ -660,7 +666,7 @@ ls ~/.agentecflow/*.marker
 # - Runs quality gates
 # Output: Implementation with test coverage
 
-# Phase 8: Complete Task (guardkit)
+# Phase 9: Complete Task (guardkit)
 /task-complete TASK-001
 # - Verifies all tests passing
 # - Confirms coverage ≥80%
@@ -764,6 +770,65 @@ cd ../require-kit
 ```
 
 **Result**: Requirements managed in require-kit with structured metadata ready for PM tool integration.
+
+---
+
+## Graphiti Knowledge Graph Integration
+
+RequireKit can optionally integrate with [Graphiti](https://github.com/getzep/graphiti), a knowledge graph built on Neo4j, to provide a queryable index of your requirements data. This integration is entirely optional — RequireKit works fully without it.
+
+### What Graphiti Provides
+
+When enabled, Graphiti provides:
+
+- **Queryable requirements**: Search and traverse epics, features, requirements, and BDD scenarios as graph nodes
+- **Cross-project traceability**: Query relationships across multiple RequireKit projects
+- **GuardKit context injection**: GuardKit can load requirements context from Graphiti during `/task-work` planning phases
+
+### Configuration
+
+Graphiti integration is configured via `graphiti.yaml` in your project:
+
+```yaml
+graphiti:
+  enabled: false  # Default: off (standalone mode)
+  endpoint: "bolt://localhost:7687"
+  project_namespace: "my_project"
+  group_id_pattern: "{project}__requirements"
+  sync_on_create: true   # Auto-push on /epic-create and /feature-create
+  sync_on_refine: true   # Auto-push after /epic-refine and /feature-refine
+```
+
+To enable:
+
+1. Ensure Neo4j (or a Graphiti-compatible graph database) is running
+2. Set `enabled: true` in `graphiti.yaml`
+3. Update `endpoint` to point to your running instance
+4. Set `project_namespace` to a short identifier for your project
+
+### Manual Sync with /requirekit-sync
+
+Use `/requirekit-sync` to manually push markdown state to Graphiti:
+
+```bash
+/requirekit-sync EPIC-001          # Sync a single epic
+/requirekit-sync FEAT-002          # Sync a single feature
+/requirekit-sync --all             # Sync everything
+/requirekit-sync --all --dry-run   # Preview without writing
+```
+
+This is a **one-way sync** from markdown to Graphiti — markdown files are always the source of truth.
+
+### Auto-Sync on Create/Refine
+
+When configured in `graphiti.yaml`, Graphiti syncs automatically:
+
+- `/epic-create` and `/feature-create` auto-sync if `sync_on_create: true`
+- `/epic-refine` and `/feature-refine` auto-sync if `sync_on_refine: true`
+
+### Standalone Mode (Default)
+
+When `enabled: false` (the default), RequireKit operates entirely from markdown files. No Graphiti reads or writes are performed, and no external database is required.
 
 ---
 

@@ -8,7 +8,9 @@ Track relationships between requirements, features, epics, and implementation fo
 
 ## Traceability in RequireKit
 
-RequireKit maintains automatic traceability through markdown files with structured metadata:
+RequireKit maintains automatic traceability through markdown files with structured metadata. The traceability chain varies by [organisation pattern](hierarchy.md#organisation-patterns):
+
+### Standard Pattern (Epic → Feature → Task)
 
 ```
 EPIC-001 (Strategic)
@@ -21,6 +23,20 @@ BDD-001 (Test Scenarios)
     ↓ executed by (with guardkit)
 TASK-001 (Implementation)
 ```
+
+### Direct Pattern (Epic → Task)
+
+```
+EPIC-001 (Strategic)
+    ↓ contains
+REQ-001 (EARS Specification)
+    ↓ verified by
+BDD-001 (Test Scenarios)
+    ↓ executed by (with guardkit)
+TASK-001 (Implementation)
+```
+
+The direct pattern skips the feature layer, reducing traceability depth but simplifying the chain for small, focused epics. Pattern choice affects which levels of traceability are available — see [Organisation Patterns](hierarchy.md#organisation-patterns) for guidance on when to use each pattern.
 
 ## Types of Traceability
 
@@ -120,6 +136,9 @@ Identify missing coverage:
 
 # Generate traceability report
 /trace-report EPIC-001
+
+# Sync traceability data to Graphiti knowledge graph (optional)
+/requirekit-sync --all
 ```
 
 ## Example: Complete Traceability

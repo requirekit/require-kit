@@ -44,6 +44,12 @@ Export RequireKit requirements, features, and epics to project management tools.
 /feature-sync FEAT-001 --azure
 ```
 
+## Organisation Patterns and PM Mapping
+
+Different [organisation patterns](../core-concepts/hierarchy.md#organisation-patterns) map differently to PM tools. For example, the standard pattern (Epic → Feature → Task) maps to Jira's Epic → Story → Sub-task, while the direct pattern (Epic → Task) skips the Story layer entirely.
+
+See [Pattern-Specific Mapping](../core-concepts/hierarchy.md#pattern-specific-mapping) for detailed mapping tables for Jira, Linear, GitHub Projects, and Azure DevOps.
+
 ## What Gets Exported
 
 - Feature description → User story

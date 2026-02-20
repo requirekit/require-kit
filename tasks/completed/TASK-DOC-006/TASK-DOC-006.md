@@ -1,7 +1,8 @@
 ---
 id: TASK-DOC-006
 title: Update cross-references and integration pages
-status: backlog
+status: completed
+completed: 2026-02-20T00:00:00Z
 task_type: implementation
 created: 2026-02-20T00:00:00Z
 priority: low
@@ -57,9 +58,9 @@ Update Common Workflows to include refinement commands in the full integration w
 
 ## Acceptance Criteria
 
-- [ ] Home page workflow includes refinement step
-- [ ] Traceability page covers pattern-specific traceability paths
-- [ ] PM tools page cross-references pattern-specific mapping
-- [ ] Integration Guide includes Graphiti section
-- [ ] All cross-reference links resolve correctly
-- [ ] No broken internal links introduced
+- [x] Home page workflow includes refinement step
+- [x] Traceability page covers pattern-specific traceability paths
+- [x] PM tools page cross-references pattern-specific mapping
+- [x] Integration Guide includes Graphiti section
+- [x] All cross-reference links resolve correctly
+- [x] No broken internal links introduced

@@ -65,6 +65,10 @@ Common issues, solutions, and frequently asked questions.
 /epic-create "User Management System"
 /feature-create "User Authentication" epic:EPIC-001
 
+# 4.5. Refine iteratively
+/epic-refine EPIC-001
+/feature-refine FEAT-001
+
 # 5. View hierarchy
 /hierarchy-view EPIC-001
 ```
