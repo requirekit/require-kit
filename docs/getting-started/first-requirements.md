@@ -170,6 +170,20 @@ EPIC-001: User Management System
     └── REQ-005: Session validation
 ```
 
+### Step 7: Refine and Iterate
+
+With your epic and feature created, iteratively improve their quality:
+
+```bash
+# Refine your epic with completeness scoring
+/epic-refine EPIC-001
+
+# Refine the feature as a natural follow-up
+/feature-refine FEAT-001
+```
+
+The refinement commands score your epic/feature for completeness and ask targeted questions to fill gaps. Each session improves quality incrementally — you don't need to get everything perfect in one pass.
+
 ## Understanding the Files
 
 ### Requirement Files (REQ-XXX.md)
