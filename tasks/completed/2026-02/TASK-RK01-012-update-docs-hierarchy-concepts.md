@@ -9,7 +9,7 @@ id: TASK-RK01-012
 implementation_mode: task-work
 parent_review: TASK-REV-RK01
 priority: normal
-status: design_approved
+status: completed
 tags:
 - documentation
 - hierarchy

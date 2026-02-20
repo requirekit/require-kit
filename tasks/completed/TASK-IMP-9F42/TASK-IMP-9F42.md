@@ -1,16 +1,19 @@
 ---
 id: TASK-IMP-9F42
 title: Clean up FEAT-498F post-AutoBuild task state and directory artifacts
-status: backlog
+status: completed
 task_type: feature
 parent_review: TASK-REV-E2DD
 feature_ref: FEAT-498F
 created: 2026-02-20T00:00:00Z
 updated: 2026-02-20T00:00:00Z
+completed: 2026-02-20T16:30:00Z
+completed_location: tasks/completed/TASK-IMP-9F42/
 priority: high
 tags: [autobuild, cleanup, task-state, feat-498f]
 complexity: 3
 implementation_mode: direct
+organized_files: [TASK-IMP-9F42.md]
 ---
 
 # Task: Clean Up FEAT-498F Post-AutoBuild State
@@ -87,13 +90,13 @@ rm tasks/backlog/TASK-REV-RK01-plan-requirekit-v2-refinement-commands.md
 
 ## Acceptance Criteria
 
-- [ ] No TASK-RK01-* files in `tasks/backlog/`
-- [ ] No `requirekit-v2-refinement-commands/` subdirectory in backlog
-- [ ] All 14 TASK-RK01-* files in `tasks/completed/2026-02/` with `status: completed`
-- [ ] FEAT-498F.yaml shows `status: completed` with 14/14 tasks completed
-- [ ] Worktree removed (`.guardkit/worktrees/FEAT-498F` gone)
-- [ ] Planning task removed from backlog
-- [ ] `design_approved/` has no TASK-RK01-* files remaining
+- [x] No TASK-RK01-* files in `tasks/backlog/`
+- [x] No `requirekit-v2-refinement-commands/` subdirectory in backlog
+- [x] All 14 TASK-RK01-* files in `tasks/completed/2026-02/` with `status: completed`
+- [x] FEAT-498F.yaml shows `status: completed` with 14/14 tasks completed
+- [x] Worktree removed (`.guardkit/worktrees/FEAT-498F` gone)
+- [x] Planning task removed from backlog
+- [x] `design_approved/` has no TASK-RK01-* files remaining
 
 ## Risk Assessment
 

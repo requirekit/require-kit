@@ -1,16 +1,25 @@
 ---
-id: TASK-RK01-011
-title: "Update documentation site command pages and navigation"
-task_type: documentation
-parent_review: TASK-REV-RK01
-feature_id: FEAT-RK-001
-wave: 4
-implementation_mode: task-work
 complexity: 4
-dependencies: [TASK-RK01-004, TASK-RK01-005, TASK-RK01-006, TASK-RK01-007, TASK-RK01-008]
-status: pending
+dependencies:
+- TASK-RK01-004
+- TASK-RK01-005
+- TASK-RK01-006
+- TASK-RK01-007
+- TASK-RK01-008
+feature_id: FEAT-RK-001
+id: TASK-RK01-011
+implementation_mode: task-work
+parent_review: TASK-REV-RK01
 priority: normal
-tags: [documentation, mkdocs, github-pages, commands]
+status: completed
+tags:
+- documentation
+- mkdocs
+- github-pages
+- commands
+task_type: documentation
+title: Update documentation site command pages and navigation
+wave: 4
 ---
 
 # Task: Update Documentation Site Command Pages and Navigation

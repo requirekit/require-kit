@@ -6,7 +6,7 @@ id: TASK-RK01-002
 implementation_mode: task-work
 parent_review: TASK-REV-RK01
 priority: high
-status: design_approved
+status: completed
 tags:
 - organisation-pattern
 - epic-create

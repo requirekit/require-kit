@@ -1,34 +1,19 @@
 ---
-id: TASK-RK01-001
-title: Add refinement mode and completeness scoring to requirements-analyst agent
-task_type: feature
-parent_review: TASK-REV-RK01
-feature_id: FEAT-RK-001
-wave: 1
-implementation_mode: task-work
 complexity: 7
 dependencies: []
-status: in_review
+feature_id: FEAT-RK-001
+id: TASK-RK01-001
+implementation_mode: task-work
+parent_review: TASK-REV-RK01
 priority: high
+status: completed
 tags:
 - refinement
 - completeness-scoring
 - agent
-autobuild_state:
-  current_turn: 1
-  max_turns: 10
-  worktree_path: /Users/richardwoollcott/Projects/appmilla_github/require-kit/.guardkit/worktrees/FEAT-498F
-  base_branch: main
-  started_at: '2026-02-19T16:06:21.807849'
-  last_updated: '2026-02-19T16:13:15.944085'
-  turns:
-  - turn: 1
-    decision: approve
-    feedback: null
-    timestamp: '2026-02-19T16:06:21.807849'
-    player_summary: Implementation via task-work delegation
-    player_success: true
-    coach_success: true
+task_type: feature
+title: Add refinement mode and completeness scoring to requirements-analyst agent
+wave: 1
 ---
 
 # Task: Add Refinement Mode and Completeness Scoring to Requirements Analyst Agent

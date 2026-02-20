@@ -1,16 +1,21 @@
 ---
-id: TASK-RK01-006
-title: "Create /requirekit-sync command"
-task_type: feature
-parent_review: TASK-REV-RK01
-feature_id: FEAT-RK-001
-wave: 2
-implementation_mode: task-work
 complexity: 5
-dependencies: [TASK-RK01-003]
-status: pending
+dependencies:
+- TASK-RK01-003
+feature_id: FEAT-RK-001
+id: TASK-RK01-006
+implementation_mode: task-work
+parent_review: TASK-REV-RK01
 priority: normal
-tags: [requirekit-sync, graphiti, sync, command]
+status: completed
+tags:
+- requirekit-sync
+- graphiti
+- sync
+- command
+task_type: feature
+title: Create /requirekit-sync command
+wave: 2
 ---
 
 # Task: Create /requirekit-sync Command
