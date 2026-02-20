@@ -34,6 +34,7 @@ RequireKit is a requirements management toolkit that helps you:
 3. Generate BDD Scenarios       → /generate-bdd
 4. Create Epic                  → /epic-create "Title"
 5. Create Feature               → /feature-create "Title" epic:EPIC-XXX
+5.5. Refine Epic/Feature        → /epic-refine, /feature-refine
 6. View Hierarchy               → /hierarchy-view EPIC-XXX
 ```
 
@@ -53,7 +54,8 @@ RequireKit is a requirements management toolkit that helps you:
 ### Intermediate
 1. Explore [BDD Generation](../core-concepts/bdd-scenarios.md)
 2. Learn [Epic/Feature Hierarchy](../core-concepts/hierarchy.md)
-3. Review [Commands Reference](../commands/index.md)
+3. Learn [Iterative Refinement](../commands/epics.md#epic-refine)
+4. Review [Commands Reference](../commands/index.md)
 
 ### Advanced
 1. Configure [Integration with guardkit](integration.md)

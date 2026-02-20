@@ -124,6 +124,12 @@ You've just created complete, testable requirements in under 5 minutes:
          │
          ▼
 ┌─────────────────┐
+│ 4.5. REFINE     │  Iterative improvement
+│  Hierarchy      │  /epic-refine, /feature-refine
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
 │ 5. EXPORT       │  PM tools or implementation
 │  Integration    │  /feature-sync --jira
 └─────────────────┘
@@ -152,6 +158,10 @@ After creating requirements, organize them into epics and features:
 
 # View complete hierarchy
 /hierarchy-view EPIC-001
+
+# Iteratively improve your epic
+/epic-refine EPIC-001
+# Check completeness score, answer targeted questions
 ```
 
 ## What's Next?
