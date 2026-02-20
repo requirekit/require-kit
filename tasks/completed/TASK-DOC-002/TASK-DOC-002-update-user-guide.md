@@ -1,9 +1,10 @@
 ---
 id: TASK-DOC-002
 title: Update require_kit_user_guide.md with FEAT-498F content
-status: backlog
+status: completed
 task_type: implementation
 created: 2026-02-20T00:00:00Z
+completed: 2026-02-20T00:00:00Z
 priority: high
 complexity: 6
 parent_review: TASK-REV-9480
@@ -11,6 +12,7 @@ feature_id: feat-498f-docs-update
 wave: 1
 implementation_mode: task-work
 tags: [documentation, mkdocs, feat-498f]
+completed_location: tasks/completed/TASK-DOC-002/
 ---
 
 # Task: Update require_kit_user_guide.md with FEAT-498F Content
