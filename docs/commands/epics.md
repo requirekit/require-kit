@@ -8,8 +8,22 @@ Create a new epic.
 
 **Usage:**
 ```bash
-/epic-create "Epic Title"
+/epic-create "Epic Title" [options]
 ```
+
+**Examples:**
+```bash
+/epic-create "User Management System"
+/epic-create "Config Refactor" --pattern direct
+```
+
+**Options:**
+
+| Flag | Description |
+|---|---|
+| `--pattern <pattern>` | Set organisation pattern: `standard` (default), `direct`, or `mixed` |
+
+> **Note:** If Graphiti is configured, epics are automatically synced to the knowledge graph on creation.
 
 [See detailed documentation →](../guides/command_usage_guide.md#epic-create)
 
