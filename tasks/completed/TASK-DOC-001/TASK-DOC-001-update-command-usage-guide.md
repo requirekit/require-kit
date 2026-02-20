@@ -1,9 +1,10 @@
 ---
 id: TASK-DOC-001
 title: Update command_usage_guide.md with FEAT-498F commands
-status: backlog
+status: completed
 task_type: implementation
 created: 2026-02-20T00:00:00Z
+completed: 2026-02-20T00:00:00Z
 priority: high
 complexity: 6
 parent_review: TASK-REV-9480
@@ -11,6 +12,7 @@ feature_id: feat-498f-docs-update
 wave: 1
 implementation_mode: task-work
 tags: [documentation, mkdocs, feat-498f]
+completed_location: tasks/completed/TASK-DOC-001/
 ---
 
 # Task: Update command_usage_guide.md with FEAT-498F Commands
@@ -82,11 +84,11 @@ Reference these already-updated command reference pages for content:
 
 ## Acceptance Criteria
 
-- [ ] All 3 new commands documented with detailed sections
-- [ ] `/epic-create` updated with `--pattern` flag
-- [ ] `/epic-status` updated with pattern awareness and completeness scores
-- [ ] `/hierarchy-view` updated with new filter flags
-- [ ] Quick Command Reference table includes all new commands
-- [ ] At least one new workflow example demonstrating refinement loop
-- [ ] Version bumped to 2.0.0
-- [ ] Tone and style consistent with existing content
+- [x] All 3 new commands documented with detailed sections
+- [x] `/epic-create` updated with `--pattern` flag
+- [x] `/epic-status` updated with pattern awareness and completeness scores
+- [x] `/hierarchy-view` updated with new filter flags
+- [x] Quick Command Reference table includes all new commands
+- [x] At least one new workflow example demonstrating refinement loop
+- [x] Version bumped to 2.0.0
+- [x] Tone and style consistent with existing content

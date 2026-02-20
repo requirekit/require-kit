@@ -1,7 +1,7 @@
 # require-kit Command Usage Guide
 
-**Version**: 1.0.0
-**Last Updated**: 2025-11-03
+**Version**: 2.0.0
+**Last Updated**: 2026-02-20
 
 ## Table of Contents
 
@@ -10,8 +10,9 @@
 3. [Epic Management Commands](#epic-management-commands)
 4. [Feature Management Commands](#feature-management-commands)
 5. [Hierarchy Commands](#hierarchy-commands)
-6. [Export and Integration Commands](#export-and-integration-commands)
-7. [Complete Workflow Examples](#complete-workflow-examples)
+6. [Sync Commands](#sync-commands)
+7. [Export and Integration Commands](#export-and-integration-commands)
+8. [Complete Workflow Examples](#complete-workflow-examples)
 
 ---
 
@@ -29,6 +30,7 @@
 |---------|---------|---------|
 | `/epic-create` | Create strategic epic | `/epic-create "User Management"` |
 | `/epic-status` | View epic progress | `/epic-status EPIC-001` |
+| `/epic-refine` | Interactively refine epic | `/epic-refine EPIC-001` |
 | `/epic-sync` | Sync with PM tools | `/epic-sync EPIC-001 --jira` |
 
 ### Feature Management Commands
@@ -36,6 +38,7 @@
 |---------|---------|---------|
 | `/feature-create` | Create feature with epic linkage | `/feature-create "Auth" epic:EPIC-001` |
 | `/feature-status` | View feature progress | `/feature-status FEAT-001` |
+| `/feature-refine` | Interactively refine feature | `/feature-refine FEAT-001` |
 | `/feature-sync` | Sync feature with PM tools | `/feature-sync FEAT-001 --jira` |
 | `/feature-generate-tasks` | Generate task specifications | `/feature-generate-tasks FEAT-001` |
 
@@ -43,6 +46,11 @@
 | Command | Purpose | Example |
 |---------|---------|---------|
 | `/hierarchy-view` | View project hierarchy | `/hierarchy-view EPIC-001` |
+
+### Sync Commands
+| Command | Purpose | Example |
+|---------|---------|---------|
+| `/requirekit-sync` | Sync to Graphiti knowledge graph | `/requirekit-sync --all` |
 
 ---
 
@@ -254,6 +262,18 @@ Scenario: Successful user login
 /epic-create "User Management System"
 ```
 
+**With Organisation Pattern:**
+```bash
+# Standard pattern (default): Epic → Feature → Task
+/epic-create "E-Commerce Platform" --pattern standard
+
+# Direct pattern: Epic → Task (skip feature layer for small focused epics)
+/epic-create "Config Refactor" --pattern direct
+
+# Mixed pattern: Epic → Feature + Task (transitional use only)
+/epic-create "API Integration Layer" --pattern mixed
+```
+
 **With Metadata:**
 ```bash
 /epic-create "User Management System" \
@@ -269,6 +289,14 @@ Scenario: Successful user login
   priority:high \
   export:[jira,linear]
 ```
+
+**Organisation Patterns:**
+
+| Pattern | Structure | Best For |
+|---------|-----------|----------|
+| `standard` | Epic → Feature → Task | Large epics with 8+ tasks across distinct capabilities |
+| `direct` | Epic → Task | Small, focused epics with 3–5 closely related tasks |
+| `mixed` | Epic → Feature + Task | Transitional epics; avoid as a permanent structure |
 
 **Output:**
 ```
@@ -323,8 +351,20 @@ Next Steps:
 
 🎯 Overview
 Status: active
+Organisation Pattern: standard (Epic → Feature → Task)
 Progress: 63% complete (5/8 features completed)
 Timeline: On track (3 days ahead of schedule)
+
+📐 Completeness Score: 74/100
+  Business Objective: ████████░░ 80%
+  Scope:              ███████░░░ 70%
+  Success Criteria:   ████████░░ 80%
+  Acceptance Criteria:███████░░░ 75%
+  Risk:               █████░░░░░ 50%
+  Constraints:        ██████░░░░ 60%
+  Dependencies:       ████████░░ 80%
+  Stakeholders:       ████████░░ 85%
+  Organisation:       ████████░░ 80%
 
 🔧 Features Progress
 ✅ FEAT-001: User Authentication (100% - 5/5 requirements)
@@ -351,6 +391,7 @@ Linear Initiative PROJECT-456: Active (synced 1 hour ago)
 1. Complete FEAT-003 remaining requirements
 2. Start FEAT-004 requirements gathering
 3. Review BDD scenarios for FEAT-003
+4. Improve completeness: run /epic-refine EPIC-001 --focus risks
 ```
 
 ### `/epic-sync` - Sync with PM Tools
@@ -396,6 +437,84 @@ Linear Initiative PROJECT-456: Active (synced 1 hour ago)
 ✅ Sync Complete
 Last Sync: 2025-11-03T14:30:00Z
 Next Sync: 2025-11-03T15:30:00Z (auto)
+```
+
+### `/epic-refine` - Interactively Refine Epic
+
+**Purpose**: Iteratively improve an existing epic through completeness scoring, targeted questions, and change summaries.
+
+**Basic Usage:**
+```bash
+/epic-refine EPIC-001
+```
+
+**With Focus Flag:**
+```bash
+/epic-refine EPIC-001 --focus scope
+/epic-refine EPIC-001 --focus risks
+/epic-refine EPIC-001 --focus criteria
+```
+
+**Quick Mode (AI-suggested improvements applied automatically):**
+```bash
+/epic-refine EPIC-001 --quick
+```
+
+**Options:**
+
+| Flag | Description |
+|------|-------------|
+| `--focus <category>` | Restrict refinement to a single category: `scope`, `criteria`, `acceptance`, `dependencies`, `risks`, `constraints`, or `organisation` |
+| `--quick` | Skip interactive prompts and apply AI-suggested improvements automatically |
+
+**Three-Phase Flow:**
+
+1. **Current State Display** — Loads the epic, calculates a 9-dimension completeness score, and displays the assessment with visual indicators.
+2. **Targeted Questions** — Presents questions one at a time starting from the weakest categories, with options to skip or finish early.
+3. **Change Summary and Commit** — Displays a summary of proposed changes, offers apply options (Yes / No / Edit), updates the markdown file, and appends a `refinement_history` entry to the frontmatter.
+
+**Completeness Dimensions:**
+
+| Dimension | Weight |
+|-----------|--------|
+| Business Objective | 15% |
+| Scope | 15% |
+| Success Criteria | 20% |
+| Acceptance Criteria | 15% |
+| Risk | 10% |
+| Constraints | 10% |
+| Dependencies | 5% |
+| Stakeholders | 5% |
+| Organisation | 5% |
+
+**Organisation Pattern Awareness:**
+
+The command detects organisation patterns and provides targeted suggestions:
+
+- **Large direct-pattern epics** (8+ tasks without features) — suggests grouping tasks into features
+- **Single-feature epics** — suggests flattening to simplify hierarchy
+- **Mixed patterns** — suggests consolidation for consistency
+
+**Example Output:**
+```
+📐 Epic Completeness: EPIC-001 - User Management System
+Overall Score: 74/100
+
+Dimensions:
+  Business Objective  ████████░░  80%  ✅
+  Success Criteria    ████████░░  80%  ✅
+  Acceptance Criteria ███████░░░  75%  ✅
+  Scope               ███████░░░  70%  ⚠️
+  Dependencies        ████████░░  80%  ✅
+  Constraints         ██████░░░░  60%  ⚠️
+  Risk                █████░░░░░  50%  ❌
+  Stakeholders        ████████░░  85%  ✅
+  Organisation        ████████░░  80%  ✅
+
+Weakest category: Risk (50%) — starting there.
+
+Q1: What are the main risks for this epic?
+> ...
 ```
 
 ---
@@ -512,6 +631,81 @@ External Links: Jira PROJ-124, Linear ISS-456
 1. Complete REQ-003 specification
 2. Start REQ-004 implementation planning
 3. Implement remaining BDD scenario
+```
+
+### `/feature-refine` - Interactively Refine Feature
+
+**Purpose**: Iteratively improve an existing feature specification with focus on acceptance criteria specificity, requirements traceability, and BDD scenario coverage.
+
+**Basic Usage:**
+```bash
+/feature-refine FEAT-001
+```
+
+**With Focus Flag:**
+```bash
+/feature-refine FEAT-001 --focus acceptance
+/feature-refine FEAT-001 --focus bdd
+/feature-refine FEAT-001 --focus traceability
+```
+
+**Quick Mode (AI-suggested improvements applied automatically):**
+```bash
+/feature-refine FEAT-001 --quick
+```
+
+**Options:**
+
+| Flag | Description |
+|------|-------------|
+| `--focus <category>` | Restrict refinement to a single category: `acceptance`, `traceability`, `bdd`, `technical`, `dependencies`, or `scope` |
+| `--quick` | Skip interactive prompts and apply AI-suggested improvements automatically |
+
+**Three-Phase Flow:**
+
+1. **Current State Display** — Loads the feature, parses content, calculates a 7-dimension completeness score, and shows linked epic context.
+2. **Targeted Questions** — Presents feature-specific questions one at a time from the weakest categories first.
+3. **Change Summary and Commit** — Displays proposed changes, updates the markdown file, and appends a `refinement_history` entry.
+
+**Completeness Dimensions:**
+
+| Dimension | Weight |
+|-----------|--------|
+| Scope Within Epic | 10% |
+| Acceptance Criteria | 25% |
+| Requirements Traceability | 20% |
+| BDD Coverage | 15% |
+| Technical Considerations | 15% |
+| Dependencies | 10% |
+| Test Strategy | 5% |
+
+**Cross-Command Integration:**
+
+- Suggests `/formalize-ears` when linked EARS requirements are missing
+- Suggests `/generate-bdd` when BDD scenario coverage is low
+- Displays parent epic completeness score for context
+
+**Example Output:**
+```
+📐 Feature Completeness: FEAT-001 - User Authentication
+Overall Score: 68/100
+Parent Epic: EPIC-001 (74/100)
+
+Dimensions:
+  Acceptance Criteria      █████░░░░░  55%  ❌
+  Requirements Traceability████████░░  80%  ✅
+  BDD Coverage             ███████░░░  70%  ⚠️
+  Technical Considerations ████████░░  80%  ✅
+  Scope Within Epic        █████████░  90%  ✅
+  Dependencies             ███████░░░  70%  ⚠️
+  Test Strategy            ██████░░░░  60%  ⚠️
+
+Weakest category: Acceptance Criteria (55%) — starting there.
+
+Q1: Can you provide specific pass/fail criteria for the login flow?
+> ...
+
+💡 Tip: BDD coverage is low — consider running /generate-bdd FEAT-001 after refining.
 ```
 
 ### `/feature-sync` - Sync with PM Tools
@@ -650,11 +844,25 @@ Next Steps:
 /hierarchy-view EPIC-001 --include-bdd
 ```
 
+**Filter by Organisation Pattern:**
+```bash
+/hierarchy-view --pattern standard
+/hierarchy-view --pattern direct
+/hierarchy-view --pattern mixed
+```
+
+**Filter by Graphiti Sync Status:**
+```bash
+/hierarchy-view --graphiti-status synced
+/hierarchy-view --graphiti-status pending
+/hierarchy-view --graphiti-status unsynced
+```
+
 **Output:**
 ```
 📊 Project Hierarchy - User Management System
 
-├── 🎯 EPIC-001: User Management System (63% complete)
+├── 🎯 EPIC-001: User Management System (63% complete) [pattern: standard]
 │   │
 │   ├── 🔧 FEAT-001: User Authentication (100% complete)
 │   │   ├── 📋 REQ-001: Password Encryption [Ubiquitous] ✅
@@ -701,6 +909,113 @@ Projected Completion: 5 days
 🔗 External Links
 Jira Epic: PROJ-123
 Linear Initiative: PROJECT-456
+```
+
+---
+
+## Sync Commands
+
+### `/requirekit-sync` - Sync to Graphiti Knowledge Graph
+
+**Purpose**: Re-read markdown files and push the current state to Graphiti. Markdown is the authoritative source of truth — this command rebuilds the Graphiti knowledge graph from local files.
+
+**Basic Usage:**
+```bash
+/requirekit-sync EPIC-001
+```
+
+**Sync a Feature:**
+```bash
+/requirekit-sync FEAT-002
+```
+
+**Sync Everything:**
+```bash
+/requirekit-sync --all
+```
+
+**Preview Without Writing:**
+```bash
+/requirekit-sync --dry-run
+/requirekit-sync EPIC-001 --dry-run
+```
+
+**Verbose Output:**
+```bash
+/requirekit-sync --all --verbose
+```
+
+**Options:**
+
+| Flag | Description |
+|------|-------------|
+| `--all` | Sync all epics and features found in `docs/epics/` and `docs/features/` |
+| `--dry-run` | Preview what would be synced without writing to Graphiti |
+| `--verbose` | Show detailed sync output for each entity |
+
+**How It Works:**
+
+1. Checks that Graphiti is enabled in configuration
+2. Scans `docs/epics/` and `docs/features/` for markdown files
+3. Parses frontmatter and content from each file
+4. Constructs episode objects following the epic/feature schema
+5. Upserts episodes to Graphiti using the configured group ID
+6. Displays a summary with sync results
+
+**Markdown-Authoritative Design:**
+
+- **One-way sync** from markdown to Graphiti (markdown always wins)
+- No conflict detection or bidirectional merge
+- Graphiti serves as a queryable index rebuilt from markdown
+
+**When to Use:**
+
+| Scenario | Command |
+|----------|---------|
+| Rebuild Graphiti after data loss | `/requirekit-sync --all` |
+| Populate a fresh Graphiti instance | `/requirekit-sync --all` |
+| Manual sync when auto-sync is disabled | `/requirekit-sync EPIC-001` |
+| Verify what Graphiti would contain | `/requirekit-sync --all --dry-run` |
+
+**Error Handling:**
+
+- **Graphiti not configured** — Shows a helpful setup message
+- **Connection failure** — Shows error with retry suggestion
+- **Partial failure** — Continues with valid files, reports failures at end
+- **Invalid markdown** — Skips with warning, continues with valid files
+
+**Relationship to Other Commands:**
+
+The following commands auto-sync to Graphiti when configured:
+
+- `/epic-create` — auto-syncs if `sync_on_create: true`
+- `/feature-create` — auto-syncs if `sync_on_create: true`
+- `/epic-refine` — auto-syncs if `sync_on_refine: true`
+- `/feature-refine` — auto-syncs if `sync_on_refine: true`
+
+Use `/requirekit-sync` for manual or full sync operations.
+
+**Output:**
+```
+🔄 RequireKit Sync
+
+Scanning docs/epics/ ... 3 files found
+Scanning docs/features/ ... 8 files found
+
+Syncing to Graphiti:
+  ✅ EPIC-001: User Management System
+  ✅ EPIC-002: E-Commerce Platform
+  ✅ EPIC-003: Reporting System
+  ✅ FEAT-001: User Authentication
+  ✅ FEAT-002: Password Reset
+  ✅ FEAT-003: Role Management
+  ⚠️  FEAT-004: Admin Dashboard — skipped (invalid frontmatter)
+  ✅ FEAT-005: Shopping Cart
+  ✅ FEAT-006: Checkout Process
+  ✅ FEAT-007: Product Catalog
+  ✅ FEAT-008: Sales Reports
+
+Sync Complete: 10 synced, 1 skipped, 0 failed
 ```
 
 ---
@@ -915,6 +1230,56 @@ Linear Initiative: PROJECT-456
 /feature-sync FEAT-010 --jira
 ```
 
+### Example 5: Iterative Refinement Workflow
+
+Use the refinement commands to progressively improve epics and features after their initial creation.
+
+```bash
+# Step 1: Create the epic (using direct pattern for a small focused scope)
+/epic-create "Config Refactor" --pattern direct
+# Output: EPIC-005
+
+# Step 2: Check initial completeness
+/epic-status EPIC-005
+# Completeness score shows weak areas (e.g. risks, constraints)
+
+# Step 3: Refine the epic — start with weakest dimensions
+/epic-refine EPIC-005
+# Three-phase flow: score → targeted questions → apply changes
+# Repeat until score is satisfactory (e.g. 80+)
+
+# Step 4: Focus on a specific dimension if needed
+/epic-refine EPIC-005 --focus risks
+/epic-refine EPIC-005 --focus constraints
+
+# Step 5: Create features and gather requirements
+/feature-create "Environment Variable Support" epic:EPIC-005
+/gather-requirements environment-variables
+/formalize-ears
+# Output: REQ-060 through REQ-064
+
+# Step 6: Check feature completeness
+/feature-status FEAT-010
+# Completeness score highlights missing acceptance criteria and BDD coverage
+
+# Step 7: Refine the feature
+/feature-refine FEAT-010
+# Suggestions: acceptance criteria need specificity, BDD coverage is low
+
+# Step 8: Generate BDD based on refinement output
+/generate-bdd FEAT-010
+# Output: docs/bdd/BDD-010-environment-variable-support.feature
+
+# Step 9: Final refinement pass for BDD traceability
+/feature-refine FEAT-010 --focus bdd
+# Confirms scenarios linked and traceability complete
+
+# Step 10: Sync to Graphiti for knowledge graph queryability
+/requirekit-sync EPIC-005
+```
+
+**Result**: A fully refined epic and feature with high completeness scores, clear acceptance criteria, BDD scenarios, and Graphiti knowledge graph updated.
+
 ---
 
 ## Task Execution (Optional Integration)
@@ -971,4 +1336,4 @@ See [Integration Guide](../INTEGRATION-GUIDE.md) for:
 
 ---
 
-**Version**: 1.0.0 | **Last Updated**: 2025-11-03 | [require-kit](https://github.com/requirekit/require-kit)
+**Version**: 2.0.0 | **Last Updated**: 2026-02-20 | [require-kit](https://github.com/requirekit/require-kit)
